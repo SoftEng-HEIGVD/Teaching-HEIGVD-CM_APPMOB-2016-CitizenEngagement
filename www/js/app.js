@@ -76,7 +76,7 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
             })
 
             .state('mainMenu.issueDetails', {
-                url: '/issue/:issueId',
+                url: '/issue/:issueId', // ?$stateParams ?
                 views: {
                     'appContent' :{
                       templateUrl: "templates/issueDetails.html",

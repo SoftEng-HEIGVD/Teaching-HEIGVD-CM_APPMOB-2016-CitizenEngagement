@@ -1,6 +1,16 @@
 <ion-view view-title="Issue List">
-
-    <ion-content>
-        <p>Hello! This is the issue List screen.</p>
+    <ion-content ng-controller="ListIssuesCtrl" >
+        <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="getIssues()">
+        </ion-refresher>
+        <div class="cards">
+          <div class="item item-text-wrap" ng-repeat="issue in issues">
+            <div ui-sref="mainMenu.issueDetails({issueId: issue.id})" style="background: url('{{issue.imageUrl}}')">
+                <p class="description">{{ issue.description }}</p>
+            </div>
+          </div>
+        </div>
     </ion-content>
+
 </ion-view>

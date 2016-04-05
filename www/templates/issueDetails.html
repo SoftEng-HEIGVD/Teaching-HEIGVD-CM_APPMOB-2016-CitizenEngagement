@@ -1,5 +1,6 @@
 <ion-view view-title="Issue Details">
-    <ion-content>
-        <p>Hello! This is the issue Details screen.</p>
+    <ion-content ng-controller="GetSpecificIssueCtrl">
+        <h1>{{issue.state}}</h1>
+        <p>{{issue.description}}</p>
     </ion-content>
 </ion-view>
