@@ -36,6 +36,21 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'FixYourStreet.c
       templateUrl: 'templates/issueMap.html'
     })
 
+    .state('commentsList', {
+      url: '/commentsList',
+      templateUrl: 'templates/commentsList.html'
+    })
+
+    .state('newComment', {
+      url: '/newComment',
+      templateUrl: 'templates/newComment.html'
+    })
+
+    .state('fullImg', {
+      url: '/fullImg',
+      templateUrl: 'templates/fullImg.html'
+    })
+
     .state('newIssue', {
       url: '/newIssue',
       templateUrl: 'templates/newIssue.html'
@@ -131,3 +146,26 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'FixYourStreet.c
   };
 
 })
+
+.controller('AppCtrl', function($scope) {
+  $scope.showFooter = true;
+  $scope.toggleFooter = function() {
+    console.log('Toggling footer');
+    $scope.showFooter = !$scope.showFooter;
+  }
+})
+
+.controller('newComment', function($scope, $ionicModal) {
+
+  $ionicModal.fromTemplateUrl('templates/newComment.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.createComment = function(u) {
+    //MISSING SAVE FUNCTION
+    $scope.modal.hide();
+  };
+
+});

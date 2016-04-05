@@ -1,4 +1,4 @@
-<ion-view view-title="Issue List">
+<ion-view view-title="List of issues in the area">
   <ion-nav-bar>
     <ion-nav-back-button>
     </ion-nav-back-button>
@@ -10,20 +10,31 @@
   <ion-content>
 
     <ion-list ng-controller="ListCtrl">
-        <div ng-repeat="group in groups">
-          <ion-item class="item-stable"
-                    ng-click="toggleGroup(group)"
-                    ng-class="{active: isGroupShown(group)}">
-              <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
-            &nbsp;
-            Group {{group.name}}
+          <ion-item ng-repeat="group in groups">
+
+            <div class="row">
+              <div class="col">
+                <a ui-sref="fullImg"><img src="img/banner.jpg" style="width:100%" alt="FixYourStreet" /></a>
+              </div>
+              <div class="col col-75 item-body listIssue">
+                <h2>Graffiti<time>05.06.2016</time></h2>
+                  <!-- {{group.name}} {{date}} -->
+                  <ul class="tagsList">
+                    <li>Graffiti</li>
+                    <li>Ipsum</li>
+                  </ul>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+
+
+                <div class="button-bar">
+                  <a class="button button-small" ui-sref="issueDetails">Show on map</a>
+                  <a class="button button-small" ui-sref="commentsList">View comments</a>
+                </div>
+              </div>
+            </div>
+
           </ion-item>
-          <ion-item class="item-accordion"
-                    ng-repeat="item in group.items"
-                    ng-show="isGroupShown(group)">
-            {{item}}
-          </ion-item>
-        </div>
+
       </ion-list>
 
   </ion-content>

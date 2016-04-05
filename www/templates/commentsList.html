@@ -1,0 +1,30 @@
+<ion-view>
+  <ion-nav-bar>
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+    <ion-nav-title>Comments for Graffiti</ion-nav-title>
+    <ion-nav-buttons side="secondary">
+      <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content>
+
+    <ion-list ng-controller="ListCtrl">
+          <ion-item ng-repeat="group in groups">
+              <div class="item-body listIssue">
+                <h2>Author<time>05.06.2016</time></h2>
+                  <!-- {{group.name}} {{date}} -->
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+              </div>
+          </ion-item>
+
+    </ion-list>
+
+  </ion-content>
+
+  <ion-footer-bar class="bar-assertive" ng-controller="newComment">
+    <button ng-click="modal.show()" class="button button-calm">Add a comment</button>
+  </ion-footer-bar>
+
+</ion-view>
