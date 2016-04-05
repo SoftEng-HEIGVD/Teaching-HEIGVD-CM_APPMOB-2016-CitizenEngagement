@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citizen-engagement.constants'])
+angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citizen-engagement.constants', 'citizen-engagement.issueCtrl'])
 
 
 
@@ -106,9 +106,11 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
 
             .state('menu.issueList', {
                 url: '/issueList',
+
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/issueList.html'
+                        templateUrl: 'templates/issueList.html',
+                        controller: 'IssueListCtrl'
                     }
                 }
             })

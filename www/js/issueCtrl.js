@@ -6,19 +6,23 @@ angular.module('citizen-engagement.issueCtrl',[])
 
     .controller('IssueListCtrl',
         function ($scope, $http,apiUrl) {
-            $scope.loadUsers = function() {
+            $scope.loadIssues = function() {
+                console.log("ok");
                 $http.get(apiUrl+'/issues').success(function(issues) {
 
                     $scope.issues = issues;
+
                     console.log(issues[0].id);
+
 
                 });
             };
+            $scope.loadIssues();
 
             $scope.loadIssueType = function () {
                 $http.get(apiUrl + '/issues').success(function (issues) {
                     $scope.issues = issues;
-                    //console.log(issueTypes[0].name);
+                    console.log(issueTypes[0].name);
 
                     index = 0;
 
