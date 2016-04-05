@@ -1,4 +1,10 @@
 {
-  "name": "BatmanCityCleaner",
-  "app_id": ""
+  "name": "citizen-engagement",
+  "app_id": "",
+  "proxies": [
+    {
+      "path": "/api-proxy",
+      "proxyUrl": "https://pure-gorge-1661.herokuapp.com/api"
+    }
+  ]
 }
