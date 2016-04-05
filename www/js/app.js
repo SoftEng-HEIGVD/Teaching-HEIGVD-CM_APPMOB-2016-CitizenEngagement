@@ -61,7 +61,7 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 views: {
                     'appContent' :{
                       templateUrl: "templates/issueList.html",
-                      controller : ""
+                      controller : "ListIssuesCtrl"
                     }
                 }
             })
@@ -70,7 +70,7 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 views: {
                     'appContent' :{
                       templateUrl: "templates/myIssues.html",
-                      controller : ""
+                      controller : "ListMyIssuesCtrl"
                     }
                 }
             })
@@ -79,7 +79,7 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 views: {
                     'appContent' :{
                       templateUrl: "templates/newIssue.html",
-                      controller : ""
+                      controller : "AddIssueCtrl"
                     }
                 }
             })
@@ -89,7 +89,7 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 views: {
                     'appContent' :{
                       templateUrl: "templates/issueDetails.html",
-                      controller : ""
+                      controller : "GetSpecificIssueCtrl"
                     }
                 }
             })

@@ -1,7 +1,10 @@
-<ion-view view-title="Issue Details">
-    <ion-content ng-controller="GetSpecificIssueCtrl">
-        <h1>{{issue.state}}</h1>
+<ion-view view-title="{{issue.description}}">
+    <ion-content>
+        <div class="card">
+        <h3>{{issue.state}}</h3>
         <p>{{issue.description}}</p>
+        <p>by {{issue.owner.name}}</p>
         <img src="{{issue.imageUrl}}" style="display:block;max-width:100%;height:auto;"/>
+    </div>
     </ion-content>
 </ion-view>

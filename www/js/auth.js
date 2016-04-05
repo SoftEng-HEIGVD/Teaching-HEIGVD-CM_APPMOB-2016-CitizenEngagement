@@ -51,7 +51,6 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
 
                 // If successful, give the user to the authentication service.
                 AuthService.setUser(user);
-
                 // Hide the loading message.
                 $ionicLoading.hide();
 
@@ -63,7 +62,8 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
                 });
 
                 // Go to the issue creation tab.
-                $state.go('mainMenu.issues');
+                $ionicHistory.clearCache().then(function(){ $state.go('mainMenu.issues')});
+
 
             }).error(function (error) {
 
@@ -78,6 +78,7 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
     .controller('LogoutCtrl', function (AuthService, $scope, $state) {
         $scope.logOut = function () {
             AuthService.unsetUser();
+
             $state.go('login');
         };
     })
