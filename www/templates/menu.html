@@ -19,13 +19,16 @@
       <h2 class="title">username</h2>
       <p>Pic</p>
     </ion-header-bar>
-    <ion-content>
-      <ion-list class="stable">
+    <ion-content scroll="false">
+      <ion-list class="stable" border="false">
         <ion-item class="item-stable" ng-repeat="item in menuItems" menu-close ui-sref-active="active" ui-sref="{{ item.state }}">
           <span class=" {{ item.class }}"></span>{{ item.title }}
         </ion-item>
       </ion-list>
     </ion-content>
+    <ion-footer-bar align-title="left" class="bar-energized">
+            <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
+    </ion-footer-bar>
   </ion-side-menu>
 
 </ion-side-menus>
