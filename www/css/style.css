@@ -19,3 +19,27 @@
 .list .item.item-accordion.ng-hide-remove {
   display: block !important;
 }
+
+.listIssue time{
+  float:right;font-size:8pt;
+}
+
+.tagsList li{
+  display:inline;
+  padding-right:5px;
+  font-style: italic;
+  color:#AAA;
+  font-size:10pt;
+}
+.listIssue h2{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:0;
+}
+.fullImg{
+  background-color:black;
+}
+.fullImg .bar.bar-header{
+  background-color:black;
+  border:none;
+}

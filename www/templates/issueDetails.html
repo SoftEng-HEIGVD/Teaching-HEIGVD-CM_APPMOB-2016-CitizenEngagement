@@ -1,14 +1,44 @@
-<ion-view view-title="Issue Details">
+<ion-view>
 
   <ion-nav-bar>
     <ion-nav-back-button>
     </ion-nav-back-button>
+    <ion-nav-title>Graffiti</ion-nav-title>
     <ion-nav-buttons side="secondary">
       <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
     </ion-nav-buttons>
   </ion-nav-bar>
 
   <ion-content>
-    <p>Hello! This is the issue creation screen.</p>
+    <div class="row">
+      <div class="col">
+        <a ui-sref="fullImg"><img src="img/banner.jpg" style="width:100%" alt="FixYourStreet" /></a>
+      </div>
+      <div class="col col-75 item-body">
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+
+        <div class="row">
+
+          <div class="col col-80">
+            <ul class="tagsList">
+              <li>Graffiti</li>
+              <li>Ipsum</li>
+              <li>Ipsum</li>
+            </ul>
+            </div>
+            <div class="col">
+              <time>05.06.2016</time>
+            </div>
+        </div>
+
+
+      </div>
+
+    </div>
+    <div class="button-bar" ng-controller="newComment">
+      <a class="button button-medium" ng-click="modal.show()">Add a comment</a>
+      <a class="button button-medium" ui-sref="commentsList">View comments</a>
+    </div>
+
   </ion-content>
 </ion-view>
