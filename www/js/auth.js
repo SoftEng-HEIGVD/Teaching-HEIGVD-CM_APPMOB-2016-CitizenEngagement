@@ -1,4 +1,4 @@
-angular.module('FixYourStreet.auth', ['angular-stoage'])
+angular.module('FixYourStreet.auth', ['angular-storage'])
 
   .factory('AuthService', function() {
 
