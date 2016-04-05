@@ -1,5 +1,10 @@
 <ion-view view-title="Issue Details">
     <ion-content>
-        <p>Hello! This is the issue detail screen.</p>
+        <p>Details of an issue.</p>
+
+        <ion-item collection-repeat="item in items">
+            {{issue}}
+        </ion-item>
+
     </ion-content>
 </ion-view>

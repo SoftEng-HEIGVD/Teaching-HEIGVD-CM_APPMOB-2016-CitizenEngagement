@@ -12,8 +12,7 @@ angular.module('citizen-engagement.issueCtrl',[])
 
                     $scope.issues = issues;
 
-                    console.log(issues[0].id);
-
+                    console.log(issues[0]);
 
                 });
             };
