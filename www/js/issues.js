@@ -42,7 +42,21 @@ angular.module('citizen-engagement')
     })
 
     .controller('ListMyIssuesCtrl', function(apiUrl, $scope, $http) {
-
+        // Create and execute get functions
+        $scope.getIssues = function() {
+            $http({
+                method: 'GET',
+                url: apiUrl + '/me/issues'
+            }).success(function (issues) {
+                $scope.issues = issues;
+            }).error(function(error) {
+                console.log('an error occurred');
+            }).finally(function() {
+                // Stop the ion-refresher from spinning
+                $scope.$broadcast('scroll.refreshComplete');
+            });
+        }
+        $scope.getIssues();
     })
 
 

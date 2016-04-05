@@ -65,6 +65,15 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                     }
                 }
             })
+            .state('mainMenu.myIssues', {
+                url: '/myIssues',
+                views: {
+                    'appContent' :{
+                      templateUrl: "templates/myIssues.html",
+                      controller : ""
+                    }
+                }
+            })
             .state('mainMenu.newIssue', {
                 url: '/newIssue',
                 views: {
@@ -109,19 +118,25 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
         };
 
         $scope.menuItems = [
-        {
-            title: 'Issue Map',
-            state: 'mainMenu.issueMap',
-            class: 'issues-map'
-        }, {
-            title: 'All issues',
-            state: 'mainMenu.issues',
-            class: 'issues-all'
-        },{
-            title: 'New issue',
-            state: 'mainMenu.newIssue',
-            class: 'issues-new'
-        }];
+            {
+                title: 'My issues',
+                state: 'mainMenu.myIssues',
+                class: 'issues-my'
+            },
+            {
+                title: 'Issue Map',
+                state: 'mainMenu.issueMap',
+                class: 'issues-map'
+            }, {
+                title: 'All issues',
+                state: 'mainMenu.issues',
+                class: 'issues-all'
+            },{
+                title: 'New issue',
+                state: 'mainMenu.newIssue',
+                class: 'issues-new'
+            }
+        ];
     })
 
 ;
