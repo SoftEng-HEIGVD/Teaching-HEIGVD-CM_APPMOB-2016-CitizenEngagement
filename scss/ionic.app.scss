@@ -21,3 +21,30 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+/* Empty. Add your own CSS if you like */
+
+#loginCitizen {
+  background-image: url("../img/banner2.jpg");
+  background-repeat: no-repeat;
+  .logo {
+    opacity: 0.8;
+    text-align: center;
+    margin-top: 40%;
+  }
+  form {
+    margin: 30px;
+    label {
+      margin-top: 10px;
+      background-color: transparent;
+      color: whitesmoke;
+      border: 2px solid white;
+      input {
+        color: whitesmoke;
+      }
+    }
+  }
+}
+
+
+
+
