@@ -2,10 +2,21 @@
     <ion-content>
         <p>Hello! This is the issue creation screen.</p>
 
-    </ion-content>
 
 
-</ion-view>
+
+
+    <button class="button button-block button-positive" ng-controller="UserListCtrl" ng-click="loadUsers()"  >
+        loadUsers
+    </button>
+
+    <button class="button button-block button-positive"  ng-controller="UserListCtrl" ng-click="loadIssueType()">
+        loadIssueType
+    </button>
+
+        <button class="button button-block button-positive"  ng-controller="UserListCtrl" ng-click="loadIssues()">
+            loadIssues
+        </button>
 
 </ion-view>
 

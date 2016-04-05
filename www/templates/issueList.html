@@ -1,13 +1,24 @@
 <ion-view view-title="List Issue">
     <ion-content>
-      <div class="list">
-        <a class="item item-thumbnail-left" href="#">
-          <img src="cover.jpg">
-          <h2>Name of the issue</h2>
-          <p>Type</p>
-          <p>Status</p>
-          <p>Date</p>
-        </a>
-      </div>
+
+
+        <div ng-controller="UserListCtrl" class="list">
+
+
+            <!--Issue type form-->
+
+                <div ng-repeat='issueType in issueTypes'>
+
+                   <H2> {{issueType.name}}</H2>
+                   <p>{{issueType.name}}</p>
+
+                </div>
+
+
+        </div>
+
+
     </ion-content>
+
+
 </ion-view>
