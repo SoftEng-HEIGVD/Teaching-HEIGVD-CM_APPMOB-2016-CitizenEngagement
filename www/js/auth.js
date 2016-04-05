@@ -42,6 +42,7 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
             });
 
             // Make the request to retrieve or create the user.
+            console.log('plop');
             $http({
                 method: 'POST',
                 url: apiUrl + '/users/logister',
@@ -62,12 +63,13 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
                 });
 
                 // Go to the issue creation tab.
-                $state.go('issues');
+                $state.go('mainMenu.issues');
 
-            }).error(function () {
+            }).error(function (error) {
 
                 // If an error occurs, hide the loading message and show an error message.
                 $ionicLoading.hide();
+                console.log(error)
                 $scope.error = 'Could not log in.';
             });
         };
