@@ -32,12 +32,12 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth'])
         $rootScope.$on('$stateChangeStart', function (event, toState) {
 
             // If the user is not logged in and is trying to access another state than "login"...
-            if (!AuthService.currentUserId && toState.name != 'login') {
+            /*if (!AuthService.currentUserId && toState.name != 'login') {
 
                 // ... then cancel the transition and go to the "login" state instead.
                 event.preventDefault();
                 $state.go('login');
-            }
+            }*/
         });
     })
 
