@@ -23,21 +23,22 @@ angular.module('citizen-engagement.citizenCtrl',[])
                     index++;
                 }
 
+                console.log(issueTypes);
+
             });
+
 
         };
 
         $scope.loadIssues=function(){
             $http.get(apiUrl+'/issues').success(function(issues){
                 $scope.issues=issues;
-
                 console.log(issues);
+
             })
         }
 
-        $scope.loadIssueType();
-
-
+        $scope.loadIssues();
 
     });
 

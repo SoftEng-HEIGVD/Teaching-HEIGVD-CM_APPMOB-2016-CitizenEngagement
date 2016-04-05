@@ -2,23 +2,34 @@
     <ion-content>
 
 
-        <div ng-controller="UserListCtrl" class="list">
+
+        <ion-list ng-controller="UserListCtrl"
+                  can-swipe="listCanSwipe">
+            <ion-item ng-repeat="issue in issues"
+                      class="item-thumbnail-left">
+
+                <!--<img ng-src="{{item.img}}">-->
+                <img ng-src="{{issue.imageUrl}}">
+                <h2>{{issue.state}}</h2>
+                <p>{{issue.description}}</p>
+                <ion-option-button class="button-positive">
+                    Share
+                </ion-option-button>
+                <ion-option-button class="button-assertive">
+                    Edit
+                </ion-option-button>
+                <ion-delete-button class="ion-minus-circled">
+                </ion-delete-button>
 
 
-            <!--Issue type form-->
-
-                <div ng-repeat='issueType in issueTypes'>
-
-                   <H2> {{issueType.name}}</H2>
-                   <p>{{issueType.name}}</p>
-
-                </div>
-
-
-        </div>
+            </ion-item>
+        </ion-list>
 
 
     </ion-content>
 
 
+
 </ion-view>
+
+
