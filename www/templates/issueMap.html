@@ -1,14 +1,19 @@
 <ion-view>
-  <ion-nav-bar>
-    <ion-nav-buttons side="secondary">
-      <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
-    </ion-nav-buttons>
-  </ion-nav-bar>
+
+  <div class="bar bar-header item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="Search a place">
+    </label>
+    <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
+  </div>
+
+
   <ion-content>
     <p>MAP</p>
 
   </ion-content>
-  <ion-footer-bar align-title="left" class="bar-assertive">
+  <ion-footer-bar class="bar-assertive">
     <button class="button icon ion-plus pull-left" ui-sref="newIssue">Add issue</button>
     <button class="button icon ion-navicon pull-right" ui-sref="issueList">View all issues</button>
   </ion-footer-bar>

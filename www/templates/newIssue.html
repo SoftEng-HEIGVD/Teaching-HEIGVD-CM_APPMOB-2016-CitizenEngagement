@@ -1,4 +1,5 @@
-<ion-view view-title="New Issue">
+<ion-view view-title="Add an Issue">
+
   <ion-nav-bar>
     <ion-nav-back-button>
     </ion-nav-back-button>
@@ -6,7 +7,48 @@
       <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
     </ion-nav-buttons>
   </ion-nav-bar>
+
   <ion-content>
-    <p>Hello! This is the issue creation screen.</p>
+    <div class="list">
+
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Type
+        </div>
+        <select>
+          <option>Blue</option>
+          <option selected>Green</option>
+          <option>Red</option>
+        </select>
+      </label>
+
+
+
+      <div ng-controller="TagsCtrl">
+              <div class="item-input" ng-repeat="input in inputs">
+              <label class="item-input-wrapper">
+                  <input type="text" placeholder="Type a tag" ng-model="input.value" />
+              </label>
+              <button class="button button-small" ng-if="$index == inputs.length - 1" ng-click="addInput()">
+                  <i class="icon ion-plus"></i>
+              </button>
+                  <button class="button button-small button-assertive" ng-if="$index != inputs.length - 1" ng-click="removeInput($index)">
+                  <i class="icon ion-minus"></i>
+              </button>
+      </div>
+
+      <label class="item item-input">
+        <textarea placeholder="Comments"></textarea>
+      </label>
+
+    </div>
+
+    <div class="bar">
+      <button class="button button-clear" ui-sref="issueMap">Cancel</button>
+      <button class="button button-clear button-assertive" ui-sref="issueDetails">Submit</button>
+    </div>
   </ion-content>
+
+
+
 </ion-view>

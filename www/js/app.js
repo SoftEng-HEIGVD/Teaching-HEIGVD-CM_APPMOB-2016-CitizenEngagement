@@ -41,6 +41,11 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'FixYourStreet.c
       templateUrl: 'templates/newIssue.html'
     })
 
+    .state('issueDetails', {
+      url: '/issueDetails',
+      templateUrl: 'templates/issueDetails.html'
+    })
+
     .state('issueList', {
       url: '/issueList',
       templateUrl: 'templates/issueList.html'
@@ -79,4 +84,50 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'FixYourStreet.c
       $state.go('login');
     }
   });
+})
+
+.controller("TagsCtrl", function ($scope) {
+    $scope.inputs = [{
+        value: null
+    }];
+
+    $scope.addInput = function () {
+        console.log("new input");
+        $scope.inputs.push({
+            value: null
+        });
+    }
+
+    $scope.removeInput = function (index) {
+        $scope.inputs.splice(index, 1);
+    }
+})
+
+.controller('ListCtrl', function($scope) {
+  $scope.groups = [];
+  for (var i=0; i<10; i++) {
+    $scope.groups[i] = {
+      name: i,
+      items: []
+    };
+    for (var j=0; j<3; j++) {
+      $scope.groups[i].items.push(i + '-' + j);
+    }
+  }
+
+  /*
+   * if given group is the selected group, deselect it
+   * else, select the given group
+   */
+  $scope.toggleGroup = function(group) {
+    if ($scope.isGroupShown(group)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = group;
+    }
+  };
+  $scope.isGroupShown = function(group) {
+    return $scope.shownGroup === group;
+  };
+
 })
