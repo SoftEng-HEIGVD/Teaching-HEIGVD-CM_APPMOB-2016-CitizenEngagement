@@ -6,4 +6,5 @@ platforms/
 plugins/
 .idea
 config/*
+!config/sample.json
 www/js/constants.js
