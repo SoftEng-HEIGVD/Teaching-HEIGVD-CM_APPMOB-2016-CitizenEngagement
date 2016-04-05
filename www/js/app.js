@@ -71,14 +71,14 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 templateUrl: 'templates/menu.html'
             })
 
-            /*.state('menu.home', {
+            .state('menu.home', {
                 url: '/home',
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/home.html'
                     }
                 }
-            })*/
+            })
 
             // The three next states are for each of the three tabs.
             // The state names start with "tab.", indicating that they are children of the "tab" state.
@@ -136,7 +136,7 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
 
         // Define the default state (i.e. the first screen displayed when the app opens).
         $urlRouterProvider.otherwise(function($injector) {
-            $injector.get('$state').go('menu.newIssue'); // Go to the new issue tab by default. TODO home
+            $injector.get('$state').go('menu.home'); // Go to the new issue tab by default. TODO home
         });
     })
 angular.module('citizen-engagement.constants', [])
