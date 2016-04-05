@@ -1,4 +1,11 @@
-<ion-view view-title="Issue Map">
+<ion-view view-title="Issue Map" ng-controller="navCtrl">
+    <ion-nav-back-button class="button-icon ion-arrow-left-c">
+
+    </ion-nav-back-button>
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()" >
+      </button>
+    </ion-nav-buttons>
     <ion-content>
         <p>Hello! This is the issue Map screen.</p>
     </ion-content>

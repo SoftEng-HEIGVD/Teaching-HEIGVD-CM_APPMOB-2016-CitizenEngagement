@@ -53,30 +53,59 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
         // Set up the various states which the app can be in.
         // Each state's controller can be found in controllers.js
         $stateProvider
-
+            .state('mainMenu', {
+              url: "",
+              abstract: true,
+              templateUrl: "templates/menu.html"
+            })
             .state('login', {
                 url: '/login',
                 controller: 'LoginCtrl',
                 templateUrl: 'templates/login.html'
             })
-            .state('issues', {
+            .state('mainMenu.issues', {
                 url: '/issues',
-                templateUrl: 'templates/issueList.html'
+                views: {
+                    'appContent' :{
+                      templateUrl: "templates/issueList.html",
+                      controller : ""
+                    }
+                }
             })
-            .state('issueDetails', {
+            .state('mainMenu.newIssue', {
+                url: '/newIssue',
+                views: {
+                    'appContent' :{
+                      templateUrl: "templates/newIssue.html",
+                      controller : ""
+                    }
+                }
+            })
+
+            .state('mainMenu.issueDetails', {
                 url: '/issue/:issueId',
-                templateUrl: 'templates/issueDetails.html'
+                views: {
+                    'appContent' :{
+                      templateUrl: "templates/issueDetails.html",
+                      controller : ""
+                    }
+                }
             })
-            .state('issueMap', {
+            .state('mainMenu.issueMap', {
                 url: '/issueMap',
-                templateUrl: 'templates/issueMap.html'
+                views: {
+                    'appContent' :{
+                      templateUrl: "templates/issueMap.html",
+                      controller : ""
+                    }
+                }
             })
         ;
 
 
         // Define the default state (i.e. the first screen displayed when the app opens).
         $urlRouterProvider.otherwise(function ($injector) {
-            $injector.get('$state').go('issues'); // Go to the new issue tab by default.
+            $injector.get('$state').go('mainMenu.issues'); // Go to the new issue tab by default.
         });
     })
 
@@ -86,14 +115,19 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
             $ionicSideMenuDelegate.toggleLeft();
         };
 
-    })
-    .controller('menuItemsCtrl', function ($scope) {
-        $scope.menuItems = [{
-            title: 'First title'
+        $scope.menuItems = [
+        {
+            title: 'Issue Map',
+            state: 'mainMenu.issueMap',
+            class: 'issues-map'
         }, {
-            title: 'Second title'
-        }, {
-            title: 'Third title'
+            title: 'All issues',
+            state: 'mainMenu.issues',
+            class: 'issues-all'
+        },{
+            title: 'New issue',
+            state: 'mainMenu.newIssue',
+            class: 'issues-new'
         }];
     })
 
