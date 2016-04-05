@@ -68,7 +68,7 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
                 });
 
                 // Go to the issue creation tab.
-                $state.go('menu.home');
+                $state.go('menu.home'); //TODO if else citizen & staff --> create template (View) for selection
 
             }).error(function() {
 

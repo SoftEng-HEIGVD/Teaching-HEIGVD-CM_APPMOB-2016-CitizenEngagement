@@ -65,7 +65,7 @@ function saveConfig(environment) {
         // Save the result in www/js.
         .pipe(gulp.dest('www/js'));
 }
-
+/*config production and dev*/
 gulp.task('config-development', function () {
     saveConfig('development');
 });
