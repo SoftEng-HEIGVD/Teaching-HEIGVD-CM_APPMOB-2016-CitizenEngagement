@@ -42,7 +42,6 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
             });
 
             // Make the request to retrieve or create the user.
-            console.log('plop');
             $http({
                 method: 'POST',
                 url: apiUrl + '/users/logister',
