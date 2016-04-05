@@ -1,10 +1,10 @@
 {
   "name": "citizen-engagement",
-  "app_id": "",
+  "app_id": "636cc0b6",
   "proxies": [
-      {
-        "path": "/api-proxy",
-        "proxyUrl": " https://pure-gorge-1661.herokuapp.com/api"
-      }
-    ]
+    {
+      "path": "/api-proxy",
+      "proxyUrl": "https://heigvd-cm-appmob-2016-team-04.herokuapp.com/api"
+    }
+  ]
 }
