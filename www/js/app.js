@@ -36,6 +36,16 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'FixYourStreet.c
       templateUrl: 'templates/issueMap.html'
     })
 
+    .state('newIssue', {
+      url: '/newIssue',
+      templateUrl: 'templates/newIssue.html'
+    })
+
+    .state('issueList', {
+      url: '/issueList',
+      templateUrl: 'templates/issueList.html'
+    })
+
 
     .state('login', {
       url: '/login',

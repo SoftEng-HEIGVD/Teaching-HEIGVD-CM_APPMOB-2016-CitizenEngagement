@@ -1,7 +1,11 @@
 <ion-view view-title="New Issue">
-  <ion-nav-buttons side="secondary">
-    <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
-  </ion-nav-buttons>
+  <ion-nav-bar>
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="secondary">
+      <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
   <ion-content>
     <p>Hello! This is the issue creation screen.</p>
   </ion-content>
