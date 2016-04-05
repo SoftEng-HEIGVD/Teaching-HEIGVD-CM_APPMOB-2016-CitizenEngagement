@@ -1,7 +1,13 @@
 /* Empty. Add your own CSS if you like */
 
-h1.title{
+.bar h1.title{
 
-  font-family: 'Lobster', cursive;
+font-size:1em;
 
+
+}
+
+
+.bar.bar-positive .title{
+  font-family: 'Droid sans', sans-serif;
 }
