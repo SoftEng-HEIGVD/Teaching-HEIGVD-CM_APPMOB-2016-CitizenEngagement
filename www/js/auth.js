@@ -78,7 +78,7 @@ angular.module('FixYourStreet.auth', ['angular-storage'])
         });
 
         // Go to the issue creation tab.
-        $state.go('tab.newIssue');
+        $state.go('issueMap');
 
       }).error(function() {
 
