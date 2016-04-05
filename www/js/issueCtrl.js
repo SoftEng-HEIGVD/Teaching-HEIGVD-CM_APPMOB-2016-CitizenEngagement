@@ -4,27 +4,27 @@
 
 angular.module('citizen-engagement.issueCtrl',[])
 
-    .controller('UserListCtrl',
+    .controller('IssueListCtrl',
         function ($scope, $http,apiUrl) {
             $scope.loadUsers = function() {
-                $http.get(apiUrl+'/users').success(function(users) {
+                $http.get(apiUrl+'/issues').success(function(issues) {
 
-                    $scope.users = users;
-                    console.log(users[0].id);
+                    $scope.issues = issues;
+                    console.log(issues[0].id);
 
                 });
             };
 
             $scope.loadIssueType = function () {
-                $http.get(apiUrl + '/issueTypes').success(function (issueTypes) {
-                    $scope.issueTypes = issueTypes;
+                $http.get(apiUrl + '/issues').success(function (issues) {
+                    $scope.issues = issues;
                     //console.log(issueTypes[0].name);
 
                     index = 0;
 
-                    while (index < issueTypes.length)
+                    while (index < issues.length)
                     {
-                        console.log(issueTypes[index].name);
+                        console.log(issues[index].name);
                         index++;
                     }
 
