@@ -9748,3 +9748,5 @@ a.button {
       border: 2px solid white; }
       #loginCitizen form label input {
         color: whitesmoke; }
+    #loginCitizen form p {
+      color: whitesmoke; }

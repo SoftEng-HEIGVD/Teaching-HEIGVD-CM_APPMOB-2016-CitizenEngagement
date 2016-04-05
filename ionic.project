@@ -4,7 +4,7 @@
   "proxies": [
     {
       "path": "/api-proxy",
-      "proxyUrl": "https://localhost:8100/api"
+      "proxyUrl": "https://heigvd-cm-appmob-2016-team-05.herokuapp.com/api"
     }
   ]
 }

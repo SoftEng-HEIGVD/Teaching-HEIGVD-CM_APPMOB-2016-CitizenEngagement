@@ -3,7 +3,11 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth'])
+localStorage.foo = "bar";
+console.log(localStorage.foo);
+
+angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citizen-engagement.constants'])
+
 
 
     .run(function ($ionicPlatform) {
@@ -32,12 +36,12 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth'])
         $rootScope.$on('$stateChangeStart', function (event, toState) {
 
             // If the user is not logged in and is trying to access another state than "login"...
-            /*if (!AuthService.currentUserId && toState.name != 'login') {
+            if (!AuthService.currentUserId && toState.name != 'login') {
 
                 // ... then cancel the transition and go to the "login" state instead.
                 event.preventDefault();
                 $state.go('login');
-            }*/
+            }
         });
     })
 
@@ -50,9 +54,9 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth'])
         // Each state's controller can be found in controllers.js
         $stateProvider
 
-            // pas sur si ce code va ici ... a controler
             .state('login', {
                 url: '/login',
+                controller: 'LoginCtrl',
                 templateUrl: 'templates/login.html'
             })
             .state('issues', {
@@ -60,7 +64,7 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth'])
                 templateUrl: 'templates/issueList.html'
             })
             .state('issueDetails', {
-                url:'/issue/:issueId',
+                url: '/issue/:issueId',
                 templateUrl: 'templates/issueDetails.html'
             })
             .state('issueMap', {
@@ -70,7 +74,6 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth'])
         ;
 
 
-
         // Define the default state (i.e. the first screen displayed when the app opens).
         $urlRouterProvider.otherwise(function ($injector) {
             $injector.get('$state').go('issues'); // Go to the new issue tab by default.
@@ -78,9 +81,9 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth'])
     })
 
 
-    .controller('navCtrl', function($scope, $ionicSideMenuDelegate) {
-        $scope.toggleLeft = function() {
-          $ionicSideMenuDelegate.toggleLeft();
+    .controller('navCtrl', function ($scope, $ionicSideMenuDelegate) {
+        $scope.toggleLeft = function () {
+            $ionicSideMenuDelegate.toggleLeft();
         };
 
     })
@@ -94,4 +97,4 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth'])
         }];
     })
 
-    ;
+;
