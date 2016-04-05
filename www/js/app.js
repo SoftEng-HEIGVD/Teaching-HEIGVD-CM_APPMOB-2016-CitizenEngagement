@@ -132,6 +132,12 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 controller: 'LoginCtrl',
                 templateUrl: 'templates/login.html'
             })
+
+            .state('roleSelection', {
+                url: '/roleSelection',
+                templateUrl: 'templates/roleSelection.html'
+            })
+
         ;
 
         // Define the default state (i.e. the first screen displayed when the app opens).
