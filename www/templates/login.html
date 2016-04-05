@@ -1,5 +1,5 @@
 <ion-view view-title="Citizen Engagement">
-    <ion-content class="padding">
+    <ion-content>
 
         <!-- A banner. Choose an image and save it as www/img/banner.jpg -->
         <img src="img/banner.jpg" width="100%" alt="Citizen Engagement" />
@@ -17,11 +17,13 @@
 
             <!-- Ionic uses lists to group related input elements. -->
             <div class="list">
-                <label class="item item-input">
+                <label class="item item-input item-floating-label">
                     <!-- Note the required="required" attribute used for validation. -->
+                    <span class="input-label">First Name</span>
                     <input type="text" placeholder="First Name" ng-model="user.firstname" required="required"/>
                 </label>
-                <label class="item item-input">
+                <label class="item item-input item-floating-label">
+                  <span class="input-label">Last Name</span>
                     <input type="text" placeholder="Last Name" ng-model="user.lastname" required="required"/>
                 </label>
             </div>
