@@ -18,12 +18,6 @@ angular.module('citizen-engagement.issueCtrl',[])
             };
             $scope.loadIssues();
 
-            $scope.getIssueId = function(id) {
-                console.log(getIssueId);
-                $state.go('menu.issueDetails');
-            };
-
-
            /* $scope.loadIssueType = function () {
                 $http.get(apiUrl + '/issues').success(function (issues) {
                     $scope.issues = issues;
@@ -40,3 +34,10 @@ angular.module('citizen-engagement.issueCtrl',[])
                 });
             };*/
         })
+
+    .controller('ListeArtCtrl', function($scope,$state){
+        $scope.article = function(id) {
+            
+            $state.go('blog.article');
+        }
+    })

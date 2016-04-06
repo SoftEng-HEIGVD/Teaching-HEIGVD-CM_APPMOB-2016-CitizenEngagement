@@ -3,10 +3,10 @@
         <div class="list">
 
 
-            <a ng-repeat="issue in issues"
+            <a ng-repeat="issue in issues" href="#" ng-click="article('test')"
 
 
-               class="item item-avatar"> <!--TODO envoyer id-->
+               class="item item-avatar">
                 <img src="{{issue.imageUrl}}">
 
                 <h2>{{issue.issueType.name}}</h2>
