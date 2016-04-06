@@ -75,7 +75,7 @@ angular.module('citizen-engagement', ['ionic','ionic.service.core', 'citizen-eng
             url: '/newIssue',
             views: {
               // The "tab-newIssue" view corresponds to the <ion-nav-view name="tab-newIssue"> directive used in the tabs.html template.
-              'menu-newIssue': {
+              'menuContent': {
                 // This defines the template that will be inserted into the directive.
                 templateUrl: 'templates/newIssue.html'
               }
@@ -85,7 +85,7 @@ angular.module('citizen-engagement', ['ionic','ionic.service.core', 'citizen-eng
           .state('menu.issueMap', {
             url: '/issueMap',
             views: {
-              'menu-issueMap': {
+              'menuContent': {
                 templateUrl: 'templates/issueMap.html'
               }
             }
@@ -94,7 +94,7 @@ angular.module('citizen-engagement', ['ionic','ionic.service.core', 'citizen-eng
           .state('menu.issueList', {
             url: '/issueList',
             views: {
-              'menu-issueList': {
+              'menuContent': {
                 templateUrl: 'templates/issueList.html'
               }
             }
