@@ -1,53 +1,59 @@
 <ion-view view-title="Add an Issue">
 
-  <ion-nav-bar>
-    <ion-nav-back-button>
-    </ion-nav-back-button>
-    <ion-nav-buttons side="secondary">
-      <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
-    </ion-nav-buttons>
-  </ion-nav-bar>
+    <ion-nav-bar>
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+        <ion-nav-buttons side="secondary">
+            <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
 
-  <ion-content>
-    <a class="button ion-camera" ui-sref="issueDetails"></a>
+    <ion-content>
+        <div ng-controller="IssueCtrl">
+            <a class="button ion-camera" ui-sref="issueDetails"></a>
 
-    <div class="list">
+            <div class="list">
 
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Type
-        </div>
-        <select>
-          <option>Blue</option>
-          <option selected>Green</option>
-          <option>Red</option>
-        </select>
-      </label>
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Type
+                    </div>
+                    <select ng-model="type" >
+                        <option>dangerous crossroad</option>
+                        <option selected>broken streetlight</option>
+                        <option>graffiti</option>
+                    </select>
+                </label>
 
-      <label class="item item-input">
-        <textarea placeholder="Description"></textarea>
-      </label>
+            </div>
 
-    </div>
-
-    <div ng-controller="TagsCtrl">
-            <div class="item-input" ng-repeat="input in inputs">
-            <label class="item-input-wrapper">
-                <input type="text" placeholder="Type a tag" ng-model="input.value" />
+            <label class="item item-input">
+                <input type="text" placeholder="Add a description" ng-model="description" />
             </label>
-            <button class="button button-small" ng-if="$index == inputs.length - 1" ng-click="addInput()">
-                <i class="icon ion-plus"></i>
-            </button>
-                <button class="button button-small button-assertive" ng-if="$index != inputs.length - 1" ng-click="removeInput($index)">
-                <i class="icon ion-minus"></i>
-            </button>
-    </div>
 
-    <div class="button-bar">
-      <button class="button button-stable" ui-sref="issueMap">Cancel</button>
-      <button class="button button-calm" ui-sref="issueDetails">Submit</button>
-    </div>
-  </ion-content>
+            <div class="item-input" ng-repeat="input in inputs">
+                <label class="item-input-wrapper">
+                    <input type="text" placeholder="Type a tag" ng-model="tagValue" />
+                </label>
+                <button class="button button-small" ng-if="$index == inputs.length - 1" ng-click="addInput()">
+                    <i class="icon ion-plus"></i>
+                </button>
+                <button class="button button-small button-assertive" ng-if="$index != inputs.length - 1" ng-click="removeInput($index)">
+                    <i class="icon ion-minus"></i>
+                </button>
+            </div>
+            
+            <div class="button-bar">
+                <button class="button button-stable" ui-sref="issueMap">Cancel</button>
+                <button class="button button-calm" ui-sref="issueDetails"  ng-click="submitIssue()">Submit</button>
+            </div>
+        </div>
+        
+        <div ng-controller="test">
+        <input type="text" placeholder="test" ng-model="test" />
+        <button class="button button-calm" ui-sref="issueDetails"  ng-click="submitIssue()">Submit</button>
+         </div>
+    </ion-content>
 
 
 

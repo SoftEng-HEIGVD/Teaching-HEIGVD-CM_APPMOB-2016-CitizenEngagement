@@ -101,8 +101,15 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'FixYourStreet.c
                 }
             });
         })
+        
+        
+         .controller("test", function (apiUrl, $scope, $http, $filter) {
+             $scope.submitIssue = function (){
+                 console.log($scope.test);
+             }
+         })
 
-        .controller("IssueCtrl", function (apiUrl, $scope, $http) {
+        .controller("IssueCtrl", function (apiUrl, $scope, $http, $filter) {
             $scope.inputs = [{
                     value: null
                 }];
@@ -115,44 +122,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'FixYourStreet.c
             }
 
             $scope.submitIssue = function () {
-//                var date = $scope.date = new Date();
-//                console.log(date);
-                var newIssue = {
-                    description: $scope.description,
-                    tags: [$scope.tagValue],
-                    lat: "46.780806678050126",
-                    lng: "6.630673501428493",
-                    imageUrl: "https://departmentfortransport.files.wordpress.com/2014/02/bb2-vzyimaaw3cx-large.jpg",
-                }
-                $http({
-                    method: 'POST',
-                    url: apiUrl + '/issues',
-                    data: newIssue
-                })
-                        .success(function (createdIssue) {
-                            console.log(createdIssue);
-                        },
-                                function error() {
-                                    console.log("Erreur � faire");
-                                });
-
-
-            }
-
-            $scope.removeInput = function (index) {
-                $scope.inputs.splice(index, 1);
-            }
-
-        })
-
-
-
-        .controller("typeCtrl", function (apiUrl, $scope, $http, $filter) {
-            $scope.inputs = [{
-                    value: null
-                }];
-            $scope.submitType = function () {
-
+                console.log($scope.tagValue);
                 $http({
                     method: 'GET',
                     url: apiUrl + '/issueTypes',
@@ -160,26 +130,42 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'FixYourStreet.c
                         .success(function (allType) {
                             var myFilteredType = $filter('filter')(allType, {name: $scope.type});
                             var typeId = myFilteredType[0].id;
-                            console.log(myFilteredType[0].id);
                             $http({
                                 method: 'GET',
                                 url: apiUrl + '/issueTypes/' + typeId,
                             })
                                     .success(function (typeChoosen) {
-                                        console.log(typeChoosen);
-//                                        console.log(allType);
-                                    });
+                                        var newIssue = {
+                                            description: $scope.description,
+                                            tags: $scope.tagValue,
+                                            issueTypeId: typeChoosen.id,
+                                            lat: "46.780806678050126",
+                                            lng: "6.630673501428493",
+                                            imageUrl: "https://departmentfortransport.files.wordpress.com/2014/02/bb2-vzyimaaw3cx-large.jpg",
+                                        }
+                                        $http({
+                                            method: 'POST',
+                                            url: apiUrl + '/issues',
+                                            data: newIssue
+                                        })
+                                                .success(function (createdIssue) {
+                                                    console.log(createdIssue);
+                                                },
+                                                        function error() {
+                                                            console.log("Erreur pas encore faite");
+                                                        });
+                                    },
+                                            function error() {
+                                                console.log("Erreur pas encore faite");
+                                            });
                         });
-
             }
-
 
             $scope.removeInput = function (index) {
                 $scope.inputs.splice(index, 1);
             }
 
         })
-
 
         .controller('ListCtrl', function ($scope) {
             $scope.groups = [];
