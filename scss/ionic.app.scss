@@ -20,6 +20,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+@import "variables";
 
 /* Empty. Add your own CSS if you like */
 
@@ -48,61 +49,154 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   }
 }
 
-.issueDetails {
-  img {
-    display: block;
-    max-width: 100%;
-    height: auto;
+.issueList {
+  .state-bar {
+    height: 20px;
+    width: 100%;
+    position: relative;
+    background-color: #444;
+    .iconIssueList {
+      position: absolute;
+      right: 30px;
+      top: -10px;
+      height: 40px;
+      width: 40px;
+      text-align: center;
+      border-radius: 3px;
+      background-color: #444;
+      padding-top: 10px;
+      .icon {
+        font-size: 20px;
+        color: white;
+      }
+    }
   }
-  .infoCreation {
-    padding: 20px;
-    p {
-      margin-bottom: -2px;
+  .info {
+    padding: 1em;
+  }
+}
+
+//bar color
+.state-bar {
+  .state-created & {
+    background-color: $color-created;
+  }
+  .state-acknowledge & {
+    background-color: $color-acknowledge;
+  }
+  .state-assigned & {
+    background-color: $color-assigned;
+  }
+  .state-in_progress & {
+    background-color: $color-in_progress;
+  }
+  .state-solved & {
+    background-color: $color-solved;
+  }
+  .state-rejected & {
+    background-color: $color-rejected;
+  }
+}
+
+//icon color
+.state-bar .iconIssueList {
+  .state-created & {
+    background-color: $color-created;
+  }
+  .state-acknowledge & {
+    background-color: $color-acknowledge;
+  }
+  .state-assigned & {
+    background-color: $color-assigned;
+  }
+  .state-in_progress & {
+    background-color: $color-in_progress;
+  }
+  .state-solved & {
+    background-color: $color-solved;
+  }
+  .state-rejected & {
+    background-color: $color-rejected;
+  }
+}
+
+.issueDetails {
+  .state-bar {
+    height: 60px;
+    width: 100%;
+    position: relative;
+    background-color: #444;
+    .iconIssueDetails {
+      position: absolute;
+      right: 30px;
+      top: -20px;
+      height: 50px;
+      width: 50px;
+      text-align: center;
+      border-radius: 3px;
+      background-color: #444;
+      padding-top: 13px;
+      border: 1px solid black;
+      .icon {
+        font-size: 23px;
+        color: white;
+      }
+    }
+    .infoCreation {
+      color: white;
+      padding: 1em;
+      p {
+        margin-top: -2px;
+        margin-bottom: -2px;
+      }
     }
   }
   .infoDescriptionDetails {
-    padding: 20px;
-  }
-}
-
-.issueList {
-  p {
     padding: 1em;
   }
-
 }
 
-.state-created {
-  p {
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 1em;
-  }
-  div {
-    height: 20px;
-    width: 100%;
-  }
-}
-
+//bar color
 .state-bar {
-  position: relative;
-  background-color: #4cd964;
-  .iconIssueList {
-    position: absolute;
-    right: 30px;
-    top: -9px;
-    height: 40px;
-    width: 40px;
-    text-align: center;
-    border-radius: 3px;
-    background-color: #444;
-    padding-top: 10px;
+  .state-created & {
+    background-color: $color-created;
+  }
+  .state-acknowledge & {
+    background-color: $color-acknowledge;
+  }
+  .state-assigned & {
+    background-color: $color-assigned;
+  }
+  .state-in_progress & {
+    background-color: $color-in_progress;
+  }
+  .state-solved & {
+    background-color: $color-solved;
+  }
+  .state-rejected & {
+    background-color: $color-rejected;
   }
 }
 
-.iconIssueList {
+//icon color
+.state-bar .iconIssueDetails {
   .state-created & {
-    background-color: #4ca969;
+    background-color: $color-created;
+  }
+  .state-acknowledge & {
+    background-color: $color-acknowledge;
+  }
+  .state-assigned & {
+    background-color: $color-assigned;
+  }
+  .state-in_progress & {
+    background-color: $color-in_progress;
+  }
+  .state-solved & {
+    background-color: $color-solved;
+  }
+  .state-rejected & {
+    background-color: $color-rejected;
   }
 }
 

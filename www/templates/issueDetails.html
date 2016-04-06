@@ -1,29 +1,35 @@
 <ion-view view-title="{{issue.description}}">
     <ion-content>
-
-
         <ion-view view-title="Issue Details">
             <ion-content ng-controller="GetSpecificIssueCtrl">
+
+
                 <div class="issueDetails">
-                    <div class="imgCover" style="background: url('{{issue.imageUrl}}');background-size:cover;background-position:center center; padding-top: 50%;">
+                    <div class="state-{{ issue.state}}"
+                         style="background: url('{{issue.imageUrl}}');background-size:cover;background-position:center center; padding-top: 50%;">
 
-                    </div>
+                        <div class="state-bar">
+                            <div class="iconIssueDetails">
+                                <i class="icon ion-star" ng-if="issue.state == 'created'"></i>
+                                <i class="icon ion-eye" ng-if="issue.state == 'acknowledge'"></i>
+                                <i class="icon ion-person" ng-if="issue.state == 'assigned'"></i>
+                                <i class="icon ion-load-a" ng-if="issue.state == 'in_progress'"></i>
+                                <i class="icon ion-checkmark-round" ng-if="issue.state == 'solved'"></i>
+                                <i class="icon ion-close-circled" ng-if="issue.state == 'rejected'"></i>
+                            </div>
+                            <div class="infoCreation">
+                                <p><strong>Created</strong> : {{issue.updatedOn}}</p>
+                                <p>Status : {{issue.state}}</p>
 
-                    <div ng-if="issue.state == 'created'" class="colorCreated" class="infoCreation" >
-
-                        <div>
-                            <p>Created : {{issue.updatedOn}}</p>
-                            <p>Status : {{issue.state}}</p>
+                            </div>
                         </div>
-
                     </div>
 
 
                     <div class="infoDescriptionDetails">
-                        <h2>{{issue.issueType.description}}</h2>
+                        <h2>{{issue.description}}</h2>
+                        <p>{{issue.tags}}</p>
                     </div>
-
-
                 </div>
 
 
