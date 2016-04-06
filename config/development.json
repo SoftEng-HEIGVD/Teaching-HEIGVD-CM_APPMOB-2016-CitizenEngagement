@@ -1,3 +1,5 @@
 {
-  "apiUrl": "http://localhost:8100/api-proxy"
+  "apiUrl": "http://localhost:8100/api-proxy",
+  "mapboxMapId": "flavz.pk0b0b0i",
+  "mapboxAccessToken" : "pk.eyJ1IjoiZmxhdnoiLCJhIjoiY2lmcXBodG55MDI2ZXVlbHlxenRtMGhvcSJ9.MXJvfYn_aZEbAdR3mNvueA"
 }
