@@ -6,7 +6,34 @@
   <ion-nav-buttons side="secondary">
     <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
   </ion-nav-buttons>
-  <ion-content>
-    <p>Hello! This is the issue creation screen.</p>
+  <ion-content  ng-controller="newIssueCTRL">
+
+    <div class="list list-inset">
+      <!-- select the type -->
+      <label class="item item-input item-select">
+        <div class="input-label">Choose a type</div>
+        <select ng-model="myIssueToPost.type">
+          <option ng-repeat="issueType in issueTypes" value="{{issueType.id}}">{{issueType.name}}</option>
+        </select>
+      </label>
+      <!-- Decription -->
+      <label class="item item-input">
+        <textarea placeholder="Write a description here" ng-model="myIssueToPost.description"></textarea>
+      </label>
+      <label >
+        <tags-input ng-model="myIssueToPost.tagz"></tags-input>
+      </label>
+      <button class="button button-small button-assertive">
+          Upload a picture
+      </button>
+      <!--<label class="item item-input">
+        <input type="text" placeholder="jesus" ng-model="myIssueToPost.jesus">
+      </label>-->
+
+    </div>
+
+    <button class="button button-full button-positive" ng-click="createAnIssue()" ng-disabled="loginForm.$invalid">Save</button>
+
+
   </ion-content>
 </ion-view>
