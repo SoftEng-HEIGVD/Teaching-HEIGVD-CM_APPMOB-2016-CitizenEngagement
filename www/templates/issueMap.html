@@ -1,16 +1,17 @@
 <ion-view>
 
-  <div class="bar bar-header item-input-inset">
+  <ion-header-bar>
+  <div class="bar item-input-inset">
     <label class="item-input-wrapper">
       <i class="icon ion-ios-search placeholder-icon"></i>
       <input type="search" placeholder="Search a place">
     </label>
     <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
   </div>
+</ion-header-bar>
 
-
-  <ion-content class="has-header">
-    <p>MAP</p>
+  <ion-content scroll="false">
+    <leaflet defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
 
     <button class="button icon ion-plus has-header" ui-sref="issueDetails">ISSUEB</button>
 

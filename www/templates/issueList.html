@@ -8,27 +8,26 @@
   </ion-nav-bar>
 
   <ion-content>
-
-    <ion-list ng-controller="ListCtrl">
-          <ion-item ng-repeat="group in groups">
+    <ion-list ng-controller="ListIssuesAreaCtrl">
+          <ion-item ng-repeat="issue in issues | orderBy: 'createdOn'">
 
             <div class="row">
               <div class="col">
-                <a ui-sref="fullImg"><img src="img/banner.jpg" style="width:100%" alt="FixYourStreet" /></a>
+                <span ng-if='!issue.imageUrl'><img  src='img/NoImageAvailable.jpg' style="width:100%" alt="No Image Available" /></span>
+                <span ng-if='issue.imageUrl'><a ui-sref='fullImg({imageURL: issue.imageUrl})'><img src='{{issue.imageUrl}}' style="width:100%" /></a></span>
               </div>
               <div class="col col-75 item-body listIssue">
-                <h2>Graffiti<time>05.06.2016</time></h2>
-                  <!-- {{group.name}} {{date}} -->
+                <h2>{{issue.issueType.description}}<time>{{issue.createdOn | date:'MM/dd/yyyy - H:mm'}}</time></h2>
                   <ul class="tagsList">
-                    <li>Graffiti</li>
-                    <li>Ipsum</li>
+                      <li ng-repeat="tag in issue.tags">{{tag}}</li>
                   </ul>
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-
+                <p>{{issue.description}}</p>
+                <p>Type: <time>{{issue.issueType.name}}</time></p>
+                <p>Last update: <time>{{issue.updatedOn | date:'MM/dd/yyyy - H:mm'}}</time></p>
 
                 <div class="button-bar">
-                  <a class="button button-small ion-location" ui-sref="issueDetails"> Show on map</a>
-                  <a class="button button-small ion-navicon" ui-sref="commentsList"> View comments</a>
+                  <a class="button button-small ion-location" ui-sref="issueDetails({issueId: issue.id})"> Show on map</a>
+                  <a class="button button-small ion-navicon" ui-sref="commentsList({issueId: issue.id})"> View comments</a>
                 </div>
               </div>
             </div>
