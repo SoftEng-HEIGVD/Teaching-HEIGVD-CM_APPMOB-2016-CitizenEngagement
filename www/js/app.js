@@ -4,7 +4,8 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citizen-engagement.constants',
-    'citizen-engagement.issueCtrl', 'geolocation', 'citizen-engagement.newIssueCtrl' ])
+    'citizen-engagement.issueCtrl', 'geolocation', 'citizen-engagement.newIssueCtrl', "leaflet-directive",
+'citizen-engagement.mapCtrl'])
 
 
 
@@ -102,7 +103,8 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 url: '/issueMap',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/issueMap.html'
+                        templateUrl: 'templates/issueMap.html',
+                        controller: 'IssueMapController'
                     }
                 }
             })

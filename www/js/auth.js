@@ -68,6 +68,7 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
                 });
 
                 // Go to the issue creation tab.
+                console.log(user);
                 $state.go('roleSelection'); //TODO if else citizen & staff --> create template (View) for selection
 
             }).error(function(error) {
