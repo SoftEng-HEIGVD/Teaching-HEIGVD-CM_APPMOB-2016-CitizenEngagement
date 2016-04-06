@@ -25,4 +25,16 @@ angular.module('citizen-engagement')
     }
 
 
+})
+
+.controller("issueCtrl", function($scope, $http, apiUrl) {
+        $http({
+            method: 'GET',
+            url: apiUrl + '/issues/'
+        }).success(function(issue) {
+
+            $scope.issue = issue;
+        });
+
+
 });

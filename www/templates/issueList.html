@@ -3,16 +3,12 @@
     <p>Hello! This is the issue list screen.</p>
 
     <div ng-controller="allIssuesCtrl" >
-      <label>Set the first name: <input type="text" ng-model="firstName"/></label><br />
-      <label>Set the last name: <input type="text" ng-model="lastName"/></label>
       <div infinite-scroll="loadMoreIssues()" infinite-scroll-distance="0" infinite-scroll-disabled='!scrollEnable'>
         <div ng-repeat="issue in issues" class="row list">
           <div class="col"><img src="cover.jpg"></div>
           <div class="col"><h5>Issue {{issue.issueType.name}}</h5></div>
           <div class="col"><p>Description {{issue.description}}</p></div>
-          <div class="col"><button class="button button-dark">view</button></div>
-          <div class="col">{{firstName}}</div>
-          <div class="col">{{lastName}}</div>
+          <div class="col"><button class="button button-dark" ui-sref="tab.issueDetails({issueId:issue.id})">view</button></div>
         </div>
       </div>
     </div>
