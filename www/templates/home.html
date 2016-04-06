@@ -7,9 +7,7 @@
     <h4>Your latest reported issues</h4>
     <button class="button-small icon-left ion-plus-round button-positive"> Report new Issue</button>
 
-    <a ng-repeat="issue in issues | limitTo:3"
-
-       class="item item-avatar" ui-sref="menu.issueDetails">
+    <a ng-repeat="issue in issues | limitTo:3" class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})" >
         <img src="{{issue.imageUrl}}">
 
         <h2>{{issue.issueType.name}}</h2>
