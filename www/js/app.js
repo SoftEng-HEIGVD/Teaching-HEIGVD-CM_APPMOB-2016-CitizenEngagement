@@ -1,6 +1,6 @@
 // Ionic Starter App
 
-angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citizen-engagement.constants'])
+angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citizen-engagement.constants','geolocation', 'leaflet-directive'])
 
 
     .run(function ($ionicPlatform) {
@@ -98,7 +98,7 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 views: {
                     'appContent' :{
                       templateUrl: "templates/issueMap.html",
-                      controller : ""
+                      controller : "MapCtrl"
                     }
                 }
             })
