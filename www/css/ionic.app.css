@@ -9746,3 +9746,8 @@ a.button {
 
 .bar.bar-positive .title {
   font-family: 'Droid sans', sans-serif; }
+
+.errors-report {
+  color: red;
+  padding: 10px;
+  font-style: italic; }
