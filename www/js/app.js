@@ -131,7 +131,12 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'FixYourStreet.c
                 })
                         .success(function (createdIssue) {
                             console.log(createdIssue);
-                        });
+                        },
+                                function error() {
+                                    console.log("Erreur à faire");
+                                });
+
+
             }
 
             $scope.removeInput = function (index) {
@@ -150,10 +155,24 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'FixYourStreet.c
             $scope.submitType = function () {
                 $http({
                     method: 'GET',
-                    url: apiUrl + '/issueType',
+                    url: apiUrl + '/issueTypes',
                 })
                         .success(function (typeChoosen) {
-                            console.log(typeChoosenIssue);
+                            console.log(typeChoosen);
+                        });
+                single_object = $filter('filter')(typeChoose, function (type) {
+                    return typename === $scope.type;
+                })[0];
+
+                // If you want to see the result, just check the log
+                console.log(single_object);
+                console.log($scope.type);
+                $http({
+                    method: 'GET',
+                    url: apiUrl + '/issueTypes/57023a95dc5a2c0e007a150b',
+                })
+                        .success(function (typeChoosen) {
+                            console.log(typeChoosen);
                         });
             }
 
