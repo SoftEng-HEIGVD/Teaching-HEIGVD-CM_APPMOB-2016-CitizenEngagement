@@ -33,6 +33,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
 
                     .state('issueMap', {
                         url: '/issueMap',
+                        controller: 'MapController',
                         templateUrl: 'templates/issueMap.html'
                     })
 
