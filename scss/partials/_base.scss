@@ -1,3 +1,4 @@
+
 /* Empty. Add your own CSS if you like */
 
 .bar h1.title{
@@ -5,6 +6,18 @@
 font-size:1em;
 
 
+}
+
+.issue {
+	&>*{
+		display:inline-block;
+		margin-right : 20px;
+	}
+	.thumbnail{
+			width:100px;
+			height: auto;
+			float:left;
+	}
 }
 
 
