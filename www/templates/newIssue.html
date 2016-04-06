@@ -15,10 +15,10 @@
                 <div class="input-label">
                     &nbsp;
                 </div>
-                <select ng-repeat="issueType in issueTypes">
-                    <option selected>Type1</option>
-                    <option >Type2</option>
-                    <option>Type3</option>
+                <select>
+
+                    <option  ng-repeat="issueType in issueTypes">{{issueType.name}}</option>
+
                 </select>
             </label>
 
