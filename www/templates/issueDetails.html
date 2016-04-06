@@ -1,10 +1,34 @@
 <ion-view view-title="{{issue.description}}">
     <ion-content>
-        <div class="card">
-        <h3>{{issue.state}}</h3>
-        <p>{{issue.description}}</p>
-        <p>by {{issue.owner.name}}</p>
-        <img src="{{issue.imageUrl}}" style="display:block;max-width:100%;height:auto;"/>
-    </div>
+
+
+        <ion-view view-title="Issue Details">
+            <ion-content ng-controller="GetSpecificIssueCtrl">
+                <div class="issueDetails">
+                    <div class="imgCover" style="background: url('{{issue.imageUrl}}');background-size:cover;background-position:center center; padding-top: 50%;">
+
+                    </div>
+
+                    <div ng-if="issue.state == 'created'" class="colorCreated" class="infoCreation" >
+
+                        <div>
+                            <p>Created : {{issue.updatedOn}}</p>
+                            <p>Status : {{issue.state}}</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="infoDescriptionDetails">
+                        <h2>{{issue.issueType.description}}</h2>
+                    </div>
+
+
+                </div>
+
+
+            </ion-content>
+        </ion-view>
     </ion-content>
 </ion-view>
+

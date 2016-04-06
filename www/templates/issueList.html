@@ -1,23 +1,36 @@
 <ion-view view-title="Issue List">
-    <ion-content ng-controller="ListIssuesCtrl" >
+    <ion-content ng-controller="ListIssuesCtrl">
         <ion-refresher
-            spinner="none"
+                spinner="none"
+                pulling-text="Pull to refresh..."
+                on-refresh="getIssues()">
+
             pulling-text="Pull to refresh..."
             on-refresh="getIssues()">
-        </ion-refresher>
-        <div class="cards">
-          <div class="item item-text-wrap" ng-repeat="issue in issues">
-            <div class="state-{{ issue.state}}" ui-sref="mainMenu.issueDetails({issueId: issue.id})" style="background: url('{{issue.imageUrl}}');background-size:cover;background-position:center center; padding-top: 30%;">
-                <p style="background:rgba(0,0,0,0.7); color:white; padding: 1em" class="description">
-                    <strong>{{ issue.description }}</strong> by {{issue.owner.name}}
-                    <br>
-                    state: <span class="{{ issue.state}}">{{ issue.state}}</span>
-                    <br>
-                    type: {{issue.issueType.name}}
-                </p>
-            </div>
-          </div>
-        </div>
-    </ion-content>
 
+        </ion-refresher>
+
+
+        <div class="issueList" ng-repeat="issue in issues">
+            <div class="state-{{ issue.state}}" ui-sref="mainMenu.issueDetails({issueId: issue.id})"
+                 style="background: url('{{issue.imageUrl}}');background-size:cover;background-position:center center; padding-top: 50%;">
+
+                <div class="state-bar">
+
+                    <div class="iconIssueList">
+                        <i class="icon ion-star"></i>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <p>
+                <strong>{{ issue.description }}</strong> by {{issue.owner.name}}
+                <br>Date : {{ issue.updatedOn }}
+            </p>
+        </div>
+
+
+    </ion-content>
 </ion-view>
