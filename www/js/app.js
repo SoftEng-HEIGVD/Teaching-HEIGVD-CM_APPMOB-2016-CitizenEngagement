@@ -108,7 +108,7 @@ angular.module('citizen-engagement', ['ionic','ionic.service.core', 'citizen-eng
             views: {
               // Here we use the same "tab-issueList" view as the previous state.
               // This means that the issue details template will be displayed in the same tab as the issue list.
-              'menu-issueList': {
+              'menuContent': {
                 templateUrl: 'templates/issueDetails.html'
               }
             }
