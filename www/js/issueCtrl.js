@@ -40,10 +40,14 @@ angular.module('citizen-engagement.issueCtrl',[])
             method: 'GET',
             url: apiUrl + '/issues/'
         }).success(function(issue) {
+            console.log("okbla");
+
 
             $scope.issue = issue;
+            console.log(issue);
+
         });
 
-    
+
     });
 
