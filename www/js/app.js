@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directive', 'FixYourStreet.constants', 'FixYourStreet.listIssue'])
+angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directive', 'FixYourStreet.constants', 'FixYourStreet.listIssue', 'FixYourStreet.map'])
 
         .run(function ($ionicPlatform) {
             $ionicPlatform.ready(function () {
@@ -31,51 +31,51 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
             // Each state's controller can be found in controllers.js
             $stateProvider
 
-                  .state('issueMap', {
-                  url: '/issueMap',
-                  controller: 'MapController',
-                  templateUrl: 'templates/issueMap.html'
-                  })
+                    .state('issueMap', {
+                        url: '/issueMap',
+                        controller: 'MapController',
+                        templateUrl: 'templates/issueMap.html'
+                    })
 
-                  .state('commentsList', {
-                  url: '/commentsList',
-                  templateUrl: 'templates/commentsList.html'
-                  })
+                    .state('commentsList', {
+                        url: '/commentsList',
+                        templateUrl: 'templates/commentsList.html'
+                    })
 
-                  .state('newComment', {
-                  url: '/newComment',
-                  templateUrl: 'templates/newComment.html'
-                  })
+                    .state('newComment', {
+                        url: '/newComment',
+                        templateUrl: 'templates/newComment.html'
+                    })
 
-                  .state('fullImg', {
-                  url: '/fullImg',
-                  templateUrl: 'templates/fullImg.html'
-                  })
+                    .state('fullImg', {
+                        url: '/fullImg',
+                        templateUrl: 'templates/fullImg.html'
+                    })
 
-                  .state('newIssue', {
-                  url: '/newIssue',
-                  templateUrl: 'templates/newIssue.html'
-                  })
+                    .state('newIssue', {
+                        url: '/newIssue',
+                        templateUrl: 'templates/newIssue.html'
+                    })
 
-                  .state('issueDetails', {
-                  url: '/issueDetails',
-                  templateUrl: 'templates/issueDetails.html'
-                  })
+                    .state('issueDetails', {
+                        url: '/issueDetails',
+                        templateUrl: 'templates/issueDetails.html'
+                    })
 
-                  .state('issueList', {
-                  url: '/issueList',
-                  templateUrl: 'templates/issueList.html'
-                  })
+                    .state('issueList', {
+                        url: '/issueList',
+                        templateUrl: 'templates/issueList.html'
+                    })
 
 
 
-                  .state('login', {
-                      url: '/login',
-                      controller: 'LoginCtrl',
-                      templateUrl: 'templates/login.html'
-                  })
+                    .state('login', {
+                        url: '/login',
+                        controller: 'LoginCtrl',
+                        templateUrl: 'templates/login.html'
+                    })
 
-                  ;
+                    ;
 
 
 
@@ -102,8 +102,15 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
                 }
             });
         })
+        
+        
+         .controller("test", function (apiUrl, $scope, $http, $filter) {
+             $scope.submitIssue = function (){
+                 console.log($scope.test);
+             }
+         })
 
-        .controller("IssueCtrl", function (apiUrl, $scope, $http) {
+        .controller("IssueCtrl", function (apiUrl, $scope, $http, $filter) {
             $scope.inputs = [{
                     value: null
                 }];
@@ -116,67 +123,44 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
             }
 
             $scope.submitIssue = function () {
-//                var date = $scope.date = new Date();
-//                console.log(date);
-                var newIssue = {
-                    description: $scope.description,
-                    tags: [$scope.tagValue],
-                    lat: "46.780806678050126",
-                    lng: "6.630673501428493",
-                    imageUrl: "https://departmentfortransport.files.wordpress.com/2014/02/bb2-vzyimaaw3cx-large.jpg",
-                }
-                $http({
-                    method: 'POST',
-                    url: apiUrl + '/issues',
-                    data: newIssue
-                })
-                        .success(function (createdIssue) {
-                            console.log(createdIssue);
-                        },
-                                function error() {
-                                    console.log("Erreur � faire");
-                                });
-
-
-            }
-
-            $scope.removeInput = function (index) {
-                $scope.inputs.splice(index, 1);
-            }
-
-        })
-
-
-
-        .controller("typeCtrl", function (apiUrl, $scope, $http) {
-            $scope.inputs = [{
-                    value: null
-                }];
-
-            $scope.submitType = function () {
+                console.log($scope.tagValue);
                 $http({
                     method: 'GET',
                     url: apiUrl + '/issueTypes',
                 })
-                        .success(function (typeChoosen) {
-                            console.log(typeChoosen);
-                        });
-                single_object = $filter('filter')(typeChoose, function (type) {
-                    return typename === $scope.type;
-                })[0];
-
-                // If you want to see the result, just check the log
-                console.log(single_object);
-                console.log($scope.type);
-                $http({
-                    method: 'GET',
-                    url: apiUrl + '/issueTypes/57023a95dc5a2c0e007a150b',
-                })
-                        .success(function (typeChoosen) {
-                            console.log(typeChoosen);
+                        .success(function (allType) {
+                            var myFilteredType = $filter('filter')(allType, {name: $scope.type});
+                            var typeId = myFilteredType[0].id;
+                            $http({
+                                method: 'GET',
+                                url: apiUrl + '/issueTypes/' + typeId,
+                            })
+                                    .success(function (typeChoosen) {
+                                        var newIssue = {
+                                            description: $scope.description,
+                                            tags: $scope.tagValue,
+                                            issueTypeId: typeChoosen.id,
+                                            lat: "46.780806678050126",
+                                            lng: "6.630673501428493",
+                                            imageUrl: "https://departmentfortransport.files.wordpress.com/2014/02/bb2-vzyimaaw3cx-large.jpg",
+                                        }
+                                        $http({
+                                            method: 'POST',
+                                            url: apiUrl + '/issues',
+                                            data: newIssue
+                                        })
+                                                .success(function (createdIssue) {
+                                                    console.log(createdIssue);
+                                                },
+                                                        function error() {
+                                                            console.log("Erreur pas encore faite");
+                                                        });
+                                    },
+                                            function error() {
+                                                console.log("Erreur pas encore faite");
+                                            });
                         });
             }
-
 
             $scope.removeInput = function (index) {
                 $scope.inputs.splice(index, 1);
@@ -185,52 +169,34 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
         })
 
 
-
-
         .controller("TagsCtrl", function ($scope) {
-          $scope.inputs = [{
-              value: null
-          }];
+            $scope.inputs = [{
+                    value: null
+                }];
 
-          $scope.addInput = function () {
-              console.log("new input");
-              $scope.inputs.push({
-                  value: null
-              });
-          }
+            $scope.addInput = function () {
+                console.log("new input");
+                $scope.inputs.push({
+                    value: null
+                });
+            }
 
-          $scope.removeInput = function (index) {
-              $scope.inputs.splice(index, 1);
-          }
-      })
+            $scope.removeInput = function (index) {
+                $scope.inputs.splice(index, 1);
+            }
+        })
 
-        .controller('newComment', function($scope, $ionicModal) {
+        .controller('newComment', function ($scope, $ionicModal) {
 
-        $ionicModal.fromTemplateUrl('templates/newComment.html', {
-          scope: $scope
-        }).then(function(modal) {
-          $scope.modal = modal;
+            $ionicModal.fromTemplateUrl('templates/newComment.html', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.createComment = function (u) {
+                //MISSING SAVE FUNCTION
+                $scope.modal.hide();
+            };
+
         });
-
-        $scope.createComment = function(u) {
-          //MISSING SAVE FUNCTION
-          $scope.modal.hide();
-        };
-
-      })
-
-      .controller("MapController", function($scope, mapboxMapId, mapboxAccessToken) {
-        var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId;
-        mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
-        $scope.mapDefaults = {
-          tileLayer: mapboxTileLayer
-        };
-        $scope.mapCenter = {
-          lat: 51.48,
-          lng: 0,
-          zoom: 14
-        };
-        $scope.mapMarkers = [];
-      })
-
-;

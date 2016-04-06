@@ -5,7 +5,6 @@
     "ionic": "driftyco/ionic-bower#1.2.4"
   },
   "dependencies": {
-    "a0-angular-storage": "0.0.13",
-    "angular-leaflet-directive": "^0.10.0"
+    "a0-angular-storage": "0.0.13"
   }
 }
