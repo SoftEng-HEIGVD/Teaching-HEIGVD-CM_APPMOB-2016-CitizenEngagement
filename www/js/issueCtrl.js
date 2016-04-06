@@ -5,7 +5,7 @@
 angular.module('citizen-engagement.issueCtrl',[])
 
     .controller('IssueListCtrl',
-        function ($scope, $http,apiUrl) {
+        function ($scope, $http,apiUrl, $state) {
             $scope.loadIssues = function() {
                 console.log("ok");
                 $http.get(apiUrl+'/issues').success(function(issues) {
@@ -18,7 +18,13 @@ angular.module('citizen-engagement.issueCtrl',[])
             };
             $scope.loadIssues();
 
-            /*$scope.loadIssueType = function () {
+            $scope.getIssueId = function(id) {
+                console.log(getIssueId);
+                $state.go('menu.issueDetails');
+            };
+
+
+           /* $scope.loadIssueType = function () {
                 $http.get(apiUrl + '/issues').success(function (issues) {
                     $scope.issues = issues;
                     console.log(issueTypes[0].name);
@@ -33,24 +39,4 @@ angular.module('citizen-engagement.issueCtrl',[])
 
                 });
             };*/
-
-
-
         })
-
-.controller('PostsCtrl', function($scope,$state, $ionicLoading, $stateParams, $http){
-    $scope.search = function(idPassedFromNgClick){
-        // console.log(idPassedFromNgClick);
-        $state.go('thepost', {id: idPassedFromNgClick})
-    }
-})
-
-
-    .controller('PostCtrl', function($scope,$ionicLoading, $stateParams, $http){
-        url = "http://monsupersite.fr//wp-json/posts/"+ $stateParams.id +"";
-        $ionicLoading.show({template: 'Chargement...'});
-        $http.get(url).success(function(response) {
-            $ionicLoading.hide();
-            $scope.post=response;
-        })
-    });
