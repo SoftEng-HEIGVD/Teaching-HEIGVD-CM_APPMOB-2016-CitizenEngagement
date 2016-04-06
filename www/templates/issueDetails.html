@@ -18,7 +18,7 @@
                                 <i class="icon ion-close-circled" ng-if="issue.state == 'rejected'"></i>
                             </div>
                             <div class="infoCreation">
-                                <p><strong>Created</strong> : {{issue.updatedOn}}</p>
+                                <p><strong>Created</strong> : {{ issue.updatedOn | date : format : Date}}</p>
                                 <p>Status : {{issue.state}}</p>
 
                             </div>
@@ -28,7 +28,7 @@
 
                     <div class="infoDescriptionDetails">
                         <h2>{{issue.description}}</h2>
-                        <p>{{issue.tags}}</p>
+                        <p ng-repeat="tag in issue.tags">{{tag}}</p>
                     </div>
                 </div>
 

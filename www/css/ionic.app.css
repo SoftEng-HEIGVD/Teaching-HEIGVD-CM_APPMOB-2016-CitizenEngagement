@@ -9732,6 +9732,9 @@ a.button {
   transition-duration: 0s; }
 
 /* Empty. Add your own CSS if you like */
+#menuUser {
+  color: #4cd964; }
+
 #loginCitizen {
   background-image: url("../img/banner2.jpg");
   background-repeat: no-repeat; }
@@ -9751,62 +9754,56 @@ a.button {
     #loginCitizen form p {
       color: whitesmoke; }
 
-.issueList .state-bar {
-  height: 20px;
-  width: 100%;
-  position: relative;
-  background-color: #444; }
-  .issueList .state-bar .iconIssueList {
+.issueList {
+  position: relative; }
+  .issueList .issueListImg {
+    height: 90px;
+    width: 90px;
+    display: block;
+    float: left;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px; }
+  .issueList .iconIssueList {
+    display: block;
     position: absolute;
-    right: 30px;
-    top: -10px;
-    height: 40px;
-    width: 40px;
+    top: 10px;
+    left: 10px;
     text-align: center;
     border-radius: 3px;
     background-color: #444;
-    padding-top: 10px; }
-    .issueList .state-bar .iconIssueList .icon {
-      font-size: 20px;
+    padding: 0 8px;
+    line-height: 1.8; }
+    .issueList .iconIssueList .icon {
+      font-size: 17px;
       color: white; }
+  .issueList .info {
+    display: block;
+    margin-left: 110px;
+    overflow: hidden; }
+    .issueList .info h4 {
+      font-size: 20px; }
+    .issueList .info span {
+      font-size: 13px; }
+    .issueList .info p {
+      font-size: 17px; }
 
-.issueList .info {
-  padding: 1em; }
-
-.state-created .state-bar {
+.state-created .iconIssueList {
   background-color: #4ca969; }
 
-.state-acknowledge .state-bar {
+.state-acknowledge .iconIssueList {
   background-color: blueviolet; }
 
-.state-assigned .state-bar {
+.state-assigned .iconIssueList {
   background-color: violet; }
 
-.state-in_progress .state-bar {
+.state-in_progress .iconIssueList {
   background-color: gold; }
 
-.state-solved .state-bar {
+.state-solved .iconIssueList {
   background-color: green; }
 
-.state-rejected .state-bar {
-  background-color: red; }
-
-.state-created .state-bar .iconIssueList {
-  background-color: #4ca969; }
-
-.state-acknowledge .state-bar .iconIssueList {
-  background-color: blueviolet; }
-
-.state-assigned .state-bar .iconIssueList {
-  background-color: violet; }
-
-.state-in_progress .state-bar .iconIssueList {
-  background-color: gold; }
-
-.state-solved .state-bar .iconIssueList {
-  background-color: green; }
-
-.state-rejected .state-bar .iconIssueList {
+.state-rejected .iconIssueList {
   background-color: red; }
 
 .issueDetails .state-bar {
@@ -9873,4 +9870,68 @@ a.button {
   background-color: green; }
 
 .state-rejected .state-bar .iconIssueDetails {
+  background-color: red; }
+
+.myIssueList .state-bar {
+  height: 20px;
+  width: 100%;
+  position: relative;
+  background-color: #444; }
+  .myIssueList .state-bar .iconIssueList {
+    position: absolute;
+    right: 30px;
+    top: -10px;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    border-radius: 3px;
+    background-color: #444;
+    padding-top: 10px; }
+    .myIssueList .state-bar .iconIssueList .icon {
+      font-size: 20px;
+      color: white; }
+
+.myIssueList .info {
+  padding: 10px; }
+  .myIssueList .info h4 {
+    font-size: 20px; }
+  .myIssueList .info span {
+    font-size: 13px; }
+  .myIssueList .info p {
+    font-size: 17px; }
+
+.state-created .state-bar {
+  background-color: #4ca969; }
+
+.state-acknowledge .state-bar {
+  background-color: blueviolet; }
+
+.state-assigned .state-bar {
+  background-color: violet; }
+
+.state-in_progress .state-bar {
+  background-color: gold; }
+
+.state-solved .state-bar {
+  background-color: green; }
+
+.state-rejected .state-bar {
+  background-color: red; }
+
+.state-created .state-bar .iconIssueList {
+  background-color: #4ca969; }
+
+.state-acknowledge .state-bar .iconIssueList {
+  background-color: blueviolet; }
+
+.state-assigned .state-bar .iconIssueList {
+  background-color: violet; }
+
+.state-in_progress .state-bar .iconIssueList {
+  background-color: gold; }
+
+.state-solved .state-bar .iconIssueList {
+  background-color: green; }
+
+.state-rejected .state-bar .iconIssueList {
   background-color: red; }

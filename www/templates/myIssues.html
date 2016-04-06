@@ -1,16 +1,41 @@
 <ion-view view-title="My Issues">
     <ion-content>
+
         <ion-refresher
-            pulling-text="Pull to refresh..."
-            on-refresh="getIssues()">
+                spinner="none"
+                pulling-text="Pull to refresh..."
+                on-refresh="getIssues()">
+
         </ion-refresher>
-        <div class="cards">
-          <div class="item item-text-wrap" ng-repeat="issue in issues">
-            <div ui-sref="mainMenu.issueDetails({issueId: issue.id})" style="background: url('{{issue.imageUrl}}')">
-                <p class="description">{{ issue.description }}</p>
-            </div>
-          </div>
-        </div>
+
+
+        <ion-list>
+            <ion-item class="myIssueList" ng-repeat="issue in issues">
+                <div class="state-{{ issue.state}}" ui-sref="mainMenu.issueDetails({issueId: issue.id})"
+                     style="background: url('{{issue.imageUrl}}');background-size:cover;background-position:center center; padding-top: 50%;">
+                    <div class="state-bar">
+                        <div class="iconIssueList">
+                            <i class="icon ion-star" ng-if="issue.state == 'created'"></i>
+                            <i class="icon ion-eye" ng-if="issue.state == 'acknowledge'"></i>
+                            <i class="icon ion-person" ng-if="issue.state == 'assigned'"></i>
+                            <i class="icon ion-load-a" ng-if="issue.state == 'in_progress'"></i>
+                            <i class="icon ion-checkmark-round" ng-if="issue.state == 'solved'"></i>
+                            <i class="icon ion-close-circled" ng-if="issue.state == 'rejected'"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <h4 style="display: inline">{{ issue.description }}</h4>
+                    <br>
+                    <span>by {{issue.owner.name}}</span>
+                    <br>
+                    <p>Date : {{ issue.updatedOn | date : format : Date}}</p>
+                </div>
+
+            </ion-item>
+        </ion-list>
+
     </ion-content>
 
 </ion-view>

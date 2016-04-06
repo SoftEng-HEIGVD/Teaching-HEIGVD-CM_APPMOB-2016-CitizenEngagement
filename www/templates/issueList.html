@@ -8,29 +8,34 @@
         </ion-refresher>
 
 
-        <div class="issueList" ng-repeat="issue in issues">
-            <div class="state-{{ issue.state}}" ui-sref="mainMenu.issueDetails({issueId: issue.id})"
-                 style="background: url('{{issue.imageUrl}}');background-size:cover;background-position:center center; padding-top: 50%;">
-                <div class="state-bar">
-                    <div class="iconIssueList">
-                        <i class="icon ion-star" ng-if="issue.state == 'created'"></i>
-                        <i class="icon ion-eye" ng-if="issue.state == 'acknowledge'"></i>
-                        <i class="icon ion-person" ng-if="issue.state == 'assigned'"></i>
-                        <i class="icon ion-load-a" ng-if="issue.state == 'in_progress'"></i>
-                        <i class="icon ion-checkmark-round" ng-if="issue.state == 'solved'"></i>
-                        <i class="icon ion-close-circled" ng-if="issue.state == 'rejected'"></i>
+        <ion-list>
+            <ion-item class="issueList" ng-repeat="issue in issues"
+                      ui-sref="mainMenu.issueDetails({issueId: issue.id})">
+                <div class="state-{{ issue.state}}">
+
+                    <div class="issueListImg"
+                         style="background: url('{{issue.imageUrl}}');background-size:cover; background-position:center center;">
                     </div>
+
+                <span class="iconIssueList">
+                    <i class="icon ion-star" ng-if="issue.state == 'created'"></i>
+                    <i class="icon ion-eye" ng-if="issue.state == 'acknowledge'"></i>
+                    <i class="icon ion-person" ng-if="issue.state == 'assigned'"></i>
+                    <i class="icon ion-load-a" ng-if="issue.state == 'in_progress'"></i>
+                    <i class="icon ion-checkmark-round" ng-if="issue.state == 'solved'"></i>
+                    <i class="icon ion-close-circled" ng-if="issue.state == 'rejected'"></i>
+                </span>
+
+                <span class="info">
+                    <h4 style="display: inline">{{ issue.description }}</h4><br>
+                    <span>by {{issue.owner.name}}</span>
+                    <br><p>Date : {{ issue.updatedOn | date : format : Date}}</p>
+                </span>
+
+
                 </div>
-
-
-            </div>
-            <div class="info">
-                <strong><h4 style="display: inline">{{ issue.description }}</h4></strong>
-                <span>by {{issue.owner.name}}</span>
-                <br>Date : {{ issue.updatedOn }}
-            </div>
-        </div>
-
+            </ion-item>
+        </ion-list>
 
     </ion-content>
 </ion-view>

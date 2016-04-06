@@ -23,6 +23,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "variables";
 
 /* Empty. Add your own CSS if you like */
+#menuUser {
+  color: #4cd964;
+}
 
 #loginCitizen {
   background-image: url("../img/banner2.jpg");
@@ -50,56 +53,50 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 
 .issueList {
-  .state-bar {
-    height: 20px;
-    width: 100%;
-    position: relative;
+  position: relative;
+  .issueListImg {
+    height: 90px;
+    width: 90px;
+    display: block;
+    float: left;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+  }
+  .iconIssueList {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    text-align: center;
+    border-radius: 3px;
     background-color: #444;
-    .iconIssueList {
-      position: absolute;
-      right: 30px;
-      top: -10px;
-      height: 40px;
-      width: 40px;
-      text-align: center;
-      border-radius: 3px;
-      background-color: #444;
-      padding-top: 10px;
-      .icon {
-        font-size: 20px;
-        color: white;
-      }
+    padding: 0 8px;
+    line-height: 1.8;
+    .icon {
+      font-size: 17px;
+      color: white;
     }
   }
   .info {
-    padding: 1em;
+    display: block;
+    margin-left: 110px;
+    overflow: hidden;
+    h4 {
+      font-size: 20px;
+    }
+    span {
+      font-size: 13px;
+    }
+    p {
+      font-size: 17px;
+    }
   }
-}
 
-//bar color
-.state-bar {
-  .state-created & {
-    background-color: $color-created;
-  }
-  .state-acknowledge & {
-    background-color: $color-acknowledge;
-  }
-  .state-assigned & {
-    background-color: $color-assigned;
-  }
-  .state-in_progress & {
-    background-color: $color-in_progress;
-  }
-  .state-solved & {
-    background-color: $color-solved;
-  }
-  .state-rejected & {
-    background-color: $color-rejected;
-  }
 }
 
 //icon color
-.state-bar .iconIssueList {
+.iconIssueList {
   .state-created & {
     background-color: $color-created;
   }
@@ -181,6 +178,86 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 //icon color
 .state-bar .iconIssueDetails {
+  .state-created & {
+    background-color: $color-created;
+  }
+  .state-acknowledge & {
+    background-color: $color-acknowledge;
+  }
+  .state-assigned & {
+    background-color: $color-assigned;
+  }
+  .state-in_progress & {
+    background-color: $color-in_progress;
+  }
+  .state-solved & {
+    background-color: $color-solved;
+  }
+  .state-rejected & {
+    background-color: $color-rejected;
+  }
+}
+
+.myIssueList {
+  .state-bar {
+    height: 20px;
+    width: 100%;
+    position: relative;
+    background-color: #444;
+    .iconIssueList {
+      position: absolute;
+      right: 30px;
+      top: -10px;
+      height: 40px;
+      width: 40px;
+      text-align: center;
+      border-radius: 3px;
+      background-color: #444;
+      padding-top: 10px;
+      .icon {
+        font-size: 20px;
+        color: white;
+      }
+    }
+  }
+  .info {
+    padding: 10px;
+    h4 {
+      font-size: 20px;
+    }
+    span {
+      font-size: 13px;
+    }
+    p {
+      font-size: 17px;
+    }
+  }
+}
+
+//bar color
+.state-bar {
+  .state-created & {
+    background-color: $color-created;
+  }
+  .state-acknowledge & {
+    background-color: $color-acknowledge;
+  }
+  .state-assigned & {
+    background-color: $color-assigned;
+  }
+  .state-in_progress & {
+    background-color: $color-in_progress;
+  }
+  .state-solved & {
+    background-color: $color-solved;
+  }
+  .state-rejected & {
+    background-color: $color-rejected;
+  }
+}
+
+//icon color
+.state-bar .iconIssueList {
   .state-created & {
     background-color: $color-created;
   }
