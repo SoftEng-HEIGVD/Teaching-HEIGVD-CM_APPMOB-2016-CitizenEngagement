@@ -3,10 +3,7 @@
         <div class="list">
 
 
-            <a ng-repeat="issue in issues" href="#" ng-click="article('test')"
-
-
-               class="item item-avatar">
+            <a ng-repeat="issue in issues" class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})" >
                 <img src="{{issue.imageUrl}}">
 
                 <h2>{{issue.issueType.name}}</h2>
@@ -16,13 +13,3 @@
         </div>
     </ion-content>
 </ion-view>
-
-<!--ui-sref="menu.issueDetails"
-ng-click="search({{issue.id}})"
-               ng-model="id"
-
-
-
-               ng-click="issue('test')"
-
--->

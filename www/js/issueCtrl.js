@@ -8,7 +8,7 @@ angular.module('citizen-engagement.issueCtrl',[])
         function ($scope, $http,apiUrl, $state) {
             $scope.loadIssues = function() {
                 console.log("ok");
-                $http.get(apiUrl+'/issues').success(function(issues) {
+                $http.get(apiUrl+'/issues',{headers: {'x-sort': 'createdOn'}}).success(function(issues) {
 
                     $scope.issues = issues;
 
@@ -35,9 +35,15 @@ angular.module('citizen-engagement.issueCtrl',[])
             };*/
         })
 
-    .controller('ListeArtCtrl', function($scope,$state){
-        $scope.article = function(id) {
-            
-            $state.go('blog.article');
-        }
-    })
+    .controller("issueCtrl", function($scope, $http, apiUrl) {
+        $http({
+            method: 'GET',
+            url: apiUrl + '/issues/'
+        }).success(function(issue) {
+
+            $scope.issue = issue;
+        });
+
+    
+    });
+
