@@ -1,4 +1,4 @@
-angular.module('FixYourStreet.Map', [])
+angular.module('FixYourStreet.Map', ['leaflet-directive'])
 
   .controller("MapController", function($scope, mapboxMapId, mapboxAccessToken) {
     var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId;
