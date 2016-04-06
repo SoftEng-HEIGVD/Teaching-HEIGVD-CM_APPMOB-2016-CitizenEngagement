@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "a0-angular-storage": "0.0.13",
-    "ng-tags-input": "^3.0.0"
+    "ng-tags-input": "^3.0.0",
+    "moment": "~2.12.0"
   }
 }

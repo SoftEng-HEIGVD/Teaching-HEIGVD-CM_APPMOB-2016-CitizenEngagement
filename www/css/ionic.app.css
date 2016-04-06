@@ -9735,7 +9735,7 @@ a.button {
 .bar h1.title {
   font-size: 1em; }
 
-.issue > * {
+.issue > div > * {
   display: inline-block;
   margin-right: 20px; }
 
@@ -9743,6 +9743,23 @@ a.button {
   width: 101px;
   height: auto;
   float: left; }
+
+.issue .issue-description {
+  width: 70%; }
+
+.issue .issue-state {
+  float: right;
+  padding: 5px;
+  color: #18c944;
+  border: 2px #18c944 solid; }
+
+.issue .state-solved .issue-state {
+  color: #198ab0;
+  border-color: #198ab0; }
+
+.issue .state-rejected .issue-state {
+  color: #ed5e32;
+  border-color: #ed5e32; }
 
 .bar.bar-positive .title {
   font-family: 'Droid sans', sans-serif; }

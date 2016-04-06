@@ -1,11 +1,15 @@
-angular.module('citizen-engagement.listIssues',[])
+angular.module('citizen-engagement.listIssues',['ionic'])
 .service('IssueService', function($http,apiUrl){ 
     //get the issues
     this.getIssues = function(offset,limit,callback){
       $http({
         method: 'GET',
         url: apiUrl+ '/issues',
-        headers: {'Authorization': 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='} 
+        headers: {
+          'X-Pagination': offset+';'+limit,
+          "X-Sort" : "-updatedOn -createdOn"
+        }
+
       }).success(callback);
     }
 })
@@ -17,13 +21,15 @@ angular.module('citizen-engagement.listIssues',[])
 
   //Gestion de la pagination
   $scope.addIssues = function() {
-    IssueService.getIssues(offset,30,function(data){
+    IssueService.getIssues(offset,10,function(data){
+      //pretty dates
+      for(var i=0; i<data.length;i++){
+         data[i].prettyUpdatedOn = moment(data[i].updatedOn).fromNow();
+      }
       $scope.issues = $scope.issues.concat(data);
     });
 
-    offset+=30;
+    offset+=1;
+    $scope.$broadcast('scroll.infiniteScrollComplete');
   }
-
-  $scope.addIssues();
-
 })

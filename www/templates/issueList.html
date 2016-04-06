@@ -5,9 +5,14 @@
 	<ion-content>
     
     <ion-list>
-  		<ion-item ng-repeat="issue in issues" class="issue">
+  		<ion-item ng-repeat="issue in issues" class="issue ">
+        <div class="state-{{issue.state}}">
   			<img class="thumbnail" ng-src="{{issue.imageUrl}}"/>
-    		<h2>{{issue.description}}</h2>
+    		<h2 class="issue-title">{{issue.issueType.description}}</h2>
+        <h3 class="issue-description">{{issue.description}}</h3>
+        <h2 class="issue-updated-on">{{issue.prettyUpdatedOn}}</h2>
+        <h2 class="issue-state">{{issue.state}}</h2>
+      </div>
   		</ion-item>
   		<ion-infinite-scroll on-infinite="addIssues()"></ion-infinite-scroll>
 	</ion-list>
