@@ -6,7 +6,8 @@
         <ion-list ng-controller="IssueListCtrl"
                   can-swipe="listCanSwipe">
             <ion-item ng-repeat="issue in issues"
-                      class="item-thumbnail-left">
+                      class="item-thumbnail-left"
+            ui-sref="menu.issueDetails({issueId:issue.id})">
 
                 <!--<img ng-src="{{item.img}}">-->
                 <img ng-src="{{issue.imageUrl}}">
