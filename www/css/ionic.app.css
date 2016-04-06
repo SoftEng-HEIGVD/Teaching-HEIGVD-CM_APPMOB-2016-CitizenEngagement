@@ -9810,7 +9810,7 @@ a.button {
   background-color: red; }
 
 .issueDetails .state-bar {
-  height: 60px;
+  height: 65px;
   width: 100%;
   position: relative;
   background-color: #444; }
@@ -9824,7 +9824,7 @@ a.button {
     border-radius: 3px;
     background-color: #444;
     padding-top: 13px;
-    border: 1px solid black; }
+    border: 1px solid white; }
     .issueDetails .state-bar .iconIssueDetails .icon {
       font-size: 23px;
       color: white; }
@@ -9832,8 +9832,9 @@ a.button {
     color: white;
     padding: 1em; }
     .issueDetails .state-bar .infoCreation p {
-      margin-top: -2px;
-      margin-bottom: -2px; }
+      font-size: 1.2em;
+      margin-top: -3px;
+      margin-bottom: 4px; }
 
 .issueDetails .infoDescriptionDetails {
   padding: 1em; }
