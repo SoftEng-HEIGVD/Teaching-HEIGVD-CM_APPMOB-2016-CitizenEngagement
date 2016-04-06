@@ -37,12 +37,39 @@ function ($scope, $http,apiUrl) {
 
     $scope.loadIssues();
 
-});
+})
 
 
 
+.controller('PagesCtrl', function ($scope, $stateParams,$http,apiUrl) {
+        //Get ID out of current URL
+        var currentId = $stateParams.issueId;
 
 
+        $scope.loadCurrentIssue=function(){
+            $http.get(apiUrl+'/issues/'+currentId).success(function(issueCurrent){
+                $scope.issueCurrent=issueCurrent;
+
+                console.log(issueCurrent);
+
+            })
+        }
+
+        $scope.loadCurrentIssue();
+    }
+
+)
+
+
+/*.controller('IssueDetailCtrl',
+function ($scope, $http, apiUrl, $routeParams){
+
+    $scope.loadIssue=function(){
+        $http.get(apiUrl+'/issues/id').success(function(users) {
+    }
+}
+
+))*/
 
 
 
