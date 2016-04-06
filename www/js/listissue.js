@@ -9,16 +9,28 @@ angular.module('FixYourStreet.listIssue', [])
       $scope.issues = {};
     });
 
+
+
     $scope.getAreaIssues = function() {
 
       // Forget the previous error (if any).
       delete $scope.error;
+      $scope.data = {
+        "loc": {
+          "$geoWithin": {
+            "$centerSphere" : [
+              [ 6.622009 , 46.766129 ],
+              0.1
+            ]
+          }
+        }
+      };
 
       // Make the request to retrieve issues
       $http({
-        method: 'GET',
-        url: apiUrl + '/issues',
-        data: $scope.issues
+        method: 'POST',
+        url: apiUrl + '/issues/search',
+        data: $scope.data,
       }).success(function(issues) {
         $scope.issues = issues;
       }).error(function() {
@@ -28,5 +40,7 @@ angular.module('FixYourStreet.listIssue', [])
 
     $scope.getAreaIssues();
 })
+
+
 
 ;
