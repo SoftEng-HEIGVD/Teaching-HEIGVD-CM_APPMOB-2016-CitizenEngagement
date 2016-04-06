@@ -14,4 +14,50 @@ angular.module('citizen-engagement.newIssueCtrl', [])
             };
             $scope.loadIssueTypes();
 
-        });
+        //TODO post function
+        $scope.saveIssue = function () {
+            console.log("ok");
+            $http.post(apiUrl + '/issues').success(function (issue) {
+
+
+
+                console.log(issue);
+
+            });
+        };
+
+
+
+
+
+        }
+)
+
+    .controller('HomeController',
+        function ($scope, $http, apiUrl) {
+
+            $scope.loadIssuesByUser = function () {
+                console.log("ok my issues");
+                $http.get(apiUrl + '/me/issues').success(function (issues) {
+
+                    $scope.issues = issues;
+
+                    console.log(issues);
+
+                });
+            }
+            $scope.loadIssuesByUser();
+
+        })
+;
+
+
+/*
+TODO
+{
+    "description": "Integer at metus vitae erat porta pellentesque.",
+    "lng": "6.651479812689227",
+    "lat": "46.77227088657382",
+    "imageUrl": "http://www.somewhere.localhost.localdomain",
+    "issueTypeId": "54d8ae183fd30364605c81b1"
+}*/

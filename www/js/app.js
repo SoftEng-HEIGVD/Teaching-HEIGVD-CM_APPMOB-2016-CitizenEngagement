@@ -76,7 +76,8 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 url: '/home',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/home.html'
+                        templateUrl: 'templates/home.html',
+                        controller: 'HomeController' //TODO change to issueListCtrl when merge done
                     }
                 }
             })

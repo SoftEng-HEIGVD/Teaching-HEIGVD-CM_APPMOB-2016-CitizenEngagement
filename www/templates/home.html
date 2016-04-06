@@ -2,5 +2,15 @@
 
 <ion-content>
     <p>Hello! this is the welcome dashboard screen.</p>
+
+    <a ng-repeat="issue in issues"
+       ng-click="search({{issue.id}})"
+       ng-model="id"
+       class="item item-avatar" ui-sref="menu.issueDetails"> <!--TODO envoyer id-->
+        <img src="{{issue.imageUrl}}">
+
+        <h2>{{issue.issueType.name}}</h2>
+        <p>{{issue.description}}</p>
+    </a>
 </ion-content>
 </ion-view>
