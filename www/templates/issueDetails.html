@@ -12,8 +12,16 @@
             <p class="issueCommentDate">{{comment.postedOn}}</p>
             <p>{{comment.text}}</p>
           </ion-item>
+          <h2>Post a comment</h2>
+          <div class="list">
+              <label class="item item-input item-floating-label">
+                  <!-- Note the required="required" attribute used for validation. -->
+                  <span class="input-label">Text</span>
+                  <input type="text" placeholder="Comment" ng-model="user.firstname"/>
+              </label>
+          </div>
           <button class="button button-outline button-calm">
-            Comment
+            Save comment
           </button>
         </ion-item>
     </ion-content>
