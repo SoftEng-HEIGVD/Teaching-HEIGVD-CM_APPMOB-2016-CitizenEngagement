@@ -1,16 +1,23 @@
 <ion-view view-title="Home">
 
-<ion-content>
-    <p>Hello! this is the welcome dashboard screen.</p>
+<ion-content class="padding">
+    <h4>Your latest reported issues</h4>
+    <button class="button-small icon-left ion-plus-round button-positive"> Report new Issue</button>
 
-    <a ng-repeat="issue in issues"
-       ng-click="search({{issue.id}})"
-       ng-model="id"
-       class="item item-avatar" ui-sref="menu.issueDetails"> <!--TODO envoyer id-->
+    <a ng-repeat="issue in issues | limitTo:3"
+
+       class="item item-avatar" ui-sref="menu.issueDetails">
         <img src="{{issue.imageUrl}}">
 
         <h2>{{issue.issueType.name}}</h2>
         <p>{{issue.description}}</p>
     </a>
+    <div><p> </p></div>
+    <button class="button button-small button-assertive">
+        View all
+    </button>
+
+    <div></div>
+    <h4>Issues near you</h4>
 </ion-content>
 </ion-view>

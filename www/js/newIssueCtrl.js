@@ -38,11 +38,16 @@ angular.module('citizen-engagement.newIssueCtrl', [])
 
             $scope.loadIssuesByUser = function () {
                 console.log("ok my issues");
-                $http.get(apiUrl + '/me/issues').success(function (issues) {
+
+
+                $http.get(apiUrl + '/me/issues',
+                    {headers: {'x-sort': 'createdOn'}}).success(function (issues) {
 
                     $scope.issues = issues;
 
                     console.log(issues);
+
+
 
                 });
             }
