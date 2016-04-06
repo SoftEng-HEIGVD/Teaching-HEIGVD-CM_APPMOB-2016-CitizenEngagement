@@ -36,6 +36,7 @@ function ($scope, $http,apiUrl) {
     }
 
     $scope.loadIssues();
+    $scope.loadIssueType();
 
 })
 
