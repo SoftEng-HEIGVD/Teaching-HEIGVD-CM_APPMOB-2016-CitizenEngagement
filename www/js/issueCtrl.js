@@ -18,7 +18,7 @@ angular.module('citizen-engagement.issueCtrl',[])
             };
             $scope.loadIssues();
 
-            $scope.loadIssueType = function () {
+            /*$scope.loadIssueType = function () {
                 $http.get(apiUrl + '/issues').success(function (issues) {
                     $scope.issues = issues;
                     console.log(issueTypes[0].name);
@@ -32,6 +32,8 @@ angular.module('citizen-engagement.issueCtrl',[])
                     }
 
                 });
-            };
+            };*/
+
+
 
         });
