@@ -1,4 +1,5 @@
 angular.module('citizen-engagement.newIssueCtrl', [])
+
     .controller('NewIssueCtrl',
         function ($scope, $http, apiUrl) {
             $scope.loadIssueTypes = function () {
