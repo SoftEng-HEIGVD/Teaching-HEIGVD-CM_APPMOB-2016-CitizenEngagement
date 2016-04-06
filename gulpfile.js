@@ -58,11 +58,11 @@ function saveConfig(environment) {
   // Use `constants.js` as the source.
   gulp.src(['constants.js'])
 
-    // Replace all occurrences of @apiUrl@.
-    .pipe(replace(/@apiUrl@/g, config.apiUrl))
+      // Replace all occurrences of @apiUrl@.
+      .pipe(replace(/@apiUrl@/g, config.apiUrl))
 
-    // Save the result in www/js.
-    .pipe(gulp.dest('www/js'));
+      // Save the result in www/js.
+      .pipe(gulp.dest('www/js'));
 }
 
 gulp.task('config-development', function(){
