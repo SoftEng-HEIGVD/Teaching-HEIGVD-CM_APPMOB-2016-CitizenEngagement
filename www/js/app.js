@@ -31,34 +31,50 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'FixYourStreet.c
             // Each state's controller can be found in controllers.js
             $stateProvider
 
-                    .state('issueMap', {
-                        url: '/issueMap',
-                        templateUrl: 'templates/issueMap.html'
-                    })
+                  .state('issueMap', {
+                  url: '/issueMap',
+                  templateUrl: 'templates/issueMap.html'
+                  })
 
-                    .state('newIssue', {
-                        url: '/newIssue',
-                        templateUrl: 'templates/newIssue.html'
-                    })
+                  .state('commentsList', {
+                  url: '/commentsList',
+                  templateUrl: 'templates/commentsList.html'
+                  })
 
-                    .state('issueDetails', {
-                        url: '/issueDetails',
-                        templateUrl: 'templates/issueDetails.html'
-                    })
+                  .state('newComment', {
+                  url: '/newComment',
+                  templateUrl: 'templates/newComment.html'
+                  })
 
-                    .state('issueList', {
-                        url: '/issueList',
-                        templateUrl: 'templates/issueList.html'
-                    })
+                  .state('fullImg', {
+                  url: '/fullImg',
+                  templateUrl: 'templates/fullImg.html'
+                  })
+
+                  .state('newIssue', {
+                  url: '/newIssue',
+                  templateUrl: 'templates/newIssue.html'
+                  })
+
+                  .state('issueDetails', {
+                  url: '/issueDetails',
+                  templateUrl: 'templates/issueDetails.html'
+                  })
+
+                  .state('issueList', {
+                  url: '/issueList',
+                  templateUrl: 'templates/issueList.html'
+                  })
 
 
-                    .state('login', {
-                        url: '/login',
-                        controller: 'LoginCtrl',
-                        templateUrl: 'templates/login.html'
-                    })
 
-                    ;
+                  .state('login', {
+                      url: '/login',
+                      controller: 'LoginCtrl',
+                      templateUrl: 'templates/login.html'
+                  })
+
+                  ;
 
 
 
@@ -123,9 +139,9 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'FixYourStreet.c
             }
 
         })
-        
-        
-        
+
+
+
         .controller("typeCtrl", function (apiUrl, $scope, $http) {
             $scope.inputs = [{
                     value: null
@@ -177,3 +193,35 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'FixYourStreet.c
             };
 
         })
+
+        .controller("TagsCtrl", function ($scope) {
+          $scope.inputs = [{
+              value: null
+          }];
+
+          $scope.addInput = function () {
+              console.log("new input");
+              $scope.inputs.push({
+                  value: null
+              });
+          }
+
+          $scope.removeInput = function (index) {
+              $scope.inputs.splice(index, 1);
+          }
+      })
+
+        .controller('newComment', function($scope, $ionicModal) {
+
+        $ionicModal.fromTemplateUrl('templates/newComment.html', {
+          scope: $scope
+        }).then(function(modal) {
+          $scope.modal = modal;
+        });
+
+        $scope.createComment = function(u) {
+          //MISSING SAVE FUNCTION
+          $scope.modal.hide();
+        };
+
+      });
