@@ -35,7 +35,10 @@ angular.module('citizen-engagement.issueCtrl',[])
             };*/
         })
 
-    .controller("issueCtrl", function($scope, $http, apiUrl) {
+    .controller("issueDetailCtrl", function($scope, $http, apiUrl, $stateParams) {
+        console.log($stateParams);
+        var id = $stateParams.issueId; 
+        console.log('id' + id);
         $http({
             method: 'GET',
             url: apiUrl + '/issues/'
