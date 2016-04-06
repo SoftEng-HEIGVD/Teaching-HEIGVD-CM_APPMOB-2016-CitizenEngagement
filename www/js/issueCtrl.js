@@ -36,4 +36,21 @@ angular.module('citizen-engagement.issueCtrl',[])
 
 
 
-        });
+        })
+
+.controller('PostsCtrl', function($scope,$state, $ionicLoading, $stateParams, $http){
+    $scope.search = function(idPassedFromNgClick){
+        // console.log(idPassedFromNgClick);
+        $state.go('thepost', {id: idPassedFromNgClick})
+    }
+})
+
+
+    .controller('PostCtrl', function($scope,$ionicLoading, $stateParams, $http){
+        url = "http://monsupersite.fr//wp-json/posts/"+ $stateParams.id +"";
+        $ionicLoading.show({template: 'Chargement...'});
+        $http.get(url).success(function(response) {
+            $ionicLoading.hide();
+            $scope.post=response;
+        })
+    });
