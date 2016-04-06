@@ -1,8 +1,8 @@
 <ion-view view-title="Report an Issue">
 
-<ion-nav-title><i class="icon ion-alert-circled"></i>
-    Report an Issue
-</ion-nav-title>
+    <ion-nav-title><i class="icon ion-alert-circled"></i>
+        Report an Issue
+    </ion-nav-title>
     <ion-content class="padding">
         <h5>If you want to report an issue, please fill out this form</h5>
 
@@ -15,24 +15,17 @@
                 <div class="input-label">
                     &nbsp;
                 </div>
-                <select>
+                <select name ="type">
 
-                    <option  ng-repeat="issueType in issueTypes">{{issueType.name}}</option>
+                    <option ng-repeat="issueType in issueTypes">{{issueType.name}}</option>
 
                 </select>
             </label>
 
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Description</span>
-                <input type="text" placeholder=" ">
+                <input type="text" name="description" placeholder=" ">
             </label>
-
-
-
-
-
-
-
 
 
         </div>
