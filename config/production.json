@@ -1,5 +1,5 @@
 {
-  "apiUrl": "http://localhost:8100/api-proxy",
+  "apiUrl": "https://heigvd-cm-appmob-2016-team-04.herokuapp.com/api",
   "mapboxMapId":"damada.pk0eblmf",
   "mapboxAccessToken":"pk.eyJ1IjoiZGFtYWRhIiwiYSI6ImNpZnFwaDBoZTAyOHd0YWtuenljNG40em4ifQ.GjXEkuUxbyCZoMn81OjWFA"
 }

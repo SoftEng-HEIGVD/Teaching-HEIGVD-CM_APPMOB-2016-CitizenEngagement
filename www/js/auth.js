@@ -87,7 +87,7 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
             // Make the request to retrieve or create the user.
             $http({
                 method: 'POST',
-                url: 'http://localhost:8100/api-proxy/users/logister',
+                url: apiUrl + '/users/logister',
                 data: $scope.user
             }).success(function(user) {
 
@@ -111,7 +111,7 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
 
                 // If an error occurs, hide the loading message and show an error message.
                 $ionicLoading.hide();
-                $scope.error = 'Could not log in.';
+                $scope.error = 'Could not login...';
             });
         };
     })
