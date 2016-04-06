@@ -8,32 +8,45 @@
   </ion-nav-buttons>
   <ion-content  ng-controller="newIssueCTRL">
 
+  <form name="userForm" id="issueCreateForm" novalidate>
     <div class="list list-inset">
       <!-- select the type -->
       <label class="item item-input item-select">
         <div class="input-label">Choose a type</div>
-        <select ng-model="myIssueToPost.type">
+        <select ng-model="myIssueToPost.issueTypeId" name="type" required>
+
           <option ng-repeat="issueType in issueTypes" value="{{issueType.id}}">{{issueType.name}}</option>
         </select>
       </label>
-      <!-- Decription -->
+      <div class="errors-report">
+        <p ng-show="userForm.type.$error.required">* Type is required</p>
+      </div>
+      <!-- Description -->
       <label class="item item-input">
-        <textarea placeholder="Write a description here" ng-model="myIssueToPost.description"></textarea>
+        <textarea id="jesus" name="description" placeholder="Write a description here" ng-model="myIssueToPost.description" type="text" required></textarea>
       </label>
+      <div class="errors-report">
+        <p ng-show="userForm.description.$error.required">* Description is required</p>
+      </div>
       <label >
-        <tags-input ng-model="myIssueToPost.tagz"></tags-input>
+        <tags-input ng-model="tagz.payload.tags" name="tags" ></tags-input>
       </label>
-      <button class="button button-small button-assertive">
+
+
+      <button class="button button-small button-assertive" >
           Upload a picture
       </button>
-      <!--<label class="item item-input">
-        <input type="text" placeholder="jesus" ng-model="myIssueToPost.jesus">
-      </label>-->
+      <div class="errors-report">
+        {{locationProblem}}
+      </div>
+
 
     </div>
 
-    <button class="button button-full button-positive" ng-click="createAnIssue()" ng-disabled="loginForm.$invalid">Save</button>
+  <!-- ng-click="createAnIssue()" ng-disabled="userForm.$invalid"-->
+    <button type="submit" class="button button-full button-positive" ng-disabled="userForm.$invalid || geolok == false"  ng-click="createAnIssue()">Save</button>
 
+  </form>
 
   </ion-content>
 </ion-view>

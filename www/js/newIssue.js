@@ -1,57 +1,51 @@
-angular.module('citizen-engagement.newIssue',['ngTagsInput'])
+angular.module('citizen-engagement.newIssue',['ngTagsInput','geolocation'])
 
+.controller("newIssueCTRL", function($scope, $http, apiUrl, geolocation) {
 
-.controller("newIssueCTRL", function($scope, $http, apiUrl) {
-  console.log(apiUrl)
+  $scope.myIssueToPost = {};
 
-  //$scope.$on('$ionicView.beforeEnter', function() {
+  $http({
+    method: 'GET',
+    url: apiUrl + '/issueTypes'
+  }).success(function(data) {
+    console.log(data)
+    $scope.issueTypes = data;
+  })
+
+  geolocation.getLocation().then(function(data) {
+
+     $scope.myIssueToPost.lng = data.coords.longitude;
+     $scope.myIssueToPost.lat = data.coords.latitude;
+
+     $scope.geolok = true;
+
+    }, function(error) {
+
+      $scope.locationProblem = 'Geolocation problem found ('+error+')';
+      $scope.geolok = false;
+
+    });
+
+  $scope.myIssueToPost.imageUrl = 'http://lorempicsum.com/futurama/350/200/1';
+
+  // Event when the user click on the submit button
+  $scope.createAnIssue = function(){
+
+    console.log($scope.myIssueToPost)
+    console.log($scope.tagz)
 
     $http({
-      method: 'GET',
-      url: apiUrl + '/issueTypes'
-      //data: $scope.issueTypes
+      method: 'POST',
+      url: apiUrl + '/issues',
+      data: $scope.myIssueToPost
 
     }).success(function(data) {
+      console.log('teuf')
       console.log(data)
-      $scope.issueTypes = data;
+
 
     })
 
-
-
-
-
-
-
-      $scope.createAnIssue = function(){
-
-        console.log($scope.myIssueToPost)
-        /*var myIssueToPost = {}
-        myIssueToPost.description = $scope.description;
-
-        console.log(myIssueToPost.description)*/
-
-
-
-
-        /*$http({
-          method: 'POST',
-          url: apiUrl + '/issue'
-          //data: $scope.issueTypes
-
-        }).success(function(data) {
-          console.log(data)
-          $scope.issueTypes = data;
-
-        })*/
-
-    }
-
-
-  //})
-
-
-
-
+  }
 
 });
