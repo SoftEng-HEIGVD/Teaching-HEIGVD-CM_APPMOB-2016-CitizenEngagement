@@ -1,6 +1,29 @@
 <ion-view view-title="Issue Details">
   <ion-content>
     <p>Hello! This is the issue details screen.</p>
+
+      <div class="row list">
+        <div class="col col-75" style="background-color: red;"><h4>Issue type</h4></div>
+        <div class="col"><h4>Status</h4></div>
+      </div>
+
+      <div class="row list">
+        <div class="col col-75"><h4>Description</h4></div>
+        <a class="button button-icon icon ion-plus-circled"></a>
+
+      </div>
+
+      <div class="row list">
+        <div class="col col-75"><h4>tags</h4></div>
+        <a class="button button-icon icon ion-plus-circled"></a>
+      </div>
+
+      <div class="row list">
+        <div class="col" style="background-color: grey; height: 200px;"><h2>Photo</h2></div>
+        <div class="col" style="background-color: blue; height: 200px;"><h2>Map</h2></div>
+      </div>
+
+
     <div ng-controller="issueCtrl">
         {{issue}}
     </div>
