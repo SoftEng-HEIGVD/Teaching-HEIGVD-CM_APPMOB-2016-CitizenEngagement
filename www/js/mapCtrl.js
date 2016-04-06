@@ -9,7 +9,7 @@ angular.module('citizen-engagement.mapCtrl', [])
         $scope.mapCenter = {
             lat: 46.5,
             lng: 6.6,
-            zoom: 7
+            zoom: 8
         };
 
         $scope.mapMarkers = [];
