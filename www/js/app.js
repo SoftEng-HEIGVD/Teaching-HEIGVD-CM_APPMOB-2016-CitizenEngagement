@@ -31,50 +31,50 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'FixYourStreet.c
             // Each state's controller can be found in controllers.js
             $stateProvider
 
-                  .state('issueMap', {
-                  url: '/issueMap',
-                  templateUrl: 'templates/issueMap.html'
-                  })
+                    .state('issueMap', {
+                        url: '/issueMap',
+                        templateUrl: 'templates/issueMap.html'
+                    })
 
-                  .state('commentsList', {
-                  url: '/commentsList',
-                  templateUrl: 'templates/commentsList.html'
-                  })
+                    .state('commentsList', {
+                        url: '/commentsList',
+                        templateUrl: 'templates/commentsList.html'
+                    })
 
-                  .state('newComment', {
-                  url: '/newComment',
-                  templateUrl: 'templates/newComment.html'
-                  })
+                    .state('newComment', {
+                        url: '/newComment',
+                        templateUrl: 'templates/newComment.html'
+                    })
 
-                  .state('fullImg', {
-                  url: '/fullImg',
-                  templateUrl: 'templates/fullImg.html'
-                  })
+                    .state('fullImg', {
+                        url: '/fullImg',
+                        templateUrl: 'templates/fullImg.html'
+                    })
 
-                  .state('newIssue', {
-                  url: '/newIssue',
-                  templateUrl: 'templates/newIssue.html'
-                  })
+                    .state('newIssue', {
+                        url: '/newIssue',
+                        templateUrl: 'templates/newIssue.html'
+                    })
 
-                  .state('issueDetails', {
-                  url: '/issueDetails',
-                  templateUrl: 'templates/issueDetails.html'
-                  })
+                    .state('issueDetails', {
+                        url: '/issueDetails',
+                        templateUrl: 'templates/issueDetails.html'
+                    })
 
-                  .state('issueList', {
-                  url: '/issueList',
-                  templateUrl: 'templates/issueList.html'
-                  })
+                    .state('issueList', {
+                        url: '/issueList',
+                        templateUrl: 'templates/issueList.html'
+                    })
 
 
 
-                  .state('login', {
-                      url: '/login',
-                      controller: 'LoginCtrl',
-                      templateUrl: 'templates/login.html'
-                  })
+                    .state('login', {
+                        url: '/login',
+                        controller: 'LoginCtrl',
+                        templateUrl: 'templates/login.html'
+                    })
 
-                  ;
+                    ;
 
 
 
@@ -147,33 +147,30 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'FixYourStreet.c
 
 
 
-        .controller("typeCtrl", function (apiUrl, $scope, $http) {
+        .controller("typeCtrl", function (apiUrl, $scope, $http, $filter) {
             $scope.inputs = [{
                     value: null
                 }];
-
             $scope.submitType = function () {
+
                 $http({
                     method: 'GET',
                     url: apiUrl + '/issueTypes',
                 })
-                        .success(function (typeChoosen) {
-                            console.log(typeChoosen);
+                        .success(function (allType) {
+                            var myFilteredType = $filter('filter')(allType, {name: $scope.type});
+                            var typeId = myFilteredType[0].id;
+                            console.log(myFilteredType[0].id);
+                            $http({
+                                method: 'GET',
+                                url: apiUrl + '/issueTypes/' + typeId,
+                            })
+                                    .success(function (typeChoosen) {
+                                        console.log(typeChoosen);
+//                                        console.log(allType);
+                                    });
                         });
-                single_object = $filter('filter')(typeChoose, function (type) {
-                    return typename === $scope.type;
-                })[0];
 
-                // If you want to see the result, just check the log
-                console.log(single_object);
-                console.log($scope.type);
-                $http({
-                    method: 'GET',
-                    url: apiUrl + '/issueTypes/57023a95dc5a2c0e007a150b',
-                })
-                        .success(function (typeChoosen) {
-                            console.log(typeChoosen);
-                        });
             }
 
 
@@ -214,33 +211,33 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'FixYourStreet.c
         })
 
         .controller("TagsCtrl", function ($scope) {
-          $scope.inputs = [{
-              value: null
-          }];
+            $scope.inputs = [{
+                    value: null
+                }];
 
-          $scope.addInput = function () {
-              console.log("new input");
-              $scope.inputs.push({
-                  value: null
-              });
-          }
+            $scope.addInput = function () {
+                console.log("new input");
+                $scope.inputs.push({
+                    value: null
+                });
+            }
 
-          $scope.removeInput = function (index) {
-              $scope.inputs.splice(index, 1);
-          }
-      })
+            $scope.removeInput = function (index) {
+                $scope.inputs.splice(index, 1);
+            }
+        })
 
-        .controller('newComment', function($scope, $ionicModal) {
+        .controller('newComment', function ($scope, $ionicModal) {
 
-        $ionicModal.fromTemplateUrl('templates/newComment.html', {
-          scope: $scope
-        }).then(function(modal) {
-          $scope.modal = modal;
+            $ionicModal.fromTemplateUrl('templates/newComment.html', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.createComment = function (u) {
+                //MISSING SAVE FUNCTION
+                $scope.modal.hide();
+            };
+
         });
-
-        $scope.createComment = function(u) {
-          //MISSING SAVE FUNCTION
-          $scope.modal.hide();
-        };
-
-      });
