@@ -45,7 +45,6 @@ angular.module('citizen-engagement')
       url: apiUrl + '/issues/' + $stateParams.issueId
     }).success(function(issue) {
       $scope.issue = issue;
-      console.log(issue);
     }).error(function(error) {
       console.log("error");
     }).finally(function() {
@@ -104,7 +103,7 @@ angular.module('citizen-engagement')
   })
 
 .controller('ListMyIssuesCtrl', function(apiUrl, $scope, $http, $ionicLoading) {
-  $scope.getIssues = function() { //TODO: Problem with cache ? is not updated when switching user.
+  $scope.getIssues = function() {
       $ionicLoading.show({
           template: 'Loading your issues',
           animation: 'fade-in',
@@ -127,6 +126,5 @@ angular.module('citizen-engagement')
   }
   $scope.getIssues();
 })
-
 
 ;
