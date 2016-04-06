@@ -6,6 +6,7 @@
     "ionic-platform-web-client": "^0.7.1"
   },
   "dependencies": {
-    "a0-angular-storage": "0.0.13"
+    "a0-angular-storage": "0.0.13",
+    "angularjs-geolocation": "^0.1.1"
   }
 }
