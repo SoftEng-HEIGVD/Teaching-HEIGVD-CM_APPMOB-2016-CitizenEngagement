@@ -3,15 +3,15 @@
     <p>Hello! This is the issue list screen.</p>
 
     <div ng-controller="allIssuesCtrl" >
-      <div infinite-scroll="loadMoreIssues()" infinite-scroll-distance="0" infinite-scroll-disabled='!scrollEnable'>
         <div ng-repeat="issue in issues" class="row list">
-          <div class="col"><img src="cover.jpg"></div>
+          <div class="col" style="overflow: hidden"><img src="{{issue.imageUrl}}" height="200px"></div>
           <div class="col"><h5>Issue {{issue.issueType.name}}</h5></div>
           <div class="col"><p>Description {{issue.description}}</p></div>
           <div class="col"><p> {{issue.state}}</p></div>
           <div class="col"><button class="button button-dark" ui-sref="tab.issueDetails({issueId:issue.id})">view</button></div>
         </div>
+        <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
       </div>
-    </div>
+
   </ion-content>
 </ion-view>
