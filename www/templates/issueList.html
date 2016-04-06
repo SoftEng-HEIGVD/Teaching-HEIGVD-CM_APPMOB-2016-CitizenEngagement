@@ -4,8 +4,9 @@
 
 
             <a ng-repeat="issue in issues"
-               class="item item-avatar" href="#">
+               class="item item-avatar" ui-sref="menu.issueDetails"> <!--TODO envoyer id-->
                 <img src="{{issue.imageUrl}}">
+
                 <h2>{{issue.issueType.name}}</h2>
                 <p>{{issue.description}}</p>
             </a>
