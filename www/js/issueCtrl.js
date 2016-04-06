@@ -37,11 +37,11 @@ angular.module('citizen-engagement.issueCtrl',[])
 
     .controller("issueDetailCtrl", function($scope, $http, apiUrl, $stateParams) {
         console.log($stateParams);
-        var id = $stateParams.issueId; 
-        console.log('id' + id);
+        var id = $stateParams.issueId;
+        console.log('id ' + id);
         $http({
             method: 'GET',
-            url: apiUrl + '/issues/'
+            url: apiUrl + '/issues/'+id
         }).success(function(issue) {
             console.log("okbla");
 
