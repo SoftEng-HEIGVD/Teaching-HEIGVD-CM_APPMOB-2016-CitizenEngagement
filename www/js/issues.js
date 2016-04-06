@@ -1,31 +1,38 @@
 angular.module('citizen-engagement')
 
+
+.service('IssueService', ['$http', 'apiUrl', function($http, apiUrl, $ionicLoading) {
+    this.getAllIssues = function (successCallback, errorCallback, finallyCallback ) {
+        $http({
+          method: 'GET',
+          url: apiUrl + '/issues',
+          headers: {
+            "x-sort": "-createdOn",
+          }
+      }).success(successCallback)
+      .error(errorCallback)
+      .finally(finallyCallback);
+    }
+}])
+
 // Get all issues
-.controller('ListIssuesCtrl', function(apiUrl, $scope, $http, $ionicLoading) {
+.controller('ListIssuesCtrl', function(apiUrl, IssueService, $scope, $http, $ionicLoading) {
 
-
-  // Create and execute get functions
   $scope.getIssues = function() {
+    IssueService.getAllIssues(
+        function(data) { // finallyCallback
+            $scope.issues = data;
+        }, function(err) { // Error callback
+            return err;
+        }, function() { // finallyCallback
+            $scope.$broadcast('scroll.refreshComplete');
+            $ionicLoading.hide();
+        }
+    );
     $ionicLoading.show({
         template: 'Loading issues',
         animation: 'fade-in',
         noBackdrop: true
-    });
-
-    $http({
-      method: 'GET',
-      url: apiUrl + '/issues',
-      headers: {
-        "x-sort": "-createdOn",
-      }
-    }).success(function(issues) {
-      $scope.issues = issues;
-
-    }).error(function(error) {
-      console.log('an error occurred');
-    }).finally(function() {
-      $scope.$broadcast('scroll.refreshComplete');
-      $ionicLoading.hide();
     });
   }
   $scope.getIssues();
