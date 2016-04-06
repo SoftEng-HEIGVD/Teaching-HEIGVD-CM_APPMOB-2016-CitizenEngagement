@@ -1,14 +1,20 @@
 <ion-view view-title="Detail Issue">
     <ion-content>
-        <p>Hello! This is the issue details screen.</p>
-
-        <ion-item ng-controller="PagesCtrl">
-
-            Ici test
-
+        <ion-item ng-controller="PagesCtrl" id="issueDetails">
+          <img ng-src="{{issueCurrent.imageUrl}}">
+          <span class="issueTitle">{{issueCurrent.issueType.name}}</span> <i class="icon ion-ios-location-outline"></i>
+          <h3>by {{issueCurrent.owner.name}} on {{issueCurrent.createdOn}}</h3>
+          <h3 class="issueStatus">Status : {{issueCurrent.state}}</h3>
+          <p class="issueDescription">{{issueCurrent.description}}</p>
+          <h2>Comments</h2>
+          <ion-item ng-repeat="comment in issueCurrent.comments">
+            <span>{{comment.author.name}}</span>
+            <p class="issueCommentDate">{{comment.postedOn}}</p>
+            <p>{{comment.text}}</p>
+          </ion-item>
+          <button class="button button-outline button-calm">
+            Comment
+          </button>
         </ion-item>
-        <button class="button button-outline button-calm">
-          Comment
-        </button>
     </ion-content>
 </ion-view>
