@@ -43,9 +43,8 @@ function ($scope, $http,apiUrl) {
 
 
 .controller('PagesCtrl', function ($scope, $stateParams,$http,apiUrl) {
-        //Get ID out of current URL
-        var currentId = $stateParams.issueId;
 
+        var currentId = $stateParams.issueId;
 
         $scope.loadCurrentIssue=function(){
             $http.get(apiUrl+'/issues/'+currentId).success(function(issueCurrent){
@@ -60,17 +59,5 @@ function ($scope, $http,apiUrl) {
     }
 
 )
-
-
-/*.controller('IssueDetailCtrl',
-function ($scope, $http, apiUrl, $routeParams){
-
-    $scope.loadIssue=function(){
-        $http.get(apiUrl+'/issues/id').success(function(users) {
-    }
-}
-
-))*/
-
 
 
