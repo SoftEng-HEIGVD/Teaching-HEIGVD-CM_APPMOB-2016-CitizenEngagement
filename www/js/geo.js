@@ -9,10 +9,16 @@ angular.module('citizen-engagement')
         };
 
         // Get location
+
+
         this.getLocation = function() {
             $ionicLoading.show({
                 template: 'Getting Location...',
                 animation: 'fade-in',
+            });
+
+            navigator.geolocation.getCurrentPosition(function(position) {
+                return position.coords;
             });
             return geolocation.getLocation()
                 .then(function(data) {
