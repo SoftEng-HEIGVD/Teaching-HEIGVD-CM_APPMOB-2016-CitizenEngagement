@@ -121,6 +121,19 @@ angular.module('citizen-engagement', ['ionic','leaflet-directive','ionic.service
 
 
           })
+          // This is the issue details state.
+          .state('menu.issueSingleMap', {
+            // We use a parameterized route for this state.
+            // That way we'll know which issue to display the details of.
+            url: '/issueSingleMap/:issueId',
+            views: {
+              // Here we use the same "tab-issueList" view as the previous state.
+              // This means that the issue details template will be displayed in the same tab as the issue list.
+              'menuContent': {
+                templateUrl: 'templates/issueSingleMap.html'
+              }
+            }
+          })
       ;
 
       // Define the default state (i.e. the first screen displayed when the app opens).
