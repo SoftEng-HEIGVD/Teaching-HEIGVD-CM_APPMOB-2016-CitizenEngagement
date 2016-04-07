@@ -3,31 +3,39 @@
         Home
     </ion-nav-title>
 
-<ion-content class="padding">
-    <h4>Your latest reported issues</h4>
+    <ion-content class="padding">
+        <h4>Your latest reported issues</h4>
 
-    <div><p> </p></div>
+        <div><p></p></div>
 
 
-    <a ng-repeat="issue in issues.data | limitTo:3" class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})" ng-if="issues.data.length>=1" >
-        <img src="{{issue.imageUrl}}">
+        <a ng-repeat="issue in issues.data | limitTo:3" class="item item-avatar"
+           ui-sref="menu.issueDetails({issueId:issue.id})" ng-if="issues.data.length>=1">
+            <img src="{{issue.imageUrl}}">
 
-        <h2>{{issue.issueType.name}}</h2>
-        <p>{{issue.description}}</p>
-    </a>
+            <h2>{{issue.issueType.name}}</h2>
+            <p>{{issue.description}}</p>
+        </a>
 
-    <a class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})" ng-if="issues.data.length<1" >
+        <a class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})" ng-if="issues.data.length<1">
 
-        <p>You do not have any issues</p>
+            <p>You do not have any issues</p>
 
-        <button class="button-small icon-left ion-plus-round button-positive" ui-sref="menu.newIssue"> Report new Issue</button>
-    </a>
-    <div><p> </p></div>
-    <button class="button button-small button-assertive">
-        View all
-    </button>
+            <button class="button-small icon-left ion-plus-round button-positive" ui-sref="menu.newIssue"> Report new
+                Issue
+            </button>
+        </a>
+        <div><p></p></div>
+        <button class="button button-small button-assertive" ui-sref="menu.issueDetails({issueId:issue.id})">
+            View all
+        </button>
 
-    <div></div>
-    <h4>Issues near you</h4>
-</ion-content>
+        <div></div>
+        <h4>Issues near you</h4>
+
+        <div class="item item-body" ng-controller="HomeMapController" >
+            <leaflet class="full-image" defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="200px" data-tap-disabled="true"></leaflet>
+
+        </div>
+    </ion-content>
 </ion-view>

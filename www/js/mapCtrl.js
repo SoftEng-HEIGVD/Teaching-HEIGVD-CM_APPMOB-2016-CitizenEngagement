@@ -8,8 +8,8 @@ angular.module('citizen-engagement.mapCtrl', [])
                 return geolocation.getLocation().then(function (data) {
 
                     /*$scope.mapCenter.lat = data.coords.latitude;
-                    $scope.mapCenter.lng = data.coords.longitude;
-                    $scope.mapCenter.zoom = 8;*/
+                     $scope.mapCenter.lng = data.coords.longitude;
+                     $scope.mapCenter.zoom = 8;*/
 
                     /*  $scope.mapCenter = {
                      lat: data.coords.latitude,
@@ -20,7 +20,6 @@ angular.module('citizen-engagement.mapCtrl', [])
                     console.log(data.coords.longitude);
                     console.log(data.coords.latitude);
                     return data.coords;
-
 
 
                 }, function (error) {
@@ -43,11 +42,11 @@ angular.module('citizen-engagement.mapCtrl', [])
         $scope.mapCenter = {};
 // TODO loading while geoloc
 
-        GeolocServiceFla.locateUser().then(function(coords){
+        GeolocServiceFla.locateUser().then(function (coords) {
             $scope.mapCenter = {
-                lat:coords.latitude,
+                lat: coords.latitude,
                 lng: coords.longitude,
-                zoom: 8
+                zoom: 15
 
             };
         });
@@ -61,17 +60,21 @@ angular.module('citizen-engagement.mapCtrl', [])
 
             console.log(issues);
 
+            GeolocServiceFla.locateUser().then(function (coords) {
+                $scope.mapMarkers.push({
 
-            $scope.mapMarkers.push({
-                lat: 46.5,
-                lng: 6.6,
-                message: '<p>{{ issue.description }}</p><img src="{{ issue.imageUrl }}" width="200px" />',
-                getMessageScope: function () {
-                    var scope = $scope.$new();
-                    /*    scope.issue = issue;*/
-                    return scope;
-                }
+
+                    lat: coords.latitude,
+                    lng: coords.longitude,
+                    message: '<p>{{ issue.description }}</p><img src="{{ issue.imageUrl }}" width="200px" />',
+                    getMessageScope: function () {
+                        var scope = $scope.$new();
+                        /*    scope.issue = issue;*/
+                        return scope;
+                    }
+                });
             });
+
         });
 
 
@@ -83,37 +86,90 @@ angular.module('citizen-engagement.mapCtrl', [])
         $scope.mapDefaults = {
             tileLayer: mapboxTileLayer
         };
+        $scope.mapCenter = {};
 
+        GeolocServiceFla.locateUser().then(function (coords) {
 
-
-        $scope.mapCenter = {
-            lat: 46.5,
-            lng: 6.6,
-            zoom: 8
-        };
+        });
 
         $scope.mapMarkers = [];
         /*        var issue = IssueService.getIssue();*/
 
+        var id = $stateParams.issueId;
+        $http({
+            method: 'GET',
+            url: apiUrl + '/issues/' + id
+        }).success(function (issue) {
 
-        $http.get(apiUrl + '/issues').success(function (issues) {
+            $scope.mapCenter = {
+                lat: issue.lat,
+                lng: issue.lng,
+                zoom: 15
 
-            $scope.issues = issues;
+            };
+            $scope.issue = issue;
+            console.log(issue);
+            $scope.mapMarkers.push({
+                lat: issue.lat,
+                lng: issue.lng,
 
-            console.log(issues);
+            });
 
+        });
+
+
+    })
+
+
+    .controller("HomeMapController", function ($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocServiceFla, $stateParams) {
+        var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId; //openlayers --> mapbox
+        mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
+        $scope.mapDefaults = {
+            tileLayer: mapboxTileLayer
+        };
+        $scope.mapCenter = {};
+
+
+        $scope.mapMarkers = [];
+
+// TODO loading while geoloc
+
+        GeolocServiceFla.locateUser().then(function (coords) {
+            $scope.mapCenter = {
+                lat: coords.latitude,
+                lng: coords.longitude,
+                zoom: 15
+            };
 
             $scope.mapMarkers.push({
-                lat: 46.5,
-                lng: 6.6,
-                message: '<p>{{ issue.description }}</p><img src="{{ issue.imageUrl }}" width="200px" />',
-                getMessageScope: function () {
-                    var scope = $scope.$new();
-                    /*    scope.issue = issue;*/
-                    return scope;
-                }
+                lat: coords.latitude,
+                lng: coords.longitude,
+                message: "<strong>You are here</strong>"
+
             });
+
         });
+
+
+        /* $http.get(apiUrl + '/issues').success(function (issues) {
+
+         $scope.issues = issues;
+
+         //console.log(issues);
+
+
+
+         $scope.mapMarkers.push({
+         lat: 46.5,
+         lng: 6.6,
+         message: '<p>{{ issue.description }}</p><img src="{{ issue.imageUrl }}" width="200px" />',
+         getMessageScope: function () {
+         var scope = $scope.$new();
+         /!*    scope.issue = issue;*!/
+         return scope;
+         }
+         });
+         });*/
 
 
     });

@@ -152,6 +152,12 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 templateUrl: 'templates/login.html'
             })
 
+            .state('userListIssues', {
+                url: '/userListIssues',
+                controller: 'UserIssuesController',
+                templateUrl: 'templates/userListIssues.html'
+            })
+
             .state('roleSelection', {
                 url: '/roleSelection',
                 templateUrl: 'templates/roleSelection.html'
