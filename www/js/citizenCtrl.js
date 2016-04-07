@@ -60,10 +60,12 @@ angular.module('citizen-engagement.citizenCtrl',[])
 
     })
 
-    .controller('AddIssueCtrl',
-        function($scope,$resources,$http,apiUrl){
+ $scope.submitIssue= function($scope,$resources,$http,apiUrl){
 
-            $scope.description=myIssueAdd.description;
+            $scope.myIssueToAdd{};
+
+
+            $scope.myIssueToAdd=myIssueToAdd.description;
             $scope.lng.myIssueLng;
             $scope.lat.myIssueLat;
             $scope.imageUrl.myIssueUrl;
