@@ -1,6 +1,6 @@
 // Ionic Starter App
 
-angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citizen-engagement.constants','geolocation', 'leaflet-directive'])
+angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citizen-engagement.constants', 'geolocation', 'leaflet-directive'])
 
 
     .run(function ($ionicPlatform) {
@@ -51,9 +51,9 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
         // Each state's controller can be found in controllers.js
         $stateProvider
             .state('mainMenu', {
-              url: "",
-              abstract: true,
-              templateUrl: "templates/menu.html"
+                url: "",
+                abstract: true,
+                templateUrl: "templates/menu.html"
             })
             .state('login', {
                 url: '/login',
@@ -63,9 +63,9 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
             .state('mainMenu.issues', {
                 url: '/issues',
                 views: {
-                    'appContent' :{
-                      templateUrl: "templates/issueList.html",
-                      controller : "ListIssuesCtrl"
+                    'appContent': {
+                        templateUrl: "templates/issueList.html",
+                        controller: "ListIssuesCtrl"
                     }
                 },
                 data: {
@@ -75,18 +75,31 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
             .state('mainMenu.myIssues', {
                 url: '/myIssues',
                 views: {
-                    'appContent' :{
-                      templateUrl: "templates/myIssues.html",
-                      controller : "ListMyIssuesCtrl"
+                    'appContent': {
+                        templateUrl: "templates/myIssues.html",
+                        controller: "ListMyIssuesCtrl"
                     }
                 }
             })
+
+
+            .state('mainMenu.takePhoto', {
+                url: '/takePhoto',
+                views: {
+                    'appContent': {
+                        templateUrl: "templates/takePhoto.html",
+                        controller: "takePhotoCtrl"
+                    }
+                }
+            })
+
+
             .state('mainMenu.newIssue', {
                 url: '/newIssue',
                 views: {
-                    'appContent' :{
-                      templateUrl: "templates/newIssue.html",
-                      controller : "AddIssueCtrl"
+                    'appContent': {
+                        templateUrl: "templates/newIssue.html",
+                        controller: "AddIssueCtrl"
                     }
                 }
             })
@@ -94,18 +107,18 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
             .state('mainMenu.issueDetails', {
                 url: '/issue/:issueId', // ?$stateParams ?
                 views: {
-                    'appContent' :{
-                      templateUrl: "templates/issueDetails.html",
-                      controller : "GetSpecificIssueCtrl"
+                    'appContent': {
+                        templateUrl: "templates/issueDetails.html",
+                        controller: "GetSpecificIssueCtrl"
                     }
                 }
             })
             .state('mainMenu.issueMap', {
                 url: '/issueMap',
                 views: {
-                    'appContent' :{
-                      templateUrl: "templates/issueMap.html",
-                      controller : "MapCtrl"
+                    'appContent': {
+                        templateUrl: "templates/issueMap.html",
+                        controller: "MapCtrl"
                     }
                 }
             })
@@ -138,9 +151,9 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 title: 'All issues',
                 state: 'mainMenu.issues',
                 class: 'issues-all'
-            },{
+            }, {
                 title: 'New issue',
-                state: 'mainMenu.newIssue',
+                state: 'mainMenu.takePhoto',
                 class: 'issues-new'
             }
         ];
