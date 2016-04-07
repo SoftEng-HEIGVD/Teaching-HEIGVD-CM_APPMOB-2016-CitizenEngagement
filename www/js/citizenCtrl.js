@@ -38,22 +38,24 @@ angular.module('citizen-engagement.citizenCtrl',['geolocation'])
                     issue.lat=data.coords.latitude;
                     issue.lng=data.coords.longitude;
 
+
+
+                    issue.imageUrl="http://marieclaudeducas.com/wp-content/uploads/2015/08/Cecil-the-Lion.jpg";
+
                     console.log(issue);
 
 
-                    $http({
-                        method: 'POST',
-                        url: 'https://heigvd-cm-appmob-2016-team-04.herokuapp.com/api',
-                        data: "message=" + issue,
-                        headers: {'Content-Type': 'application/json'}
-                    });
-
-                    $http.post(apiUrl+'/issues').success(function(issues){
-
-
-                        })
-
                 })
+                $http({
+                    method: 'POST',
+                    url: apiUrl+'/issues',
+                    data: issue
+
+                });
+
+
+
+
 
 
 

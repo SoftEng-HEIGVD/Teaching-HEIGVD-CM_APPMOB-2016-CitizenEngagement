@@ -1,9 +1,11 @@
 <ion-view view-title="Detail Issue">
-    <ion-content ng-controller="PagesCtrl">
-        <ion-item  id="issueDetails" ui-sref="menu.issueSingleMap({issueId:issue.id})">
+
+    <ion-content>
+        <ion-item ng-controller="PagesCtrl" id="issueDetails" ui-sref="menu.issueSingleMap({issueId:issueCurrent.id})">
+
           <img ng-src="{{issueCurrent.imageUrl}}">
           <span class="issueTitle" ui-sref="menu.issueSingleMap({issueId:issue.id})">{{issueCurrent.issueType.name}}</span> <i class="icon ion-ios-location-outline"></i>
-          <h3>by {{issueCurrent.owner.name}} on {{issueCurrent.createdOn}}</h3>
+          <h3>by {{issueCurrent.owner.name}} on {{issueCurrent.createdOn | date:'medium'}}</h3>
           <h3 class="issueStatus">Status : {{issueCurrent.state}}</h3>
           <p class="issueDescription">{{issueCurrent.description}}</p>
           <h2>Comments</h2>
