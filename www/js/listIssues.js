@@ -1,17 +1,31 @@
 angular.module('citizen-engagement.listIssues',['ionic'])
 .service('IssueService', function($http,apiUrl){ 
     //get the issues
-    this.getIssues = function(offset,limit,callback){
-      $http({
-        method: 'GET',
-        url: apiUrl+ '/issues',
-        headers: {
-          'X-Pagination': offset+';'+limit,
-          "X-Sort" : "-updatedOn -createdOn"
+    this.getIssues = function(offset,limit,callback,query){
+      //if the query is specified
+      if(query==undefined){
+        $http({
+            method: 'GET',
+            url: apiUrl+ '/issues',
+            headers: {
+              'X-Pagination': offset+';'+limit,
+              "X-Sort" : "-updatedOn -createdOn"
+            }
+          }).success(callback);
         }
+      else{
+        $http({
+          method: 'POST',
+          url: apiUrl+ '/issues/search',
+          headers: {
+            'X-Pagination': offset+';'+limit,
+            "X-Sort" : "-updatedOn -createdOn"
+          },
+          data:query
+          }).success(callback);
+        }
+      };
 
-      }).success(callback);
-    }
 })
 
 //to do : pagniation, headers, 

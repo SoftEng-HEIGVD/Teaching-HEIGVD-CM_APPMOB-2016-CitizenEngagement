@@ -7,6 +7,12 @@
   </ion-nav-buttons>
  
   <ion-content scroll="false">
-		<leaflet center="san_fran" markers="markers" event-broadcast="events" defaults="defaults" id='map'></leaflet>
+  	<label class="item item-input">
+	  <input type="text" placeholder="Type the name of a location"  ng-model="query.location" ng-model-options='{ debounce: 500 }' ng-change="updateMap()">
+	</label>
+
+	<leaflet class="issues-map" height="50%" defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
   </ion-content>
+
+  
 </ion-view>

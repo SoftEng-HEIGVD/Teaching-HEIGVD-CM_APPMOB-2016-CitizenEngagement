@@ -1,4 +1,4 @@
-angular.module('citizen-engagement.newIssue',['ngTagsInput','geolocation'])
+angular.module('citizen-engagement.newIssue',['ngTagsInput'])
 
 .controller("newIssueCTRL", function($scope, $http, apiUrl, geolocation) {
 
