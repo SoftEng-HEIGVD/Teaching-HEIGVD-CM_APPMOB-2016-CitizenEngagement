@@ -6,6 +6,32 @@ angular.module('citizen-engagement.issueCtrl',[])
 
     .controller('IssueListCtrl',
         function ($scope, $http,apiUrl, $state) {
+            /* scroll*/
+            $scope.noMoreItemsAvailable = false;
+            var i = 0;
+            var currentPage = 0
+
+            $scope.loadMore = function() {
+
+                i++;
+                $http({
+                    method: 'GET',
+                    url: apiUrl + '/issues',
+                    headers: {
+                        'x-pagination': currentPage + ";1"
+                    }
+                }).success(function(issues) {
+                    $scope.issues = $scope.issues.concat(issues);
+                });
+
+                currentPage++;
+
+                if ( i == 14 ) {
+                    $scope.noMoreItemsAvailable = true;
+                }
+                $scope.$broadcast('scroll.infiniteScrollComplete');
+            };
+            /* End scroll*/
             $scope.loadIssues = function() {
                 console.log("ok");
                 $http.get(apiUrl+'/issues',{headers: {'x-sort': 'createdOn'}}).success(function(issues) {

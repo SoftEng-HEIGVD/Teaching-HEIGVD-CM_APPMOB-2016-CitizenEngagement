@@ -3,14 +3,16 @@
         <div class="list">
 
 
-            <a ng-repeat="issue in issues" class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})" >
+            <a ng-repeat="issue in issues" class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})">
                 <img src="{{issue.imageUrl}}">
 
                 <h2>{{issue.issueType.name}}</h2>
                 <p>{{issue.description}}</p>
                 <p>{{issue.createdOn | date:'mediumDate'}}</p>
             </a>
-
+            <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()"
+                                 distance="10%"></ion-infinite-scroll>
         </div>
+
     </ion-content>
 </ion-view>
