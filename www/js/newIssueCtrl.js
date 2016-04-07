@@ -1,5 +1,21 @@
 angular.module('citizen-engagement.newIssueCtrl', [])
 
+    .factory("CameraService", function($q) {
+        return {
+            getPicture: function(options) {
+                var deferred = $q.defer();
+
+                navigator.camera.getPicture(function(result) {
+                    // do any magic you need
+                    deferred.resolve(result);
+                }, function(err) {
+                    deferred.reject(err);
+                }, options);
+
+                return deferred.promise;
+            }
+        }
+    })
     .controller('NewIssueCtrl',
         function ($scope, $http, apiUrl) {
             $scope.loadIssueTypes = function () {
@@ -24,16 +40,20 @@ angular.module('citizen-engagement.newIssueCtrl', [])
 
                 });
             };
-           /* $scote.saveImage = function(CameraService) {
-                CameraService.getPicture({
-                    quality: 75,
-                    targetWidth: 400,
-                    targetHeight: 300,
-                    destinationType: Camera.DestinationType.DATA_URL
-                }).then(function (imageData) {
-                    // do something with imageData
-                });
-            };*/
+
+
+
+                $scope.takePicture = function(CameraService) {
+                    CameraService.getPicture({
+                        quality: 75,
+                        targetWidth: 400,
+                        targetHeight: 300,
+                        destinationType: Camera.DestinationType.DATA_URL
+                    }).then(function(imageData) {
+                        $scope.imageData = imageData;
+                    });
+                };
+
 
 
         }
