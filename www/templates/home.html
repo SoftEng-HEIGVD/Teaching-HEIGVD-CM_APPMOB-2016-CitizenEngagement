@@ -9,7 +9,7 @@
     <div><p> </p></div>
 
 
-    <a ng-repeat="issue in issues | limitTo:3" class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})" ng-if="issues.length>=1" >
+    <a ng-repeat="issue in issues.data | limitTo:3" class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})" ng-if="issues.data.length>=1" >
         <img src="{{issue.imageUrl}}">
 
         <h2>{{issue.issueType.name}}</h2>
@@ -19,6 +19,7 @@
     <a class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})" ng-if="issues.length<1" >
 
         <p>You do not have any issues</p>
+
         <button class="button-small icon-left ion-plus-round button-positive" ui-sref="menu.newIssue"> Report new Issue</button>
     </a>
     <div><p> </p></div>

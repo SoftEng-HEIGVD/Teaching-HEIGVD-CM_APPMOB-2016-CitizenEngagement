@@ -5,16 +5,16 @@
 //copied from tutorial
 angular.module('citizen-engagement.auth', ['angular-storage'])
 
-    .factory('AuthService', function() {
+    .factory('AuthService', function () {
 
         var service = {
             currentUserId: null,
 
-            setUser: function(user) {
+            setUser: function (user) {
                 service.currentUserId = user.userId;
             },
 
-            unsetUser: function() {
+            unsetUser: function () {
                 service.currentUserId = null;
             }
         };
@@ -23,20 +23,37 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
     })
 
 
+    .factory('UserService', function ($http, apiUrl, AuthService) {
+        var service = {
+            findUser: function () {
+                userId = AuthService.currentUserId;
+                return $http.get(apiUrl + '/users/' + userId).success(function (user) {
+
+                    $scope.user = user;
+
+
+                });
+            }
+        };
+        return service;
+    })
+
+
+
 
 
     //copied from tutorial
-    .controller('LoginCtrl', function(apiUrl, AuthService, $http, $ionicHistory, $ionicLoading, $scope, $state) {
+    .controller('LoginCtrl', function (apiUrl, AuthService, $http, $ionicHistory, $ionicLoading, $scope, $state, UserService) {
 
         // The $ionicView.beforeEnter event happens every time the screen is displayed.
-        $scope.$on('$ionicView.beforeEnter', function() {
+        $scope.$on('$ionicView.beforeEnter', function () {
             // Re-initialize the user object every time the screen is displayed.
             // The first name and last name will be automatically filled from the form thanks to AngularJS's two-way binding.
             $scope.user = {};
         });
 
         // Add the register function to the scope.
-        $scope.register = function() {
+        $scope.register = function () {
 
             // Forget the previous error (if any).
             delete $scope.error;
@@ -50,9 +67,9 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
             // Make the request to retrieve or create the user.
             $http({
                 method: 'POST',
-                url: apiUrl+ '/users/logister',
+                url: apiUrl + '/users/logister',
                 data: $scope.user
-            }).success(function(user) {
+            }).success(function (user) {
 
                 // If successful, give the user to the authentication service.
                 AuthService.setUser(user);
@@ -69,9 +86,14 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
 
                 // Go to the issue creation tab.
                 console.log(user);
-                $state.go('roleSelection'); //TODO if else citizen & staff --> create template (View) for selection
 
-            }).error(function(error) {
+                /* UserService.findUser().then(function(user){
+                 $state.go('roleSelection');
+                 console.log(user);
+                 });*/
+                $state.go('roleSelection'); //TODO if else citizen & staff
+
+            }).error(function (error) {
 
                 // If an error occurs, hide the loading message and show an error message.
                 $ionicLoading.hide();
@@ -80,8 +102,8 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
         };
     })
 
-    .controller('LogoutCtrl', function(AuthService, $scope, $state) {
-        $scope.logOut = function() {
+    .controller('LogoutCtrl', function (AuthService, $scope, $state) {
+        $scope.logOut = function () {
             AuthService.unsetUser();
             $state.go('login');
         };
@@ -89,12 +111,12 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
 
 
     //copied from tutorial
-    .factory('AuthInterceptor', function(AuthService) {
+    .factory('AuthInterceptor', function (AuthService) {
         return {
 
             // The request function will be called before all requests.
             // In it, you can modify the request configuration object.
-            request: function(config) {
+            request: function (config) {
 
                 // If the user is logged in, add the X-User-Id header.
                 if (AuthService.currentUserId) {
@@ -106,21 +128,21 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
         };
     })
 
-    .config(function($httpProvider) {
+    .config(function ($httpProvider) {
         $httpProvider.interceptors.push('AuthInterceptor');
     })
 
-    .service('AuthService', function(store) {
+    .service('AuthService', function (store) {
 
         var service = {
             currentUserId: store.get('currentUserId'),
 
-            setUser: function(user) {
+            setUser: function (user) {
                 service.currentUserId = user.userId;
                 store.set('currentUserId', user.userId);
             },
 
-            unsetUser: function() {
+            unsetUser: function () {
                 service.currentUserId = null;
                 store.remove('currentUserId');
             }
