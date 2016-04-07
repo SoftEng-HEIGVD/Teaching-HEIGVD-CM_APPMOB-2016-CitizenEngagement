@@ -13,24 +13,16 @@
             </div>
 
             <div class="item item-body" ng-controller="IssueMapController" >
-
-
-
-                        <leaflet class="full-image" defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100px" data-tap-disabled="true"></leaflet>
-                        <!--<img  src="delorean.jpg">-->
-
-                <p>
-                    {{issue.description}}
-                </p>
-                <div>
-                    <a ng-repeat="comment in issue.comments">
-                        <p>{{comment.text}}</p>
-                    </a>
-                </div>
+                <leaflet class="full-image" defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100px" data-tap-disabled="true"></leaflet>
+                <p>{{issue.description}}</p>
             </div>
-
+            <div>
+                <a ng-repeat="comment in issue.comments" style="padding: 20%; color: black">
+                    <p>{{comment.text}}</p>
+                    <p style="font-style: italic; font-size: 10px">{{comment.author.name}}</p>
+                </a>
+            </div>
         </div>
-
     </ion-content>
 </ion-view>
 
