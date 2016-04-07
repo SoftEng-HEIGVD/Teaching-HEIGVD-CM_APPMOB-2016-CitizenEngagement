@@ -8,8 +8,8 @@ angular.module('citizen-engagement.mapCtrl', [])
                 return geolocation.getLocation().then(function (data) {
 
                     /*$scope.mapCenter.lat = data.coords.latitude;
-                    $scope.mapCenter.lng = data.coords.longitude;
-                    $scope.mapCenter.zoom = 8;*/
+                     $scope.mapCenter.lng = data.coords.longitude;
+                     $scope.mapCenter.zoom = 8;*/
 
                     /*  $scope.mapCenter = {
                      lat: data.coords.latitude,
@@ -20,7 +20,6 @@ angular.module('citizen-engagement.mapCtrl', [])
                     console.log(data.coords.longitude);
                     console.log(data.coords.latitude);
                     return data.coords;
-
 
 
                 }, function (error) {
@@ -43,11 +42,11 @@ angular.module('citizen-engagement.mapCtrl', [])
         $scope.mapCenter = {};
 // TODO loading while geoloc
 
-        GeolocServiceFla.locateUser().then(function(coords){
+        GeolocServiceFla.locateUser().then(function (coords) {
             $scope.mapCenter = {
-                lat:coords.latitude,
+                lat: coords.latitude,
                 lng: coords.longitude,
-                zoom: 8
+                zoom: 15
 
             };
         });
@@ -61,17 +60,21 @@ angular.module('citizen-engagement.mapCtrl', [])
 
             console.log(issues);
 
+            GeolocServiceFla.locateUser().then(function (coords) {
+                $scope.mapMarkers.push({
 
-            $scope.mapMarkers.push({
-                lat: 46.5,
-                lng: 6.6,
-                message: '<p>{{ issue.description }}</p><img src="{{ issue.imageUrl }}" width="200px" />',
-                getMessageScope: function () {
-                    var scope = $scope.$new();
-                    /*    scope.issue = issue;*/
-                    return scope;
-                }
+
+                    lat: coords.latitude,
+                    lng: coords.longitude,
+                    message: '<p>{{ issue.description }}</p><img src="{{ issue.imageUrl }}" width="200px" />',
+                    getMessageScope: function () {
+                        var scope = $scope.$new();
+                        /*    scope.issue = issue;*/
+                        return scope;
+                    }
+                });
             });
+
         });
 
 
@@ -83,7 +86,6 @@ angular.module('citizen-engagement.mapCtrl', [])
         $scope.mapDefaults = {
             tileLayer: mapboxTileLayer
         };
-
 
 
         $scope.mapCenter = {
