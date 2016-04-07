@@ -3,7 +3,7 @@
         <div class="list">
 
 
-            <a ng-repeat="issue in issues" class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})" >
+            <a ng-repeat="issue in issues.data" class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})" >
                 <img src="{{issue.imageUrl}}">
 
                 <h2>{{issue.issueType.name}}</h2>

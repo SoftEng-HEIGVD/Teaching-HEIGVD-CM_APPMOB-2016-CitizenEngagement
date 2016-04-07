@@ -177,7 +177,7 @@ angular.module('citizen-engagement.mapCtrl', [])
 
     .controller("UserIssuesController", function ($scope, $http, AuthService, apiUrl, IssueService) {
         $scope.loadUserInfo = function () {
-            console.log("ok all issues");
+            console.log("start getting all isues by user");
 
             userId = AuthService.currentUserId;
             $http.get(apiUrl + '/users/' + userId).success(function (user) {
@@ -194,7 +194,8 @@ angular.module('citizen-engagement.mapCtrl', [])
         $scope.getIssuesByUser = function () {
             IssueService.findIssuesByUser().then(function (issues) {
                 $scope.issues = issues;
-                $scope.nbIssues = issues.data.length;
+                console.log(issues);
+
 
 
             });
