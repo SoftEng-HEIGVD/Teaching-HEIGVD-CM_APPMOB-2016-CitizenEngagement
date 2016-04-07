@@ -29,7 +29,7 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
             $scope.user = {};
         });
 
-        $scope.randImage = Math.floor((Math.random()*8)+1) + '.JPG';
+        $scope.randImage = Math.floor((Math.random() * 8) + 1) + '.JPG';
         // Add the register function to the scope.
         $scope.register = function () {
 
@@ -62,7 +62,9 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
                 });
 
                 // Go to the issue creation tab.
-                $ionicHistory.clearCache().then(function(){ $state.go('mainMenu.issues')});
+                $ionicHistory.clearCache().then(function () {
+                    $state.go('mainMenu.issues')
+                });
 
 
             }).error(function (error) {

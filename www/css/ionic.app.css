@@ -9735,6 +9735,12 @@ a.button {
 #menuUser {
   color: #4cd964; }
 
+#menuBtn {
+  color: gold; }
+
+#bar {
+  color: black; }
+
 #loginCitizen {
   background-image: url("../img/banner2.jpg");
   background-repeat: no-repeat; }
