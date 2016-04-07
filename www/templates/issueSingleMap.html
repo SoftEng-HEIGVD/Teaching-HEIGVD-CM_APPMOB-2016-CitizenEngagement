@@ -1,0 +1,7 @@
+<ion-view view-title="Single Issue Map">
+    <ion-content scroll=false>
+        <div ng-if="mapEnabled" style="height: 100%" ng-controller="PagesCtrl">
+            <leaflet defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
+        </div>
+    </ion-content>
+</ion-view>
