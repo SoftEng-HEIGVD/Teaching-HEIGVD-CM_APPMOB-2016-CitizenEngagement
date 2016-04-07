@@ -1,1 +1,1 @@
-angular.module('citizen-engagement.cameragiCtrl',[])
+angular.module('citizen-engagement.cameraCtrl',[])
