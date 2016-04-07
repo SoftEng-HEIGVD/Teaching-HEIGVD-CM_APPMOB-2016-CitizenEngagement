@@ -5,38 +5,35 @@
     </ion-nav-title>
     <ion-content class="padding">
 
-        <form name="createIssue">
+        <form name="createIssue" ng-submit="submit()">
 
 
             <div class="list">
 
                 <label class="item item-input">
                     <span class="input-label">Type</span>
-                    <select ng-model="issue.issueTypeId">
+                    <select name="type" ng-model="issue.issueTypeId">
                         <option ng-repeat="issueType in issueTypes" value="{{issueType.id}}">{{issueType.name}}</option>
                     </select>
                 </label>
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Description</span>
-                    <input type="text" placeholder="Description">
+                    <input type="text" name="description" placeholder="Description" ng-model="issue.description">
                 </label>
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Image URL</span>
-                    <input type="text" placeholder="http://www.example.com/image.jpg">
+                    <input type="text" name="imageUrl" placeholder="http://www.example.com/image.jpg" ng-model="issue.issueUrl">
                 </label>
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Longitude</span>
-                    <input type="text" placeholder="6.651479812689227">
+                    <input type="text" name="lng" placeholder="6.651479812689227" ng-model="issue.lng">
                 </label>
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Latitude</span>
-                    <input type="text" placeholder="46.77227088657382">
+                    <input type="text" name="lat" placeholder="46.77227088657382" ng-model="issue.lat">
                 </label>
             </div>
-
-            <button class="button button-energized" ng-click="sendIssue()" ng-disabled="createIssue.$invalid">
-                Create issue !
-            </button>
+            <input class="button button-positive" type="submit" name="submit" value="Send">
         </form>
     </ion-content>
 </ion-view>

@@ -30,6 +30,24 @@ angular.module('citizen-engagement.newIssueCtrl', [])
             };
             $scope.loadIssueTypes();
 
+
+            $scope.data = {};
+
+            $scope.submit = function(){
+                console.log("je test ma")
+                var link = apiUrl + '/issues'
+                    $http.post(link, {type : $scope.issue.issueTypeId}).then(function (res){
+                        console.log($scope.data.issueTypeId);
+                        $scope.response = res.data;
+                    });
+                };
+
+
+
+
+
+
+
             //TODO post function
             $scope.saveIssue = function () {
                 console.log("ok");
