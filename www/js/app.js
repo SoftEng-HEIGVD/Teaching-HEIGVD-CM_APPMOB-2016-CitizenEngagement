@@ -104,7 +104,7 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/issueMap.html',
-                        controller: 'IssueMapController'
+                        controller: 'IssuesMapController'
                     }
                 }
             })

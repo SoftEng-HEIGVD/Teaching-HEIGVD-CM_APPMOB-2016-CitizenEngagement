@@ -12,7 +12,7 @@ angular.module('citizen-engagement.issueCtrl',[])
 
                     $scope.issues = issues;
 
-                    console.log(issues[0]);
+                    console.log("j'ai la première issue du tableau" +issues[0]);
 
                 });
             };
@@ -36,7 +36,7 @@ angular.module('citizen-engagement.issueCtrl',[])
         })
 
     .controller("issueDetailCtrl", function($scope, $http, apiUrl, $stateParams) {
-        console.log($stateParams);
+        console.log("j'arrive à récupe le paramètre" + $stateParams);
         var id = $stateParams.issueId;
         console.log('id ' + id);
         $http({
@@ -45,12 +45,14 @@ angular.module('citizen-engagement.issueCtrl',[])
         }).success(function(issue) {
             console.log("okbla");
 
-
             $scope.issue = issue;
-            console.log(issue);
+            console.log("j'ai mon issue" + issue);
 
         });
 
 
+
     });
+
+
 
