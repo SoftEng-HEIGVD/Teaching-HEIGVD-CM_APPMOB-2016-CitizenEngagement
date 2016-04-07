@@ -16,7 +16,7 @@
         <p>{{issue.description}}</p>
     </a>
 
-    <a class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})" ng-if="issues.length<1" >
+    <a class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})" ng-if="issues.data.length<1" >
 
         <p>You do not have any issues</p>
 
