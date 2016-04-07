@@ -19,8 +19,8 @@ angular.module('citizen-engagement.cameraCtrl',[])
   // take the picture
   CameraService.getPicture({
     quality: 75,
-    targetWidth: 400,
-    targetHeight: 300,
+    targetWidth: 500,
+    targetHeight: 500,
     // return base64-encoded data instead of a file
     destinationType: Camera.DestinationType.DATA_URL
     }).then(function(imageData) {
