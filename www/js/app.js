@@ -58,7 +58,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
                     })
 
                     .state('issueDetails', {
-                        url: '/issueDetails',
+                        url: '/issueDetails/:issueId',
                         templateUrl: 'templates/issueDetails.html'
                     })
 
@@ -102,8 +102,8 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
                 }
             });
         })
-        
-        
+
+
          .controller("test", function (apiUrl, $scope, $http, $filter) {
              $scope.submitIssue = function (){
                  console.log($scope.test);

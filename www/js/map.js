@@ -1,13 +1,19 @@
 angular.module('FixYourStreet.map', ['leaflet-directive','geolocation'])
 
 
-  .controller("MapController", function($scope,$log, geolocation, mapboxMapId, mapboxAccessToken) {
+  .controller("MapController", function($scope,$ionicLoading,$log,$state, geolocation, IssueService, mapboxMapId, mapboxAccessToken) {
 
+    $ionicLoading.show({
+        template: 'Loading geolocation...',
+        delay: 750
+    });
     geolocation.getLocation().then(function(data) {
       $scope.mapCenter.lat = data.coords.latitude;
       $scope.mapCenter.lng = data.coords.longitude;
       $scope.mapCenter.zoom = 17;
+      $ionicLoading.hide();
     }, function(error) {
+      $ionicLoading.hide();
       $log.error("Could not get location: " + error);
     });
 
@@ -21,22 +27,32 @@ angular.module('FixYourStreet.map', ['leaflet-directive','geolocation'])
       lng: 0,
       zoom:17
     };
+
+    $scope.$on('leafletDirectiveMap.move', function(event){
+
+
+    });
+
+
     $scope.mapMarkers = [];
 
-    /*
-    var issue = GetIssuesArea.getIssue();
+    IssueService.getAllIssuesArea(function(issues) {
+          $scope.issues = issues;
+          angular.forEach($scope.issues, function(issue) {
 
-    $scope.mapMarkers.push({
-      lat: issue.lat,
-      lng: issue.lng,
-      message: "",
-      getMessageScope: function() {
-        var scope = $scope.$new();
-        scope.issue = issue;
-        return scope;
-      }
-    });*/
+              $scope.mapMarkers.push({
+                  lat: issue.lat,
+                  lng: issue.lng,
+                  id: issue.id
+              });
+          });
+
+   }, function() {}, null);
+
+   $scope.$on('leafletDirectiveMarker.click', function(e, args) {
+     $state.go("issueDetails", { issueId: args.leafletEvent.target.options.id });
+    });
+
   })
-
 
 ;

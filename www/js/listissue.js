@@ -41,6 +41,30 @@ angular.module('FixYourStreet.listIssue', [])
     $scope.getAreaIssues();
 })
 
+.service('IssueService', ['$http', 'apiUrl', function($http, apiUrl, $ionicLoading) {
+      var match = {
+        "loc": {
+          "$geoWithin": {
+            "$centerSphere" : [
+              [ 6.622009 , 46.766129 ],
+              0.1
+            ]
+          }
+        }
+      };
+
+    this.getAllIssuesArea = function (successCallback, errorCallback) {
+        $http({
+          method: 'POST',
+          url: apiUrl + '/issues/search',
+          headers: {
+            'x-sort': 'updatedOn'
+          },
+          data: match,
+      }).success(successCallback)
+      .error(errorCallback)
+    }
+}])
 
 
 ;
