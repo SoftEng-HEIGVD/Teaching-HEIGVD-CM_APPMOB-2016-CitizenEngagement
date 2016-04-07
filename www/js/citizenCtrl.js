@@ -24,14 +24,11 @@ angular.module('citizen-engagement.citizenCtrl',[])
                     }
 
                 });
-
-
             };
 
             $scope.loadIssues=function(){
                 $http.get(apiUrl+'/issues').success(function(issues){
                     $scope.issues=issues;
-
                 })
             }
 
@@ -43,9 +40,7 @@ angular.module('citizen-engagement.citizenCtrl',[])
 
 
     .controller('PagesCtrl', function ($scope, $stateParams,$http,apiUrl) {
-
             var currentId = $stateParams.issueId;
-
             $scope.loadCurrentIssue=function(){
                 $http.get(apiUrl+'/issues/'+currentId).success(function(issueCurrent){
                     $scope.issueCurrent=issueCurrent;
@@ -65,8 +60,6 @@ angular.module('citizen-engagement.citizenCtrl',[])
 
     })
 
-
-
     .controller('AddIssueCtrl',
         function($scope,$resources,$http,apiUrl){
 
@@ -83,3 +76,5 @@ angular.module('citizen-engagement.citizenCtrl',[])
                     })
                 }
         })
+
+        
