@@ -24,7 +24,7 @@ angular.module('citizen-engagement.newIssueCtrl', [])
 
                 });
             };
-            $scote.saveImage = function(CameraService) {
+           /* $scote.saveImage = function(CameraService) {
                 CameraService.getPicture({
                     quality: 75,
                     targetWidth: 400,
@@ -33,7 +33,7 @@ angular.module('citizen-engagement.newIssueCtrl', [])
                 }).then(function (imageData) {
                     // do something with imageData
                 });
-            };
+            };*/
 
 
         }
