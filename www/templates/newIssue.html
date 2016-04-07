@@ -1,9 +1,9 @@
 <ion-view view-title="Create new Issue">
     <ion-content scroll="false">
-        <leaflet defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
+        <leaflet ng-if="mapCenter" defaults="mapDefaults" zoomControls="false" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
         <span style="position:absolute;left:50%;top:50%;display:block;width:10px;height:10px;border: 1px solid red;margin-top: -5px; margin-left: -5px;"
              class="icon-marker"></span>
-        <form style="position:absolute; z-index:10; top: 0; background: rgba(255,255,255,0.7)" name="createIssue">
+        <form style="position:absolute; z-index:10;left:0;right:0; top: 0; background: rgba(255,255,255,0.7);border-bottom: 2px solid #777;" name="createIssue">
             <label for="type">Issue Type:</label>
             <select name="type" id="repeatSelect" ng-model="issue.issueTypeId">
               <option ng-repeat="issueType in issueTypes" value="{{issueType.id}}">{{issueType.name}}</option>
@@ -19,7 +19,7 @@
 
             <br /><br />
             <label for="imageUrl">Image URL</label>
-            <input name="imageUrl" placeholder="http://www.example.com/image.jpg" ng-model="issue.imageUrl"/>
+            <input name="imageUrl" disabled ng-model="issue.imageUrl" value="{{issue.imageUrl}}"/>
             <button class="button button-energized" ng-click="sendIssue()" ng-disabled="createIssue.$invalid">
                 Create issue !
             </button>

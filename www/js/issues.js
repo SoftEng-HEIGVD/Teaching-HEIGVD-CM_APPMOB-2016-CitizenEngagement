@@ -61,11 +61,14 @@ angular.module('citizen-engagement')
 
     })
     // Add new issue
-    .controller('AddIssueCtrl', function(apiUrl, $scope, $http, $state,
-                                         $ionicLoading, $ionicHistory, geoService) {
+    .controller('AddIssueCtrl', function(apiUrl, $scope, $http, $state, $stateParams,
+                                         $ionicLoading, $ionicHistory, geoService, storageService) {
 
         $scope.issue = {};
-
+        console.log($stateParams); // TODO: Marche pas !!!
+        if (storageService.getData()) {
+            $scope.issue.imageUrl = storageService.getData().url;
+        }
         // Get types
         $ionicLoading.show({
             template: 'Loading Types',
@@ -84,7 +87,7 @@ angular.module('citizen-engagement')
             $ionicLoading.hide();
         });
         // Show Map
-        $scope.mapCenter = {};
+
         $scope.mapMarkers = [];
         function buildMap(coords) {
             geoService.buildMap($scope, coords);
@@ -103,9 +106,6 @@ angular.module('citizen-engagement')
             $scope.issue.lat = $scope.mapCenter.lat;
             $scope.issue.lng = $scope.mapCenter.lng;
         });
-
-
-
 
         // Send issue on click
         $scope.sendIssue = function() {

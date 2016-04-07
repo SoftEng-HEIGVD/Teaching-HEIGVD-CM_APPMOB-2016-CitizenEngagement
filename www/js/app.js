@@ -153,6 +153,10 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 class: 'issues-all'
             }, {
                 title: 'New issue',
+                state: 'mainMenu.newIssue',
+                class: 'issues-new'
+            }, {
+                title: 'Take pic',
                 state: 'mainMenu.takePhoto',
                 class: 'issues-new'
             }

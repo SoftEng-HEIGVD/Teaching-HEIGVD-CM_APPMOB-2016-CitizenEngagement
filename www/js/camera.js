@@ -15,7 +15,19 @@ angular.module('citizen-engagement')
         }
     })
 
-    .controller("takePhotoCtrl", function (CameraService, $http, qimgUrl, qimgToken) {
+    /**
+     * Allows to pass data from one controller to another
+     */
+    .service('storageService', function() {
+        this.setData = function(data) {
+            this.data = data;
+        }
+        this.getData = function() {
+            return this.data;
+        }
+    })
+
+    .controller("takePhotoCtrl", function (CameraService, storageService, $http, qimgUrl, qimgToken,$state) {
 // take the picture
         CameraService.getPicture({
             quality: 75,
@@ -35,14 +47,10 @@ angular.module('citizen-engagement')
                     data: imageData
                 }
             }).success(function (data) {
-                var imageUrl = data.url;
-                $state.go('mainMenu.newIssue', {
-                    imgUrl: data.url
-                });
-
+                storageService.setData(data)
+                $state.go('mainMenu.newIssue');
             });
         })
     })
 
 ;
-

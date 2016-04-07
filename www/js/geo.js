@@ -27,6 +27,7 @@ angular.module('citizen-engagement')
         // Map building function
         this.buildMap = function(scope, coordinates) {
             scope.mapCenter = {};
+            scope.mapMarkers = [];
 
             var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId;
             mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
@@ -37,12 +38,12 @@ angular.module('citizen-engagement')
                 tileLayer: mapboxTileLayer
             };
             scope.mapCenter.zoom = 12;
+
         }
     }])
 
     .controller("MapCtrl", function($scope, geoService, IssueService, $ionicLoading) {
-        $scope.mapCenter = {};
-        $scope.mapMarkers = [];
+
         function buildMap(coords) {
             geoService.buildMap($scope, coords);
         }

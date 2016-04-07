@@ -71,8 +71,8 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
 
                 // If an error occurs, hide the loading message and show an error message.
                 $ionicLoading.hide();
-                console.log(error)
-                $scope.error = 'Could not log in.';
+                console.log(error);
+                $scope.error = error;
             });
         };
     })
