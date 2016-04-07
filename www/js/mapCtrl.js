@@ -172,5 +172,33 @@ angular.module('citizen-engagement.mapCtrl', [])
          });*/
 
 
+    })
+
+
+    .controller("UserIssuesController", function (AuthService, apiUrl) {
+        $scope.loadUserInfo = function () {
+            console.log("ok all issues");
+
+            userId = AuthService.currentUserId;
+            $http.get(apiUrl + '/users/' + userId).success(function (user) {
+
+                $scope.user = user;
+
+                console.log(user);
+
+
+            });
+        }
+        $scope.loadUserInfo();
+
+        $scope.countIssues = function () {
+            IssueService.findIssuesByUser().then(function (issues) {
+                $scope.issues = issues;
+                $scope.nbIssues = issues.data.length;
+
+
+            });
+        };
     });
+;
 
