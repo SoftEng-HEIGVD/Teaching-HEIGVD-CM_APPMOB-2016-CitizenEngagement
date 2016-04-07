@@ -1,14 +1,14 @@
 angular.module('citizen-engagement.newIssueCtrl', [])
 
-    .factory("CameraService", function($q) {
+    .factory("CameraService", function ($q) {
         return {
-            getPicture: function(options) {
+            getPicture: function (options) {
                 var deferred = $q.defer();
 
-                navigator.camera.getPicture(function(result) {
+                navigator.camera.getPicture(function (result) {
                     // do any magic you need
                     deferred.resolve(result);
-                }, function(err) {
+                }, function (err) {
                     deferred.reject(err);
                 }, options);
 
@@ -42,18 +42,16 @@ angular.module('citizen-engagement.newIssueCtrl', [])
             };
 
 
-
-                $scope.takePicture = function(CameraService) {
-                    CameraService.getPicture({
-                        quality: 75,
-                        targetWidth: 400,
-                        targetHeight: 300,
-                        destinationType: Camera.DestinationType.DATA_URL
-                    }).then(function(imageData) {
-                        $scope.imageData = imageData;
-                    });
-                };
-
+            $scope.takePicture = function (CameraService) {
+                CameraService.getPicture({
+                    quality: 75,
+                    targetWidth: 400,
+                    targetHeight: 300,
+                    destinationType: Camera.DestinationType.DATA_URL
+                }).then(function (imageData) {
+                    $scope.imageData = imageData;
+                });
+            };
 
 
         }
@@ -141,7 +139,14 @@ angular.module('citizen-engagement.newIssueCtrl', [])
 
     .controller("CameraTestController", function (CameraService) {
 
+    })
+
+    .controller("UserIssuesController", function (CameraService) {
+
     });
+;
+
+
 ;
 
 
