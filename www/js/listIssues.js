@@ -1,5 +1,5 @@
 angular.module('citizen-engagement.listIssues',['ionic'])
-.service('IssueService', function($http,apiUrl){ 
+.service('IssueService', function($http,apiUrl){
     //get the issues
     this.getIssues = function(offset,limit,callback){
       $http({
@@ -14,7 +14,7 @@ angular.module('citizen-engagement.listIssues',['ionic'])
     }
 })
 
-//to do : pagniation, headers, 
+//to do : pagniation, headers,
 .controller('ListIssueCtrl', function(IssueService,$scope) {
   var offset = 0;
   $scope.issues = [];
@@ -32,4 +32,8 @@ angular.module('citizen-engagement.listIssues',['ionic'])
     offset+=1;
     $scope.$broadcast('scroll.infiniteScrollComplete');
   }
+
+
+
+
 })

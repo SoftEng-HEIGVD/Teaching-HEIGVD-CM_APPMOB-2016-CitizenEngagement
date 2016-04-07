@@ -10,38 +10,100 @@ font-size:1em;
 
 .issue {
  	&>div>*{
-		display:inline-block;
-		margin-right : 20px;
+		display:block;
 	}
 	.thumbnail{
-			width:101px;
+			width:100%;
 			height: auto;
-			float:left;
+			/*float:left;*/
 	}
+  .issue-title{
+    color:white;
+    font-weight:bold;
+    position:absolute;
+    top:30px;
+    left:30px;
+    background-color: rgba(32, 67, 126,0.6);
+    /*background-color: rgba(0, 0, 0,0.4);*/
+    padding:10px;
+    text-shadow: 1px 1px rgba(0, 0, 0,0.3);
+    	border : 1px solid white;
+  }
 	.issue-description {
-		width:70%;
+		width:100%;
+    color:white;
+    border:1px rgba(32, 67, 126,0.4) solid;
+    border-top: none;
+    padding: 10px;
+    height: 40px;
+    overflow:hidden;
+    background-color: rgba(32, 67, 126,1);
+    font-weight: normal;
 	}
 	.issue-state{
-		float:right;
+     /*text-shadow: 1px 1px rgba(0, 0, 0,0.5);*/
+    /*font-weight: bold;*/
 		padding : 5px;
-		color : $inprogress-color;
-		border : 2px $inprogress-color solid;
+		color : /*$inprogress-color;*/ white;
+	/*	border : 2px $inprogress-color solid;*/
+    position: absolute;
+    right:30px;
+    bottom:112px;
+    background-color:$inprogress-color;/* rgba(255, 255, 255,0.8)*/
+    opacity: 0.8;
 	}
 	.state-solved {
 		.issue-state{
-			color:$success-color;
+			color:white;
 			border-color:$success-color;
+      background-color:$success-color;
 		}
 	}
 	.state-rejected{
 		.issue-state{
-			color:$error-color;
+			color:white;
 			border-color:$error-color;
+      background-color:$error-color;
 		}
 	}
+  .issue-updated-on
+  {
+
+    font-style: italic;
+    font-size: 0.8em;
+    margin-bottom: 25px;
+    color:rgba(32, 67, 126,0.6);
+
+  }
 
 }
 
 .bar.bar-positive .title{
   font-family: 'Droid sans', sans-serif;
+
+}
+
+.btn-details{
+  position: absolute;
+  bottom:20px;
+  right:15px;
+
+}
+
+.issue-details-box
+{
+
+  padding: 15px;
+
+  .img-detailedIssue{
+    width: 100%;
+
+  }
+
+  h2.issue-title{
+    font-size:1em;
+  }
+
+
+
 }
