@@ -6,22 +6,34 @@
     <ion-content class="padding">
 
         <form name="createIssue">
-            <label for="type">Issue Type:</label>
-            <select name="type" id="repeatSelect" ng-model="issue.issueTypeId">
-                <option ng-repeat="issueType in issueTypes" value="{{issueType.id}}">{{issueType.name}}</option>
-            </select>
-            <br /><br /> <!-- saut à la ligne plus une ligne d'espace-->
-            <label for="description">description</label>
-            <input name="description" ng-model="issue.description" />
-            <br /><br />
-            <label for="lng">Longitude</label>
-            <input name="lng" disabled placeholder="6.651479812689227" ng-model="issue.lng"/>
-            <label for="lat">Latitude</label>
-            <input name="lat" disabled placeholder="46.77227088657382" ng-model="issue.lat"/>
 
-            <br /><br />
-            <label for="imageUrl">Image URL</label>
-            <input name="imageUrl" placeholder="http://www.example.com/image.jpg" ng-model="issue.imageUrl"/>
+
+            <div class="list">
+
+                <label class="item item-input">
+                    <span class="input-label">Type</span>
+                    <select ng-model="issue.issueTypeId">
+                        <option ng-repeat="issueType in issueTypes" value="{{issueType.id}}">{{issueType.name}}</option>
+                    </select>
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Description</span>
+                    <input type="text" placeholder="Description">
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Image URL</span>
+                    <input type="text" placeholder="http://www.example.com/image.jpg">
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Longitude</span>
+                    <input type="text" placeholder="6.651479812689227">
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Latitude</span>
+                    <input type="text" placeholder="46.77227088657382">
+                </label>
+            </div>
+
             <button class="button button-energized" ng-click="sendIssue()" ng-disabled="createIssue.$invalid">
                 Create issue !
             </button>
