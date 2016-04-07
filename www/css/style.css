@@ -5,6 +5,16 @@
 
 }
 
+/* LOGIN */
+
+.introLogin {
+  max-width: 250px;
+  text-align: center;
+  line-height: 25px;
+  margin-bottom: 20px;
+
+}
+
 /* ISSUE LIST */
 
 #issueList h2 {
