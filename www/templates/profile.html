@@ -16,5 +16,11 @@
         <p><strong>Number of issues posted:</strong> {{issues.data.length}}</p>
         <button class="button-small icon-left ion-plus-round button-positive" ui-sref="menu.newIssue"> Report new Issue</button>
 
+        <p><strong>Your role(s): </strong>
+            <span ng-repeat="role in user.roles">
+                {{role}}
+            </span>
+            </p>
+
     </ion-content>
 </ion-view>

@@ -56,6 +56,7 @@ angular.module('citizen-engagement.newIssueCtrl', [])
 
                 IssueService.findIssuesByUser().then(function (issues) {
                     $scope.issues = issues;
+                    console.log(issues);
                 });
 
             }
