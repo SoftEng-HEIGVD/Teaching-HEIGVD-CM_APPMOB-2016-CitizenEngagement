@@ -62,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/www/templates/issueList.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="216">
-              <caret line="12" column="100" selection-start-line="12" selection-start-column="100" selection-end-line="12" selection-end-column="100" />
+              <caret line="12" column="96" selection-start-line="12" selection-start-column="96" selection-end-line="12" selection-end-column="96" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
               </folding>
@@ -260,12 +260,12 @@
       <workItem from="1459841274653" duration="13961000" />
       <workItem from="1459927126432" duration="3030000" />
       <workItem from="1459942263609" duration="5144000" />
-      <workItem from="1460011250496" duration="609000" />
+      <workItem from="1460011250496" duration="623000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22744000" />
+    <option name="totallyTimeSpent" value="22758000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1602" height="875" extended-state="7" />
@@ -691,7 +691,7 @@
     <entry file="file://$PROJECT_DIR$/www/templates/issueList.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
-          <caret line="12" column="100" selection-start-line="12" selection-start-column="100" selection-end-line="12" selection-end-column="100" />
+          <caret line="12" column="96" selection-start-line="12" selection-start-column="96" selection-end-line="12" selection-end-column="96" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
           </folding>
