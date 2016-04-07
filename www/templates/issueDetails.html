@@ -13,31 +13,33 @@
         <div class="row">
 
 
-                <ion-list ng-controller="issueDetails">
-                    <ion-item ng-model="issue">
+            <ion-list ng-controller="issueDetails">
 
-                        <div class="row">
-            
-                            <div class="col col-75 item-body listIssue">
-                                <h2>{{issue.issueType.description}}<time>{{issue.createdOn| date:'MM/dd/yyyy - H:mm'}}</time></h2>
-                                <ul class="tagsList">
-                                    <li ng-repeat="tag in issue.tags">{{tag}}</li>
-                                </ul>
-                                <p>{{issue.description}}</p>
-                                <p>Type: <time>{{issue.issueType.name}}</time></p>
-                                <p>Last update: <time>{{issue.updatedOn| date:'MM/dd/yyyy - H:mm'}}</time></p>
 
-                            </div>
-                        </div>
+                <div class="row">
 
-                    </ion-item>
-                </ion-list>
+                    <div class="col col-75 item-body listIssue">
+                        <span ng-if='!issue.imageUrl'><img  src='img/NoImageAvailable.jpg' style="width:100%" alt="No Image Available" /></span>
+                        <span ng-if='issue.imageUrl'><a ui-sref='fullImg({imageURL: issue.imageUrl})'><img src='{{issue.imageUrl}}' style="width:100%" /></a></span>
+                        <h2>{{issue.issueType.description}}<time>{{issue.createdOn| date:'MM/dd/yyyy - H:mm'}}</time></h2>
+                        <ul class="tagsList">
+                            <li ng-repeat="tag in issue.tags">{{tag}}</li>
+                        </ul>
+                        <p>{{issue.description}}</p>
+                        <p>Type: <time>{{issue.issueType.name}}</time></p>
+                        <p>Last update: <time>{{issue.updatedOn| date:'MM/dd/yyyy - H:mm'}}</time></p>
 
-            </div>
+                    </div>
+                </div>
+
+
+            </ion-list>
+
+        </div>
 
         <div class="button-bar">
             <a class="button button-medium"  ui-sref="newComment({ issueId: issue.id })">Add a comment</a>
-            <a class="button button-medium" ui-sref="commentsList">View comments</a> 
+            <a class="button button-medium" ui-sref="commentsList({ issueId: issue.id })">View comments</a> 
         </div>
 
     </ion-content>

@@ -1,30 +1,30 @@
 <ion-view>
-  <ion-nav-bar>
-    <ion-nav-back-button>
-    </ion-nav-back-button>
-    <ion-nav-title>Comments for Graffiti</ion-nav-title>
-    <ion-nav-buttons side="secondary">
-      <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
-    </ion-nav-buttons>
-  </ion-nav-bar>
+    <ion-nav-bar>
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+        <ion-nav-title>Comments for Graffiti</ion-nav-title>
+        <ion-nav-buttons side="secondary">
+            <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
 
-  <ion-content>
+    <ion-content>
 
-    <ion-list ng-controller="ListCtrl">
-          <ion-item ng-repeat="group in groups">
-              <div class="item-body listIssue">
-                <h2>Author<time>05.06.2016</time></h2>
-                  <!-- {{issues.description}} {{date}} -->
-                <p>{{issues.description}}</p>
-              </div>
-          </ion-item>
 
-    </ion-list>
-
-  </ion-content>
-
-  <ion-footer-bar class="bar-assertive" ng-controller="newComment">
-    <button ng-click="modal.show()" class="button button-full button-calm">Add a comment</button>
-  </ion-footer-bar>
+        <ion-list ng-controller="ListCtrl">
+            <ion-item ng-repeat="comment in issue.comments">
+                <div class="row">
+                    <div class="col col-75 item-body listIssue">
+                        <p>{{comment.postedOn}}</p>
+                        <p>{{comment.author.name}}</p>
+                        <p>{{comment.text}}</p>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar class="bar-assertive" ng-controller="newComment">
+        <button  class="button button-full button-calm" ui-sref="newComment({ issueId: issue.id })">Add a comment</button>
+    </ion-footer-bar>
 
 </ion-view>

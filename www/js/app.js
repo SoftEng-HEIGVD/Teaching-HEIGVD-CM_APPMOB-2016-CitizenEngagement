@@ -38,7 +38,8 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
                     })
 
                     .state('commentsList', {
-                        url: '/commentsList',
+                        url: '/commentsList/:issueId',
+                        controller: 'ListCtrl',
                         templateUrl: 'templates/commentsList.html'
                     })
 
@@ -59,13 +60,10 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
                     })
 
                     .state('issueDetails', {
-<<<<<<< HEAD
-                        url: '/issueDetails',
-                        controller: 'issueDetails',
-=======
                         url: '/issueDetails/:issueId',
->>>>>>> origin/master
-                        templateUrl: 'templates/issueDetails.html'
+                        controller: 'issueDetails',
+                        url: '/issueDetails/:issueId',
+                                templateUrl: 'templates/issueDetails.html'
                     })
 
                     .state('issueList', {
@@ -108,20 +106,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
         })
 
 
-<<<<<<< HEAD
-        .controller("test", function (apiUrl, $scope, $http, $filter) {
-            $scope.submitIssue = function () {
-                console.log($scope.test);
-            }
-        })
-=======
-         .controller("test", function (apiUrl, $scope, $http, $filter) {
-             $scope.submitIssue = function (){
-                 console.log($scope.test);
-             }
-         })
->>>>>>> origin/master
-
+        //Controller pour la création des issues
         .controller("IssueCtrl", function (apiUrl, $scope, $http, $filter) {
             $scope.inputs = [{
                     value: null
@@ -181,6 +166,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
         })
 
 
+        //controller pour les tags (je n'y ai pas touché)
         .controller("TagsCtrl", function ($scope) {
             $scope.inputs = [{
                     value: null
@@ -198,65 +184,81 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
             }
         })
 
-        .controller("newComment", function ($scope, $stateParams, $state) {
+
+        //controller pour créer un nouveau commment
+        .controller("newComment", function ($scope, $stateParams, $state, $http, apiUrl) {
             $scope.inputs = [{
                     value: null
                 }];
 
-//            $scope.goToNewComment = function (issue) {
-//                $state.go("newComment", {issueId: issue.id});
-//            };
+            $scope.goToNewComment = function (issue) {
+                $state.go("newComment", {issueId: issue.id});
+            };
 
             $scope.createComment = function () {
-                console.log($stateParams.issueId);
-//                $scope.inputs.push({
-//                    value: null
-//                });
+                var comment = {
+                    type: "comment",
+                    payload: {
+                        text: $scope.someText
+                    }
+                }
+                $http({
+                    method: 'POST',
+                    url: apiUrl + '/issues/' + $stateParams.issueId + '/actions',
+                    data: comment,
+                    headers: {
+                        'x-sort': 'updatedOn'
+                    }
+                })
+                        .success(function (createdComment) {
+                            console.log(createdComment);
+                        },
+                                function error() {
+                                    console.log("Erreur pas encore faite");
+                                });
             }
-
         })
 
-        .controller('issueDetails', function (apiUrl, $http, $scope) {
 
+        //controller pour affiche les détails d'une issue
+        .controller('issueDetails', function (apiUrl, $http, $scope, $stateParams) {
             // The $ionicView.beforeEnter event happens every time the screen is displayed.
             $scope.$on('$ionicView.beforeEnter', function () {
                 // Re-initialize the user object every time the screen is displayed.
                 // The first name and last name will be automatically filled from the form thanks to AngularJS's two-way binding.
                 $scope.issues = {};
             });
-
             $scope.getAreaIssues = function () {
-
-
-                // Make the request to retrieve issues
                 $http({
                     method: 'GET',
-                    url: apiUrl + '/issues/57023a95dc5a2c0e007a1753',
-                    data: $scope.issues
-                }).success(function (issues) {
-                    $scope.issues = issues;
-                    console.log(issues);
+                    url: apiUrl + '/issues/' +$stateParams.issueId ,
+                }).success(function (issue) {
+                    $scope.issue = issue;
                 }).error(function () {
                     $scope.error = 'Could not retrieve Issues.';
                 });
             };
-
             $scope.getAreaIssues();
         })
 
 
-//        .controller('newComment', function ($scope, $ionicModal, $stateParams) {
-//            console.log($stateParams.issueId);
-//            $ionicModal.fromTemplateUrl('templates/newComment.html', {
-//                scope: $scope
-//            }).then(function (modal) {
-//                $scope.modal = modal;
-//               
-//            });
-//
-//            $scope.createComment = function (u) {
-//                //MISSING SAVE FUNCTION
-//                $scope.modal.hide();
-//            };
-//
-//        });
+        //controller pour afficher la liste des commentaires
+        .controller('ListCtrl', function ($scope, $stateParams, $http, apiUrl) {
+            // The $ionicView.beforeEnter event happens every time the screen is displayed.
+            $scope.$on('$ionicView.beforeEnter', function () {
+                // Re-initialize the user object every time the screen is displayed.
+                // The first name and last name will be automatically filled from the form thanks to AngularJS's two-way binding.
+                $scope.issues = {};
+            });
+                $http({
+                    method: 'GET',
+                    url: apiUrl + '/issues/' + $stateParams.issueId,
+                }).success(function (issue) {
+                    $scope.issue = issue;
+                }).error(function () {
+                    $scope.error = 'Could not retrieve Issues.';
+                });
+        })
+
+
+

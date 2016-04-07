@@ -4,11 +4,11 @@
        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
      </ion-header-bar>
      <ion-content class="padding">
-       <div class="list">
+       <ion-list ng-controller="newComment">
          <label class="item item-input">
-           <textarea placeholder="Comments"></textarea>
+           <input type="text" placeholder="write your comment here" ng-model="someText" />
          </label>
          <button class="button button-full button-calm" ng-click="createComment(newComment)">Create</button>
-       </div>
+       </ion-list>
      </ion-content>
 </ion-view>

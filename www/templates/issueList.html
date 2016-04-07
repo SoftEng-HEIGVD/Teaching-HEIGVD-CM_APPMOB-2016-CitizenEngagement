@@ -27,7 +27,8 @@
                 <p>Last update: <time>{{issue.updatedOn | date:'MM/dd/yyyy - H:mm'}}</time></p>
 
                 <div class="button-bar">
-                  <a class="button button-small ion-location" ui-sref="issueDetails({issueId: issue.id})"> Show on map</a>
+                    <a class="button button-small ion-location" > Show on map</a>
+                  <a class="button button-small" ui-sref="issueDetails({issueId: issue.id})"> Issue details</a>
                   <a class="button button-small ion-navicon" ui-sref="commentsList({issueId: issue.id})"> View comments</a>
                 </div>
               </div>
