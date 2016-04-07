@@ -36,6 +36,10 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 $state.go('login');
             }
         });
+        $rootScope.$on('$stateChangeSuccess', function (event, toState) {
+            $rootScope.filterEnabled = toState.data && toState.data.filterEnabled;
+        });
+
     })
 
 
@@ -63,6 +67,9 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                       templateUrl: "templates/issueList.html",
                       controller : "ListIssuesCtrl"
                     }
+                },
+                data: {
+                    filterEnabled: true
                 }
             })
             .state('mainMenu.myIssues', {

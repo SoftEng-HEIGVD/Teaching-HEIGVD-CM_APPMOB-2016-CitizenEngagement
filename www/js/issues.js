@@ -17,7 +17,6 @@ angular.module('citizen-engagement')
 
 // Get all issues
 .controller('ListIssuesCtrl', function(apiUrl, IssueService, $scope, $http, $ionicLoading) {
-
   $scope.getIssues = function() {
     IssueService.getAllIssues(
         function(data) { // finallyCallback
@@ -62,7 +61,8 @@ angular.module('citizen-engagement')
 
   })
   // Add new issue
-  .controller('AddIssueCtrl', function(apiUrl, $scope, $http, $state, $ionicLoading, $ionicHistory) {
+  .controller('AddIssueCtrl', function(apiUrl, $scope, $http, $state,
+                                    $ionicLoading, $ionicHistory, geoService) {
 
     $scope.issue = {};
 
@@ -83,7 +83,31 @@ angular.module('citizen-engagement')
     }).finally(function() {
       $ionicLoading.hide();
     });
+    // Show Map
+    $scope.mapCenter = {};
+    $scope.mapMarkers = [];
+    function buildMap(coords) {
+        geoService.buildMap($scope, coords);
 
+    }
+    var marker = {};
+    geoService.getLocation().then(buildMap).then(function() {
+        var marker = $scope.mapCenter
+        marker.draggable = true;
+        $scope.mapMarkers.push(marker);
+        $scope.$broadcast('leafletDirectiveMarker.move');
+
+    });    // Add center marker
+
+    $scope.$on('leafletDirectiveMarker.move', function(e, args) {
+        $scope.issue.lat = $scope.mapCenter.lat;
+        $scope.issue.lng = $scope.mapCenter.lng;
+    });
+
+
+
+
+    // Send issue on click
     $scope.sendIssue = function() {
       $ionicHistory.nextViewOptions({
         disableBack: true // Disable back button on next view

@@ -1,7 +1,9 @@
 <ion-view view-title="Create new Issue">
-
-    <ion-content>
-        <form name="createIssue">
+    <ion-content scroll="false">
+        <leaflet defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
+        <span style="position:absolute;left:50%;top:50%;display:block;width:10px;height:10px;border: 1px solid red;margin-top: -5px; margin-left: -5px;"
+             class="icon-marker"></span>
+        <form style="position:absolute; z-index:10; top: 0; background: rgba(255,255,255,0.7)" name="createIssue">
             <label for="type">Issue Type:</label>
             <select name="type" id="repeatSelect" ng-model="issue.issueTypeId">
               <option ng-repeat="issueType in issueTypes" value="{{issueType.id}}">{{issueType.name}}</option>
@@ -11,9 +13,10 @@
             <input name="description" ng-model="issue.description" />
             <br /><br />
             <label for="lng">Longitude</label>
-            <input name="lng" placeholder="6.651479812689227" ng-model="issue.lng"/>
+            <input name="lng" disabled placeholder="6.651479812689227" ng-model="issue.lng"/>
             <label for="lat">Latitude</label>
-            <input name="lat" placeholder="46.77227088657382" ng-model="issue.lat"/>
+            <input name="lat" disabled placeholder="46.77227088657382" ng-model="issue.lat"/>
+
             <br /><br />
             <label for="imageUrl">Image URL</label>
             <input name="imageUrl" placeholder="http://www.example.com/image.jpg" ng-model="issue.imageUrl"/>
@@ -21,6 +24,5 @@
                 Create issue !
             </button>
         </form>
-
     </ion-content>
 </ion-view>
