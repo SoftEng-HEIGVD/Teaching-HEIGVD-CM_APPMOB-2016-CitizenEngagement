@@ -154,7 +154,7 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
 
             .state('userListIssues', {
                 url: '/userListIssues',
-                controller: 'UserIssuesController',
+                controller: 'UserIssuesController', //TODO check if put "menu" before so that the workflow works
                 templateUrl: 'templates/userListIssues.html'
             })
 
@@ -167,7 +167,7 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
 
         // Define the default state (i.e. the first screen displayed when the app opens).
         $urlRouterProvider.otherwise(function($injector) {
-            $injector.get('$state').go('menu.home'); // Go to the new issue tab by default. TODO home
+            $injector.get('$state').go('menu.home'); // Go to the new issue tab by default.
         });
     })
 angular.module('citizen-engagement.constants', [])
