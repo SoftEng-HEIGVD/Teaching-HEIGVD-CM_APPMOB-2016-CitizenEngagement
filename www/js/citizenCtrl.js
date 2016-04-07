@@ -44,9 +44,14 @@ angular.module('citizen-engagement.citizenCtrl',['geolocation'])
                     $http({
                         method: 'POST',
                         url: 'https://heigvd-cm-appmob-2016-team-04.herokuapp.com/api',
-                        data: "message=" + message,
+                        data: "message=" + issue,
                         headers: {'Content-Type': 'application/json'}
                     });
+
+                    $http.post(apiUrl+'/issues').success(function(issues){
+
+
+                        })
 
                 })
 
