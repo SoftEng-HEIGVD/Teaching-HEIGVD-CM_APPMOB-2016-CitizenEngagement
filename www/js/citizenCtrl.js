@@ -25,10 +25,18 @@ angular.module('citizen-engagement.citizenCtrl',['geolocation'])
 
                 });
             };
+            $scope.issues=[];
 
             $scope.loadIssues=function(){
-                $http.get(apiUrl+'/issues').success(function(issues){
-                    $scope.issues=issues;
+                $http.get(apiUrl+'/issues',
+                    {
+                        headers:{
+
+                            'x-pagination':"0;100"
+                        }
+
+                    }).success(function(issues){
+                    $scope.issues=$scope.issues.concat(issues);
                 })
             };
 
