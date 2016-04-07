@@ -80,7 +80,7 @@ angular.module('citizen-engagement.mapCtrl', [])
 
     })
 
-    .controller("IssueMapController", function ($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocServiceFla,  $stateParams) {
+    .controller("IssueMapController", function ($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocServiceFla) {
         var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId; //openlayers --> mapbox
         mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
         $scope.mapDefaults = {
@@ -98,8 +98,8 @@ angular.module('citizen-engagement.mapCtrl', [])
         var id = $stateParams.issueId;
         $http({
             method: 'GET',
-            url: apiUrl + '/issues/'+id
-        }).success(function(issue) {
+            url: apiUrl + '/issues/' + id
+        }).success(function (issue) {
 
             $scope.mapCenter = {
                 lat: issue.lat,
@@ -118,27 +118,58 @@ angular.module('citizen-engagement.mapCtrl', [])
         });
 
 
+    })
 
 
-       /* $http.get(apiUrl + '/issues').success(function (issues) {
+    .controller("HomeMapController", function ($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocServiceFla, $stateParams) {
+        var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId; //openlayers --> mapbox
+        mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
+        $scope.mapDefaults = {
+            tileLayer: mapboxTileLayer
+        };
+        $scope.mapCenter = {};
 
-            $scope.issues = issues;
 
-            //console.log(issues);
+        $scope.mapMarkers = [];
 
+// TODO loading while geoloc
 
+        GeolocServiceFla.locateUser().then(function (coords) {
+            $scope.mapCenter = {
+                lat: coords.latitude,
+                lng: coords.longitude,
+                zoom: 15
+            };
 
             $scope.mapMarkers.push({
-                lat: 46.5,
-                lng: 6.6,
-                message: '<p>{{ issue.description }}</p><img src="{{ issue.imageUrl }}" width="200px" />',
-                getMessageScope: function () {
-                    var scope = $scope.$new();
-                    /!*    scope.issue = issue;*!/
-                    return scope;
-                }
+                lat: coords.latitude,
+                lng: coords.longitude,
+                message: "<strong>You are here</strong>"
+
             });
-        });*/
+
+        });
+
+
+        /* $http.get(apiUrl + '/issues').success(function (issues) {
+
+         $scope.issues = issues;
+
+         //console.log(issues);
+
+
+
+         $scope.mapMarkers.push({
+         lat: 46.5,
+         lng: 6.6,
+         message: '<p>{{ issue.description }}</p><img src="{{ issue.imageUrl }}" width="200px" />',
+         getMessageScope: function () {
+         var scope = $scope.$new();
+         /!*    scope.issue = issue;*!/
+         return scope;
+         }
+         });
+         });*/
 
 
     });

@@ -32,5 +32,10 @@
 
         <div></div>
         <h4>Issues near you</h4>
+
+        <div class="item item-body" ng-controller="HomeMapController" >
+            <leaflet class="full-image" defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="200px" data-tap-disabled="true"></leaflet>
+
+        </div>
     </ion-content>
 </ion-view>
