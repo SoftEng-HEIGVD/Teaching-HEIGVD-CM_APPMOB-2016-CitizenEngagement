@@ -1,11 +1,9 @@
-<ion-view view-title="CITI - App for citizen engagement">
-  <ion-header-bar class="bar-calm bar-subheader">
-    <h1 class="title">Issues list</h1>
-  </ion-header-bar>
+<ion-view view-title="My issue(s)">
+
 	<ion-content>
-    
+
     <ion-list>
-  		<ion-item ng-repeat="issue in issues" class="issue ">
+  		<ion-item ng-repeat="issue in issues" class="issue">
         <div class="state-{{issue.state}}">
   			<img class="thumbnail" ng-src="{{issue.imageUrl}}"/>
     		<h2 class="issue-title">{{issue.issueType.description}}</h2>

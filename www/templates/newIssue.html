@@ -1,7 +1,5 @@
-<ion-view view-title="CITI - App for citizen engagement">
-  <ion-header-bar class="bar-calm bar-subheader">
-    <h1 class="title">New issue</h1>
-  </ion-header-bar>
+<ion-view view-title="New Issue">
+
 
   <ion-nav-buttons side="secondary">
     <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
@@ -44,7 +42,7 @@
     </div>
 
   <!-- ng-click="createAnIssue()" ng-disabled="userForm.$invalid"-->
-    <button type="submit" class="button button-full button-positive" ng-disabled="userForm.$invalid || geolok == false"  ng-click="createAnIssue()">Save</button>
+    <button type="submit" class="button button-full button-positive main-btn" ng-disabled="userForm.$invalid || geolok == false"  ng-click="createAnIssue()">Save</button>
 
   </form>
 
