@@ -1,7 +1,7 @@
-angular.module('citizen-engagement.citizenCtrl',[])
+angular.module('citizen-engagement.citizenCtrl',['geolocation'])
 
     .controller('IssueListCtrl',
-        function ($scope, $http,apiUrl) {
+        function ($scope, $http,apiUrl,geolocation) {
 
             $scope.loadUsers = function() {
                 $http.get(apiUrl+'/users').success(function(users) {
@@ -30,10 +30,51 @@ angular.module('citizen-engagement.citizenCtrl',[])
                 $http.get(apiUrl+'/issues').success(function(issues){
                     $scope.issues=issues;
                 })
+            };
+
+            $scope.submitIssue= function(issue){
+
+                geolocation.getLocation().then(function(data){
+                    issue.lat=data.coords.latitude;
+                    issue.lng=data.coords.longitude;
+
+                    console.log(issue);
+
+
+                    $http({
+                        method: 'POST',
+                        url: 'https://heigvd-cm-appmob-2016-team-04.herokuapp.com/api',
+                        data: "message=" + message,
+                        headers: {'Content-Type': 'application/json'}
+                    });
+
+                })
+
+
+
+     /*         $scope.lng.myIssueLng;
+                $scope.lat.myIssueLat;
+                $scope.imageUrl.myIssueUrl;
+                $scope.issueTypeId.myIssueTypeId,*/
+/*
+
+                    $scope.pushNewIssue=function(){
+                        $http.post(apiUrl+'/issues/').success(function(issueCurrent){
+
+                        })
+                    }*/
+
+
+
             }
+
+
+
+
 
             $scope.loadIssues();
             $scope.loadIssueType();
+
 
         })
 
