@@ -55,28 +55,8 @@ angular.module('citizen-engagement.citizenCtrl',[])
 
     )
 
-    .controller('MapController', function($log,$scope,geolocation){
 
 
-    })
 
- $scope.submitIssue= function($scope,$resources,$http,apiUrl){
-
-            $scope.myIssueToAdd{};
-
-
-            $scope.myIssueToAdd=myIssueToAdd.description;
-            $scope.lng.myIssueLng;
-            $scope.lat.myIssueLat;
-            $scope.imageUrl.myIssueUrl;
-            $scope.issueTypeId.myIssueTypeId,
-
-
-                $scope.pushNewIssue=function(){
-                    $http.post(apiUrl+'/issues/').success(function(issueCurrent){
-
-                    })
-                }
-        })
 
         
