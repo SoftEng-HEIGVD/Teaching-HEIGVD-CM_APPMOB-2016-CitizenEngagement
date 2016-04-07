@@ -4,46 +4,57 @@
         Report an Issue
     </ion-nav-title>
     <ion-content class="padding">
-        <h5>If you want to report an issue, please fill out this form</h5>
 
+        <form name="createIssue">
+            <label for="type">Issue Type:</label>
+            <select name="type" id="repeatSelect" ng-model="issue.issueTypeId">
+                <option ng-repeat="issueType in issueTypes" value="{{issueType.id}}">{{issueType.name}}</option>
+            </select>
+            <br /><br /> <!-- saut à la ligne plus une ligne d'espace-->
+            <label for="description">description</label>
+            <input name="description" ng-model="issue.description" />
+            <br /><br />
+            <label for="lng">Longitude</label>
+            <input name="lng" disabled placeholder="6.651479812689227" ng-model="issue.lng"/>
+            <label for="lat">Latitude</label>
+            <input name="lat" disabled placeholder="46.77227088657382" ng-model="issue.lat"/>
 
-        <div class="list">
-
-
-            <label class="item item-input item-select">
-                <span>Type</span>
-                <div class="input-label">
-                    &nbsp;
-                </div>
-                <select name ="type">
-
-                    <option ng-repeat="issueType in issueTypes">{{issueType.name}}</option>
-
-                </select>
-            </label>
-
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Description</span>
-                <input type="text" name="description" placeholder=" ">
-            </label>
-
-
-        </div>
+            <br /><br />
+            <label for="imageUrl">Image URL</label>
+            <input name="imageUrl" placeholder="http://www.example.com/image.jpg" ng-model="issue.imageUrl"/>
+            <button class="button button-energized" ng-click="sendIssue()" ng-disabled="createIssue.$invalid">
+                Create issue !
+            </button>
+        </form>
     </ion-content>
 </ion-view>
 
+<!--
+<ion-view view-title="Create new Issue">
+    <ion-content scroll="false">
+        <leaflet defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
+        <span style="position:absolute;left:50%;top:50%;display:block;width:10px;height:10px;border: 1px solid red;margin-top: -5px; margin-left: -5px;"
+              class="icon-marker"></span>
+        <form style="position:absolute; z-index:10; top: 0; background: rgba(255,255,255,0.7)" name="createIssue">
+            <label for="type">Issue Type:</label>
+            <select name="type" id="repeatSelect" ng-model="issue.issueTypeId">
+                <option ng-repeat="issueType in issueTypes" value="{{issueType.id}}">{{issueType.name}}</option>
+            </select>
+            <br /><br />
+            <label for="description">description</label>
+            <input name="description" ng-model="issue.description" />
+            <br /><br />
+            <label for="lng">Longitude</label>
+            <input name="lng" disabled placeholder="6.651479812689227" ng-model="issue.lng"/>
+            <label for="lat">Latitude</label>
+            <input name="lat" disabled placeholder="46.77227088657382" ng-model="issue.lat"/>
 
-<!--<div ng-controller="allIssuesCtrl" >
-    <label>Set the first name: <input type="text" ng-model="firstName"/></label><br />
-    <label>Set the last name: <input type="text" ng-model="lastName"/></label>
-    <div infinite-scroll="loadMoreIssues()" infinite-scroll-distance="0" infinite-scroll-disabled='!scrollEnable'>
-        <div ng-repeat="issue in issues" class="row list">
-            <div class="col"><img src="cover.jpg"></div>
-            <div class="col"><h5>Issue {{issue.issueType.name}}</h5></div>
-            <div class="col"><p>Description {{issue.description}}</p></div>
-            <div class="col"><button class="button button-dark">view</button></div>
-            <div class="col">{{firstName}}</div>
-            <div class="col">{{lastName}}</div>
-        </div>
-    </div>
-</div>-->
+            <br /><br />
+            <label for="imageUrl">Image URL</label>
+            <input name="imageUrl" placeholder="http://www.example.com/image.jpg" ng-model="issue.imageUrl"/>
+            <button class="button button-energized" ng-click="sendIssue()" ng-disabled="createIssue.$invalid">
+                Create issue !
+            </button>
+        </form>
+    </ion-content>
+</ion-view>-->
