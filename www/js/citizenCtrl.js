@@ -27,12 +27,18 @@ angular.module('citizen-engagement.citizenCtrl',['geolocation'])
             };
             $scope.issues=[];
 
+            var counter=0;
+
             $scope.loadIssues=function(){
+
+                counter++;
+                console.log(counter);
+
                 $http.get(apiUrl+'/issues',
                     {
                         headers:{
 
-                            'x-pagination':"0;100"
+                            'x-pagination':"0;10"
                         }
 
                     }).success(function(issues){
