@@ -175,7 +175,7 @@ angular.module('citizen-engagement.mapCtrl', [])
     })
 
 
-    .controller("UserIssuesController", function (AuthService, apiUrl) {
+    .controller("UserIssuesController", function ($scope, $http, AuthService, apiUrl, IssueService) {
         $scope.loadUserInfo = function () {
             console.log("ok all issues");
 
@@ -191,14 +191,14 @@ angular.module('citizen-engagement.mapCtrl', [])
         }
         $scope.loadUserInfo();
 
-        $scope.countIssues = function () {
+        $scope.getIssuesByUser = function () {
             IssueService.findIssuesByUser().then(function (issues) {
                 $scope.issues = issues;
                 $scope.nbIssues = issues.data.length;
 
 
             });
-        };
+        }; $scope.getIssuesByUser();
     });
 ;
 
