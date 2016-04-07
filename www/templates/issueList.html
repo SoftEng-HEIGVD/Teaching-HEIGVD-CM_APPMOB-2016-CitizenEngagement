@@ -9,7 +9,7 @@
 
   <ion-content>
     <ion-list ng-controller="ListIssuesAreaCtrl">
-          <ion-item ng-repeat="issue in issues | orderBy: 'createdOn'">
+          <ion-item ng-repeat="issue in issues">
 
             <div class="row">
               <div class="col">
@@ -22,6 +22,7 @@
                       <li ng-repeat="tag in issue.tags">{{tag}}</li>
                   </ul>
                 <p>{{issue.description}}</p>
+                <p>State:{{issue.state}}</p>
                 <p>Type: <time>{{issue.issueType.name}}</time></p>
                 <p>Last update: <time>{{issue.updatedOn | date:'MM/dd/yyyy - H:mm'}}</time></p>
 

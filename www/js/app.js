@@ -59,8 +59,12 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
                     })
 
                     .state('issueDetails', {
+<<<<<<< HEAD
                         url: '/issueDetails',
                         controller: 'issueDetails',
+=======
+                        url: '/issueDetails/:issueId',
+>>>>>>> origin/master
                         templateUrl: 'templates/issueDetails.html'
                     })
 
@@ -104,11 +108,19 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
         })
 
 
+<<<<<<< HEAD
         .controller("test", function (apiUrl, $scope, $http, $filter) {
             $scope.submitIssue = function () {
                 console.log($scope.test);
             }
         })
+=======
+         .controller("test", function (apiUrl, $scope, $http, $filter) {
+             $scope.submitIssue = function (){
+                 console.log($scope.test);
+             }
+         })
+>>>>>>> origin/master
 
         .controller("IssueCtrl", function (apiUrl, $scope, $http, $filter) {
             $scope.inputs = [{

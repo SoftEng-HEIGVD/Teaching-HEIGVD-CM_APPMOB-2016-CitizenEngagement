@@ -1,6 +1,22 @@
-angular.module('FixYourStreet.map', ['leaflet-directive'])
+angular.module('FixYourStreet.map', ['leaflet-directive','geolocation'])
 
-  .controller("MapController", function($scope, mapboxMapId, mapboxAccessToken) {
+
+  .controller("MapController", function($scope,$ionicLoading,$log,$state, geolocation, IssueService, mapboxMapId, mapboxAccessToken) {
+
+    $ionicLoading.show({
+        template: 'Loading geolocation...',
+        delay: 750
+    });
+    geolocation.getLocation().then(function(data) {
+      $scope.mapCenter.lat = data.coords.latitude;
+      $scope.mapCenter.lng = data.coords.longitude;
+      $scope.mapCenter.zoom = 17;
+      $ionicLoading.hide();
+    }, function(error) {
+      $ionicLoading.hide();
+      $log.error("Could not get location: " + error);
+    });
+
     var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId;
     mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
     $scope.mapDefaults = {
@@ -9,10 +25,34 @@ angular.module('FixYourStreet.map', ['leaflet-directive'])
     $scope.mapCenter = {
       lat: 51.48,
       lng: 0,
-      zoom: 14
+      zoom:17
     };
-    $scope.mapMarkers = [];
-  })
 
+    $scope.$on('leafletDirectiveMap.move', function(event){
+
+
+    });
+
+
+    $scope.mapMarkers = [];
+
+    IssueService.getAllIssuesArea(function(issues) {
+          $scope.issues = issues;
+          angular.forEach($scope.issues, function(issue) {
+
+              $scope.mapMarkers.push({
+                  lat: issue.lat,
+                  lng: issue.lng,
+                  id: issue.id
+              });
+          });
+
+   }, function() {}, null);
+
+   $scope.$on('leafletDirectiveMarker.click', function(e, args) {
+     $state.go("issueDetails", { issueId: args.leafletEvent.target.options.id });
+    });
+
+  })
 
 ;
