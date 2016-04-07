@@ -80,7 +80,7 @@ angular.module('citizen-engagement.mapCtrl', [])
 
     })
 
-    .controller("IssueMapController", function ($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocServiceFla) {
+    .controller("IssueMapController", function ($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocServiceFla, $stateParams) {
         var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId; //openlayers --> mapbox
         mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
         $scope.mapDefaults = {
