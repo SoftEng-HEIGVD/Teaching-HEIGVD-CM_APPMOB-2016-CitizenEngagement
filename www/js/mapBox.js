@@ -5,7 +5,7 @@ angular.module('citizen-engagement.mapBox', ['leaflet-directive','geolocation'])
 
 
 
-    .controller("issuesMapController", function($http, apiUrl, $log, $scope, geolocation, mapboxMapId, mapboxAccessToken, AuthService, leafletData) {
+    .controller("IssueMapCtrl", function($http, apiUrl, $log, $scope, geolocation, mapboxMapId, mapboxAccessToken, AuthService, leafletData) {
 
 
             $scope.mapCenter = {};
