@@ -3,7 +3,9 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('citizen-engagement', ['ionic','citizen-engagement.mapIssues','geolocation','citizen-engagement.auth', 'citizen-engagement.listIssues','citizen-engagement.constants', 'citizen-engagement.newIssue','leaflet-directive'])
+
+angular.module('citizen-engagement', ['ionic','citizen-engagement.mapIssues','geolocation','citizen-engagement.auth', 'citizen-engagement.listIssues','citizen-engagement.constants', 'citizen-engagement.newIssue','leaflet-directive','citizen-engagement.detailedIssue'])
+
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -83,7 +85,9 @@ angular.module('citizen-engagement', ['ionic','citizen-engagement.mapIssues','ge
         // Here we use the same "tab-issueList" view as the previous state.
         // This means that the issue details template will be displayed in the same tab as the issue list.
         'tab-issueList': {
-          templateUrl: 'templates/issueDetails.html'
+
+          templateUrl: 'templates/issueDetails.html',
+          controller: 'DetailedIssueCtrl'
         }
       }
     })

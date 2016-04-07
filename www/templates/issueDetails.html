@@ -1,9 +1,22 @@
-<ion-view view-title="CITI - App for citizen engagement">
-  <ion-header-bar class="bar-calm bar-subheader">
-    <h1 class="title">Issues details</h1>
-  </ion-header-bar>
+<ion-view view-title="Issue details">
   <ion-content>
-    <p>Hello! This is the issue details screen.</p>
-    <a ui-sref="tab.issueList" class="button icon-left ion-chevron-left button-clear button-dark">Back</a>
+    <div class="issue-details-box">
+      <h2 class="issue-title">{{detailedIssue.issueType.name}}</h2>
+      <h2 class="issue-title">{{detailedIssue.description}}</h2>
+      <img class="thumbnail img-detailedIssue" ng-src="{{detailedIssue.imageUrl}}"/>
+
+
+
+
+      <br/>
+      <a class="button icon-left ion-chevron-left button-assertive button-small" ui-sref="tab.issueList" >Back</a>
+    </div>
+
+
+
+
+
+
+
   </ion-content>
 </ion-view>
