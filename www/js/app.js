@@ -135,6 +135,17 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 }
             })
 
+            .state('menu.profile', {
+                url: '/profile',
+
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/profile.html',
+                        controller: 'ProfileController'
+                    }
+                }
+            })
+
             .state('login', {
                 url: '/login',
                 controller: 'LoginCtrl',
