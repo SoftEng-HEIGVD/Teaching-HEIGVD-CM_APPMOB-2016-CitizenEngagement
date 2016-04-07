@@ -1,7 +1,7 @@
-angular.module('FixYourStreet.map', ['leaflet-directive','geolocation'])
+angular.module('FixYourStreet.map', ['geolocation'])
 
 
-  .controller("MapController", function($scope,$ionicLoading,$log,$state, geolocation, IssueService, mapboxMapId, mapboxAccessToken) {
+  .controller("MapController", function($scope,$ionicLoading,$log,$state, geolocation, IssueService, ReverseGeocoding, mapboxMapId, mapboxAccessToken) {
 
     $ionicLoading.show({
         template: 'Loading geolocation...',
@@ -31,6 +31,8 @@ angular.module('FixYourStreet.map', ['leaflet-directive','geolocation'])
     $scope.$on('leafletDirectiveMap.move', function(event){
 
 
+      //console.log(leafletBoundsHelpers);
+
     });
 
 
@@ -52,6 +54,16 @@ angular.module('FixYourStreet.map', ['leaflet-directive','geolocation'])
    $scope.$on('leafletDirectiveMarker.click', function(e, args) {
      $state.go("issueDetails", { issueId: args.leafletEvent.target.options.id });
     });
+
+
+    ReverseGeocoding.getPlaces(function(result) {
+          $scope.resultPlaces = result.features;
+          angular.forEach($scope.resultPlaces, function(place) {
+
+              console.log(place.place_name);
+          });
+
+    }, function() {}, null);
 
   })
 

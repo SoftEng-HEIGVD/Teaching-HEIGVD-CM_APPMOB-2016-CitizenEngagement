@@ -41,7 +41,7 @@ angular.module('FixYourStreet.listIssue', [])
     $scope.getAreaIssues();
 })
 
-.service('IssueService', ['$http', 'apiUrl', function($http, apiUrl, $ionicLoading) {
+.service('IssueService', ['$http', 'apiUrl', function($http, apiUrl) {
       var match = {
         "loc": {
           "$geoWithin": {
@@ -61,6 +61,16 @@ angular.module('FixYourStreet.listIssue', [])
             'x-sort': 'updatedOn'
           },
           data: match,
+      }).success(successCallback)
+      .error(errorCallback)
+    }
+}])
+
+.service('ReverseGeocoding', ['$http', 'apiUrl','mapboxAccessToken', function($http, apiUrl, mapboxAccessToken) {
+    this.getPlaces = function (successCallback, errorCallback) {
+        $http({
+          method: 'GET',
+          url: 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + 'Yverdon' + '.json?access_token=' + mapboxAccessToken
       }).success(successCallback)
       .error(errorCallback)
     }
