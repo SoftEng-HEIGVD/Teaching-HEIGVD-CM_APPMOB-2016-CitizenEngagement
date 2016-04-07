@@ -1,8 +1,14 @@
 <ion-view view-title="List Issue">
-    <ion-content>
+    <ion-content id="issueList">
         <ion-list ng-controller="IssueListCtrl"
                   can-swipe="listCanSwipe">
-            <ion-item id="issueList" ng-repeat="issue in issues"
+                  <div class="filterListIssue">
+                    <h3>Filter</h3>
+                  <select  ng-model="issue.issueTypeId">
+                    <option ng-model="issue.id" ng-repeat='issueType in issueTypes' value="{{issueType.id}}">{{issueType.name}}</option>
+                  </select> <label><input type="radio" value="">My Issues</label>
+                </div>
+            <ion-item ng-repeat="issue in issues"
                       class="item-thumbnail-left"
             ui-sref="menu.issueDetails({issueId:issue.id})">
 
@@ -22,7 +28,7 @@
 
 
             </ion-item>
-            <button ng-click="loadIssues()" class="button button-outline button-balanced center">More</button>
+            <button ng-click="loadIssues()" class="button button-outline button-calm center">More</button>
         </ion-list>
 
 
