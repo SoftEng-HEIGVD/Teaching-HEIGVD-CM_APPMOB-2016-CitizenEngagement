@@ -3,7 +3,8 @@
   <ion-nav-buttons side="secondary">
     <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
   </ion-nav-buttons>
-  <ion-content>
-    <p>Hello! This is the issue map screen.</p>
+ 
+  <ion-content scroll="false">
+		<leaflet center="san_fran" markers="markers" event-broadcast="events" defaults="defaults" id='map'></leaflet>
   </ion-content>
 </ion-view>
