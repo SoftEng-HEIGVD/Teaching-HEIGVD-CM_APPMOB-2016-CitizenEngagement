@@ -80,29 +80,52 @@ angular.module('citizen-engagement.mapCtrl', [])
 
     })
 
-    .controller("IssueMapController", function ($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocServiceFla) {
+    .controller("IssueMapController", function ($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocServiceFla,  $stateParams) {
         var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId; //openlayers --> mapbox
         mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
         $scope.mapDefaults = {
             tileLayer: mapboxTileLayer
         };
+        $scope.mapCenter = {};
 
+        GeolocServiceFla.locateUser().then(function (coords) {
 
-        $scope.mapCenter = {
-            lat: 46.5,
-            lng: 6.6,
-            zoom: 8
-        };
+        });
 
         $scope.mapMarkers = [];
         /*        var issue = IssueService.getIssue();*/
 
+        var id = $stateParams.issueId;
+        $http({
+            method: 'GET',
+            url: apiUrl + '/issues/'+id
+        }).success(function(issue) {
 
-        $http.get(apiUrl + '/issues').success(function (issues) {
+            $scope.mapCenter = {
+                lat: issue.lat,
+                lng: issue.lng,
+                zoom: 15
+
+            };
+            $scope.issue = issue;
+            console.log(issue);
+            $scope.mapMarkers.push({
+                lat: issue.lat,
+                lng: issue.lng,
+               
+            });
+
+        });
+
+
+
+
+       /* $http.get(apiUrl + '/issues').success(function (issues) {
 
             $scope.issues = issues;
 
-            console.log(issues);
+            //console.log(issues);
+
 
 
             $scope.mapMarkers.push({
@@ -111,11 +134,11 @@ angular.module('citizen-engagement.mapCtrl', [])
                 message: '<p>{{ issue.description }}</p><img src="{{ issue.imageUrl }}" width="200px" />',
                 getMessageScope: function () {
                     var scope = $scope.$new();
-                    /*    scope.issue = issue;*/
+                    /!*    scope.issue = issue;*!/
                     return scope;
                 }
             });
-        });
+        });*/
 
 
     });
