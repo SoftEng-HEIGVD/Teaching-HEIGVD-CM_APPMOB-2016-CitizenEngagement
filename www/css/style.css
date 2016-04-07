@@ -46,3 +46,9 @@
 .leaflet-control-container{
   display:none;
 }
+.image{
+  	width: 100%;
+  	background-size: contain;
+  	background-repeat: no-repeat;
+  	background-position: center, center;
+}

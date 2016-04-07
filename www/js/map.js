@@ -1,19 +1,14 @@
 angular.module('FixYourStreet.map', ['geolocation'])
 
 
-  .controller("MapController", function($scope,$ionicLoading,$log,$state, geolocation, IssueService, ReverseGeocoding, mapboxMapId, mapboxAccessToken) {
+  .controller("MapController", function($scope,$http,$ionicLoading,$log,$state, geolocation, IssueService, ReverseGeocoding, mapboxMapId, mapboxAccessToken, $ionicModal) {
 
-    $ionicLoading.show({
-        template: 'Loading geolocation...',
-        delay: 750
-    });
+
     geolocation.getLocation().then(function(data) {
       $scope.mapCenter.lat = data.coords.latitude;
       $scope.mapCenter.lng = data.coords.longitude;
       $scope.mapCenter.zoom = 17;
-      $ionicLoading.hide();
     }, function(error) {
-      $ionicLoading.hide();
       $log.error("Could not get location: " + error);
     });
 
@@ -56,14 +51,37 @@ angular.module('FixYourStreet.map', ['geolocation'])
     });
 
 
-    ReverseGeocoding.getPlaces(function(result) {
-          $scope.resultPlaces = result.features;
-          angular.forEach($scope.resultPlaces, function(place) {
 
-              console.log(place.place_name);
-          });
 
-    }, function() {}, null);
+  })
+
+  .controller("MapSearch", function($scope,$http,$ionicLoading,$log,$state, geolocation, IssueService, ReverseGeocoding, mapboxMapId, mapboxAccessToken, $ionicModal) {
+    $ionicModal.fromTemplateUrl('modalSearch.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modalSearch = modal;
+    });
+    $scope.openModal = function() {
+      $scope.modalSearch.show();
+    };
+    $scope.closeModal = function() {
+      $scope.modalSearch.hide();
+    };
+
+    $scope.searchPlace = function(searchIn) {
+      $http({
+        method: 'GET',
+        url: 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + searchIn + '.json?access_token=' + mapboxAccessToken
+      }).success(function (result) {
+        $scope.resultPlaces = result.features;
+        angular.forEach($scope.resultPlaces, function(place) {
+
+            console.log(place.place_name);
+        });
+      })
+
+    };
 
   })
 

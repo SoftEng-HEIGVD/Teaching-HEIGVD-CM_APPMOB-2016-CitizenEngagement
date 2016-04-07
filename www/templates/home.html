@@ -1,0 +1,42 @@
+<ion-view view-title="FixYourStreet">
+
+  <div class="bar" style="background:none;border:none">
+        <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
+        <button class="button button-calm icon ion-ios-search" ng-click="modalSearch.show()"></button>
+  </div>
+
+  <ion-content scroll="false">
+    <leaflet defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
+  </ion-content>
+
+  <ion-footer-bar>
+    <div class="button-bar">
+      <button class="button button-calm icon ion-plus" ui-sref="newIssue"> Add issue</button>
+      <button class="button button-stable icon ion-navicon" ui-sref="issueList"> Issues in the area</button>
+    </div>
+  </ion-footer-bar>
+</ion-view>
+
+
+<script id="modalSearch.html" type="text/ng-template">
+    <ion-modal-view ng-controller="MapSearch">
+      <div class="bar item-input-inset" id="mainSearch" style="background:none;border:none">
+        <label class="item-input-wrapper">
+          <i class="icon ion-ios-search placeholder-icon"></i>
+          <input type="search" ng-model="searchIn" ng-keyup="$event.keyCode == 13 && searchPlace(searchIn)" placeholder="Search a place">
+        </label>
+      </div>
+
+      <ion-content class="padding has-header">
+
+        <ion-list>
+            <ion-item ng-repeat="resultPlace in resultPlaces">
+              <h2>{{resultPlace.place_name}}</h2>
+              <p></p>
+            </ion-item>
+        </ion-list>
+
+        <button class="button button-full  button-stable" ng-click="modalSearch.hide()">Cancel</button>
+      </ion-content>
+    </ion-modal-view>
+</script>

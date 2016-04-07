@@ -3,43 +3,29 @@
     <ion-nav-bar>
         <ion-nav-back-button>
         </ion-nav-back-button>
-        <ion-nav-title>Graffiti</ion-nav-title>
+        <ion-nav-title>{{issue.issueType.description}}</ion-nav-title>
         <ion-nav-buttons side="secondary">
             <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
         </ion-nav-buttons>
     </ion-nav-bar>
 
     <ion-content>
-        <div class="row">
 
+        <leaflet defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="300px" data-tap-disabled="true"></leaflet>
 
-            <ion-list ng-controller="issueDetails">
-
-
-                <div class="row">
-
-                    <div class="col col-75 item-body listIssue">
-                        <span ng-if='!issue.imageUrl'><img  src='img/NoImageAvailable.jpg' style="width:100%" alt="No Image Available" /></span>
-                        <span ng-if='issue.imageUrl'><a ui-sref='fullImg({imageURL: issue.imageUrl})'><img src='{{issue.imageUrl}}' style="width:100%" /></a></span>
-                        <h2>{{issue.issueType.description}}<time>{{issue.createdOn| date:'MM/dd/yyyy - H:mm'}}</time></h2>
-                        <ul class="tagsList">
-                            <li ng-repeat="tag in issue.tags">{{tag}}</li>
-                        </ul>
-                        <p>{{issue.description}}</p>
-                        <p>Type: <time>{{issue.issueType.name}}</time></p>
-                        <p>Last update: <time>{{issue.updatedOn| date:'MM/dd/yyyy - H:mm'}}</time></p>
-
-                    </div>
-                </div>
-
-
-            </ion-list>
-
-        </div>
+        <span ng-if='!issue.imageUrl'><img  src='img/NoImageAvailable.jpg' style="width:100%" alt="No Image Available" /></span>
+        <span ng-if='issue.imageUrl'><a ui-sref='fullImg({imageUrl: issue.imageUrl})'><img ng-src='{{issue.imageUrl}}' style="width:100%" /></a></span>
+        <h2><time>{{issue.createdOn| timeAgo}}</time></h2>
+        <ul class="tagsList">
+            <li ng-repeat="tag in issue.tags">{{tag}}</li>
+        </ul>
+        <p>{{issue.description}}</p>
+        <p>Type: <time>{{issue.issueType.name}}</time></p>
+        <p>Last update: <time>{{issue.updatedOn| timeAgo}}</time></p>
 
         <div class="button-bar">
             <a class="button button-medium"  ui-sref="newComment({ issueId: issue.id })">Add a comment</a>
-            <a class="button button-medium" ui-sref="commentsList({ issueId: issue.id })">View comments</a> 
+            <a class="button button-medium" ui-sref="commentsList({ issueId: issue.id })">View comments</a>
         </div>
 
     </ion-content>
