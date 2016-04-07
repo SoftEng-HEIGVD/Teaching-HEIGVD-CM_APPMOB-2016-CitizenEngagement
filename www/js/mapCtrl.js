@@ -112,7 +112,7 @@ angular.module('citizen-engagement.mapCtrl', [])
             $scope.mapMarkers.push({
                 lat: issue.lat,
                 lng: issue.lng,
-               
+
             });
 
         });
