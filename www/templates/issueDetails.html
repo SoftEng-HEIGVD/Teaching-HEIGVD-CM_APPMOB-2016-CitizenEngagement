@@ -11,7 +11,7 @@
                         <div class="state-bar">
                             <div class="iconIssueDetails">
                                 <i class="icon ion-star" ng-if="issue.state == 'created'"></i>
-                                <i class="icon ion-eye" ng-if="issue.state == 'acknowledge'"></i>
+                                <i class="icon ion-eye" ng-if="issue.state == 'acknowledged'"></i>
                                 <i class="icon ion-person" ng-if="issue.state == 'assigned'"></i>
                                 <i class="icon ion-load-a" ng-if="issue.state == 'in_progress'"></i>
                                 <i class="icon ion-checkmark-round" ng-if="issue.state == 'solved'"></i>
@@ -28,7 +28,13 @@
 
                     <div class="infoDescriptionDetails">
                         <h2>{{issue.description}}</h2>
-                        <p ng-repeat="tag in issue.tags">{{tag}}</p>
+                        <div class="tags">
+                        <span ng-repeat="tag in issue.tags">
+                            <button class="button button-small button-stable">
+                                #{{tag}}
+                            </button>
+                        </span>
+                        </div>
                     </div>
                 </div>
 

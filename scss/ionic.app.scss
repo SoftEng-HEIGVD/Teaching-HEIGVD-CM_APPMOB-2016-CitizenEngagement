@@ -108,7 +108,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   .state-created & {
     background-color: $color-created;
   }
-  .state-acknowledge & {
+  .state-acknowledged & {
     background-color: $color-acknowledge;
   }
   .state-assigned & {
@@ -160,6 +160,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   .infoDescriptionDetails {
     padding: 1em;
   }
+  h2 {
+
+  }
+  .tags {
+    margin-top: 20px;
+  }
 }
 
 //bar color
@@ -167,7 +173,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   .state-created & {
     background-color: $color-created;
   }
-  .state-acknowledge & {
+  .state-acknowledged & {
     background-color: $color-acknowledge;
   }
   .state-assigned & {
@@ -189,7 +195,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   .state-created & {
     background-color: $color-created;
   }
-  .state-acknowledge & {
+  .state-acknowledged & {
     background-color: $color-acknowledge;
   }
   .state-assigned & {
@@ -247,7 +253,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   .state-created & {
     background-color: $color-created;
   }
-  .state-acknowledge & {
+  .state-acknowledged & {
     background-color: $color-acknowledge;
   }
   .state-assigned & {
@@ -269,7 +275,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   .state-created & {
     background-color: $color-created;
   }
-  .state-acknowledge & {
+  .state-acknowledged & {
     background-color: $color-acknowledge;
   }
   .state-assigned & {

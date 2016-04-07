@@ -9795,22 +9795,22 @@ a.button {
       font-size: 17px; }
 
 .state-created .iconIssueList {
-  background-color: #4ca969; }
+  background-color: #00FF37; }
 
-.state-acknowledge .iconIssueList {
-  background-color: blueviolet; }
+.state-acknowledged .iconIssueList {
+  background-color: #E8CB00; }
 
 .state-assigned .iconIssueList {
-  background-color: violet; }
+  background-color: #80EEE1; }
 
 .state-in_progress .iconIssueList {
-  background-color: gold; }
+  background-color: #008FFF; }
 
 .state-solved .iconIssueList {
-  background-color: green; }
+  background-color: #AF00E8; }
 
 .state-rejected .iconIssueList {
-  background-color: red; }
+  background-color: #FF4A00; }
 
 .issueDetails .state-bar {
   height: 65px;
@@ -9842,41 +9842,44 @@ a.button {
 .issueDetails .infoDescriptionDetails {
   padding: 1em; }
 
-.state-created .state-bar {
-  background-color: #4ca969; }
+.issueDetails .tags {
+  margin-top: 20px; }
 
-.state-acknowledge .state-bar {
-  background-color: blueviolet; }
+.state-created .state-bar {
+  background-color: #00FF37; }
+
+.state-acknowledged .state-bar {
+  background-color: #E8CB00; }
 
 .state-assigned .state-bar {
-  background-color: violet; }
+  background-color: #80EEE1; }
 
 .state-in_progress .state-bar {
-  background-color: gold; }
+  background-color: #008FFF; }
 
 .state-solved .state-bar {
-  background-color: green; }
+  background-color: #AF00E8; }
 
 .state-rejected .state-bar {
-  background-color: red; }
+  background-color: #FF4A00; }
 
 .state-created .state-bar .iconIssueDetails {
-  background-color: #4ca969; }
+  background-color: #00FF37; }
 
-.state-acknowledge .state-bar .iconIssueDetails {
-  background-color: blueviolet; }
+.state-acknowledged .state-bar .iconIssueDetails {
+  background-color: #E8CB00; }
 
 .state-assigned .state-bar .iconIssueDetails {
-  background-color: violet; }
+  background-color: #80EEE1; }
 
 .state-in_progress .state-bar .iconIssueDetails {
-  background-color: gold; }
+  background-color: #008FFF; }
 
 .state-solved .state-bar .iconIssueDetails {
-  background-color: green; }
+  background-color: #AF00E8; }
 
 .state-rejected .state-bar .iconIssueDetails {
-  background-color: red; }
+  background-color: #FF4A00; }
 
 .myIssueList .state-bar {
   height: 20px;
@@ -9907,37 +9910,37 @@ a.button {
     font-size: 17px; }
 
 .state-created .state-bar {
-  background-color: #4ca969; }
+  background-color: #00FF37; }
 
-.state-acknowledge .state-bar {
-  background-color: blueviolet; }
+.state-acknowledged .state-bar {
+  background-color: #E8CB00; }
 
 .state-assigned .state-bar {
-  background-color: violet; }
+  background-color: #80EEE1; }
 
 .state-in_progress .state-bar {
-  background-color: gold; }
+  background-color: #008FFF; }
 
 .state-solved .state-bar {
-  background-color: green; }
+  background-color: #AF00E8; }
 
 .state-rejected .state-bar {
-  background-color: red; }
+  background-color: #FF4A00; }
 
 .state-created .state-bar .iconIssueList {
-  background-color: #4ca969; }
+  background-color: #00FF37; }
 
-.state-acknowledge .state-bar .iconIssueList {
-  background-color: blueviolet; }
+.state-acknowledged .state-bar .iconIssueList {
+  background-color: #E8CB00; }
 
 .state-assigned .state-bar .iconIssueList {
-  background-color: violet; }
+  background-color: #80EEE1; }
 
 .state-in_progress .state-bar .iconIssueList {
-  background-color: gold; }
+  background-color: #008FFF; }
 
 .state-solved .state-bar .iconIssueList {
-  background-color: green; }
+  background-color: #AF00E8; }
 
 .state-rejected .state-bar .iconIssueList {
-  background-color: red; }
+  background-color: #FF4A00; }

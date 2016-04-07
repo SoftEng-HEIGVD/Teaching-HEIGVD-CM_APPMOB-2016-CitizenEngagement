@@ -1,5 +1,7 @@
 {
   "apiUrl": "https://example.com/api",
   "mapboxMapId": "...",
-  "mapboxAccessToken": "..."
+  "mapboxAccessToken": "...",
+  "qimgUrl": "http://localhost:8100/qimg-proxy",
+  "qimgToken": "NQodqmFN1F6QeEGqU7gkAaJbenLdQcroXuSheppA94/7TVv2r7pMIG/L/oGxY28c3SoE8coie+0wT6qf4az0ZKL0vKHk89yxMvyiVlcbdVD2ICD5okQ3FcL8VpT7FzIH4fsWK3HgP5AJCjsb/3Sa+g4KkX4VpdRXhGRiOD44myo="
 }
