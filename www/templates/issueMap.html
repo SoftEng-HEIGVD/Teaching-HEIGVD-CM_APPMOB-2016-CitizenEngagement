@@ -10,7 +10,7 @@
 	  <input type="text" placeholder="Type the name of a location"  ng-model="query.location" ng-model-options='{ debounce: 500 }' ng-change="updateMap()">
 	</label>
 
-	<leaflet class="issues-map" height="50%" defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
+	<leaflet ng-if="finishedLoading" class="issues-map" height="50%" defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
   </ion-content>
 
   
