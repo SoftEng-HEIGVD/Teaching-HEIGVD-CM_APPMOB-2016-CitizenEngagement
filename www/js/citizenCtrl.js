@@ -60,3 +60,28 @@ function ($scope, $http,apiUrl) {
 
 )
 
+    .controller('MapController', function($log,$scope,geolocation){
+
+
+    })
+
+
+
+    .controller('AddIssueCtrl',
+        function($scope,$resources,$http,apiUrl){
+
+            $scope.description=myIssueAdd.description;
+            $scope.lng.myIssueLng;
+            $scope.lat.myIssueLat;
+            $scope.imageUrl.myIssueUrl;
+            $scope.issueTypeId.myIssueTypeId,
+
+
+            $scope.pushNewIssue=function(){
+                    $http.post(apiUrl+'/issues/').success(function(issueCurrent){
+
+                    })
+                }
+            })
+
+
