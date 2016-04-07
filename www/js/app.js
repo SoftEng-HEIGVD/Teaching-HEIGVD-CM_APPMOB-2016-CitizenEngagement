@@ -43,8 +43,9 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
                     })
 
                     .state('newComment', {
-                        url: '/newComment',
-                        templateUrl: 'templates/newComment.html'
+                        url: '/newComment/:issueId',
+                        templateUrl: 'templates/newComment.html',
+                        controller: 'newComment'
                     })
 
                     .state('fullImg', {
@@ -59,6 +60,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
 
                     .state('issueDetails', {
                         url: '/issueDetails',
+                        controller: 'issueDetails',
                         templateUrl: 'templates/issueDetails.html'
                     })
 
@@ -66,8 +68,6 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
                         url: '/issueList',
                         templateUrl: 'templates/issueList.html'
                     })
-
-
 
                     .state('login', {
                         url: '/login',
@@ -102,13 +102,13 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
                 }
             });
         })
-        
-        
-         .controller("test", function (apiUrl, $scope, $http, $filter) {
-             $scope.submitIssue = function (){
-                 console.log($scope.test);
-             }
-         })
+
+
+        .controller("test", function (apiUrl, $scope, $http, $filter) {
+            $scope.submitIssue = function () {
+                console.log($scope.test);
+            }
+        })
 
         .controller("IssueCtrl", function (apiUrl, $scope, $http, $filter) {
             $scope.inputs = [{
@@ -186,17 +186,65 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
             }
         })
 
-        .controller('newComment', function ($scope, $ionicModal) {
+        .controller("newComment", function ($scope, $stateParams, $state) {
+            $scope.inputs = [{
+                    value: null
+                }];
 
-            $ionicModal.fromTemplateUrl('templates/newComment.html', {
-                scope: $scope
-            }).then(function (modal) {
-                $scope.modal = modal;
+//            $scope.goToNewComment = function (issue) {
+//                $state.go("newComment", {issueId: issue.id});
+//            };
+
+            $scope.createComment = function () {
+                console.log($stateParams.issueId);
+//                $scope.inputs.push({
+//                    value: null
+//                });
+            }
+
+        })
+
+        .controller('issueDetails', function (apiUrl, $http, $scope) {
+
+            // The $ionicView.beforeEnter event happens every time the screen is displayed.
+            $scope.$on('$ionicView.beforeEnter', function () {
+                // Re-initialize the user object every time the screen is displayed.
+                // The first name and last name will be automatically filled from the form thanks to AngularJS's two-way binding.
+                $scope.issues = {};
             });
 
-            $scope.createComment = function (u) {
-                //MISSING SAVE FUNCTION
-                $scope.modal.hide();
+            $scope.getAreaIssues = function () {
+
+
+                // Make the request to retrieve issues
+                $http({
+                    method: 'GET',
+                    url: apiUrl + '/issues/57023a95dc5a2c0e007a1753',
+                    data: $scope.issues
+                }).success(function (issues) {
+                    $scope.issues = issues;
+                    console.log(issues);
+                }).error(function () {
+                    $scope.error = 'Could not retrieve Issues.';
+                });
             };
 
-        });
+            $scope.getAreaIssues();
+        })
+
+
+//        .controller('newComment', function ($scope, $ionicModal, $stateParams) {
+//            console.log($stateParams.issueId);
+//            $ionicModal.fromTemplateUrl('templates/newComment.html', {
+//                scope: $scope
+//            }).then(function (modal) {
+//                $scope.modal = modal;
+//               
+//            });
+//
+//            $scope.createComment = function (u) {
+//                //MISSING SAVE FUNCTION
+//                $scope.modal.hide();
+//            };
+//
+//        });
