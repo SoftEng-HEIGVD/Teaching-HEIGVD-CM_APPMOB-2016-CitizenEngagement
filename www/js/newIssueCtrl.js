@@ -59,6 +59,28 @@ angular.module('citizen-engagement.newIssueCtrl', [])
         }
     )
 
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     .factory('IssueService', function ($http, apiUrl) {
         var service = {
 
