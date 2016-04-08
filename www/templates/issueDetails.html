@@ -22,42 +22,24 @@
                     <p style="font-style: italic; font-size: 10px">{{comment.author.name}}</p>
                 </a>
             </div>
-            <form name="createComment" ng-submit="submit()">
+            <div ng-controller="NewCommentCtrl">
+                <form name="createComment" ng-submit="submit()">
 
 
-                <div class="list">
+                    <div class="list">
 
-                   <!-- <label class="item item-input">
-                        <span class="input-label">Type</span>
-                        <select name="type" ng-model="actions.type">
-                            <option ng-repeat="issueType in issueTypes" value="{{issueType.id}}">{{issueType.name}}</option>
-                        </select>
-                    </label>-->
-                    <label class="item item-input item-floating-label">
-                        <span class="input-label">Type</span>
-                        <input type="text" name="actions.type" placeholder="comment" ng-model="actions.type">
-                    </label>
-                    <label class="item item-input item-floating-label">
-                        <span class="input-label">Commentaire</span>
-                        <input type="text" name="text" placeholder="Votre commentaire" ng-model="actions.payload.text">
-                    </label>
-                    <!--<label class="item item-input item-floating-label">
-                        <span class="input-label">Image URL</span>
-                        <input type="text" name="imageUrl" placeholder="http://www.example.com/image.jpg" ng-model="issue.issueUrl">
-                    </label>
-                    <label class="item item-input item-floating-label">
-                        <span class="input-label">Longitude</span>
-                        <input type="text" name="lng" placeholder="6.651479812689227" ng-model="issue.lng">
-                    </label>
-                    <label class="item item-input item-floating-label">
-                        <span class="input-label">Latitude</span>
-                        <input type="text" name="lat" placeholder="46.77227088657382" ng-model="issue.lat">
-                    </label>-->
-                </div>
-                <input class="button button-positive" type="submit" name="submit" value="Send">
-            </form>
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">Commentaire</span>
+                            <input type="text" name="payload.text" placeholder="Votre commentaire" ng-model="action.payload.text">
+                        </label>
+
+                    </div>
+                    <input class="button button-positive" type="submit" name="submit" value="Send">
+                </form>
+
+            </div>
+
         </div>
-        <button></button>
     </ion-content>
 </ion-view>
 
