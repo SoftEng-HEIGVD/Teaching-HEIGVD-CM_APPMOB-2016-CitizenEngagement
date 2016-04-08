@@ -81,5 +81,53 @@ angular.module('citizen-engagement.issueCtrl',[])
     })
 
 
+    .controller('NewCommentCtrl',
+        function ($scope, $http, apiUrl) {
+
+
+            $scope.comment = {};
+
+            $scope.submit = function(){
+                console.log("je test")
+                var link = apiUrl + '/issues/actions/'
+                $http.post(link, {
+                    description: $scope.issue.description,
+                    lng: $scope.issue.lng,
+                    lat: $scope.issue.lat,
+                    imageUrl: $scope.issue.imageUrl,
+                    issueTypeId: $scope.issue.issueTypeId,
+
+
+
+                }).then(function (res){
+                    console.log("0 " + $scope.issue.issueTypeId);
+                    console.log("1 " + $scope.issue.description);
+                    $scope.response = res.issue;
+                    console.log('voilà la réponse: ' + $scope.reponse);
+                });
+            };
+
+
+
+
+
+
+
+            //TODO post function
+            $scope.saveIssue = function () {
+                console.log("ok");
+                $http.post(apiUrl + '/issues').success(function (issue) {
+
+
+                    console.log(issue);
+
+                });
+            }
+
+
+        }
+    );
+
+
 
 
