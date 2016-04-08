@@ -1,7 +1,9 @@
 angular.module('citizen-engagement.newIssueCtrl',['geolocation'])
 
     .controller('newIssueCtrl',
-        function ($scope, $http,apiUrl,geolocation, CameraService) {
+        function ($scope, $http,apiUrl,geolocation, CameraService, qimgUrl, qimgToken) {
+
+          $scope.issue = {};
 
             $scope.loadUsers = function() {
                 $http.get(apiUrl+'/users').success(function(users) {
@@ -30,23 +32,41 @@ angular.module('citizen-engagement.newIssueCtrl',['geolocation'])
                 // return base64-encoded data instead of a file
                 destinationType: Camera.DestinationType.DATA_URL
               }).then(function(imageData) {
-
+                $http({
+                  method: "POST",
+                  url: qimgUrl + "/images",
+                  headers: {
+                  Authorization: "Bearer " + qimgToken
+                },
+                data: {
+                  data: imageData
+                }
+                }).success(function(data) {
+                  var imageUrl = data.url;
+                  console.log(imageUrl);
+                  $scope.issue.imageUrl = imageUrl;
+                // do something with imageUrl
+                });
               });
             }
 
             $scope.submitIssue= function(issue){
+              console.log('submit issue');
                 geolocation.getLocation().then(function(data){
                     issue.lat=data.coords.latitude;
                     issue.lng=data.coords.longitude;
-                    issue.imageUrl="http://marieclaudeducas.com/wp-content/uploads/2015/08/Cecil-the-Lion.jpg";
-                    console.log(issue);
-                });
-                $http({
-                    method: 'POST',
-                    url: apiUrl+'/issues',
-                    data: issue
+                    console.log(JSON.stringify(issue));
 
+                    $http({
+                        method: 'POST',
+                        url: apiUrl+'/issues',
+                        data: issue
+
+                    });
+                }, function() {
+                  console.log('Could not get geolocation');
                 });
+
 
                 /* $scope.lng.myIssueLng;
                 $scope.lat.myIssueLat;
