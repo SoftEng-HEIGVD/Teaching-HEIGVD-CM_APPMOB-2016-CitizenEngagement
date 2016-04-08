@@ -1,4 +1,4 @@
-angular.module('citizen-engagement.mapCtrl', [])
+angular.module('citizen-engagement.map', [])
 
     .factory('GeolocServiceFla', function (geolocation, $log) {
         var service = {
@@ -199,26 +199,6 @@ angular.module('citizen-engagement.mapCtrl', [])
 
         });
 
-
-        /* $http.get(apiUrl + '/issues').success(function (issues) {
-
-         $scope.issues = issues;
-
-         //console.log(issues);
-
-
-
-         $scope.mapMarkers.push({
-         lat: 46.5,
-         lng: 6.6,
-         message: '<p>{{ issue.description }}</p><img src="{{ issue.imageUrl }}" width="200px" />',
-         getMessageScope: function () {
-         var scope = $scope.$new();
-         /!*    scope.issue = issue;*!/
-         return scope;
-         }
-         });
-         });*/
 
 
     })

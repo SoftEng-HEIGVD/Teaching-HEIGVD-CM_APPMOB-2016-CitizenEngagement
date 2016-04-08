@@ -4,17 +4,8 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citizen-engagement.constants',
-    'citizen-engagement.issueCtrl', 'geolocation', 'citizen-engagement.newIssueCtrl', "leaflet-directive",
-'citizen-engagement.mapCtrl'])
-
-
-
-    /*function ContentController($scope, $ionicSideMenuDelegate) {
-     $scope.toggleLeft = function() {
-     $ionicSideMenuDelegate.toggleLeft();
-     };
-     }// TODO*/
-
+    'citizen-engagement.issue', 'geolocation', 'citizen-engagement.factories', "leaflet-directive",
+'citizen-engagement.map', 'citizen-engagement.homeProfile'])
 
 
 
@@ -78,7 +69,7 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/home.html',
-                        controller: 'HomeController' //TODO change to issueListCtrl when merge done
+                        controller: 'HomeController'
                     }
                 }
             })

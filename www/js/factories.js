@@ -1,4 +1,4 @@
-angular.module('citizen-engagement.newIssueCtrl', [])
+angular.module('citizen-engagement.factories', [])
 
   /*  .factory("CameraService", function ($q) {
         return {
@@ -16,7 +16,7 @@ angular.module('citizen-engagement.newIssueCtrl', [])
             }
         }
     })*/
-    .controller('NewIssueCtrl',
+/*    .controller('NewIssueCtrl',
         function ($scope, $http, apiUrl, GeolocServiceFla, CameraService, qimgUrl, qimgToken) {
             $scope.loadIssueTypes = function () {
                 console.log("ok");
@@ -98,7 +98,7 @@ angular.module('citizen-engagement.newIssueCtrl', [])
 
 
         }
-    )
+    )*/
 
 
     .factory('IssueService', function ($http, apiUrl) {
@@ -135,7 +135,7 @@ angular.module('citizen-engagement.newIssueCtrl', [])
         }
     })
 
-    .controller('HomeController',
+/*    .controller('HomeController',
         function ($scope, $http, apiUrl, IssueService) {
 
             $scope.loadIssuesByUser = function () {
@@ -153,9 +153,9 @@ angular.module('citizen-engagement.newIssueCtrl', [])
             });
 
 
-        })
+        })*/
 
-    .controller('ProfileController',
+/*    .controller('ProfileController',
         function ($scope, $http, apiUrl, AuthService, IssueService) {
 
             $scope.loadUserInfo = function () {
@@ -188,24 +188,9 @@ angular.module('citizen-engagement.newIssueCtrl', [])
             });
 
 
-        })
+        })*/
 
-    .controller("CameraTestController", function (CameraService) {
 
-    })
 
-/*.controller("UserIssuesController", function (CameraService) {
-
- });*/
-
-/*
- TODO
- {
- "description": "Integer at metus vitae erat porta pellentesque.",
- "lng": "6.651479812689227",
- "lat": "46.77227088657382",
- "imageUrl": "http://www.somewhere.localhost.localdomain",
- "issueTypeId": "54d8ae183fd30364605c81b1"
- }*/
 
 
