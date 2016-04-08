@@ -3,10 +3,24 @@
         <ion-list ng-controller="IssueListCtrl"
                   can-swipe="listCanSwipe">
                   <div class="filterListIssue">
-                    <h3>Filter</h3>
+                    <h3>Filters</h3>
+                  <form>
+                  <label class="item item-input item-select">
+                  <div class="input-label">
+                    Type
+                  </div>
                   <select  ng-model="issue.issueTypeId">
                     <option ng-model="issue.id" ng-repeat='issueType in issueTypes' value="{{issueType.id}}">{{issueType.name}}</option>
-                  </select> <label><input type="radio" value="">My Issues</label>
+                  </select>
+                </label>
+                  <label class="item item-input">
+                    <span class="input-label">Date</span>
+                    <input type="date">
+                  </label>
+                  <ion-list>
+                    <ion-radio ng-model="choice" ng-value="'A'">My issues</ion-radio>
+                  </ion-list>
+                </form>
                 </div>
             <ion-item ng-repeat="issue in issues"
                       class="item-thumbnail-left"

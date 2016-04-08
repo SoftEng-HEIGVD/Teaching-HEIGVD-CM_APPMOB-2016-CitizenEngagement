@@ -25,24 +25,10 @@ angular.module('citizen-engagement.citizenCtrl',['geolocation'])
 
                 });
             };
-            $scope.issues=[];
-
-            var counter=0;
 
             $scope.loadIssues=function(){
-
-                counter++;
-                console.log(counter);
-
-                $http.get(apiUrl+'/issues',
-                    {
-                        headers:{
-
-                            'x-pagination':"0;10"
-                        }
-
-                    }).success(function(issues){
-                    $scope.issues=$scope.issues.concat(issues);
+                $http.get(apiUrl+'/issues').success(function(issues){
+                    $scope.issues=issues;
                 })
             };
 
@@ -51,14 +37,8 @@ angular.module('citizen-engagement.citizenCtrl',['geolocation'])
                 geolocation.getLocation().then(function(data){
                     issue.lat=data.coords.latitude;
                     issue.lng=data.coords.longitude;
-
-
-
                     issue.imageUrl="http://marieclaudeducas.com/wp-content/uploads/2015/08/Cecil-the-Lion.jpg";
-
                     console.log(issue);
-
-
                 })
                 $http({
                     method: 'POST',
@@ -66,12 +46,6 @@ angular.module('citizen-engagement.citizenCtrl',['geolocation'])
                     data: issue
 
                 });
-
-
-
-
-
-
 
      /*         $scope.lng.myIssueLng;
                 $scope.lat.myIssueLat;
@@ -88,14 +62,8 @@ angular.module('citizen-engagement.citizenCtrl',['geolocation'])
 
 
             }
-
-
-
-
-
             $scope.loadIssues();
             $scope.loadIssueType();
-
 
         })
 
@@ -116,9 +84,3 @@ angular.module('citizen-engagement.citizenCtrl',['geolocation'])
         }
 
     )
-
-
-
-
-
-        
