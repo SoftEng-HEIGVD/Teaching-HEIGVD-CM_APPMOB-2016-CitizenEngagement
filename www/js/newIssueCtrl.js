@@ -31,14 +31,21 @@ angular.module('citizen-engagement.newIssueCtrl', [])
             $scope.loadIssueTypes();
 
 
-            $scope.data = {};
+            $scope.issue = {};
 
             $scope.submit = function(){
-                console.log("je test ma")
+                console.log("je test")
                 var link = apiUrl + '/issues'
-                    $http.post(link, {type : $scope.issue.issueTypeId}).then(function (res){
-                        console.log($scope.data.issueTypeId);
-                        $scope.response = res.data;
+                    $http.post(link, {
+                        type : $scope.issue.issueTypeId,
+                        description: $scope.issue.description,
+
+
+
+                    }).then(function (res){
+                        console.log("0 " + $scope.issue.issueTypeId);
+                        console.log("1 " + $scope.issue.description);
+                        $scope.response = res.issue;
                     });
                 };
 
