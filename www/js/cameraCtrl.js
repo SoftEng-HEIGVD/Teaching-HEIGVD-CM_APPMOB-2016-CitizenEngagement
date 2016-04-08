@@ -21,7 +21,7 @@ angular.module('citizen-engagement.cameraCtrl',[])
     quality: 75,
     targetWidth: 500,
     targetHeight: 500,
-    // return base64-encoded data instead of a file
+    // return base64-encoded data instead of a fileg
     destinationType: Camera.DestinationType.DATA_URL
     }).then(function(imageData) {
       // upload the image
