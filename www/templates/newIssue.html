@@ -22,16 +22,32 @@
                 </label>
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Image URL</span>
-                    <input type="text" name="imageUrl" placeholder="http://www.example.com/image.jpg" ng-model="issue.issueUrl">
+                    <input type="text" name="imageUrl" placeholder="http://www.example.com/image.jpg"
+                           ng-model="issue.issueUrl">
                 </label>
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Longitude</span>
-                    <input type="text" name="lng" placeholder="6.651479812689227" ng-model="issue.lng">
-                </label>
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Latitude</span>
-                    <input type="text" name="lat" placeholder="46.77227088657382" ng-model="issue.lat">
-                </label>
+
+
+                <button class="button button-large button-positive">
+                 <span class="icon ion-ios-camera"></span>   upload image
+                </button>
+
+                <div ng-controller="NewIssueMapController">
+                    <div class="item item-body" >
+                        <leaflet class="full-image" defaults="mapDefaults" center="mapCenter" markers="mapMarkers"
+                                 height="200px" data-tap-disabled="true"></leaflet>
+
+                    </div>
+
+
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Longitude</span>
+                        <input type="text" name="lng"  ng-model="issue.lng">
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Latitude</span>
+                        <input type="text" name="lat" placeholder="{{latitude}}" ng-model="issue.lat">
+                    </label>
+                </div>
             </div>
             <input class="button button-positive" type="submit" name="submit" value="Send">
         </form>
