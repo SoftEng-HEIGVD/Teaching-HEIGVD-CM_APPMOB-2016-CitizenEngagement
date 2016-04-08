@@ -8,7 +8,7 @@
     },
     {
         "path": "/qimg-proxy",
-        "prxyUrl": "https://warm-bastion-3094.herokuapp.com/api"  
+        "proxyUrl": "https://warm-bastion-3094.herokuapp.com/api"
     }
   ]
 }

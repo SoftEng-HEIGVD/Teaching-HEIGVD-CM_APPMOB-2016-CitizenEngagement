@@ -1,6 +1,5 @@
 angular.module('FixYourStreet.map', ['geolocation'])
 
-
   .controller("MapController", function($rootScope,$scope,$log,$http,$ionicLoading,$state, geolocation, leafletData, IssueService, mapboxMapId, mapboxAccessToken, $ionicModal) {
 
     // Markers
@@ -116,7 +115,7 @@ angular.module('FixYourStreet.map', ['geolocation'])
         $scope.resultPlaces = result.features;
       }).error(function (error) {
         $ionicLoading.hide();
-        $scope.error = 'Could not retrieve any places..';
+        $log.error("Could not retrieve any places: " + error);
       })
     };
 

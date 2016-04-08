@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directive', 'FixYourStreet.constants', 'FixYourStreet.listIssue', 'FixYourStreet.map', 'yaru22.angular-timeago', 'ionic-native-transitions'])
+angular.module('FixYourStreet', ['ionic', 'leaflet-directive', 'FixYourStreet.auth', 'FixYourStreet.comments','FixYourStreet.constants', 'FixYourStreet.issues', 'FixYourStreet.map', 'yaru22.angular-timeago', 'ionic-native-transitions'])
 
         .run(function ($ionicPlatform) {
             $ionicPlatform.ready(function () {
@@ -31,64 +31,62 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
             // Each state's controller can be found in controllers.js
             $stateProvider
 
-                    .state('home', {
-                        url: '/home',
-                        controller: 'MapController',
-                        templateUrl: 'templates/home.html'
-                    })
+                .state('home', {
+                    url: '/home',
+                    controller: 'MapController',
+                    templateUrl: 'templates/home.html'
+                })
 
-                    .state('commentsList', {
-                        url: '/commentsList/:issueId',
-                        controller: 'ListCtrl',
-                        templateUrl: 'templates/commentsList.html'
-                    })
+                .state('commentsList', {
+                    url: '/commentsList/:issueId',
+                    controller: 'commentsList',
+                    templateUrl: 'templates/commentsList.html'
+                })
 
-                    .state('newComment', {
-                        url: '/newComment/:issueId',
-                        templateUrl: 'templates/newComment.html',
-                        controller: 'newComment'
-                    })
+                .state('newComment', {
+                    url: '/newComment/:issueId',
+                    templateUrl: 'templates/newComment.html',
+                    controller: 'newComment'
+                })
 
-                    .state('fullImg', {
-                        url: '/fullImg',
-                        params: {
-                            imageUrl: null,
-                        },
-                        nativeTransitions: {
-                            "type": "fade",
-                            "duration": 500,
-                        },
-                        templateUrl: 'templates/fullImg.html',
-                        controller: function ($scope, $stateParams) {
-                            $scope.imageUrl = $stateParams.imageUrl;
-                        }
-                    })
+                .state('fullImg', {
+                    url: '/fullImg',
+                    params: {
+                        imageUrl: null,
+                    },
+                    nativeTransitions: {
+                        "type": "fade",
+                        "duration": 500,
+                    },
+                    templateUrl: 'templates/fullImg.html',
+                    controller: function ($scope, $stateParams) {
+                        $scope.imageUrl = $stateParams.imageUrl;
+                    }
+                })
 
-                    .state('newIssue', {
-                        url: '/newIssue',
-                        templateUrl: 'templates/newIssue.html'
-                    })
+                .state('newIssue', {
+                    url: '/newIssue',
+                    templateUrl: 'templates/newIssue.html'
+                })
 
-                    .state('issueDetails', {
-                        url: '/issueDetails/:issueId',
-                        controller: 'issueDetails',
-                        templateUrl: 'templates/issueDetails.html'
-                    })
+                .state('issueDetails', {
+                    url: '/issueDetails/:issueId',
+                    controller: 'issueDetails',
+                    templateUrl: 'templates/issueDetails.html'
+                })
 
-                    .state('issueList', {
-                        url: '/issueList',
-                        templateUrl: 'templates/issueList.html'
-                    })
+                .state('issueList', {
+                    url: '/issueList',
+                    templateUrl: 'templates/issueList.html'
+                })
 
-                    .state('login', {
-                        url: '/login',
-                        controller: 'LoginCtrl',
-                        templateUrl: 'templates/login.html'
-                    })
+                .state('login', {
+                    url: '/login',
+                    controller: 'LoginCtrl',
+                    templateUrl: 'templates/login.html'
+                })
 
-                    ;
-
-
+                ;
 
 
             // Define the default state (i.e. the first screen displayed when the app opens).
@@ -115,7 +113,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
         })
 
 
-        //Controller pour la création des issues
+        //Controller pour la crÃ©ation des issues
         .controller("IssueCtrl", function (apiUrl, $scope, $http, $filter) {
             $scope.inputs = [{
                     value: null
@@ -176,7 +174,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
         })
 
 
-        //controller pour les tags (je n'y ai pas touché)
+        //controller pour les tags (je n'y ai pas touchÃ©)
         .controller("TagsCtrl", function ($scope) {
             $scope.inputs = [{
                     value: null
@@ -195,89 +193,10 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
         })
 
 
-        //controller pour créer un nouveau commment
-        .controller("newComment", function ($scope, $stateParams, $state, $http, apiUrl) {
-            $scope.inputs = [{
-                    value: null
-                }];
-
-            $scope.goToNewComment = function (issue) {
-                $state.go("newComment", {issueId: issue.id});
-            };
-
-            $scope.createComment = function () {
-                var comment = {
-                    type: "comment",
-                    payload: {
-                        text: $scope.someText
-                    }
-                }
-                $http({
-                    method: 'POST',
-                    url: apiUrl + '/issues/' + $stateParams.issueId + '/actions',
-                    data: comment,
-                    headers: {
-                        'x-sort': 'updatedOn'
-                    }
-                })
-                        .success(function (createdComment) {
-                            console.log(createdComment);
-                        },
-                                function error() {
-                                    console.log("Erreur pas encore faite");
-                                });
-            }
-        })
-
-
-
-        //controller pour affiche les details d'une issue
-        .controller('issueDetails', function (apiUrl, $http, $scope, $stateParams, $ionicLoading, $log, $state, IssueService, mapboxMapId, mapboxAccessToken) {
-            // The $ionicView.beforeEnter event happens every time the screen is displayed.
-            $scope.$on('$ionicView.beforeEnter', function () {
-                // Re-initialize the user object every time the screen is displayed.
-                // The first name and last name will be automatically filled from the form thanks to AngularJS's two-way binding.
-                $scope.issues = {};
-            });
-            $scope.getAreaIssues = function () {
-                $http({
-                    method: 'GET',
-                    url: apiUrl + '/issues/' + $stateParams.issueId,
-                }).success(function (issue) {
-                    $scope.issue = issue;
-                }).error(function () {
-                    $scope.error = 'Could not retrieve Issues.';
-                });
-            };
-            $scope.getAreaIssues();
-
-
-        })
-
-
-        //controller pour afficher la liste des commentaires
-        .controller('ListCtrl', function ($scope, $stateParams, $http, apiUrl) {
-            // The $ionicView.beforeEnter event happens every time the screen is displayed.
-            $scope.$on('$ionicView.beforeEnter', function () {
-                // Re-initialize the user object every time the screen is displayed.
-                // The first name and last name will be automatically filled from the form thanks to AngularJS's two-way binding.
-                $scope.issues = {};
-            });
-            $http({
-                method: 'GET',
-                url: apiUrl + '/issues/' + $stateParams.issueId,
-            }).success(function (issue) {
-                $scope.issue = issue;
-            }).error(function () {
-                $scope.error = 'Could not retrieve Issues.';
-            });
-        })
-
-
         .controller("takePhoto", function ($scope, CameraService, $http, qimgUrl, qimgToken) {
-            console.log("controller takePhoto chargé");
+            console.log("controller takePhoto chargÃ©");
             $scope.takePhoto = function () {
-                console.log("scope takePhoto appelé");
+                console.log("scope takePhoto appelÃ©");
                 CameraService.getPicture({
                     quality: 75,
                     targetWidth: 400,
@@ -313,4 +232,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
                     return deferred.promise;
                 }
             }
-        });
+        })
+
+
+;
