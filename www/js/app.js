@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directive', 'FixYourStreet.constants', 'FixYourStreet.listIssue', 'FixYourStreet.map','yaru22.angular-timeago', 'ionic-native-transitions'])
+angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directive', 'FixYourStreet.constants', 'FixYourStreet.listIssue', 'FixYourStreet.map', 'yaru22.angular-timeago', 'ionic-native-transitions'])
 
         .run(function ($ionicPlatform) {
             $ionicPlatform.ready(function () {
@@ -51,16 +51,16 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
 
                     .state('fullImg', {
                         url: '/fullImg',
-                        params:{
-                          imageUrl: null,
+                        params: {
+                            imageUrl: null,
                         },
                         nativeTransitions: {
-                          "type": "fade",
-                          "duration":  500,
+                            "type": "fade",
+                            "duration": 500,
                         },
                         templateUrl: 'templates/fullImg.html',
-                        controller:function($scope, $stateParams){
-                          $scope.imageUrl = $stateParams.imageUrl;
+                        controller: function ($scope, $stateParams) {
+                            $scope.imageUrl = $stateParams.imageUrl;
                         }
                     })
 
@@ -115,7 +115,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
         })
 
 
-        //Controller pour la crï¿½ation des issues
+        //Controller pour la création des issues
         .controller("IssueCtrl", function (apiUrl, $scope, $http, $filter) {
             $scope.inputs = [{
                     value: null
@@ -128,8 +128,8 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
                 });
             }
 
+
             $scope.submitIssue = function () {
-                console.log($scope.tagValue);
                 $http({
                     method: 'GET',
                     url: apiUrl + '/issueTypes',
@@ -160,6 +160,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
                                                 },
                                                         function error() {
                                                             console.log("Erreur pas encore faite");
+
                                                         });
                                     },
                                             function error() {
@@ -175,7 +176,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
         })
 
 
-        //controller pour les tags (je n'y ai pas touchï¿½)
+        //controller pour les tags (je n'y ai pas touché)
         .controller("TagsCtrl", function ($scope) {
             $scope.inputs = [{
                     value: null
@@ -194,7 +195,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
         })
 
 
-        //controller pour crï¿½er un nouveau commment
+        //controller pour créer un nouveau commment
         .controller("newComment", function ($scope, $stateParams, $state, $http, apiUrl) {
             $scope.inputs = [{
                     value: null
@@ -231,7 +232,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
 
 
         //controller pour affiche les details d'une issue
-        .controller('issueDetails', function (apiUrl, $http, $scope, $stateParams, $ionicLoading,$log, $state, geolocation, IssueService, ReverseGeocoding, mapboxMapId, mapboxAccessToken) {
+        .controller('issueDetails', function (apiUrl, $http, $scope, $stateParams, $ionicLoading, $log, $state, IssueService, mapboxMapId, mapboxAccessToken) {
             // The $ionicView.beforeEnter event happens every time the screen is displayed.
             $scope.$on('$ionicView.beforeEnter', function () {
                 // Re-initialize the user object every time the screen is displayed.
@@ -241,7 +242,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
             $scope.getAreaIssues = function () {
                 $http({
                     method: 'GET',
-                    url: apiUrl + '/issues/' +$stateParams.issueId ,
+                    url: apiUrl + '/issues/' + $stateParams.issueId,
                 }).success(function (issue) {
                     $scope.issue = issue;
                 }).error(function () {
@@ -249,69 +250,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
                 });
             };
             $scope.getAreaIssues();
-
-
-            $ionicLoading.show({
-                template: 'Loading geolocation...',
-                delay: 750
-            });
-            geolocation.getLocation().then(function(data) {
-              $scope.mapCenter.lat = data.coords.latitude;
-              $scope.mapCenter.lng = data.coords.longitude;
-              $scope.mapCenter.zoom = 17;
-              $ionicLoading.hide();
-            }, function(error) {
-              $ionicLoading.hide();
-              $log.error("Could not get location: " + error);
-            });
-
-            var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId;
-            mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
-            $scope.mapDefaults = {
-              tileLayer: mapboxTileLayer
-            };
-            $scope.mapCenter = {
-              lat: 51.48,
-              lng: 0,
-              zoom:17
-            };
-
-            $scope.$on('leafletDirectiveMap.move', function(event){
-
-
-              //console.log(leafletBoundsHelpers);
-
-            });
-
-
-            $scope.mapMarkers = [];
-
-            IssueService.getAllIssuesArea(function(issues) {
-                  $scope.issues = issues;
-                  angular.forEach($scope.issues, function(issue) {
-
-                      $scope.mapMarkers.push({
-                          lat: issue.lat,
-                          lng: issue.lng,
-                          id: issue.id
-                      });
-                  });
-
-           }, function() {}, null);
-
-           $scope.$on('leafletDirectiveMarker.click', function(e, args) {
-             $state.go("issueDetails", { issueId: args.leafletEvent.target.options.id });
-            });
-
-
-            ReverseGeocoding.getPlaces(function(result) {
-                  $scope.resultPlaces = result.features;
-                  angular.forEach($scope.resultPlaces, function(place) {
-
-                      console.log(place.place_name);
-                  });
-
-            }, function() {}, null);
+          
 
         })
 
@@ -324,12 +263,51 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
                 // The first name and last name will be automatically filled from the form thanks to AngularJS's two-way binding.
                 $scope.issues = {};
             });
+            $http({
+                method: 'GET',
+                url: apiUrl + '/issues/' + $stateParams.issueId,
+            }).success(function (issue) {
+                $scope.issue = issue;
+            }).error(function () {
+                $scope.error = 'Could not retrieve Issues.';
+            });
+        })
+
+
+        .factory("CameraService", function ($q) {
+            return {
+                getPicture: function (options) {
+                    var deferred = $q.defer();
+                    navigator.camera.getPicture(function (result) {
+                        //code
+                        deferred.resolve(result);
+                    }, function (err) {
+                        deferred.reject(err);
+                    }, options);
+                    return deferred.promise;
+                }
+            }
+        })
+
+        .controller("AnyController", function (CameraService, $http, qimgUrl) {
+            CameraService.getPicture({
+                quality: 75,
+                targetWidth: 400,
+                targetHeight: 300,
+                destinationType: Camera.DestinationType.DATA_URL
+            }).then(function (imageData) {
                 $http({
-                    method: 'GET',
-                    url: apiUrl + '/issues/' + $stateParams.issueId,
-                }).success(function (issue) {
-                    $scope.issue = issue;
-                }).error(function () {
-                    $scope.error = 'Could not retrieve Issues.';
-                });
+                    method: "POST",
+                    url: qimgUrl + "/images",
+                    headers: {
+                        Authorization: "Bearer" + qimgToken
+                    },
+                    data: {
+                        data: imageData
+                    }
+                }).success(function (data) {
+                    var imageUrl = data.url;
+                    //do somethin with imageURL
+                })
+            });
         })

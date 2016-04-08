@@ -7,10 +7,7 @@
             <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
         </ion-nav-buttons>
     </ion-nav-bar>
-
     <ion-content>
-
-
         <ion-list ng-controller="ListCtrl">
             <ion-item ng-repeat="comment in issue.comments">
                 <div class="row">
@@ -26,5 +23,4 @@
     <ion-footer-bar class="bar-assertive" ng-controller="newComment">
         <button  class="button button-full button-calm" ui-sref="newComment({ issueId: issue.id })">Add a comment</button>
     </ion-footer-bar>
-
 </ion-view>
