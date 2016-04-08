@@ -250,7 +250,7 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
                 });
             };
             $scope.getAreaIssues();
-          
+
 
         })
 
@@ -274,12 +274,38 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
         })
 
 
+        .controller("takePhoto", function ($scope, CameraService, $http, qimgUrl, qimgToken) {
+            console.log("controller takePhoto chargé");
+            $scope.takePhoto = function () {
+                console.log("scope takePhoto appelé");
+                CameraService.getPicture({
+                    quality: 75,
+                    targetWidth: 400,
+                    targetHeight: 300,
+                    destinationType: Camera.DestinationType.DATA_URL}).then(function (imageData) {
+                    $http({
+                        method: "POST",
+                        url: qimgUrl + "/images",
+                        headers: {
+                            Authorization: "Bearer " + qimgToken
+                        },
+                        data: {
+                            data: imageData
+                        }
+                    }).success(function (data) {
+                        $scope.imageData = data;
+                        $scope.imageUrl = data.url;
+                    });
+                });
+            };
+        })
+
         .factory("CameraService", function ($q) {
             return {
                 getPicture: function (options) {
                     var deferred = $q.defer();
                     navigator.camera.getPicture(function (result) {
-                        //code
+                        // do any magic you need
                         deferred.resolve(result);
                     }, function (err) {
                         deferred.reject(err);
@@ -287,27 +313,4 @@ angular.module('FixYourStreet', ['ionic', 'FixYourStreet.auth', 'leaflet-directi
                     return deferred.promise;
                 }
             }
-        })
-
-        .controller("AnyController", function (CameraService, $http, qimgUrl) {
-            CameraService.getPicture({
-                quality: 75,
-                targetWidth: 400,
-                targetHeight: 300,
-                destinationType: Camera.DestinationType.DATA_URL
-            }).then(function (imageData) {
-                $http({
-                    method: "POST",
-                    url: qimgUrl + "/images",
-                    headers: {
-                        Authorization: "Bearer" + qimgToken
-                    },
-                    data: {
-                        data: imageData
-                    }
-                }).success(function (data) {
-                    var imageUrl = data.url;
-                    //do somethin with imageURL
-                })
-            });
-        })
+        });

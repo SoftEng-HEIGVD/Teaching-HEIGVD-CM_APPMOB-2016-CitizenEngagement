@@ -9,9 +9,14 @@
     </ion-nav-bar>
 
     <ion-content>
-        <div ng-controller="IssueCtrl">
-            <a class="button ion-camera" ui-sref="issueDetails"></a>
-
+        <div ng-controller="IssueCtrl">          
+            <!---<a class="button ion-camera" ui-sref="issueDetails"></a>--->
+            <br/>
+            <br/>
+            <button  ng-controller="takePhoto" class="button ion-camera" ng-click="takePhoto()">
+            Take a photo
+            </button>
+     
             <div class="list">
 
                 <label class="item item-input item-select">
