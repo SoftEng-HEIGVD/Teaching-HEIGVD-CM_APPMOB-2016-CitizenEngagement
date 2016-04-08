@@ -90,10 +90,10 @@ angular.module('citizen-engagement.newIssueCtrl', [])
     .factory('IssueService', function ($http, apiUrl) {
         var service = {
 
-            findIssuesByUser: function () {
+            findIssuesByUser: function () { //TODO
 
                 return $http.get(apiUrl + '/me/issues',
-                    {headers: {'x-sort': 'createdOn'}}).success(function (issues) {
+                    {headers: {'x-sort': '-createdOn'}}).success(function (issues) {
                     console.log(issues);
                     return issues; //appel rend une promesse qui sera résolu avec les issues quand le résultat sera arrivé --> .then possible
 
@@ -133,7 +133,11 @@ angular.module('citizen-engagement.newIssueCtrl', [])
                 });
 
             }
-            $scope.loadIssuesByUser();
+            $scope.$on('$ionicView.beforeEnter', function () {
+
+                $scope.loadIssuesByUser();
+            });
+
 
         })
 
@@ -153,7 +157,7 @@ angular.module('citizen-engagement.newIssueCtrl', [])
 
                 });
             }
-            $scope.loadUserInfo();
+
 
             $scope.countIssues = function () {
                 IssueService.findIssuesByUser().then(function (issues) {
@@ -162,8 +166,12 @@ angular.module('citizen-engagement.newIssueCtrl', [])
 
 
                 });
-            };
-            $scope.countIssues();
+            }; $scope.$on('$ionicView.beforeEnter', function () {
+                $scope.issues = null;
+                $scope.loadUserInfo();
+                $scope.countIssues();
+            });
+
 
         })
 

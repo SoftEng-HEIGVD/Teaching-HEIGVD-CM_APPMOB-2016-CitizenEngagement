@@ -152,10 +152,17 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                 templateUrl: 'templates/login.html'
             })
 
-            .state('userListIssues', {
+
+
+            .state('menu.userListIssues', {
                 url: '/userListIssues',
-                controller: 'UserIssuesController', //TODO check if put "menu" before so that the workflow works
-                templateUrl: 'templates/userListIssues.html'
+
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/userListIssues.html',
+                        controller: 'UserIssuesController'
+                    }
+                }
             })
 
             .state('roleSelection', {
