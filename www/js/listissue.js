@@ -42,39 +42,30 @@ angular.module('FixYourStreet.listIssue', [])
 })
 
 .service('IssueService', ['$http', 'apiUrl', function($http, apiUrl) {
-      var match = {
-        "loc": {
-          "$geoWithin": {
-            "$centerSphere" : [
-              [ 6.622009 , 46.766129 ],
-              0.1
-            ]
-          }
-        }
-      };
 
-    this.getAllIssuesArea = function (successCallback, errorCallback) {
+    this.getAllIssuesArea = function (bbox, callback) {
         $http({
           method: 'POST',
           url: apiUrl + '/issues/search',
           headers: {
             'x-sort': 'updatedOn'
           },
-          data: match,
-      }).success(successCallback)
-      .error(errorCallback)
+          data:{
+            "$and": [ {
+              "lat": {
+                "$gte": bbox._southWest.lat,
+                "$lte": bbox._northEast.lat
+              }
+              }, {
+                "lng": {
+                  "$gte": bbox._southWest.lng,
+                  "$lte": bbox._northEast.lng
+                }
+              }
+            ]
+          }
+      }).success(callback)
     }
 }])
-
-.service('ReverseGeocoding', ['$http', 'apiUrl','mapboxAccessToken', function($http, apiUrl, mapboxAccessToken) {
-    this.getPlaces = function (successCallback, errorCallback) {
-        $http({
-          method: 'GET',
-          url: 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + 'Yverdon' + '.json?access_token=' + mapboxAccessToken
-      }).success(successCallback)
-      .error(errorCallback)
-    }
-}])
-
 
 ;

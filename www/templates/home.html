@@ -25,18 +25,12 @@
           <i class="icon ion-ios-search placeholder-icon"></i>
           <input type="search" ng-model="searchIn" ng-keyup="$event.keyCode == 13 && searchPlace(searchIn)" placeholder="Search a place">
         </label>
+        <button class="button  button-stable" ng-click="modalSearch.hide()">Cancel</button>
       </div>
 
       <ion-content class="padding has-header">
-
-        <ion-list>
-            <ion-item ng-repeat="resultPlace in resultPlaces">
-              <h2>{{resultPlace.place_name}}</h2>
-              <p></p>
-            </ion-item>
-        </ion-list>
-
-        <button class="button button-full  button-stable" ng-click="modalSearch.hide()">Cancel</button>
+        <button class="button button-stable button-clear button-full " ng-click="changeMapCenter({{resultPlace.bbox}})" ng-repeat="resultPlace in resultPlaces">{{resultPlace.place_name}}</button>
+        <button class="button button-full button-calm"  ng-click="searchPlace(searchIn)">Submit</button>
       </ion-content>
     </ion-modal-view>
 </script>
