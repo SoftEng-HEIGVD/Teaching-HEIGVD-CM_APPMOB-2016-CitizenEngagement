@@ -131,36 +131,31 @@ angular.module('FixYourStreet', ['ionic', 'leaflet-directive', 'FixYourStreet.au
                 $http({
                     method: 'GET',
                     url: apiUrl + '/issueTypes',
-                })
-                        .success(function (allType) {
-                            var myFilteredType = $filter('filter')(allType, {name: $scope.type});
-                            var typeId = myFilteredType[0].id;
-                            $http({
-                                method: 'GET',
-                                url: apiUrl + '/issueTypes/' + typeId,
-                            })
-                                    .success(function (typeChoosen) {
-                                        var newIssue = {
-                                            description: $scope.description,
-                                            tags: $scope.tagValue,
-                                            issueTypeId: typeChoosen.id,
-                                            lat: "46.780806678050126",
-                                            lng: "6.630673501428493",
-                                            imageUrl: "https://departmentfortransport.files.wordpress.com/2014/02/bb2-vzyimaaw3cx-large.jpg",
-                                        }
-                                        $http({
-                                            method: 'POST',
-                                            url: apiUrl + '/issues',
-                                            data: newIssue
-                                        })
-                                                .success(function (createdIssue) {
-                                                    console.log(createdIssue);
-                                                },
-                                                        function error() {
-                                                            console.log("Erreur pas encore faite");
-
-                                                        });
-                                    },
+                }).success(function (allType) {
+                      var myFilteredType = $filter('filter')(allType, {name: $scope.type});
+                      var typeId = myFilteredType[0].id;
+                      $http({
+                          method: 'GET',
+                          url: apiUrl + '/issueTypes/' + typeId,
+                      }).success(function (typeChoosen) {
+                          var newIssue = {
+                              description: $scope.description,
+                              tags: $scope.tagValue,
+                              issueTypeId: typeChoosen.id,
+                              lat: "46.780806678050126",
+                              lng: "6.630673501428493",
+                              imageUrl: $scope.imageUploadedUrl,
+                          }
+                          $http({
+                              method: 'POST',
+                              url: apiUrl + '/issues',
+                              data: newIssue
+                            }).success(function (createdIssue) {
+                                console.log(createdIssue);
+                                },function error() {
+                                  console.log("Erreur pas encore faite");
+                                  });
+                                },
                                             function error() {
                                                 console.log("Erreur pas encore faite");
                                             });
@@ -181,7 +176,6 @@ angular.module('FixYourStreet', ['ionic', 'leaflet-directive', 'FixYourStreet.au
                 }];
 
             $scope.addInput = function () {
-                console.log("new input");
                 $scope.inputs.push({
                     value: null
                 });
@@ -194,9 +188,7 @@ angular.module('FixYourStreet', ['ionic', 'leaflet-directive', 'FixYourStreet.au
 
 
         .controller("takePhoto", function ($scope, CameraService, $http, qimgUrl, qimgToken) {
-            console.log("controller takePhoto chargé");
             $scope.takePhoto = function () {
-                console.log("scope takePhoto appelé");
                 CameraService.getPicture({
                     quality: 75,
                     targetWidth: 400,
@@ -212,8 +204,10 @@ angular.module('FixYourStreet', ['ionic', 'leaflet-directive', 'FixYourStreet.au
                             data: imageData
                         }
                     }).success(function (data) {
-                        $scope.imageData = data;
-                        $scope.imageUrl = data.url;
+                        $scope.imageUploadedData = data;
+                        $scope.imageUploadedUrl = data.url;
+                    }).error(function(error){
+                        $log.error(error);
                     });
                 });
             };
