@@ -17,7 +17,7 @@ angular.module('citizen-engagement.newIssueCtrl', [])
         }
     })
     .controller('NewIssueCtrl',
-        function ($scope, $http, apiUrl) {
+        function ($scope, $http, apiUrl, GeolocServiceFla) {
             $scope.loadIssueTypes = function () {
                 console.log("ok");
                 $http.get(apiUrl + '/issueTypes').success(function (issueTypes) {
@@ -29,11 +29,15 @@ angular.module('citizen-engagement.newIssueCtrl', [])
                 });
             };
             $scope.loadIssueTypes();
+            GeolocServiceFla.locateUser().then(function(coords){
+                console.log("lat 1:" + coords.latitude);
+            });
 
 
             $scope.issue = {};
 
             $scope.submit = function(){
+
                 console.log("je test")
                 var link = apiUrl + '/issues'
                     $http.post(link, {
@@ -49,7 +53,7 @@ angular.module('citizen-engagement.newIssueCtrl', [])
                         console.log("0 " + $scope.issue.issueTypeId);
                         console.log("1 " + $scope.issue.description);
                         $scope.response = res.issue;
-                        console.log('voilà la réponse: ' + $scope.reponse);
+                        console.log('voilà la réponse: ' + $scope.response);
                     });
                 };
 
@@ -59,7 +63,7 @@ angular.module('citizen-engagement.newIssueCtrl', [])
 
 
 
-            //TODO post function
+          /*  //TODO post function
             $scope.saveIssue = function () {
                 console.log("ok");
                 $http.post(apiUrl + '/issues').success(function (issue) {
@@ -68,7 +72,7 @@ angular.module('citizen-engagement.newIssueCtrl', [])
                     console.log(issue);
 
                 });
-            };
+            };*/
 
 
             $scope.takePicture = function (CameraService) {
@@ -179,9 +183,9 @@ angular.module('citizen-engagement.newIssueCtrl', [])
 
     })
 
-    .controller("UserIssuesController", function (CameraService) {
+    /*.controller("UserIssuesController", function (CameraService) {
 
-    });
+    });*/
 
 /*
  TODO

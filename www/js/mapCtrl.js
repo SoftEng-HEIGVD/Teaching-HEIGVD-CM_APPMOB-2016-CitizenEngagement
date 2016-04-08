@@ -174,6 +174,42 @@ angular.module('citizen-engagement.mapCtrl', [])
 
     })
 
+    .controller("NewIssueMapController", function ($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocServiceFla, $stateParams) {
+        var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId; //openlayers --> mapbox
+        mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
+        $scope.mapDefaults = {
+            tileLayer: mapboxTileLayer
+        };
+        $scope.mapCenter = {};
+        $scope.latitude = "";
+        $scope.longitude = "";
+
+        $scope.mapMarkers = [];
+
+
+
+        GeolocServiceFla.locateUser().then(function (coords) {
+            $scope.mapCenter = {
+                lat: coords.latitude,
+                lng: coords.longitude,
+                zoom: 15
+            };
+
+            $scope.mapMarkers.push({
+                lat: coords.latitude,
+                lng: coords.longitude
+
+            });
+
+            $scope.issue.lat = coords.latitude;
+            $scope.issue.lng = coords.longitude;
+
+        });
+
+
+
+    })
+
 
     .controller("UserIssuesController", function ($scope, $http, AuthService, apiUrl, IssueService) {
         $scope.loadUserInfo = function () {
