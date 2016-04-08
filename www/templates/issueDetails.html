@@ -8,7 +8,6 @@
         </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content>
-        <leaflet defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="300px" data-tap-disabled="true"></leaflet>
         <span ng-if='!issue.imageUrl'><img  src='img/NoImageAvailable.jpg' style="width:100%" alt="No Image Available" /></span>
         <span ng-if='issue.imageUrl'><a ui-sref='fullImg({imageUrl: issue.imageUrl})'><img ng-src='{{issue.imageUrl}}' style="width:100%" /></a></span>
         <h2><time>{{issue.createdOn| timeAgo}}</time></h2>

@@ -1,7 +1,17 @@
 angular.module('FixYourStreet.map', ['geolocation'])
 
 
-  .controller("MapController", function($scope,$http,$ionicLoading,$state, geolocation, leafletData, IssueService, mapboxMapId, mapboxAccessToken, $ionicModal) {
+  .controller("MapController", function($rootScope,$scope,$log,$http,$ionicLoading,$state, geolocation, leafletData, IssueService, mapboxMapId, mapboxAccessToken, $ionicModal) {
+
+    // Markers
+    $scope.$on('leafletDirectiveMap.moveend', function (event) {
+        $scope.getIssues();
+    });
+
+    // Redirection on click on a marker to the details page
+    $scope.$on('leafletDirectiveMarker.click', function(e, args) {
+      $state.go("issueDetails", { issueId: args.leafletEvent.target.options.id });
+    });
 
     // Default position on the map (World centered on Europe)
     $scope.mapCenter = {
@@ -11,15 +21,24 @@ angular.module('FixYourStreet.map', ['geolocation'])
     };
 
     // Get position of the user (if he allow to)
-    geolocation.getLocation().then(function(data) {
-      $scope.mapCenter = {
-        lat: data.coords.latitude,
-        lng: data.coords.longitude,
-        zoom:17
-      };
-    }, function(error) {
-      $log.error("Could not get location: " + error);
-    });
+    $scope.geolocateMap = function(bbox) {
+      $ionicLoading.show({
+          template: 'Localisation...',
+          delay: 750
+      });
+
+      geolocation.getLocation().then(function(data) {
+        $scope.mapCenter = {
+          lat: data.coords.latitude,
+          lng: data.coords.longitude,
+          zoom:17
+        };
+        $ionicLoading.hide();
+      }, function(error) {
+        $ionicLoading.hide();
+        $log.error("Could not get location: " + error);
+      });
+    };
 
     // Set the layer to mapbox custom map
     var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId;
@@ -28,20 +47,18 @@ angular.module('FixYourStreet.map', ['geolocation'])
       tileLayer: mapboxTileLayer
     };
 
-    // Markers
-    $scope.$on('leafletDirectiveMap.moveend', function (event) {
+    // Get the issue within the bounds
+    $scope.getIssues = function() {
       leafletData.getMap().then(function (map) {
 
-
-        $scope.mapMarkers = [];
           var bbox = map.getBounds();
 
           IssueService.getAllIssuesArea(bbox, function(issues) {
-                $scope.issues = issues;
-                console.log('hepmap');
-                console.log(issues);
+                $rootScope.issuesBounds = issues;
 
-                angular.forEach($scope.issues, function(issue) {
+                $scope.mapMarkers = [];
+
+                angular.forEach($rootScope.issuesBounds, function(issue) {
 
                     $scope.mapMarkers.push({
                         lat: issue.lat,
@@ -50,17 +67,15 @@ angular.module('FixYourStreet.map', ['geolocation'])
                     });
                 });
 
-         }, function() {}, null);
-
+         }, function(error) {
+           $log.error("Could not get/set markers: " + error);
+         });
       });
+    };
 
-    });
-
-    $scope.$on('leafletDirectiveMarker.click', function(e, args) {
-     $state.go("issueDetails", { issueId: args.leafletEvent.target.options.id });
-    });
-
+    // Change the map center with a bbox
     $scope.changeMapCenter = function(bbox) {
+      // If the request is coming from the modalSearch
       if($scope.modalSearch.show()){
         $scope.modalSearch.hide();
       }
@@ -75,7 +90,6 @@ angular.module('FixYourStreet.map', ['geolocation'])
     };
 
     // Search Modal Box
-
     $ionicModal.fromTemplateUrl('modalSearch.html', {
       scope: $scope,
       animation: 'slide-in-up'
@@ -89,7 +103,7 @@ angular.module('FixYourStreet.map', ['geolocation'])
 
     // Reverse geocoding with the api of mapbox for place, city, countries...
     $scope.searchPlace = function(searchIn) {
-
+      $scope.resultPlaces = [];
       $ionicLoading.show({
           template: 'Searching...',
           delay: 750

@@ -52,3 +52,11 @@
   	background-repeat: no-repeat;
   	background-position: center, center;
 }
+.button-localize{
+  position: absolute;
+    z-index: 1;
+    bottom: 20px;
+    right: 5px;
+    min-height:0;
+    min-width:0;
+}
