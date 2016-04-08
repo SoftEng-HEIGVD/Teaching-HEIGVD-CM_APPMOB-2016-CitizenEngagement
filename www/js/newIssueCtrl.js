@@ -49,7 +49,7 @@ angular.module('citizen-engagement.newIssueCtrl', [])
                         console.log("0 " + $scope.issue.issueTypeId);
                         console.log("1 " + $scope.issue.description);
                         $scope.response = res.issue;
-                        console.log('voilà la réponse: ' + $scope.reponse);
+                        console.log('voilà la réponse: ' + $scope.response);
                     });
                 };
 

@@ -86,47 +86,32 @@ angular.module('citizen-engagement.issueCtrl',[])
 
 
     .controller('NewCommentCtrl',
-        function ($scope, $http, apiUrl) {
+        function ($scope, $http, apiUrl, $stateParams) {
+            console.log("j'arrive à récupe le paramètre" + $stateParams);
+            var id = $stateParams.issueId;
+            console.log('id ' + id);
 
 
             $scope.comment = {};
 
             $scope.submit = function(){
                 console.log("je test")
-                var link = apiUrl + '/issues/actions/'
+                var link = apiUrl + '/issues/'+ id+'/actions/'
                 $http.post(link, {
-                    description: $scope.issue.description,
-                    lng: $scope.issue.lng,
-                    lat: $scope.issue.lat,
-                    imageUrl: $scope.issue.imageUrl,
-                    issueTypeId: $scope.issue.issueTypeId,
+                    type: "comment",
+                    payload:{
+                        text: $scope.action.payload.text
+                    }
+
 
 
 
                 }).then(function (res){
-                    console.log("0 " + $scope.issue.issueTypeId);
-                    console.log("1 " + $scope.issue.description);
-                    $scope.response = res.issue;
+                    console.log("0 " + $scope.action.payload.text);
+                    $scope.response = res.comment;
                     console.log('voilà la réponse: ' + $scope.reponse);
                 });
             };
-
-
-
-
-
-
-
-            //TODO post function
-            $scope.saveIssue = function () {
-                console.log("ok");
-                $http.post(apiUrl + '/issues').success(function (issue) {
-
-
-                    console.log(issue);
-
-                });
-            }
 
 
         }
