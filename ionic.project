@@ -7,8 +7,8 @@
       "proxyUrl": "https://heigvd-cm-appmob-2016-team-07.herokuapp.com/api"
     },
     {
-                                 "path": "/qimg-proxy",
-                                 "proxyUrl": "https://warm-bastion-3094.herokuapp.com/api"
-                               }
+      "path": "/qimg-proxy",
+      "proxyUrl": "https://warm-bastion-3094.herokuapp.com/api"
+    }
   ]
 }
