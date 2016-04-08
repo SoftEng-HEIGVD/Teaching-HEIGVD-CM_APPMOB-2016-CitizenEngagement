@@ -1,6 +1,6 @@
 angular.module('citizen-engagement.newIssueCtrl', [])
 
-    .factory("CameraService", function ($q) {
+  /*  .factory("CameraService", function ($q) {
         return {
             getPicture: function (options) {
                 var deferred = $q.defer();
@@ -15,9 +15,9 @@ angular.module('citizen-engagement.newIssueCtrl', [])
                 return deferred.promise;
             }
         }
-    })
+    })*/
     .controller('NewIssueCtrl',
-        function ($scope, $http, apiUrl, GeolocServiceFla) {
+        function ($scope, $http, apiUrl, GeolocServiceFla, CameraService, qimgUrl, qimgToken) {
             $scope.loadIssueTypes = function () {
                 console.log("ok");
                 $http.get(apiUrl + '/issueTypes').success(function (issueTypes) {
@@ -29,53 +29,56 @@ angular.module('citizen-engagement.newIssueCtrl', [])
                 });
             };
             $scope.loadIssueTypes();
-            GeolocServiceFla.locateUser().then(function(coords){
+            GeolocServiceFla.locateUser().then(function (coords) {
                 console.log("lat 1:" + coords.latitude);
             });
 
 
             $scope.issue = {};
 
-            $scope.submit = function(){
+            $scope.submit = function () {
 
                 console.log("je test")
-                var link = apiUrl + '/issues'
+                $http({
+                    method: "POST",
+                    url: qimgUrl + "/images",
+                    headers: {
+                        Authorization: "Bearer " + qimgToken
+                    },
+                    data: {
+                        data: $scope.imageData
+                    }
+                }).success(function(data) {
+                    var imageUrl = data.url;
+                    $scope.issue.imageUrl = imageUrl;
+                    console.log($scope.issue.imageUrl);
+
+                    var link = apiUrl + '/issues'
                     $http.post(link, {
                         description: $scope.issue.description,
                         lng: $scope.issue.lng,
                         lat: $scope.issue.lat,
+                        //imageUrl: $scope.issue.imageUrl,
                         imageUrl: $scope.issue.imageUrl,
                         issueTypeId: $scope.issue.issueTypeId,
 
 
-
-                    }).then(function (res){
+                    }).then(function (res) {
                         console.log("0 " + $scope.issue.issueTypeId);
                         console.log("1 " + $scope.issue.description);
                         $scope.response = res.issue;
                         console.log('voilà la réponse: ' + $scope.response);
                     });
-                };
 
-
-
-
-
-
-
-          /*  //TODO post function
-            $scope.saveIssue = function () {
-                console.log("ok");
-                $http.post(apiUrl + '/issues').success(function (issue) {
-
-
-                    console.log(issue);
-
+                }).error(function(error){
+                    console.log("error: " + JSON.stringify(arguments));
                 });
-            };*/
 
 
-            $scope.takePicture = function (CameraService) {
+
+            };
+            $scope.takePicture = function () {
+                console.log("picture");
                 CameraService.getPicture({
                     quality: 75,
                     targetWidth: 400,
@@ -83,7 +86,14 @@ angular.module('citizen-engagement.newIssueCtrl', [])
                     destinationType: Camera.DestinationType.DATA_URL
                 }).then(function (imageData) {
                     $scope.imageData = imageData;
+                    console.log($scope.imageData);
+
+
+
                 });
+
+
+
             };
 
 
@@ -170,7 +180,8 @@ angular.module('citizen-engagement.newIssueCtrl', [])
 
 
                 });
-            }; $scope.$on('$ionicView.beforeEnter', function () {
+            };
+            $scope.$on('$ionicView.beforeEnter', function () {
                 $scope.issues = null;
                 $scope.loadUserInfo();
                 $scope.countIssues();
@@ -183,9 +194,9 @@ angular.module('citizen-engagement.newIssueCtrl', [])
 
     })
 
-    /*.controller("UserIssuesController", function (CameraService) {
+/*.controller("UserIssuesController", function (CameraService) {
 
-    });*/
+ });*/
 
 /*
  TODO
@@ -196,3 +207,5 @@ angular.module('citizen-engagement.newIssueCtrl', [])
  "imageUrl": "http://www.somewhere.localhost.localdomain",
  "issueTypeId": "54d8ae183fd30364605c81b1"
  }*/
+
+
