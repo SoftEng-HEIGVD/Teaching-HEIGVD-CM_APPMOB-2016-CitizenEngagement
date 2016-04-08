@@ -55,6 +55,7 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
         // Add the register function to the scope.
         $scope.register = function () {
 
+
             // Forget the previous error (if any).
             delete $scope.error;
 
@@ -68,6 +69,7 @@ angular.module('citizen-engagement.auth', ['angular-storage'])
             $http({
                 method: 'POST',
                 url: apiUrl + '/users/logister',
+
                 data: $scope.user
             }).success(function (user) {
 

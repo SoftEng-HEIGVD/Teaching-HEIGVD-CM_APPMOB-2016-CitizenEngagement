@@ -20,19 +20,22 @@
                     <span class="input-label">Description</span>
                     <input type="text" name="description" placeholder="Description" ng-model="issue.description">
                 </label>
-                <label class="item item-input item-floating-label">
+                <!--<label class="item item-input item-floating-label">
                     <span class="input-label">Image URL</span>
                     <input type="text" name="imageUrl" placeholder="http://www.example.com/image.jpg"
                            ng-model="issue.issueUrl">
-                </label>
+                </label>-->
 
 
-                <button class="button button-large button-positive">
-                 <span class="icon ion-ios-camera"></span>   upload image
+                <button class="button button-large button-positive" type="button" ng-click="takePicture()">
+                    <span class="icon ion-ios-camera"></span> upload image
                 </button>
+                <p ng-if="imageData">Picture taken ({{ imageData.length | number }} bytes)</p>
+                <p ng-if="imageData"><img ng-src="data:image/png;base64,{{ imageData }}" width="100%"/></p>
+
 
                 <div ng-controller="NewIssueMapController">
-                    <div class="item item-body" >
+                    <div class="item item-body">
                         <leaflet class="full-image" defaults="mapDefaults" center="mapCenter" markers="mapMarkers"
                                  height="200px" data-tap-disabled="true"></leaflet>
 
@@ -41,7 +44,7 @@
 
                     <label class="item item-input item-floating-label">
                         <span class="input-label">Longitude</span>
-                        <input type="text" name="lng"  ng-model="issue.lng">
+                        <input type="text" name="lng" ng-model="issue.lng">
                     </label>
                     <label class="item item-input item-floating-label">
                         <span class="input-label">Latitude</span>
@@ -49,7 +52,7 @@
                     </label>
                 </div>
             </div>
-            <input class="button button-positive" type="submit" name="submit" value="Send">
+            <input class="button button-positive" type="submit" name="submit" value="Send"/>
         </form>
     </ion-content>
 </ion-view>

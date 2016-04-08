@@ -1,6 +1,6 @@
 angular.module('citizen-engagement.mapCtrl', [])
 
-    .factory('GeolocServiceFla', function (geolocation) {
+    .factory('GeolocServiceFla', function (geolocation, $log) {
         var service = {
 
             locateUser: function () {
