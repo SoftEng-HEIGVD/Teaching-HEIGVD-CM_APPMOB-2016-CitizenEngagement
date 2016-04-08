@@ -1,8 +1,8 @@
 angular.module('citizen-engagement')
 
 
-    .service('IssueService', ['$http', 'apiUrl', function($http, apiUrl, $ionicLoading) {
-        this.getAllIssues = function (successCallback, errorCallback, finallyCallback ) {
+    .service('IssueService', ['$http', 'apiUrl', function ($http, apiUrl, $ionicLoading) {
+        this.getAllIssues = function (successCallback, errorCallback, finallyCallback) {
             $http({
                 method: 'GET',
                 url: apiUrl + '/issues',
@@ -16,14 +16,14 @@ angular.module('citizen-engagement')
     }])
 
     // Get all issues
-    .controller('ListIssuesCtrl', function(apiUrl, IssueService, $scope, $http, $ionicLoading) {
-        $scope.getIssues = function() {
+    .controller('ListIssuesCtrl', function (apiUrl, IssueService, $scope, $http, $ionicLoading) {
+        $scope.getIssues = function () {
             IssueService.getAllIssues(
-                function(data) { // finallyCallback
+                function (data) { // finallyCallback
                     $scope.issues = data;
-                }, function(err) { // Error callback
+                }, function (err) { // Error callback
                     return err;
-                }, function() { // finallyCallback
+                }, function () { // finallyCallback
                     $scope.$broadcast('scroll.refreshComplete');
                     $ionicLoading.hide();
                 }
@@ -39,7 +39,7 @@ angular.module('citizen-engagement')
     })
 
     // Get specific issue
-    .controller('GetSpecificIssueCtrl', function(apiUrl, $scope, $state, $http, $ionicLoading, $stateParams) {
+    .controller('GetSpecificIssueCtrl', function (apiUrl, $scope, $state, $http, $ionicLoading, $stateParams) {
         $ionicLoading.show({
             template: 'Loading Issue',
             animation: 'fade-in',
@@ -49,20 +49,26 @@ angular.module('citizen-engagement')
         $http({
             method: 'GET',
             url: apiUrl + '/issues/' + $stateParams.issueId
-        }).success(function(issue) {
+        }).success(function (issue) {
             $scope.issue = issue;
-        }).error(function(error) {
+        }).error(function (error) {
             console.log("error");
-        }).finally(function() {
+        }).finally(function () {
             // Stop the ion-refresher from spinning
             $scope.$broadcast('scroll.refreshComplete');
             $ionicLoading.hide();
         });
 
+        $scope.buttonClickAddTags = function () {
+            console.log('coucou le formulaire de tags');
+            $state.go('mainMenu.issueAddTags');
+        };
+
+
     })
     // Add new issue
-    .controller('AddIssueCtrl', function(apiUrl, $scope, $http, $state, $stateParams,
-                                         $ionicLoading, $ionicHistory, geoService, storageService) {
+    .controller('AddIssueCtrl', function (apiUrl, $scope, $http, $state, $stateParams,
+                                          $ionicLoading, $ionicHistory, geoService, storageService) {
 
         $scope.issue = {};
         console.log($stateParams); // TODO: Marche pas !!!
@@ -79,11 +85,11 @@ angular.module('citizen-engagement')
         $http({
             method: 'GET',
             url: apiUrl + '/issueTypes'
-        }).success(function(data) {
+        }).success(function (data) {
             $scope.issueTypes = data;
-        }).error(function(error) {
+        }).error(function (error) {
             console.log('Could not get types');
-        }).finally(function() {
+        }).finally(function () {
             $ionicLoading.hide();
         });
         // Show Map
@@ -93,8 +99,9 @@ angular.module('citizen-engagement')
             geoService.buildMap($scope, coords);
 
         }
+
         var marker = {};
-        geoService.getLocation().then(buildMap).then(function() {
+        geoService.getLocation().then(buildMap).then(function () {
             var marker = $scope.mapCenter
             marker.draggable = true;
             $scope.mapMarkers.push(marker);
@@ -102,13 +109,13 @@ angular.module('citizen-engagement')
 
         });    // Add center marker
 
-        $scope.$on('leafletDirectiveMarker.move', function(e, args) {
+        $scope.$on('leafletDirectiveMarker.move', function (e, args) {
             $scope.issue.lat = $scope.mapCenter.lat;
             $scope.issue.lng = $scope.mapCenter.lng;
         });
 
         // Send issue on click
-        $scope.sendIssue = function() {
+        $scope.sendIssue = function () {
             $ionicHistory.nextViewOptions({
                 disableBack: true // Disable back button on next view
             });
@@ -122,19 +129,19 @@ angular.module('citizen-engagement')
                 method: 'POST',
                 url: apiUrl + '/issues',
                 data: $scope.issue
-            }).success(function(data) {
+            }).success(function (data) {
                 $ionicLoading.hide();
                 $state.go('mainMenu.issueDetails', {
                     issueId: data.id
                 });
-            }).error(function(error) {
+            }).error(function (error) {
                 console.log("error...");
             });
         }
     })
 
-    .controller('ListMyIssuesCtrl', function(apiUrl, $scope, $http, $ionicLoading) {
-        $scope.getIssues = function() {
+    .controller('ListMyIssuesCtrl', function (apiUrl, $scope, $http, $ionicLoading) {
+        $scope.getIssues = function () {
             $ionicLoading.show({
                 template: 'Loading your issues',
                 animation: 'fade-in',
@@ -144,18 +151,26 @@ angular.module('citizen-engagement')
             $http({
                 method: 'GET',
                 url: apiUrl + '/me/issues'
-            }).success(function(issues) {
+            }).success(function (issues) {
                 $ionicLoading.hide();
                 $scope.issues = issues;
-            }).error(function(error) {
+            }).error(function (error) {
                 $ionicLoading.hide();
                 console.log(error);
-            }).finally(function() {
+            }).finally(function () {
                 // Stop the ion-refresher from spinning
                 $scope.$broadcast('scroll.refreshComplete');
             });
         }
         $scope.getIssues();
+    })
+
+    .controller('AddTagsCtrl', function (apiUrl, $scope, $http, $state, $stateParams,
+                                         $ionicLoading) {
+        $scope.addTags = function () {
+            console.log('button click send tags');
+        }
+
     })
 
 ;

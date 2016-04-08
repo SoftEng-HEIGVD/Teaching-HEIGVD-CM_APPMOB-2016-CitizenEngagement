@@ -1,0 +1,19 @@
+<ion-view view-title="{{issue.description}}">
+    <ion-content>
+        <ion-view view-title="Add Tags">
+            <ion-content>
+                <div class="issueDetailsAddTags">
+
+
+                        <label for="tag">Liste de tags</label>
+                        <input name="tag" ng-model="issue.tag"/>
+
+                        <button class="button button-energized" ng-click="addTags()" ng-disabled="createIssue.$invalid">
+                            Add Tags
+                        </button>
+
+            </ion-content>
+        </ion-view>
+    </ion-content>
+</ion-view>
+

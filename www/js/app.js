@@ -113,6 +113,17 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
                     }
                 }
             })
+
+            .state('mainMenu.issueAddTags', {
+                url: '/actions',
+                views: {
+                    'appContent': {
+                        templateUrl: "templates/issueDetailsAddTags.html",
+                        controller: "AddTagsCtrl"
+                    }
+                }
+            })
+
             .state('mainMenu.issueMap', {
                 url: '/issueMap',
                 views: {
