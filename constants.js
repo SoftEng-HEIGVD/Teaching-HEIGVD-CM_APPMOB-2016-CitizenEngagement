@@ -2,6 +2,6 @@ angular.module('FixYourStreet.constants', [])
   .constant('apiUrl', '@apiUrl@')
   .constant("mapboxMapId", "@mapboxMapId@")
   .constant("mapboxAccessToken", "@mapboxAccessToken@")
-  .constat("qimgUrl", "@quimgUrl@")
+  .constant("qimgUrl", "@quimgUrl@")
   .constant("qimgToken", "@qimgToken@")
 ;
