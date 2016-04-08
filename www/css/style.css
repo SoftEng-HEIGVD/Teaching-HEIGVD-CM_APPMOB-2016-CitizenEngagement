@@ -21,8 +21,18 @@
   margin: 5px 0 0 0;
 }
 
-/* ISSUE DETAILS */
+#issueList button {
+  margin-top: 23px;
+  margin-bottom: 23px;
 
+}
+
+.filterListIssue {
+  margin: 15px 0 15px 15px;
+
+}
+
+/* ISSUE DETAILS */
 #issueDetails {
   clear: both;
 

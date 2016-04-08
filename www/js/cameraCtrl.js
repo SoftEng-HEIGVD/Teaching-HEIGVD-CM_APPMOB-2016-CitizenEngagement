@@ -15,6 +15,7 @@ angular.module('citizen-engagement.cameraCtrl',[])
   }
 });
 
+
 .controller("cameraController", function(CameraService, $http, qimgUrl, qimgToken) {
   // take the picture
   CameraService.getPicture({
@@ -40,3 +41,6 @@ angular.module('citizen-engagement.cameraCtrl',[])
     });
   });
 })
+
+;
+
