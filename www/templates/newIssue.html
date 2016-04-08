@@ -12,7 +12,7 @@
 
                 <label class="item item-input">
                     <span class="input-label">Type</span>
-                    <select name="type" ng-model="issue.issueTypeId">
+                    <select name="issueTypeId" ng-model="issue.issueTypeId">
                         <option ng-repeat="issueType in issueTypes" value="{{issueType.id}}">{{issueType.name}}</option>
                     </select>
                 </label>

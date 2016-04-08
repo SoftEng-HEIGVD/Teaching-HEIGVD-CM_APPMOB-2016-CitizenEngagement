@@ -37,8 +37,11 @@ angular.module('citizen-engagement.newIssueCtrl', [])
                 console.log("je test")
                 var link = apiUrl + '/issues'
                     $http.post(link, {
-                        type : $scope.issue.issueTypeId,
                         description: $scope.issue.description,
+                        lng: $scope.issue.lng,
+                        lat: $scope.issue.lat,
+                        imageUrl: $scope.issue.imageUrl,
+                        issueTypeId: $scope.issue.issueTypeId,
 
 
 
@@ -46,6 +49,7 @@ angular.module('citizen-engagement.newIssueCtrl', [])
                         console.log("0 " + $scope.issue.issueTypeId);
                         console.log("1 " + $scope.issue.description);
                         $scope.response = res.issue;
+                        console.log('voilà la réponse: ' + $scope.reponse);
                     });
                 };
 
