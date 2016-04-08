@@ -36,11 +36,15 @@ angular.module('citizen-engagement.newIssueCtrl',['geolocation'])
                   method: "POST",
                   url: qimgUrl + "/images",
                   headers: {
-                  Authorization: "Bearer " + qimgToken
-                },
-                data: {
-                  data: imageData
-                }
+                    Authorization: "Bearer " + qimgToken
+                  },
+                  data: {
+                    data: imageData
+                      //type: 'comment',
+                      //payload: {
+                      //    text: 'bla bla'
+                      //}
+                  }
                 }).success(function(data) {
                   var imageUrl = data.url;
                   console.log(imageUrl);
