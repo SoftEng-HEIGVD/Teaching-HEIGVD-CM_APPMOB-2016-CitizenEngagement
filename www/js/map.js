@@ -34,12 +34,6 @@ angular.module('citizen-engagement.map', [])
     })
 
 
-
-
-
-
-
-
     .controller("IssuesMapController", function ($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocServiceFla) {
         var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId; //openlayers --> mapbox
         mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
@@ -65,7 +59,7 @@ angular.module('citizen-engagement.map', [])
         $http.get(apiUrl + '/issues').success(function (issues) {
 
 
-            angular.forEach(issues, function(issue) {
+            angular.forEach(issues, function (issue) {
 
                 $scope.mapMarkers.push({
                     lat: issue.lat,
@@ -75,18 +69,30 @@ angular.module('citizen-engagement.map', [])
                         "iconSize": [50, 50], // size of the icon
                         "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
                         "popupAnchor": [0, -25], // point from which the popup should open relative to the iconAnchor
-                        "className": "dot"
+                        "className": "dot",
+
                     },
-                   /* message: '<p>{{issue.description}}</p><img src="{{issue.imageUrl}}" width="200px"/>',
+                     /*message: '<p>{{issue.description}}</p><img src="{{issue.imageUrl}}" width="200px"/>',
+                     getMessageScope: function() {
+                     var scope = $scope.$new();
+                     scope.issue = issue;
+                     return scope;
+                     }*/
+                    message: '<a class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})" width = 200px>' +
+                    '<img src="{{issue.imageUrl}}" width="50px" height="50px"><h4>{{issue.issueType.name}}</h4><p>{{issue.description}}</p>' +
+                    '<p>{{issue.createdOn | date:"mediumDate"}}</p></a>',
                     getMessageScope: function() {
                         var scope = $scope.$new();
                         scope.issue = issue;
                         return scope;
-                    }*/
+                    }
+
+
+
                 });
+
+                console.log(issue);
             });
-
-
 
 
             $scope.issues = issues;
@@ -119,14 +125,6 @@ angular.module('citizen-engagement.map', [])
 
 
     })
-
-
-
-
-
-
-
-
 
 
     .controller("IssueMapController", function ($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocServiceFla, $stateParams) {
@@ -200,7 +198,6 @@ angular.module('citizen-engagement.map', [])
         });
 
 
-
     })
 
     .controller("NewIssueMapController", function ($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocServiceFla, $stateParams) {
@@ -214,7 +211,6 @@ angular.module('citizen-engagement.map', [])
         $scope.longitude = "";
 
         $scope.mapMarkers = [];
-
 
 
         GeolocServiceFla.locateUser().then(function (coords) {
@@ -234,7 +230,6 @@ angular.module('citizen-engagement.map', [])
             $scope.issue.lng = coords.longitude;
 
         });
-
 
 
     })
@@ -261,9 +256,9 @@ angular.module('citizen-engagement.map', [])
                 console.log(issues);
 
 
-
             });
-        }; $scope.getIssuesByUser();
+        };
+        $scope.getIssuesByUser();
     });
 ;
 
