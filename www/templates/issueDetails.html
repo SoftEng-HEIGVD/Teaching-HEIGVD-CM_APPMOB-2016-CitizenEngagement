@@ -12,9 +12,11 @@
         <div class="" style=""><img width="100%" src="{{issue.imageUrl}}" alt="Smiley face"></div>
       </div>
 
+      <div ng-controller="OneIssueMapController">
 
-      <div class=" ">
-        <div class="" style="background-color: blue; height: 200px;"></div>
+        <div class=" ">
+          <div class="" style="background-color: blue; height: 200px;"><leaflet defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet></div>
+        </div>
       </div>
 
       <div class="row list">
