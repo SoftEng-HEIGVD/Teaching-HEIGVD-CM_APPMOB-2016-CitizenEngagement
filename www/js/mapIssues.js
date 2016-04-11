@@ -17,6 +17,12 @@ angular.module('citizen-engagement.mapIssues',[])
                     ]
                 }
          };
+        
+        $scope.mapCenter = {
+           lat: latitude,
+           lng: longitude,
+           zoom: 13  
+        }
 
         IssueService.getIssues(0,10,function(data){
 
@@ -35,6 +41,7 @@ angular.module('citizen-engagement.mapIssues',[])
                         }
                      });        
                 }
+                $scope.finishedLoading = true;
             },query);
            
     }    
@@ -63,31 +70,34 @@ angular.module('citizen-engagement.mapIssues',[])
         
     }
 
+    //default pos
+    var longitude = 7.4474;
+    var latitude = 46.9480;
+
+
+    var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId;
+    mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
+    
+    $scope.mapDefaults = {
+        tileLayer: mapboxTileLayer
+    };
+
     geolocation.getLocation().then(function(data) {
-        var longitude = data.coords.longitude;
-        var latitude = data.coords.latitude;
-
-
-        var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId;
-        mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
-        $scope.mapDefaults = {
-            tileLayer: mapboxTileLayer
-        };
-        
-        console.log(latitude);
-        $scope.mapCenter = {
-         lat: latitude,
-         lng: longitude,
-         zoom: 12
-         };
+        longitude = data.coords.longitude;
+        latitude = data.coords.latitude;
 
         getSetIssuesMarkers(longitude,latitude);
-
-        $scope.mapMarkers = [];
      
     }, function(error) {
-        console.log("can't geolocate");
+       
     });
+
+    navigator.geolocation.getCurrentPosition(function(position){
+         getSetIssuesMarkers(position.coords.latitude,position.coords.longitude);
+    });
+
+    //set default
+    getSetIssuesMarkers(longitude,latitude);
     
 });
   

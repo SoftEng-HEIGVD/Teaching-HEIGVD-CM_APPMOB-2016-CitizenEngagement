@@ -25,6 +25,21 @@ angular.module('citizen-engagement', ['ionic','citizen-engagement.mapIssues','ge
   });
 })
 
+.factory("CameraService", function($q) {
+  return {
+     getPicture: function(options) {
+      var deferred = $q.defer();
+      navigator.camera.getPicture(function(result) {
+      // do any magic you need
+      deferred.resolve(result);
+     }, function(err) {
+      deferred.reject(err);
+     }, options);
+      return deferred.promise;
+     }
+   }
+})
+
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states

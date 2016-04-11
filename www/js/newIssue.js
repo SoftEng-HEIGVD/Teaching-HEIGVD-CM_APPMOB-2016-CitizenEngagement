@@ -14,7 +14,9 @@ angular.module('citizen-engagement.newIssue',['ngTagsInput'])
   }
 })
 
-.controller("newIssueCTRL", function($scope, $http, apiUrl, geolocation, CameraService) {
+
+
+.controller("newIssueCTRL", function($scope, $http, apiUrl, $cordovaImagePicker,geolocation, CameraService) {
 
   $scope.myIssueToPost = {};
 
@@ -38,6 +40,7 @@ angular.module('citizen-engagement.newIssue',['ngTagsInput'])
     });
 
   $scope.myIssueToPost.imageUrl = 'http://lorempicsum.com/futurama/350/200/1';
+
 
   // Event when the user click on the submit button
   $scope.createAnIssue = function(){
