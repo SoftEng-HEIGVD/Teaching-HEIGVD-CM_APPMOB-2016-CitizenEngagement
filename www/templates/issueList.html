@@ -1,5 +1,7 @@
 <ion-view view-title="My issue(s)">
-
+  <ion-nav-buttons side="secondary">
+    <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
+  </ion-nav-buttons>
 	<ion-content>
 
     <ion-list>
@@ -9,10 +11,7 @@
       		<h2 class="issue-title">{{issue.issueType.name}}</h2>
           <h2 class="issue-state">{{issue.state}}</h2>
           <h3 class="issue-description">{{issue.description}}</h3>
-          <img src="../img/time.png" style="width:10px;float:left;margin-right:5px;margin-top:2px;opacity:0.4;"/><h2 class="issue-updated-on">{{issue.prettyUpdatedOn}}</h2>
-          <!--<button class="button button-small button-assertive btn-details" ui-sref="tab.issueDetails">
-              View details
-          </button>-->
+          <img class="issue-img" src="../img/time.png"/><h2 class="issue-updated-on">{{issue.prettyUpdatedOn}}</h2>
           <a class="button icon-right ion-chevron-right button-assertive btn-details button-small" ui-sref="tab.issueDetails({ issueId: issue.id })">View details</a>
 
       </div>

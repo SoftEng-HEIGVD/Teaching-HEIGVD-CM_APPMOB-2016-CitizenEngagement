@@ -1,6 +1,20 @@
 angular.module('citizen-engagement.newIssue',['ngTagsInput'])
+.factory("CameraService", function($q) {
+  return {
+    getPicture: function(options) {
+      var deferred = $q.defer();
+      navigator.camera.getPicture(function(result) {
+        // do any magic you need
+        deferred.resolve(result);
+      }, function(err) {
+        deferred.reject(err);
+      }, options);
+      return deferred.promise;
+    }
+  }
+})
 
-.controller("newIssueCTRL", function($scope, $http, apiUrl, geolocation) {
+.controller("newIssueCTRL", function($scope, $http, apiUrl, geolocation, CameraService) {
 
   $scope.myIssueToPost = {};
 
@@ -26,7 +40,7 @@ angular.module('citizen-engagement.newIssue',['ngTagsInput'])
   $scope.myIssueToPost.imageUrl = 'http://lorempicsum.com/futurama/350/200/1';
 
   // Event when the user click on the submit button
-  $scope.createAnIssue = function(){    
+  $scope.createAnIssue = function(){
     $http({
       method: 'POST',
       url: apiUrl + '/issues',
@@ -40,7 +54,7 @@ angular.module('citizen-engagement.newIssue',['ngTagsInput'])
         for(var i=0;i<$scope.tags.length;i++){
           tags.push($scope.tags[i].text);
         }
-        
+
         var tagObj = {
           type : "addTags",
           payload :{
@@ -57,4 +71,18 @@ angular.module('citizen-engagement.newIssue',['ngTagsInput'])
         });
     });
   };
+
+  $scope.uploadPicture = function(){
+    console.log('sdsd')
+
+    CameraService.getPicture({
+       quality: 75,
+       targetWidth: 400,
+       targetHeight: 300,
+       destinationType: Camera.DestinationType.DATA_URL
+      }).then(function(imageData) {
+       // do something with imageData
+    });
+  }
+
 });

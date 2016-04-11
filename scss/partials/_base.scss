@@ -37,9 +37,16 @@ font-size:1em;
     padding: 10px;
     height: 40px;
     overflow:hidden;
-    background-color: rgba(32, 67, 126,1);
+    background-color: rgba(32, 67, 126,0.8);
     font-weight: normal;
 	}
+  .issue-img{
+    width:10px;
+    float:left;
+    margin-right:5px;
+    margin-top:2px;
+    opacity:0.4;
+  }
 	.issue-state{
      /*text-shadow: 1px 1px rgba(0, 0, 0,0.5);*/
     /*font-weight: bold;*/
@@ -97,11 +104,65 @@ font-size:1em;
 
   .img-detailedIssue{
     width: 100%;
+    margin-bottom:10px;
 
   }
 
   h2.issue-title{
+    font-size:1.2em;
+    padding-left:10px;
+    display: inline;
+
+  }
+  .issue-description {
+    width:100%;
+    color:white;
+    border:1px rgba(32, 67, 126,0.4) solid;
+    border-top: none;
+    padding: 10px;
+    overflow:hidden;
+    background-color: rgba(32, 67, 126,0.8);
+    font-weight: normal;
     font-size:1em;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+  }
+  p.coord{
+    //float:right;
+    display: inline;
+    font-size: 0.7em;
+  }
+  .issue-createdOn{
+
+    font-size: 0.9em;
+    padding: 10px;
+    padding-top:0px;
+    font-style: italic;
+  }
+
+  span.tag-detail{
+    margin-right: 3px;
+
+    padding: 0 5px;
+    display: inline-block;
+    float: left;
+    font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    height: 26px;
+    line-height: 25px;
+    border: 1px solid #387ef5;
+    border-radius: 3px;
+    background-color: white;
+    color:#333;
+
+
+  }
+  span.tag-detail:first-of-type{
+    margin-left:10px;
+  }
+
+  .notag{
+    padding:0px 10px 0px 10px;
   }
 
 
