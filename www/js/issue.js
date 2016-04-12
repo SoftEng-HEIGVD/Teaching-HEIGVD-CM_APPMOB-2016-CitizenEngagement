@@ -85,7 +85,7 @@ angular.module('citizen-engagement.issue', [])
 
 
     .controller('NewCommentCtrl',
-        function ($scope, $http, apiUrl, $stateParams) {
+        function ($scope, $http, apiUrl, $stateParams, $state, $window) {
             console.log("j'arrive à récupe le paramètre" + $stateParams);
             var id = $stateParams.issueId;
             console.log('id ' + id);
@@ -105,8 +105,13 @@ angular.module('citizen-engagement.issue', [])
 
                 }).then(function (res) {
                     console.log("0 " + $scope.action.payload.text);
+
                     $scope.response = res.comment;
+                    $window.location.reload(true);
+
+
                     console.log('voilà la réponse: ' + $scope.reponse);
+
 
                 });
 
