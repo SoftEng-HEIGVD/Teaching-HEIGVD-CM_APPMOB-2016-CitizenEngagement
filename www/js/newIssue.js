@@ -16,7 +16,7 @@ angular.module('citizen-engagement.newIssue',['ngTagsInput'])
 
 
 
-.controller("newIssueCTRL", function($scope, $http, apiUrl, $cordovaImagePicker,geolocation, CameraService) {
+.controller("newIssueCTRL", function($scope, $http, apiUrl, geolocation, CameraService) {
 
   $scope.myIssueToPost = {};
 
