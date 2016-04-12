@@ -1,8 +1,49 @@
 <ion-view view-title="New Issue">
+
+
   <ion-nav-buttons side="secondary">
     <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
   </ion-nav-buttons>
-  <ion-content>
-    <p>Hello! This is the issue creation screen.</p>
+  <ion-content  ng-controller="newIssueCTRL">
+
+  <form name="userForm" id="issueCreateForm" novalidate>
+    <div class="list list-inset">
+      <!-- select the type -->
+      <label class="item item-input item-select">
+        <div class="input-label">Choose a type</div>
+        <select ng-model="myIssueToPost.issueTypeId" name="type" required>
+          <option ng-repeat="issueType in issueTypes" value="{{issueType.id}}">{{issueType.name}}</option>
+        </select>
+      </label>
+      <div class="errors-report">
+        <p ng-show="userForm.type.$error.required">* Type is required</p>
+      </div>
+      <!-- Description -->
+      <label class="item item-input">
+        <textarea name="description" placeholder="Write a description here" ng-model="myIssueToPost.description" type="text" required></textarea>
+      </label>
+      <div class="errors-report">
+        <p ng-show="userForm.description.$error.required">* Description is required</p>
+      </div>
+      <label >
+        <tags-input ng-model="tags" name="tags" ></tags-input>
+      </label>
+
+
+      <button class="button button-small button-assertive" ng-click="uploadPicture()">
+          Upload a picture
+      </button>
+      <div class="errors-report">
+        {{locationProblem}}
+      </div>
+
+
+    </div>
+
+  <!-- ng-click="createAnIssue()" ng-disabled="userForm.$invalid"-->
+    <button type="submit" class="button button-full button-positive main-btn" ng-disabled="userForm.$invalid || geolok == false"  ng-click="createAnIssue()">Save</button>
+
+  </form>
+
   </ion-content>
 </ion-view>

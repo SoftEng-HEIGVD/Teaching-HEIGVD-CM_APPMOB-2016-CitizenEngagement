@@ -3,7 +3,9 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citizen-engagement.constants'])
+
+angular.module('citizen-engagement', ['ionic','citizen-engagement.mapIssues','geolocation','citizen-engagement.auth', 'citizen-engagement.listIssues','citizen-engagement.constants', 'citizen-engagement.newIssue','leaflet-directive','citizen-engagement.detailedIssue'])
+
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -21,6 +23,21 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
       StatusBar.styleDefault();
     }
   });
+})
+
+.factory("CameraService", function($q) {
+  return {
+     getPicture: function(options) {
+      var deferred = $q.defer();
+      navigator.camera.getPicture(function(result) {
+      // do any magic you need
+      deferred.resolve(result);
+     }, function(err) {
+      deferred.reject(err);
+     }, options);
+      return deferred.promise;
+     }
+   }
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -44,6 +61,7 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
       // The URL (here "/newIssue") is used only internally with Ionic; you never see it displayed anywhere.
       // In an Angular website, it would be the URL you need to go to with your browser to enter this state.
       url: '/newIssue',
+      controller: 'newIssueCTRL',
       views: {
         // The "tab-newIssue" view corresponds to the <ion-nav-view name="tab-newIssue"> directive used in the tabs.html template.
         'tab-newIssue': {
@@ -57,7 +75,8 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
       url: '/issueMap',
       views: {
         'tab-issueMap': {
-          templateUrl: 'templates/issueMap.html'
+          templateUrl: 'templates/issueMap.html',
+          controller : "MapIssueCtrl"
         }
       }
     })
@@ -66,9 +85,10 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
       url: '/issueList',
       views: {
         'tab-issueList': {
-          templateUrl: 'templates/issueList.html'
+          templateUrl: 'templates/issueList.html',
+          controller: 'ListIssueCtrl'
         }
-      }
+      },
     })
 
     // This is the issue details state.
@@ -80,7 +100,9 @@ angular.module('citizen-engagement', ['ionic', 'citizen-engagement.auth', 'citiz
         // Here we use the same "tab-issueList" view as the previous state.
         // This means that the issue details template will be displayed in the same tab as the issue list.
         'tab-issueList': {
-          templateUrl: 'templates/issueDetails.html'
+
+          templateUrl: 'templates/issueDetails.html',
+          controller: 'DetailedIssueCtrl'
         }
       }
     })

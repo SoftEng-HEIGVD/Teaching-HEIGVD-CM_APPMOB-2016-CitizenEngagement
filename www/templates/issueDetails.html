@@ -1,5 +1,27 @@
-<ion-view view-title="Issue Details">
+<ion-view view-title="Issue details">
   <ion-content>
-    <p>Hello! This is the issue details screen.</p>
+    <div class="issue-details-box">
+
+      <img class="thumbnail img-detailedIssue" ng-src="{{detailedIssue.imageUrl}}"/>
+      <h2 class="issue-title">{{detailedIssue.issueType.name}}</h2>
+      <p class="coord">lat {{detailedIssue.lat | number : fractionSize}} / lng {{detailedIssue.lng| number : fractionSize}} </b></p>
+      <h2 class="issue-description">{{detailedIssue.description}}</h2>
+      <span class="tag-detail" ng-repeat="tag in detailedIssue.tags">{{tag}}</span>
+      <div class="notag" ng-if="hasNoTag" >No tags</div>
+      <br/>
+      <h2 class="issue-createdOn">Created on : <b>{{detailedIssue.createdOn | date}}</b> <br/>Updated on : <b>{{detailedIssue.updatedOn | date}}</b></h2>
+
+
+
+      <br/>
+      <a class="button icon-left ion-chevron-left button-assertive button-small" ui-sref="tab.issueList" >Back</a>
+    </div>
+
+
+
+
+
+
+
   </ion-content>
 </ion-view>

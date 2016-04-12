@@ -1,5 +1,17 @@
-<ion-view view-title="Issue Map">
-  <ion-content>
-    <p>Hello! This is the issue map screen.</p>
+<ion-view view-title="Issues map">
+
+  <ion-nav-buttons side="secondary">
+    <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
+  </ion-nav-buttons>
+
+  <ion-content scroll="false">
+
+  	<label class="item item-input">
+	  <input type="text" placeholder="Type the name of a location"  ng-model="query.location" ng-model-options='{ debounce: 500 }' ng-change="updateMap()">
+	</label>
+
+	<leaflet ng-if="finishedLoading" class="issues-map" height="50%" defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
   </ion-content>
+
+  
 </ion-view>
