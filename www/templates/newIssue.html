@@ -4,19 +4,17 @@
         <ion-nav-back-button>
         </ion-nav-back-button>
         <ion-nav-buttons side="secondary">
-            <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
+            <button class="button icon ion-android-contacts" ng-controller="LogoutCtrl" ng-click="logOut()"></button>
         </ion-nav-buttons>
     </ion-nav-bar>
 
     <ion-content>
-        <div ng-controller="IssueCtrl">          
+        <div ng-controller="IssueCtrl">
             <!---<a class="button ion-camera" ui-sref="issueDetails"></a>--->
             <br/>
             <br/>
-            <button  ng-controller="takePhoto" class="button ion-camera" ng-click="takePhoto()">
-            Take a photo
-            </button>
-     
+            <button  ng-controller="takePhoto" class="button ion-camera" ng-click="takePhoto()"> Take a photo</button>
+
             <div class="list">
 
                 <label class="item item-input item-select">
@@ -34,7 +32,7 @@
 
             <label class="item item-input">
                 <input type="text" placeholder="Add a description" ng-model="description" />
-            </label>       
+            </label>
             <div class="item-input" ng-repeat="input in inputs">
                 <label class="item-input-wrapper">
                     <input type="text" placeholder="Type a tag" ng-model="tagValue" />
@@ -46,7 +44,7 @@
                     <i class="icon ion-minus"></i>
                 </button>
             </div>
-            
+
             <div class="button-bar">
                 <button class="button button-stable" ui-sref="issueMap">Cancel</button>
                 <button class="button button-calm" ui-sref="issueDetails"  ng-click="submitIssue()">Submit</button>

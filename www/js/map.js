@@ -4,19 +4,20 @@ angular.module('FixYourStreet.map', ['geolocation'])
 
     // Markers
     $scope.$on('leafletDirectiveMap.moveend', function (event) {
+        $scope.issuesBounds = {};
         $scope.getIssues();
     });
 
-    // Redirection on click on a marker to the details page
-    $scope.$on('leafletDirectiveMarker.click', function(e, args) {
-      $state.go("issueDetails", { issueId: args.leafletEvent.target.options.id });
-    });
+    // Disabled the button list if no issues are within the bounds
+    $scope.disabledListIssue = function() {
+      return $scope.issuesBounds == '' ? "disabled" : "";
+    };
 
     // Default position on the map (World centered on Europe)
     $scope.mapCenter = {
       lat: 40,
       lng: 0,
-      zoom:2
+      zoom:3
     };
 
     // Get position of the user (if he allow to)
@@ -52,19 +53,25 @@ angular.module('FixYourStreet.map', ['geolocation'])
 
           var bbox = map.getBounds();
 
-          IssueService.getAllIssuesArea(bbox, function(issues) {
-                $rootScope.issuesBounds = issues;
+          IssueService.getIssuesArea(bbox, 0 ,500, function(issues) { // Offset is 0 and limit value ist 500
+                $scope.issuesBounds = issues;
+
+                $scope.disabledListIssue(); // Disabled list button if there are nos issues within the bounds
 
                 $scope.mapMarkers = [];
+                var markers = L.markerClusterGroup();
 
-                angular.forEach($rootScope.issuesBounds, function(issue) {
-
-                    $scope.mapMarkers.push({
-                        lat: issue.lat,
-                        lng: issue.lng,
-                        id: issue.id
-                    });
+                angular.forEach($scope.issuesBounds, function(issue) {
+                  var marker = L.marker(new L.LatLng(issue.lat, issue.lng), { issueId: issue.id });
+                  markers.addLayer(marker);
                 });
+
+                // Redirection 'on click' on a marker to the details page
+                markers.on('click', function(e) {
+                  $state.go("issueDetails", { issueId: e.layer.options.issueId });
+                });
+
+                map.addLayer(markers);
 
          }, function(error) {
            $log.error("Could not get/set markers: " + error);
@@ -98,7 +105,7 @@ angular.module('FixYourStreet.map', ['geolocation'])
 
   })
 
-  .controller("MapSearch", function($scope,$http,$ionicLoading,$log,$state, geolocation, IssueService, mapboxAccessToken, $ionicModal) {
+  .controller("MapSearch", function($scope,$http,$ionicLoading,$log, geolocation, IssueService, mapboxAccessToken, $ionicModal) {
 
     // Reverse geocoding with the api of mapbox for place, city, countries...
     $scope.searchPlace = function(searchIn) {

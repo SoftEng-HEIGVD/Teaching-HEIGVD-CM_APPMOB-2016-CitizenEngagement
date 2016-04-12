@@ -1,9 +1,5 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
 angular.module('FixYourStreet', ['ionic', 'leaflet-directive', 'FixYourStreet.auth', 'FixYourStreet.comments','FixYourStreet.constants', 'FixYourStreet.issues', 'FixYourStreet.map', 'yaru22.angular-timeago', 'ionic-native-transitions'])
+
 
         .run(function ($ionicPlatform) {
             $ionicPlatform.ready(function () {
@@ -77,6 +73,7 @@ angular.module('FixYourStreet', ['ionic', 'leaflet-directive', 'FixYourStreet.au
 
                 .state('issueList', {
                     url: '/issueList',
+                    controller: 'issueList',
                     templateUrl: 'templates/issueList.html'
                 })
 
@@ -92,6 +89,20 @@ angular.module('FixYourStreet', ['ionic', 'leaflet-directive', 'FixYourStreet.au
             // Define the default state (i.e. the first screen displayed when the app opens).
             $urlRouterProvider.otherwise(function ($injector) {
                 $injector.get('$state').go('home'); // Go to the new issue tab by default.
+            });
+        })
+
+        .config(function($ionicNativeTransitionsProvider){
+            $ionicNativeTransitionsProvider.setDefaultOptions({
+              duration: 500, // in milliseconds (ms), default 400,
+              slowdownfactor: 1, // overlap views (higher number is more) or no overlap (1), default 4
+              iosdelay: -2, // ms to wait for the iOS webview to update before animation kicks in, default -1
+              androiddelay: -2, // same as above but for Android, default -1
+              winphonedelay: -1, // same as above but for Windows Phone, default -1,
+              fixedPixelsTop: 0, // the number of pixels of your fixed header, default 0 (iOS and Android)
+              fixedPixelsBottom: 0, // the number of pixels of your fixed footer (f.i. a tab bar), default 0 (iOS and Android)
+              triggerTransitionEvent: '$ionicView.afterEnter', // internal ionic-native-transitions option
+              backInOppositeDirection: true // Takes over default back transition and state back transition to use the opposite direction transition to go back
             });
         })
 
@@ -113,120 +124,25 @@ angular.module('FixYourStreet', ['ionic', 'leaflet-directive', 'FixYourStreet.au
         })
 
 
-        //Controller pour la création des issues
-        .controller("IssueCtrl", function (apiUrl, $scope, $http, $filter) {
-            $scope.inputs = [{
-                    value: null
-                }];
-
-            $scope.addInput = function () {
-                console.log("new input");
-                $scope.inputs.push({
-                    value: null
-                });
-            }
-
-
-            $scope.submitIssue = function () {
-                $http({
-                    method: 'GET',
-                    url: apiUrl + '/issueTypes',
-                }).success(function (allType) {
-                      var myFilteredType = $filter('filter')(allType, {name: $scope.type});
-                      var typeId = myFilteredType[0].id;
-                      $http({
-                          method: 'GET',
-                          url: apiUrl + '/issueTypes/' + typeId,
-                      }).success(function (typeChoosen) {
-                          var newIssue = {
-                              description: $scope.description,
-                              tags: $scope.tagValue,
-                              issueTypeId: typeChoosen.id,
-                              lat: "46.780806678050126",
-                              lng: "6.630673501428493",
-                              imageUrl: $scope.imageUploadedUrl,
-                          }
-                          $http({
-                              method: 'POST',
-                              url: apiUrl + '/issues',
-                              data: newIssue
-                            }).success(function (createdIssue) {
-                                console.log(createdIssue);
-                                },function error() {
-                                  console.log("Erreur pas encore faite");
-                                  });
-                                },
-                                            function error() {
-                                                console.log("Erreur pas encore faite");
-                                            });
-                        });
-            }
-
-            $scope.removeInput = function (index) {
-                $scope.inputs.splice(index, 1);
-            }
-
-        })
-
-
-        //controller pour les tags (je n'y ai pas touché)
-        .controller("TagsCtrl", function ($scope) {
-            $scope.inputs = [{
-                    value: null
-                }];
-
-            $scope.addInput = function () {
-                $scope.inputs.push({
-                    value: null
-                });
-            }
-
-            $scope.removeInput = function (index) {
-                $scope.inputs.splice(index, 1);
-            }
-        })
-
-
-        .controller("takePhoto", function ($scope, CameraService, $http, qimgUrl, qimgToken) {
-            $scope.takePhoto = function () {
-                CameraService.getPicture({
-                    quality: 75,
-                    targetWidth: 400,
-                    targetHeight: 300,
-                    destinationType: Camera.DestinationType.DATA_URL}).then(function (imageData) {
-                    $http({
-                        method: "POST",
-                        url: qimgUrl + "/images",
-                        headers: {
-                            Authorization: "Bearer " + qimgToken
-                        },
-                        data: {
-                            data: imageData
-                        }
-                    }).success(function (data) {
-                        $scope.imageUploadedData = data;
-                        $scope.imageUploadedUrl = data.url;
-                    }).error(function(error){
-                        $log.error(error);
-                    });
-                });
-            };
-        })
-
-        .factory("CameraService", function ($q) {
-            return {
-                getPicture: function (options) {
-                    var deferred = $q.defer();
-                    navigator.camera.getPicture(function (result) {
-                        // do any magic you need
-                        deferred.resolve(result);
-                    }, function (err) {
-                        deferred.reject(err);
-                    }, options);
-                    return deferred.promise;
+        // WHen an image is not found use the url provided in errSrc attribut
+        .directive('errSrc', function() {
+          return {
+            link: function(scope, element, attrs) {
+              element.bind('error', function() {
+                if (attrs.src != attrs.errSrc) {
+                  attrs.$set('src', attrs.errSrc);
                 }
+              });
+
+              attrs.$observe('ngSrc', function(value) {
+                if (!value && attrs.errSrc) {
+                  attrs.$set('src', attrs.errSrc);
+                }
+              });
             }
+          }
         })
+
 
 
 ;

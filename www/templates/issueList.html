@@ -3,39 +3,37 @@
     <ion-nav-back-button>
     </ion-nav-back-button>
     <ion-nav-buttons side="secondary">
-      <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
+        <button class="button icon ion-android-globe" ui-sref="home"></button>
     </ion-nav-buttons>
   </ion-nav-bar>
 
   <ion-content>
     <ion-list>
-          <ion-item ng-repeat="issue in issuesBounds">
+          <ion-item ng-repeat="issue in pagedIssues">
 
             <div class="row">
               <div class="col">
-                <span ng-if='!issue.imageUrl'><img  src='img/NoImageAvailable.jpg' style="width:100%" alt="No Image Available" /></span>
-                <span ng-if='issue.imageUrl'><a ui-sref='fullImg({imageUrl: issue.imageUrl})'><img class="imgIssue" ng-src='{{issue.imageUrl}}' style="width:100%" /></a></span>
+                <p class="state state-{{issue.state}}">{{issue.state}}</p>
+                <a ui-sref='fullImg({imageUrl: issue.imageUrl})'><img class="imgIssue" ng-src='{{issue.imageUrl}}' err-src="img/NoImageAvailable.jpg" style="width:100%" /></a>
               </div>
-              <div class="col col-75 item-body listIssue">
-                <h2>{{issue.issueType.description}}<time>{{issue.state}}<br/>{{issue.createdOn | timeAgo}}</time></h2>
-                  <ul class="tagsList">
-                      <li ng-repeat="tag in issue.tags">{{tag}}</li>
-                  </ul>
-                <p>{{issue.description}}</p>
-                <p></p>
-                <p><time>{{issue.issueType.name}}</time></p>
-                <p>Last update: <time>{{issue.updatedOn | timeAgo}}</time></p>
 
-                <div class="button-bar">
-                    <a class="button button-small ion-location" ui-sref="issueDetails({issueId: issue.id})" > Show on map</a>
-                  <a class="button button-small ion-navicon" ui-sref="commentsList({issueId: issue.id})"> View comments</a>
-                </div>
+              <div class="col col-75 item-body listIssue">
+                <h2>{{issue.issueType.description}}<span class="small-info">Updated: <time>{{issue.updatedOn | timeAgo}}</time><br/>{{issue.issueType.name}}</span></h2>
+                <ul class="tagsList">
+                    <li ng-repeat="tag in issue.tags">{{tag}}</li>
+                </ul>
+                <p>{{issue.description}}</p>
               </div>
             </div>
 
-          </ion-item>
+            <div class="button-bar">
+                <a class="button button-small ion-location" ui-sref="issueDetails({issueId: issue.id})" > Map</a>
+                <a class="button button-small ion-navicon" ui-sref="commentsList({issueId: issue.id})"> Comments</a>
+            </div>
 
+          </ion-item>
       </ion-list>
 
+      <button class="button button-full ion-android-arrow-dropdown" href="#" ng-class="nextPageDisabledClass()" ng-click="loadMore()"> Load More</button>
   </ion-content>
 </ion-view>

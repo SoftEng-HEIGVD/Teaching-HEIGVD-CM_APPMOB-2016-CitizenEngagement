@@ -1,23 +1,24 @@
-<ion-view view-title="FixYourStreet">
+<ion-view view-title="FixYourStreet" class="home">
 
-  <div class="bar" style="background:none;border:none">
-        <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
-        <button class="button button-calm icon ion-ios-search pull-right" style="right:50px" ng-click="modalSearch.show()"></button>
-        <button class="button button-calm icon ion-android-locate button-localize pull-right" ng-click="geolocateMap()"></button>
+  <div class="bar">
+    <button class="button icon ion-android-contacts" ng-controller="LogoutCtrl" ng-click="logOut()"></button>
   </div>
+
+
 
   <ion-content scroll="false">
     <leaflet defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
   </ion-content>
 
-  <ion-footer-bar>
+  <div class="bar bar-footer">
     <div class="button-bar">
-      <button class="button button-calm icon ion-plus" ui-sref="newIssue"> Add issue</button>
-      <button class="button button-stable icon ion-navicon" ui-sref="issueList"> Issues in the area</button>
+      <button class="button button-calm icon ion-android-search" ng-click="modalSearch.show()"></button>
+      <button class="button button-calm icon ion-android-locate" ng-click="geolocateMap()"></button>
+      <button class="button button-calm icon ion-android-add" ui-sref="newIssue"> Issue</button>
+      <button class="button button-stable icon ion-android-open"  ng-class="disabledListIssue()" ui-sref="issueList"> List</button>
     </div>
-  </ion-footer-bar>
+  </div>
 </ion-view>
-
 
 <script id="modalSearch.html" type="text/ng-template">
     <ion-modal-view ng-controller="MapSearch">
@@ -37,6 +38,6 @@
         <ion-footer-bar>
           <button class="button button-full  button-stable" ng-click="modalSearch.hide()">Close</button>
         </ion-footer-bar>
-        
+
     </ion-modal-view>
 </script>

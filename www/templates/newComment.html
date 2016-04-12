@@ -1,13 +1,18 @@
 <ion-view>
-     <ion-header-bar class="bar bar-header">
-       <h1 class="title">Add a comment</h1>
-       
-       <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
-     </ion-header-bar>
+    <ion-nav-bar>
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+        <ion-nav-title>Add a comment</ion-nav-title>
+
+      <ion-nav-buttons side="secondary">
+          <button class="button icon ion-android-globe" ui-sref="home"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+
      <ion-content class="padding">
        <ion-list ng-controller="newComment">
          <label class="item item-input">
-           <input type="text" placeholder="write your comment here" ng-model="someText" />
+           <input type="text" placeholder="Write your comment here" ng-model="someText" />
          </label>
          <button class="button button-full button-calm" ng-click="createComment(newComment)">Create</button>
        </ion-list>
