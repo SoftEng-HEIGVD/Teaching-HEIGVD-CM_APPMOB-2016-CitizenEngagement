@@ -107,7 +107,9 @@ angular.module('citizen-engagement.issue', [])
                     console.log("0 " + $scope.action.payload.text);
                     $scope.response = res.comment;
                     console.log('voilà la réponse: ' + $scope.reponse);
+
                 });
+
             };
 
 
