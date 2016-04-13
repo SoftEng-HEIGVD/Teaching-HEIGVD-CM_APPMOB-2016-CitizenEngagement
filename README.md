@@ -2,81 +2,23 @@
 
 <a name="top"></a>
 
-This repository contains instructions to build a skeleton application that will serve as a starting point to develop the Citizen Engagement mobile application.
-The completed skeleton app is available [here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-CM_APPMOB-2016-SkeletonApp).
+Ce repository contient notre application Citizen Engagement. 
+Cette documentation permet de prendre en main l'application.
 
-* [Prerequisites](#pre)
-* [Features](#features)
-
-1. [Design the user interface](#ui)
-2. [Set up the application](#setup)
-  * [Fork this repo and put a blank Ionic app in it](#setup-fork)
-  * [Install application dependencies](#setup-deps)
-  * [Serve the application locally](#setup-serve)
-  * [Rename the main AngularJS module](#setup-rename)
-3. [Set up the navigation structure](#structure)
-  * [Create the templates](#structure-create-templates)
-  * [Update the app to use the templates](#structure-use-templates)
-  * [Define the states (or routes)](#structure-states)
-4. [Set up security](#security)
-  * [Create the login screen](#security-login-screen)
-  * [Create the authentication service](#security-auth-service)
-  * [Set up a proxy (for local development only)](#security-proxy)
-  * [Log in with the API](#security-api-login)
-  * [Log out](#security-logout)
-  * [Storing the authentication credentials](#security-store)
-  * [Configuring an HTTP interceptor](#security-interceptor)
-5. [Multi-environment configuration](#multienv)
-  * [Write environment-specific configuration files](#multienv-config)
-  * [Do not put configuration files under version control](#multienv-ignore)
-  * [Feed the configuration to Angular](#multienv-angular)
+1. [Installation](#installation)
+2. [Login](#login)
+3. [Menu](#menu)
+4. [My issues](#myIssues)
+5. [Issue Map](#issueMap)
+6. [All issues](#allIssues)
+7. [New Issue](#newIssue)
 
 
 
 
-<a name="pre"></a>
-## Prerequisites
 
-These instructions assume that you have implemented and deployed the Citizen Engagement API as described in [this article](http://www.iflux.io/use-case/2015/02/03/citizen-engagement.html) and [this course repository](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-CM_WEBS-2016).
-
-You will need to have [Node.js](https://nodejs.org) installed.
-The latest LTS (Long Term Support) version is recommended (v4.4.2 at the time of writing these instructions).
-The Ionic documentation currently indicates that versions v5.x.x are not supported.
-
-<a href="#top">Back to top</a>
-
-
-
-<a name="features"></a>
-## Features
-
-This guide describes a proposed list of features and a user interface based on those features.
-This is only a suggestion. You can support other features and make a different user interface.
-
-The proposed app should allow citizens to do the following:
-
-* add new issues:
-  * the issue should have a type and description;
-  * the user should be able to take a photo of the issue;
-  * the issue should be geolocated;
-* see existing issues on an interactive map;
-* browse the list of existing issues:
-  * issues should be sorted by date;
-* see the details of an issue:
-  * date;
-  * description;
-  * picture;
-  * comments;
-* add comments to an issue.
-
-The following sections describe a proposed UI mockup of the app and steps to set up a skeleton implementation.
-
-<a href="#top">Back to top</a>
-
-
-
-<a name="ui"></a>
-## 1. Design the user interface
+<a name="installation"></a>
+## 1. Clone
 
 Before diving into the code, you should always take a moment to design the user interface of your app.
 This doesn't have to be a final design, but it should at least be a sketch of what you want.
