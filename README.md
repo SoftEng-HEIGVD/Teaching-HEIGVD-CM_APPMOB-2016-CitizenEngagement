@@ -34,6 +34,13 @@ Voici les mockups que nous avons réalisés avant le développement :
 
 ![Mockups](mockup.png)
 
+
+Les différentes couleurs correspondent à un code couleur que nous avons imaginé selon le status de l'issue : 
+
+A noter que l'icon s'adapte également en fonction du status (légende des icons au centre des mockups).
+
+![code couleur](codeCouleur.JPG)
+
 <a href="#top">Back to top</a>
 
 <a name="login"></a>
@@ -76,7 +83,7 @@ img menu
 En cliquant sur "My issues" dans le menu, on trouve toutes les issues recensées par l'utilisateur connecté en ce moment. Si vous avez créer un nouvel utilisateur, cette page est vide. Si vous ajoutez des issues, vous pourrez les retrouver ici. En cliquant sur une issue, on accède à la page de détail de celle-ci.
 
 
-img myIssues
+![my issues](myIssues.JPG)
 
 <a href="#top">Back to top</a>
 
