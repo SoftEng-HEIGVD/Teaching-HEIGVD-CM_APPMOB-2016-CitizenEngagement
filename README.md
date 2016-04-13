@@ -51,10 +51,12 @@ Puis cliquez sur "Register"
 <a href="#top">Back to top</a>
 
 <a name="menu"></a>
-## 3.Menu
+## 3. Menu
 Une fois logué, vous arrivez directement sur la liste de toutes les issues (All issues).
 En haut à gauche se trouve un bouton pour accéder au menu. 
 Le menu de notre application se décompose en quatres onglets : 
+
+
 1. My issue
 2. Issue Map
 3. All issues
