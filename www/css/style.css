@@ -141,3 +141,9 @@ p.state-rejected{background-color:#FF2328;}
 .disabled{
   display:none;
 }
+.imgIssueDetails{
+  width: 20%;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}

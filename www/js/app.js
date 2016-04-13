@@ -41,14 +41,15 @@ angular.module('FixYourStreet', ['ionic', 'leaflet-directive', 'FixYourStreet.au
 
                 .state('newComment', {
                     url: '/newComment/:issueId',
-                    templateUrl: 'templates/newComment.html',
-                    controller: 'newComment'
+                    controller: 'newComment',
+                    templateUrl: 'templates/newComment.html'
                 })
 
                 .state('fullImg', {
                     url: '/fullImg',
                     params: {
                         imageUrl: null,
+                        errSrc: null,
                     },
                     nativeTransitions: {
                         "type": "fade",
@@ -57,11 +58,13 @@ angular.module('FixYourStreet', ['ionic', 'leaflet-directive', 'FixYourStreet.au
                     templateUrl: 'templates/fullImg.html',
                     controller: function ($scope, $stateParams) {
                         $scope.imageUrl = $stateParams.imageUrl;
+                        $scope.errSrc = $stateParams.errSrc;
                     }
                 })
 
                 .state('newIssue', {
                     url: '/newIssue',
+                    controller: 'newIssue',
                     templateUrl: 'templates/newIssue.html'
                 })
 

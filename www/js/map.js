@@ -3,7 +3,11 @@ angular.module('FixYourStreet.map', ['geolocation'])
   .controller("MapController", function($rootScope,$scope,$log,$http,$ionicLoading,$state, geolocation, leafletData, IssueService, mapboxMapId, mapboxAccessToken, $ionicModal) {
 
     // Markers
-    $scope.$on('leafletDirectiveMap.moveend', function (event) {
+    $scope.$on('$ionicView.beforeEnter', function () {
+        $scope.issuesBounds = {};
+        $scope.getIssues();
+    });
+    $scope.$on('leafletDirectiveMap.homeMap.moveend', function (event) {
         $scope.issuesBounds = {};
         $scope.getIssues();
     });
@@ -47,9 +51,9 @@ angular.module('FixYourStreet.map', ['geolocation'])
       tileLayer: mapboxTileLayer
     };
 
-    // Get the issue within the bounds
+    // Get the issue within the bounds and add markers
     $scope.getIssues = function() {
-      leafletData.getMap().then(function (map) {
+      leafletData.getMap('homeMap').then(function (map) {
 
           var bbox = map.getBounds();
 
@@ -59,6 +63,7 @@ angular.module('FixYourStreet.map', ['geolocation'])
                 $scope.disabledListIssue(); // Disabled list button if there are nos issues within the bounds
 
                 $scope.mapMarkers = [];
+
                 var markers = L.markerClusterGroup();
 
                 angular.forEach($scope.issuesBounds, function(issue) {
@@ -86,7 +91,7 @@ angular.module('FixYourStreet.map', ['geolocation'])
         $scope.modalSearch.hide();
       }
 
-      leafletData.getMap().then(function (map) {
+      leafletData.getMap('homeMap').then(function (map) {
 
         map.fitBounds([
           [bbox[1], bbox[0]],
@@ -127,5 +132,6 @@ angular.module('FixYourStreet.map', ['geolocation'])
     };
 
   })
+
 
 ;

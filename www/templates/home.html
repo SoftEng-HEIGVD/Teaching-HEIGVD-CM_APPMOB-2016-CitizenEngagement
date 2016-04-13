@@ -4,10 +4,8 @@
     <button class="button icon ion-android-contacts" ng-controller="LogoutCtrl" ng-click="logOut()"></button>
   </div>
 
-
-
   <ion-content scroll="false">
-    <leaflet defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
+    <leaflet id="homeMap" defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true" ></leaflet>
   </ion-content>
 
   <div class="bar bar-footer">

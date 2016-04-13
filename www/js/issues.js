@@ -7,7 +7,7 @@ angular.module('FixYourStreet.issues', [])
             method: 'POST',
             url: apiUrl + '/issues/search',
             headers: {
-              'x-sort': 'updatedOn',
+              'x-sort': '-updatedOn',
               'x-pagination': offset+';'+limit //Can handled higher as 5000 when we use option chunkedLoading with the clustering plugin
             },
             data:{
@@ -37,12 +37,16 @@ angular.module('FixYourStreet.issues', [])
 
   }])
 
-  .controller("issueList", function($rootScope,$scope,$state, leafletData, IssueService, $ionicLoading) {
+  .controller("issueList", function($rootScope,$scope,$state, leafletData, IssueService, $ionicLoading,timeAgo) {
+
+    // After 24 hours, display the date normally.
+    var oneDay = 60*60*24;
+    timeAgo.settings.fullDateAfterSeconds = oneDay;
 
     /* Issue with promise handler on LeafletData : https://github.com/tombatossals/angular-leaflet-directive/issues/1052
        Workaround: Check if the map exist, if not it means that the page was call from the homepage
     */
-    if(leafletData.getMap().$$state.status == 0){
+    if(leafletData.getMap('homeMap').$$state.status == 0){
       $state.go("home", { reload: true});
     }
 
@@ -56,7 +60,7 @@ angular.module('FixYourStreet.issues', [])
 
     // The $ionicView.beforeEnter event happens every time the screen is displayed.
     $scope.$on('$ionicView.beforeEnter', function () {
-      leafletData.getMap().then(function (map) {
+      leafletData.getMap('homeMap').then(function (map) {
          $scope.bboxList = map.getBounds();
 
          IssueService.getIssuesArea($scope.bboxList, $scope.currentPage*$scope.issuesPerPage,$scope.issuesPerPage, function(issues) { // Offset is 0 and limit value per "page" ist 5
@@ -105,8 +109,35 @@ angular.module('FixYourStreet.issues', [])
 
   //controller pour affiche les details d'une issue
   .controller('issueDetails', function (apiUrl, $http, $scope, $stateParams, $log, IssueService, mapboxMapId, mapboxAccessToken) {
+      // Default position on the map (World centered on Europe)
+      $scope.mapCenter = {
+        lat: 40,
+        lng: 0,
+        zoom:14
+      };
+
+      // Set the layer to mapbox custom map
+      var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId;
+      mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
+      $scope.mapDefaults = {
+        tileLayer: mapboxTileLayer
+      };
+
       IssueService.getById($stateParams.issueId, function(issue) {
-            $scope.issue = issue;
+        $scope.issue = issue;
+
+        $scope.mapCenter = {
+          lat: issue.lat,
+          lng: issue.lng,
+          zoom:18
+        };
+
+        $scope.mapMarkers = [];
+
+        $scope.mapMarkers.push({
+          lat: issue.lat,
+          lng: issue.lng
+        });
      }, function(error) {
        $log.error("Could not retrieve Issues: " + error);
      });
@@ -115,7 +146,7 @@ angular.module('FixYourStreet.issues', [])
 
 
   //Controller pour la création des issues
-  .controller("IssueCtrl", function (apiUrl, $scope, $http, $filter) {
+  .controller("newIssue", function (apiUrl, $scope, $http, $filter) {
       $scope.inputs = [{
               value: null
           }];
