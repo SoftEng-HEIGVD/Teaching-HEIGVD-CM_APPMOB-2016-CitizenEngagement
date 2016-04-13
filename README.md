@@ -13,6 +13,7 @@ Cette documentation permet de prendre en main l'application.
 5. [Issue Map](#issueMap)
 6. [All issues](#allIssues)
 7. [New Issue](#newIssue)
+8. [Issue Details](#issueDetails)
 
 
 
@@ -71,11 +72,52 @@ img menu
 
 
 <a name="myIssues"></a>
-## 3. My issues
-En cliquant sur my issues, on trouve toutes les issues recensées par l'utilisateur connecté en ce moment. Si vous avez créer un nouvel utilisateur, cette page est vide. Si vous ajoutez des issues, vous pourrez les retrouver ici. En cliquant sur une issue, on accède à la page de détail de celle-ci.
+## 4. My issues
+En cliquant sur "My issues" dans le menu, on trouve toutes les issues recensées par l'utilisateur connecté en ce moment. Si vous avez créer un nouvel utilisateur, cette page est vide. Si vous ajoutez des issues, vous pourrez les retrouver ici. En cliquant sur une issue, on accède à la page de détail de celle-ci.
 
 
 img myIssues
+
+<a href="#top">Back to top</a>
+
+
+<a name="issueMap"></a>
+## 5. Issue Map
+En cliquant sur "Issue Map" dans le menu, on trouve une carte affichant toutes les issues référencées dans l'application. En cliquant sur un icon d'issue, on accède à des détails sur celle-ci.
+
+img issue map
+
+<a href="#top">Back to top</a>
+
+<a name="allIssues"></a>
+## 6. All issues
+En cliquant sur "All issues" dans le menu, on trouve une page avec toutes les issues référencées dans l'application. En cliquant sur une issue, on accède à une page de détails sur celle-ci.
+
+img all issues
+
+<a href="#top">Back to top</a>
+
+
+<a name="newIssue"></a>
+## 7. New issue
+En cliquant sur "New issue" dans le menu, on accède à une page permettant de prendre une photo du problème concerné. Une fois la photo prise, nous pouvons choisir de continuer ou d'annuler. 
+
+Si l'on annule, on revient à la page précédente. 
+Si l'on accepte, on passe à l'étape suivante qui est de remplir les détails sur le problème en question. Il s'agit ici de référencer un type grâce à une liste déroulante, une description, et d'indiquer la longitude et la latitude du problème grâce à la carte. Il suffit de déplacer la carte et de centrer l'objectif sur le lieu voulu pour que les valeurs se mettent à jour. Une fois OK, on clique sur "Create Issue".
+
+img new issue
+
+<a href="#top">Back to top</a>
+
+
+
+<a name="issueDetails"></a>
+## 8. Issue Détails
+Le détail d'une issue s'affiche lorsqu'on clique sur une issue (dans "My issues" ou "All issues"). Ce détail permet de consulter la date, le status, la description, les tags lié à l'issue et sa position. Un bouton permet également d'ajouter des tags à une issue.
+
+
+
+img issue détails
 
 <a href="#top">Back to top</a>
 
