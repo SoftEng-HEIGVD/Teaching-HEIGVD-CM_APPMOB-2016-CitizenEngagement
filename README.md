@@ -18,11 +18,19 @@ Cette documentation permet de prendre en main l'application.
 
 
 <a name="installation"></a>
-## 1. Clone
+## 1. Installation
 
-Before diving into the code, you should always take a moment to design the user interface of your app.
-This doesn't have to be a final design, but it should at least be a sketch of what you want.
-This helps you think in terms of the whole app and of the relationships between screens.
+Il faut télécharger le contenu de ce repository. Afin de lancer l'application, il faut se positionner dans le répertoire Teaching-HEIGVD-CM_APPMOB-2016-CitizenEngagement et lancer la commande : 
+
+```js
+ionic serve
+```
+
+
+
+
+
+
 
 In this case, we have used [Fluid UI](https://www.fluidui.com) but anything is fine, from your favorite sketching tool to pencil and paper.
 
