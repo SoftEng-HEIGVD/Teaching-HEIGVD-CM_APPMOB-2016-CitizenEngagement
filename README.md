@@ -6,6 +6,7 @@ Ce repository contient notre application Citizen Engagement.
 Cette documentation permet de prendre en main l'application.
 
 1. [Installation](#installation)
+2. [Mockup](#mockup)
 2. [Login](#login)
 3. [Menu](#menu)
 4. [My issues](#myIssues)
@@ -22,11 +23,14 @@ Cette documentation permet de prendre en main l'application.
 
 Il faut télécharger le contenu de ce repository. Afin de lancer l'application, il faut se positionner dans le répertoire Teaching-HEIGVD-CM_APPMOB-2016-CitizenEngagement et lancer la commande : 
 
-```js
-ionic serve
-```
+    ionic serve
 
 
+<a name="mockup"></a>
+## 1. Mockups
+Voici les mockups que nous avons réalisés avant le développement : 
+
+![Mockup](setup/ui-structure.png)
 
 
 
