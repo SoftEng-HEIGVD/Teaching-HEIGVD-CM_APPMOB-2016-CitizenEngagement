@@ -25,33 +25,18 @@ Il faut télécharger le contenu de ce repository. Afin de lancer l'application,
 
     ionic serve
 
+<a href="#top">Back to top</a>
 
 <a name="mockup"></a>
 ## 1. Mockups
 Voici les mockups que nous avons réalisés avant le développement : 
 
-![Mockup](setup/ui-structure.png)
-
-
-
-
-
-In this case, we have used [Fluid UI](https://www.fluidui.com) but anything is fine, from your favorite sketching tool to pencil and paper.
-
-[Click here to see an interactive preview of the UI.](https://www.fluidui.com/editor/live/preview/p_bK038hItMrt8WnBP3PoHvfA5OdMtWLPS.1425646707110)
-
-![UI Design](setup/ui-structure.png)
-
-As you can see, we propose to use a tab view with 3 screens, and an additional 4th screen accessible from the issue list:
-
-* the new issue tab;
-* the issue map tab;
-* the issue list tab:
-  * the issue details screen.
-
-Now that we know what we want, we can start setting up the app!
+![](mockup.png)
 
 <a href="#top">Back to top</a>
+
+
+
 
 
 
