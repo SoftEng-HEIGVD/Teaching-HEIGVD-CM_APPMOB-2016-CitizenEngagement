@@ -70,3 +70,15 @@ img menu
 
 
 
+<a name="myIssues"></a>
+## 3. My issues
+En cliquant sur my issues, on trouve toutes les issues recensées par l'utilisateur connecté en ce moment. Si vous avez créer un nouvel utilisateur, cette page est vide. Si vous ajoutez des issues, vous pourrez les retrouver ici. En cliquant sur une issue, on accède à la page de détail de celle-ci.
+
+
+img myIssues
+
+<a href="#top">Back to top</a>
+
+
+
+
