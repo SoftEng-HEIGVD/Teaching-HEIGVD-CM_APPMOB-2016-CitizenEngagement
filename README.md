@@ -45,7 +45,9 @@ A noter que l'icon s'adapte également en fonction du status (légende des icons
 
 <a name="login"></a>
 ## 3. Login
-A ce moment-là, nous arrivons sur une page de login. N'importe quel login est accepté. Il suffit de rentrer son prénom et son nom. Pour une première démonstration, vous pouvez utiliser les identifiants suivants : 
+Une fois l'application lancé, nous arrivons sur une page de login. Il suffit de rentrer un prénom et un nom. 
+
+Pour une première démonstration, vous pouvez utiliser les identifiants suivants : 
 
 First Name : Michael
 
