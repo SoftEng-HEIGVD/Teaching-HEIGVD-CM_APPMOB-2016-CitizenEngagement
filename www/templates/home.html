@@ -12,30 +12,8 @@
     <div class="button-bar">
       <button class="button button-calm icon ion-android-search" ng-click="modalSearch.show()"></button>
       <button class="button button-calm icon ion-android-locate" ng-click="geolocateMap()"></button>
-      <button class="button button-calm icon ion-android-add" ui-sref="newIssue"> Issue</button>
+      <button class="button button-calm icon ion-android-add" ng-click="goNewIssue()"> Issue</button>
       <button class="button button-stable icon ion-android-open"  ng-class="disabledListIssue()" ui-sref="issueList"> List</button>
     </div>
   </div>
 </ion-view>
-
-<script id="modalSearch.html" type="text/ng-template">
-    <ion-modal-view ng-controller="MapSearch">
-
-        <ion-content class="padding">
-          <div class="bar item-input-inset" id="mainSearch" style="background:none;border:none"> <!--// Should be here to fix a bug with android -->
-            <label class="item-input-wrapper">
-              <i class="icon ion-ios-search placeholder-icon"></i>
-              <input type="search" ng-model="searchIn" ng-keyup="$event.keyCode == 13 && searchPlace(searchIn)" placeholder="Search a place">
-            </label>
-            <button class="button button-calm"  ng-click="searchPlace(searchIn)">Submit</button>
-          </div>
-
-          <button class="button button-stable button-clear button-full " ng-click="changeMapCenter({{resultPlace.bbox}})" ng-repeat="resultPlace in resultPlaces" >{{resultPlace.place_name}}</button>
-        </ion-content>
-
-        <ion-footer-bar>
-          <button class="button button-full  button-stable" ng-click="modalSearch.hide()">Close</button>
-        </ion-footer-bar>
-
-    </ion-modal-view>
-</script>

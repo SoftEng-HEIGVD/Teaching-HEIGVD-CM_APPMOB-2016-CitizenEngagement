@@ -15,7 +15,7 @@
 
     <ion-content>
         <div scroll="false">
-          <leaflet defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="200px" data-tap-disabled="true"></leaflet>
+          <leaflet id="mapDetails" defaults="mapDDefaults" center="mapDCenter" markers="mapDMarkers" height="200px" data-tap-disabled="true"></leaflet>
         </div>
         <p class="state state-{{issue.state}}">{{issue.state}}</p>
         <a ui-sref='fullImg({imageUrl: issue.imageUrl, errSrc: "img/NoImageAvailable.jpg"})'><img class="imgIssue imgIssueDetails" ng-src='{{issue.imageUrl}}' err-src="img/NoImageAvailable.jpg" /></a>

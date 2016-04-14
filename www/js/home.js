@@ -1,20 +1,25 @@
-angular.module('FixYourStreet.map', ['geolocation'])
+angular.module('FixYourStreet.home', ['geolocation'])
 
-  .controller("MapController", function($rootScope,$scope,$log,$http,$ionicLoading,$state, geolocation, leafletData, IssueService, mapboxMapId, mapboxAccessToken, $ionicModal) {
+  .controller("HomeController", function($rootScope,$scope,$log,$http,$ionicLoading,$state, geolocation, leafletData, IssueService, mapboxMapId, mapboxAccessToken, $ionicModal) {
 
     // Markers
-    $scope.$on('$ionicView.beforeEnter', function () {
-        $scope.issuesBounds = {};
-        $scope.getIssues();
-    });
     $scope.$on('leafletDirectiveMap.homeMap.moveend', function (event) {
         $scope.issuesBounds = {};
         $scope.getIssues();
+        $scope.disabledListIssue(); // Disabled list button if there are nos issues within the bounds
     });
 
     // Disabled the button list if no issues are within the bounds
     $scope.disabledListIssue = function() {
       return $scope.issuesBounds == '' ? "disabled" : "";
+    };
+
+    // Go to the template newIssue and set stateParams with map center
+    $scope.goNewIssue = function() {
+
+      leafletData.getMap('homeMap').then(function (map) {
+        $state.go("newIssue", { lat: map.getCenter().lat, lng: map.getCenter().lng, zoom: map.getZoom() });
+      });
     };
 
     // Default position on the map (World centered on Europe)
@@ -46,7 +51,7 @@ angular.module('FixYourStreet.map', ['geolocation'])
 
     // Set the layer to mapbox custom map
     var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId;
-    mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
+    mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.jpg70?access_token=" + mapboxAccessToken;
     $scope.mapDefaults = {
       tileLayer: mapboxTileLayer
     };
@@ -60,11 +65,7 @@ angular.module('FixYourStreet.map', ['geolocation'])
           IssueService.getIssuesArea(bbox, 0 ,500, function(issues) { // Offset is 0 and limit value ist 500
                 $scope.issuesBounds = issues;
 
-                $scope.disabledListIssue(); // Disabled list button if there are nos issues within the bounds
-
-                $scope.mapMarkers = [];
-
-                var markers = L.markerClusterGroup();
+                var markers = L.markerClusterGroup({ maxClusterRadius:150,disableClusteringAtZoom: 17 });
 
                 angular.forEach($scope.issuesBounds, function(issue) {
                   var marker = L.marker(new L.LatLng(issue.lat, issue.lng), { issueId: issue.id });
@@ -84,8 +85,8 @@ angular.module('FixYourStreet.map', ['geolocation'])
       });
     };
 
-    // Change the map center with a bbox
-    $scope.changeMapCenter = function(bbox) {
+    // MapSearch: Change the map center with a bbox
+    $scope.changeMapCenterBBOX = function(bbox) {
       // If the request is coming from the modalSearch
       if($scope.modalSearch.show()){
         $scope.modalSearch.hide();
@@ -100,8 +101,8 @@ angular.module('FixYourStreet.map', ['geolocation'])
       });
     };
 
-    // Search Modal Box
-    $ionicModal.fromTemplateUrl('modalSearch.html', {
+    // MapSearch: Modal Box
+    $ionicModal.fromTemplateUrl('templates/mapSearch.html', {
       scope: $scope,
       animation: 'slide-in-up'
     }).then(function(modal) {

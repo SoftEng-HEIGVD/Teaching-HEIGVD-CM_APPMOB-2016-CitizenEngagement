@@ -9,41 +9,43 @@
     </ion-nav-bar>
 
     <ion-content>
-            <button  ng-controller="takePhoto" class="button ion-camera" ng-click="takePhoto()"> Take a photo</button>
+        <div scroll="false">
+          <leaflet id="mapNewI" defaults="mapNDefaults" center="mapNCenter"s height="200px" data-tap-disabled="true"></leaflet>
+        </div>
 
-            <div class="list">
+        <div class="button-bar">
+          <button class="button button-calm icon ion-android-search" ng-click="modalSearch.show()"></button>
+          <button class="button button-calm icon ion-android-locate" ng-click="geolocateMap()"></button>
+          <button ng-controller="takePhoto" class="button button-clear icon ion-camera" ng-click="takePhoto()"> Take a photo</button>
+        </div>
 
-                <label class="item item-input item-select">
-                    <div class="input-label">
-                        Type
-                    </div>
-                    <select ng-model="type" >
-                        <option>dangerous crossroad</option>
-                        <option>broken streetlight</option>
-                        <option selected>graffiti</option>
-                    </select>
-                </label>
 
-            </div>
+        <div class="list">
+
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Type
+                </div>
+                <select ng-controller="TypesCtrl" required>
+                    <option ng-repeat="type in types" value="{{type.id}}">{{type.name}}</option>
+                </select>
+            </label>
 
             <label class="item item-input">
-                <input type="text" placeholder="Add a description" ng-model="description" />
+                <input type="text" placeholder="Add a description" ng-model="description" required/>
             </label>
-            <div class="item-input" ng-repeat="input in inputs">
-                <label class="item-input-wrapper">
-                    <input type="text" placeholder="Type a tag" ng-model="tagValue" />
-                </label>
-                <button class="button button-small" ng-if="$index == inputs.length - 1" ng-click="addInput()"><i class="icon ion-plus"></i></button>
-                <button class="button button-small button-assertive" ng-if="$index != inputs.length - 1" ng-click="removeInput($index)"><i class="icon ion-minus"></i></button>
-            </div>
 
-            <div class="button-bar">
-                <button class="button button-stable" ui-sref="issueMap">Cancel</button>
-                <button class="button button-calm" ui-sref="issueDetails"  ng-click="submitIssue()">Submit</button>
+            <div class="item-input" ng-repeat="input in inputs" >
+                <input type="text" placeholder="Type a tag" ng-model="tagValue" />
+                <button class="button button-small padding icon ion-plus" ng-if="$index == inputs.length - 1" ng-click="addInput()"></button>
+                <button class="button button-small button-assertive padding icon ion-minus" ng-if="$index != inputs.length - 1" ng-click="removeInput($index)"></button>
             </div>
+        </div>
 
+        <div class="button-bar">
+            <button class="button button-stable" ui-sref="issueMap">Cancel</button>
+            <button class="button button-calm" ui-sref="issueDetails"  ng-click="submitIssue()">Submit</button>
+        </div>
     </ion-content>
-
-
-
+    
 </ion-view>

@@ -1,4 +1,4 @@
-angular.module('FixYourStreet', ['ionic', 'leaflet-directive', 'FixYourStreet.auth', 'FixYourStreet.comments','FixYourStreet.constants', 'FixYourStreet.issues', 'FixYourStreet.map', 'yaru22.angular-timeago', 'ionic-native-transitions'])
+angular.module('FixYourStreet', ['ionic', 'leaflet-directive', 'FixYourStreet.auth', 'FixYourStreet.comments','FixYourStreet.constants', 'FixYourStreet.issues', 'FixYourStreet.home', 'yaru22.angular-timeago', 'ionic-native-transitions'])
 
 
         .run(function ($ionicPlatform) {
@@ -29,7 +29,7 @@ angular.module('FixYourStreet', ['ionic', 'leaflet-directive', 'FixYourStreet.au
 
                 .state('home', {
                     url: '/home',
-                    controller: 'MapController',
+                    controller: 'HomeController',
                     templateUrl: 'templates/home.html'
                 })
 
@@ -63,7 +63,7 @@ angular.module('FixYourStreet', ['ionic', 'leaflet-directive', 'FixYourStreet.au
                 })
 
                 .state('newIssue', {
-                    url: '/newIssue',
+                    url: '/newIssue/:lat/:lng/:zoom',
                     controller: 'newIssue',
                     templateUrl: 'templates/newIssue.html'
                 })
@@ -145,7 +145,5 @@ angular.module('FixYourStreet', ['ionic', 'leaflet-directive', 'FixYourStreet.au
             }
           }
         })
-
-
 
 ;
