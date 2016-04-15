@@ -34,11 +34,8 @@
 
           </ion-item>
       </ion-list>
-      <ion-infinite-scroll
-      ng-if="nextPageDisabledClass()"
-      on-infinite="loadMore()"
-      distance="1%">
-    </ion-infinite-scroll>
+
+      <button class="button button-full ion-android-arrow-dropdown" href="#" ng-class="nextPageDisabledClass()" ng-click="loadMore()"> Load More</button>
 
   </ion-content>
 </ion-view>

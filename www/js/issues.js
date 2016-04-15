@@ -43,63 +43,76 @@ angular.module('FixYourStreet.issues', [])
 
   }])
 
+  .factory("CameraService", function ($q) {
+      return {
+          getPicture: function (options) {
+              var deferred = $q.defer();
+              navigator.camera.getPicture(function (result) {
+                  // do any magic you need
+                  deferred.resolve(result);
+              }, function (err) {
+                  deferred.reject(err);
+              }, options);
+              return deferred.promise;
+          }
+      }
+  })
+
   .controller("issueList", function($rootScope,$scope,$state, leafletData, IssueService, $ionicLoading,timeAgo) {
 
-    // After 24 hours, display the date normally.
-    var oneDay = 60*60*24;
-    timeAgo.settings.fullDateAfterSeconds = oneDay;
+      // After 24 hours, display the date normally.
+      var oneDay = 60*60*24;
+      timeAgo.settings.fullDateAfterSeconds = oneDay;
 
-    /* Issue with promise handler on LeafletData : https://github.com/tombatossals/angular-leaflet-directive/issues/1052
-       Workaround: Check if the map exist, if not it means that the page was call from the homepage
-    */
-    if(leafletData.getMap('homeMap').$$state.status == 0){
-      $state.go("home", { reload: true});
-    }
+      /* Issue with promise handler on LeafletData : https://github.com/tombatossals/angular-leaflet-directive/issues/1052
+         Workaround: Check if the map exist, if not it means that the page was call from the homepage
+      */
+      if(leafletData.getMap('homeMap').$$state.status == 0){
+        $state.go("home", { reload: true});
+      }
 
-    $scope.issuesPerPage = 5;
-    $scope.currentPage = 0;
+      $scope.issuesPerPage = 5;
+      $scope.currentPage = 0;
 
-    // The $ionicView.beforeEnter event happens every time the screen is displayed.
-    $scope.$on('$ionicView.beforeEnter', function () {
+      // The $ionicView.beforeEnter event happens every time the screen is displayed.
+      $scope.$on('$ionicView.beforeEnter', function () {
+        leafletData.getMap('homeMap').then(function (map) {
+           $scope.bboxList = map.getBounds();
 
-      leafletData.getMap('homeMap').then(function (map) {
-         $scope.bboxList = map.getBounds();
+           IssueService.getIssuesArea($scope.bboxList, $scope.currentPage*$scope.issuesPerPage,$scope.issuesPerPage, function(issues) { // Offset is 0 and limit value per "page" ist 5
+                  $scope.pagedIssues = issues;
+           }, function(error) {
+             $log.error("Could not get Issues: " + error);
+           });
 
-         IssueService.getIssuesArea($scope.bboxList, $scope.currentPage*$scope.issuesPerPage,$scope.issuesPerPage, function(issues) { // Offset is 0 and limit value per "page" ist 5
-                $scope.pagedIssues = issues;
-         }, function(error) {
-           $log.error("Could not get Issues: " + error);
-         });
+           IssueService.getIssuesArea($scope.bboxList, 0,0, function(issues) { // limit of 0 mean limit defined by server
+                 $scope.total = issues.length;
+          }, function(error) {
+            $log.error("Could not get Issues: " + error);
+          });
 
-         IssueService.getIssuesArea($scope.bboxList, 0,0, function(issues) { // limit of 0 mean limit defined by server
-               $scope.total = issues.length;
+        });
+      });
+
+      $scope.loadMore = function() {
+        $scope.currentPage++;
+        IssueService.getIssuesArea($scope.bboxList, $scope.currentPage,$scope.issuesPerPage, function(newIssues) {
+          $scope.pagedIssues = $scope.pagedIssues.concat(newIssues);
         }, function(error) {
           $log.error("Could not get Issues: " + error);
         });
 
-      });
-    });
+      };
 
-    $scope.loadMore = function() {
-      $scope.currentPage++;
-      IssueService.getIssuesArea($scope.bboxList, $scope.currentPage,$scope.issuesPerPage, function(newIssues) {
-        $scope.pagedIssues = $scope.pagedIssues.concat(newIssues);
-        $scope.$broadcast('scroll.infiniteScrollComplete');
-      }, function(error) {
-        $log.error("Could not get Issues: " + error);
-      });
+      $scope.nextPageDisabledClass = function() {
+        return $scope.currentPage === $scope.pageCount()-1 ? "disabled" : "";
+      };
 
-    };
+      $scope.pageCount = function() {
+        return Math.ceil($scope.total/$scope.issuesPerPage);
+      };
 
-    $scope.nextPageDisabledClass = function() {
-      return $scope.currentPage === $scope.pageCount()-1 ? false : true;
-    };
-
-    $scope.pageCount = function() {
-      return Math.ceil($scope.total/$scope.issuesPerPage);
-    };
-
-  })
+    })
 
 
   //controller pour affiche les details d'une issue
@@ -141,9 +154,11 @@ angular.module('FixYourStreet.issues', [])
 
 
   //Controller pour la création des issues
-  .controller("newIssue", function (apiUrl, $http, $scope, $filter, $stateParams, $ionicModal,$ionicLoading,leafletData, geolocation, $log, IssueService, mapboxMapId, mapboxAccessToken) {
+  .controller("newIssue", function (apiUrl, $http, $scope, $filter, $stateParams, $state, $ionicModal,$ionicLoading,leafletData, geolocation, $log, IssueService, mapboxMapId, mapboxAccessToken, CameraService, qimgUrl, qimgToken) {
 
       $scope.issue = {};
+      $scope.issue.lat = $stateParams.lat;
+      $scope.issue.lng = $stateParams.lng;
 
       // Default position on the map (World centered on Europe)
       $scope.mapNCenter = {
@@ -216,72 +231,28 @@ angular.module('FixYourStreet.issues', [])
         });
       };
 
-      // Defin the tags controls
-      $scope.inputs = [{value: null}];
+      // Define the tags controls
+      $scope.issue.tags = [{value:null}];
 
-      $scope.addInput = function () {
-          $scope.inputs.push({value: null});
+      $scope.addTag = function () {
+          $scope.issue.tags.push({value:null});
       }
 
-      $scope.removeInput = function (index) {
-          $scope.inputs.splice(index, 1);
+      $scope.removeTag = function (index) {
+          $scope.issue.tags.splice(index, 1);
       }
 
-      // Post the issue
-      $scope.submitIssue = function () {
-          $http({
-              method: 'GET',
-              url: apiUrl + '/issueTypes',
-          }).success(function (allType) {
-                var myFilteredType = $filter('filter')(allType, {name: $scope.type});
-                var typeId = myFilteredType[0].id;
-                $http({
-                    method: 'GET',
-                    url: apiUrl + '/issueTypes/' + typeId,
-                }).success(function (typeChoosen) {
-                    var newIssue = {
-                        description: $scope.description,
-                        tags: $scope.tagValue,
-                        issueTypeId: typeChoosen.id,
-                        lat: $scope.issue.lat,
-                        lng: $scope.issue.lng,
-                        imageUrl: $scope.imageUploadedUrl,
-                    }
-                    $http({
-                        method: 'POST',
-                        url: apiUrl + '/issues',
-                        data: newIssue
-                      }).success(function (createdIssue) {
-                          console.log(createdIssue);
-                          },function error() {
-                            console.log("Erreur pas encore faite");
-                            });
-                          },
-                                      function error() {
-                                          console.log("Erreur pas encore faite");
-                                      });
-                  });
-      }
-
-  })
-
-  // Get the list of types
-  .controller("TypesCtrl", function ($scope,$http, $log, apiUrl,IssueService) {
-      IssueService.getIssuesTypes(function(types) {
-        $scope.types = types;
-      }, function(error) {
-        $log.error("Could not get IssuesTypes: " + error);
-      });
-  })
-
-  // Send and upload taken picture
-  .controller("takePhoto", function ($scope, CameraService, $http, qimgUrl, qimgToken) {
       $scope.takePhoto = function () {
+
           CameraService.getPicture({
-              quality: 75,
-              targetWidth: 400,
-              targetHeight: 300,
+              quality: 70,
+              targetWidth: 600,
+              targetHeight: 600,
+              correctOrientation: true,
               destinationType: Camera.DestinationType.DATA_URL}).then(function (imageData) {
+              $ionicLoading.show({
+                  template: 'Uploading...',
+              });
               $http({
                   method: "POST",
                   url: qimgUrl + "/images",
@@ -292,28 +263,70 @@ angular.module('FixYourStreet.issues', [])
                       data: imageData
                   }
               }).success(function (data) {
-                  $scope.imageUploadedData = data;
                   $scope.imageUploadedUrl = data.url;
+                  $ionicLoading.hide();
               }).error(function(error){
-                  $log.error(error);
+                  $ionicLoading.hide();
+                  $log.error("Could not upload the issue: " + error);
               });
           });
       };
+
+      // Post the issue
+      $scope.submitIssue = function () {
+
+        var newIssue = {
+            description: $scope.issue.description,
+            issueTypeId: $scope.issue.type,
+            lat: $scope.issue.lat,
+            lng: $scope.issue.lng,
+            imageUrl: $scope.imageUploadedUrl
+        }
+
+        $http({
+            method: 'POST',
+            url: apiUrl + '/issues',
+            data: newIssue
+          }).success(function (createdIssue) {
+
+            var tags = [];
+
+            angular.forEach($scope.issue.tags, function(issue) {
+              tags.push(issue.value);
+            });
+
+            // Post the tags
+            $http({
+              method: 'POST',
+              url: apiUrl + '/issues/' + createdIssue.id + '/actions',
+              data: {
+                type : "addTags",
+                payload :{
+                  tags : tags
+                }
+              }
+
+            }).success(function(data) {
+                $state.go("issueDetails", { issueId: createdIssue.id });
+            }).error(function(error){
+                $log.error("Could not create the tags: " + error);
+            });
+          }).error(function(error){
+              $log.error("Could not create the issue: " + error);
+          });
+
+      }
+
+
   })
 
-  .factory("CameraService", function ($q) {
-      return {
-          getPicture: function (options) {
-              var deferred = $q.defer();
-              navigator.camera.getPicture(function (result) {
-                  // do any magic you need
-                  deferred.resolve(result);
-              }, function (err) {
-                  deferred.reject(err);
-              }, options);
-              return deferred.promise;
-          }
-      }
+  // Get the list of types
+  .controller("TypesCtrl", function ($scope,$http, $log, apiUrl,IssueService) {
+      IssueService.getIssuesTypes(function(types) {
+        $scope.types = types;
+      }, function(error) {
+        $log.error("Could not get IssuesTypes: " + error);
+      });
   })
 
 ;

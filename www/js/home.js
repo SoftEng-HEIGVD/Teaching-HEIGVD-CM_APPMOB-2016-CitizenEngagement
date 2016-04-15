@@ -1,12 +1,26 @@
 angular.module('FixYourStreet.home', ['geolocation'])
 
-  .controller("HomeController", function($rootScope,$scope,$log,$http,$ionicLoading,$state, geolocation, leafletData, IssueService, mapboxMapId, mapboxAccessToken, $ionicModal) {
+  .controller("HomeController", function($rootScope,$scope,$log,$window,$http,$ionicLoading,$state, geolocation, leafletData, IssueService, mapboxMapId, mapboxAccessToken, $ionicModal) {
+
+    // Workaround for grey tiles display - http://stackoverflow.com/questions/29993697/leaflet-map-in-ionic-angular-map-displays-grey-tiles
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+          if(toState.name === 'home' || toState.name === 'issueDetails' || toState.name === 'newIssue') {
+              $window.dispatchEvent(new Event('resize'));
+          }
+  });
+
+    var markers = L.markerClusterGroup({ maxClusterRadius:150,disableClusteringAtZoom: 18,singleMarkerMode: true });//For performance improvement
 
     // Markers
+    $scope.$on('$ionicView.beforeEnter', function () {
+        $scope.issuesBounds = {};
+        $scope.getIssues();
+    });
+
     $scope.$on('leafletDirectiveMap.homeMap.moveend', function (event) {
         $scope.issuesBounds = {};
         $scope.getIssues();
-        $scope.disabledListIssue(); // Disabled list button if there are nos issues within the bounds
+
     });
 
     // Disabled the button list if no issues are within the bounds
@@ -62,10 +76,10 @@ angular.module('FixYourStreet.home', ['geolocation'])
 
           var bbox = map.getBounds();
 
-          IssueService.getIssuesArea(bbox, 0 ,500, function(issues) { // Offset is 0 and limit value ist 500
+          IssueService.getIssuesArea(bbox, 0 ,500, function(issues) { // Offset is 0 and limit value ist 500, so clusters are an approximation when viewd from
                 $scope.issuesBounds = issues;
-
-                var markers = L.markerClusterGroup({ maxClusterRadius:150,disableClusteringAtZoom: 17 });
+                markers.clearLayers(); // Remove old markers/clusters
+                $scope.disabledListIssue(); // Disabled list button if there are nos issues within the bounds
 
                 angular.forEach($scope.issuesBounds, function(issue) {
                   var marker = L.marker(new L.LatLng(issue.lat, issue.lng), { issueId: issue.id });
