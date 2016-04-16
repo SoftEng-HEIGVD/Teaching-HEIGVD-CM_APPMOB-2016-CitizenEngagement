@@ -166,9 +166,120 @@ angular.module('citizen-engagement.map', [])
 
 
     })
+    .controller("HomeMapController", function ($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocServiceFla) {
+        var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId; //openlayers --> mapbox
+        mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
+        $scope.mapDefaults = {
+            tileLayer: mapboxTileLayer
+        };
+
+        $scope.mapCenter = {};
+// TODO loading while geoloc
+
+        GeolocServiceFla.locateUser().then(function (coords) {
+            $scope.mapCenter = {
+                lat: coords.latitude,
+                lng: coords.longitude,
+                zoom: 15
+
+            };
+        });
 
 
-    .controller("HomeMapController", function ($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocServiceFla, $stateParams) {
+        $scope.mapMarkers = [];
+
+        $http.get(apiUrl + '/issues').success(function (issues) {
+
+
+            angular.forEach(issues, function (issue) {
+
+                $scope.mapMarkers.push({
+                    lat: issue.lat,
+                    lng: issue.lng,
+                    "icon": {
+                        "iconUrl": "http://iconshow.me/media/images/Application/Map-Markers-icons/png/256/MapMarker_Marker_Outside_Pink.png",
+                        "iconSize": [50, 50], // size of the icon
+                        "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
+                        "popupAnchor": [0, -25], // point from which the popup should open relative to the iconAnchor
+                        "className": "dot",
+
+                    },
+                    /*message: '<p>{{issue.description}}</p><img src="{{issue.imageUrl}}" width="200px"/>',
+                     getMessageScope: function() {
+                     var scope = $scope.$new();
+                     scope.issue = issue;
+                     return scope;
+                     }*/
+                    message: '<a class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})" width = 200px>' +
+                    '<img src="{{issue.imageUrl}}" width="50px" height="50px"><h4>{{issue.issueType.name}}</h4><p>{{issue.description}}</p>' +
+                    '<p>{{issue.createdOn | date:"mediumDate"}}</p></a>',
+                    getMessageScope: function() {
+                        var scope = $scope.$new();
+                        scope.issue = issue;
+                        return scope;
+                    }
+
+
+
+                });
+
+                console.log(issue);
+            });
+
+
+            $scope.issues = issues;
+
+            console.log(issues);
+
+            GeolocServiceFla.locateUser().then(function (coords) {
+                $scope.mapMarkers.push({
+
+
+                    lat: coords.latitude,
+                    lng: coords.longitude,
+                    "icon": {
+                        "iconUrl": "http://img.lum.dolimg.com/v1/images/open-uri20150608-27674-1fy4fw9_f422ec7b.png?region=0%2C0%2C400%2C400",
+                        "iconSize": [100, 100], // size of the icon
+                        "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
+                        "popupAnchor": [0, -25], // point from which the popup should open relative to the iconAnchor
+                        "className": "dot"
+                    },
+                    message: '<p>{{ issue.description }}</p><img src="{{ issue.imageUrl }}" width="200px" />',
+                    getMessageScope: function () {
+                        var scope = $scope.$new();
+                        /*    scope.issue = issue;*/
+                        return scope;
+                    }
+                });
+            });
+
+        });
+
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*.controller("HomeMapController", function ($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocServiceFla, $stateParams) {
         var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId; //openlayers --> mapbox
         mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
         $scope.mapDefaults = {
@@ -188,17 +299,12 @@ angular.module('citizen-engagement.map', [])
                 zoom: 15
             };
 
-            $scope.mapMarkers.push({
-                lat: coords.latitude,
-                lng: coords.longitude,
-                message: "<strong>You are here</strong>"
 
-            });
 
         });
 
 
-    })
+    })*/
 
     .controller("NewIssueMapController", function ($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocServiceFla, $stateParams) {
         var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId; //openlayers --> mapbox
