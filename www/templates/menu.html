@@ -12,7 +12,7 @@
                 </ion-nav-buttons>
 
                 <ion-nav-buttons side="right">
-                    <button class="button button-icon button-clear ion-search" ng-if="filterEnabled">
+                    <button ng-controller="FilterIssuesCtrl" class="button button-icon button-clear ion-search" ng-if="filterEnabled" ng-click="openPopover($event)">
                     </button>
                 </ion-nav-buttons>
             </div>

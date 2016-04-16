@@ -1,0 +1,16 @@
+<ion-popover-view>
+  <ion-header-bar>
+    <h1 class="title">Filter issues</h1>
+  </ion-header-bar>
+  <ion-content>
+    <label class = "item item-input item-select">
+      <div class = "input-label">
+        <p>Filter by type</p>
+      </div>
+
+      <select ng-options="issueType as issueType.name for issueType in issueTypes track by issueType.id"
+   ng-model="issueTypeId" ng-change="filter()"></select>
+    </label>
+
+  </ion-content>
+</ion-popover-view>
