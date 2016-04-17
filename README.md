@@ -116,7 +116,7 @@ Two buttons can be found:
 
 ## h. Add a new comment
 
-![login page](/Screenshots/newComment.jpg)
+![login page](/images/newComment.jpg)
 
 The user can add a comment to an issue by writing text on the field and tap the button "Create". The user will be redirect to the list of comments (i).
 
@@ -124,7 +124,7 @@ The user can add a comment to an issue by writing text on the field and tap the 
 
 ## i. Comments list
 
-![login page](/Screenshots/commentList.jpg)
+![login page](/images/commentList.jpg)
 
 The list of comments for an issue can be viewed on this page. Every comment will be shown with the following informations:
 
