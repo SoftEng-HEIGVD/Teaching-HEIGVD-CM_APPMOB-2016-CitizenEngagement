@@ -25,25 +25,17 @@
       <div class="errors-report">
         <p ng-show="userForm.description.$error.required">* Description is required</p>
       </div>
-      <label >
+      <label>
         <tags-input ng-model="tags" name="tags" ></tags-input>
       </label>
-
-
       <button class="button button-small button-assertive" ng-click="uploadPicture()">
-          Upload a picture
+          Take a picture
       </button>
       <div class="errors-report">
         {{locationProblem}}
       </div>
-
-
     </div>
-
-  <!-- ng-click="createAnIssue()" ng-disabled="userForm.$invalid"-->
-    <button type="submit" class="button button-full button-positive main-btn" ng-disabled="userForm.$invalid || geolok == false"  ng-click="createAnIssue()">Save</button>
-
+    <button type="submit" class="button button-full button-positive main-btn" ng-disabled="userForm.$invalid || geolok == false || imgok == false" ng-click="createAnIssue()">Save</button>
   </form>
-
   </ion-content>
 </ion-view>
