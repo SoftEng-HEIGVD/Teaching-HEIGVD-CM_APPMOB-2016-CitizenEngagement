@@ -106,8 +106,6 @@ angular.module('citizen-engagement.mapBox', ['leaflet-directive','geolocation'])
                     }
 
 
-
-
                     leafletData.getMap().then(calculateRadius).then(createData4POST).then(getIssuesFromLocation);
 
 
@@ -120,71 +118,42 @@ angular.module('citizen-engagement.mapBox', ['leaflet-directive','geolocation'])
                     });
             });
 
-
     })
 
 
 
-    .controller('SingleIssueMapCtrl', function ($scope, $stateParams,$http,apiUrl, $log, $scope, geolocation, mapboxMapId, mapboxAccessToken, AuthService, leafletData) {
+      .controller("SingleIssueMapCtrl", function($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, $stateParams){
+              var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId;
+              mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
+              $scope.mapDefaults = {
+                  tileLayer: mapboxTileLayer
+              };
+              $scope.mapCenter = {};
+              $scope.mapMarkers = [];
+              var issueId = $stateParams.issueId;
+              $http({
+                  method: 'GET',
+                  url: apiUrl + '/issues/'+issueId
+              }).success(function(issue){
 
-
-      $scope.mapMarkers = [];
-      var currentId = $stateParams.issueId;
-      $scope.loadCurrentIssue=function(){
-          $http.get(apiUrl+'/issues/'+currentId).success(function(issueCurrent){
-              $scope.issueCurrent=issueCurrent;
-              //console.log(issueCurrent);
-          })
-      }
-      $scope.loadCurrentIssue();
-        console.log("bonjour");
-
-
-
-      $scope.mapCenter.lat = 46.7805968;
-      $scope.mapCenter.lng = 6.647508;
-      $scope.mapCenter.zoom = 14;
-      $scope.mapEnabled = true;
-
-      var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId;
-
-      mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
-
-      $scope.mapDefaults = {
-              tileLayer: mapboxTileLayer,
-              events: {
-                      map: {
-                              enable: ['zoomend', 'drag', 'click'],
-
+                  $scope.mapMarkers.push({
+                      lat: issue.lat,
+                      lng: issue.lng,
+                      message: '<p>{{issue.description}}</p><img src="{{issue.imageUrl}}" width="200px"/>',
+                      getMessageScope: function() {
+                          var scope = $scope.$new();
+                          scope.issue = issue;
+                          return scope;
                       }
-              }
-      };
+                  });
+                  $scope.mapCenter = {
+                      lat: issue.lat,
+                      lng: issue.lng,
+                      zoom: 15
+                  };
+              });
 
 
 
 
-
-      function addIssues2MapMarkers(issueCurrent)
-      {
-
-
-                      $scope.mapMarkers.push({
-                              color: "#FF0000",
-                              lat: issueCurrent.lat,
-                              lng: issueCurrent.lng,
-                              message: "<p>{{ issue.description }}</p><img src=\"{{ issue.imageUrl }}\" width=\"200px\" />",
-                              getMessageScope: function() {
-                                      var scope = $scope.$new();
-                                      scope.issue = issue;
-                                      return scope;
-                              }
-                      });
-
-
-      }
-
-
-
-
-      leafletData.getMap().then(addIssues2MapMarkers);
-    })
+});

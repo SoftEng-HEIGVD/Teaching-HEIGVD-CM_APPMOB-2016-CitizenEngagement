@@ -1,7 +1,22 @@
-<ion-view view-title="Issue Single Map" ng-controller="SingleIssueMapCtrl">
-    <ion-content scroll=false>
-        <div ng-if="mapEnabled" style="height: 100%">
-            <leaflet defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
+
+
+
+<!-- <div ng-controller="SingleIssueMapCtrl">
+
+        <div class=" ">
+          <div class="" style="background-color: blue; height: 600px;">
+            <leaflet defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet></div>
         </div>
-    </ion-content>
-</ion-view>
+      </div> -->
+
+
+      <ion-view view-title="Issue Single Map" ng-controller="SingleIssueMapCtrl">
+
+          <ion-content scroll=false>
+
+              <div style="height: 100%">
+
+                  <leaflet defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
+              </div>
+          </ion-content>
+      </ion-view>
