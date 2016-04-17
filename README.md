@@ -91,8 +91,8 @@ To register a new issue the user will have to:
 
 * Choose a type
 * Add a description
-*Add one or many tags
-*Press the submit button (g)
+* Add one or many tags
+* Press the submit button (g)
 
 
 
