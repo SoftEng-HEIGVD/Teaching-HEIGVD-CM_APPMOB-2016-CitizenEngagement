@@ -10,6 +10,7 @@
     "ng-tags-input": "^3.0.0",
     "moment": "~2.12.0",
     "angularjs-geolocation": "^0.1.1",
-    "angular-leaflet-directive": "~0.10.0"
+    "angular-leaflet-directive": "~0.10.0",
+    "leaflet.markercluster": "~0.5.0"
   }
 }

@@ -1,3 +1,8 @@
+/*
+NOTE : THERE IS A BUG IN THE API
+the coordinates are all the same when we use a "-" sort e.g -updatedOn sort
+*/
+
 angular.module('citizen-engagement.listIssues',['ionic'])
 .service('IssueService', function($http,apiUrl){
     //get the issues
@@ -13,13 +18,13 @@ angular.module('citizen-engagement.listIssues',['ionic'])
             }
           }).success(callback);
         }
+      //custom query  
       else{
         $http({
           method: 'POST',
           url: apiUrl+ '/issues/search',
           headers: {
-            'X-Pagination': offset+';'+limit,
-            "X-Sort" : "-updatedOn -createdOn"
+            'X-Pagination': offset+';'+limit
           },
           data:query
           }).success(callback);
@@ -28,12 +33,12 @@ angular.module('citizen-engagement.listIssues',['ionic'])
 
 })
 
-//to do : pagniation, headers,
+
 .controller('ListIssueCtrl', function(IssueService,$scope) {
   var offset = 0;
   $scope.issues = [];
 
-  //Gestion de la pagination
+  //ajax loading of the issues
   $scope.addIssues = function() {
     IssueService.getIssues(offset,10,function(data){
       //pretty dates
