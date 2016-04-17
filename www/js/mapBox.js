@@ -133,15 +133,16 @@ angular.module('citizen-engagement.mapBox', ['leaflet-directive','geolocation'])
       $scope.loadCurrentIssue=function(){
           $http.get(apiUrl+'/issues/'+currentId).success(function(issueCurrent){
               $scope.issueCurrent=issueCurrent;
-              console.log(issueCurrent);
+              //console.log(issueCurrent);
           })
       }
       $scope.loadCurrentIssue();
+        console.log("bonjour");
 
 
 
-      $scope.mapCenter.lat = issueCurrent.lat;
-      $scope.mapCenter.lng = issueCurrent.lng;
+      $scope.mapCenter.lat = 46.7805968;
+      $scope.mapCenter.lng = 6.647508;
       $scope.mapCenter.zoom = 14;
       $scope.mapEnabled = true;
 
