@@ -50,3 +50,31 @@ angular.module('citizen-engagement.citizenCtrl',['geolocation'])
       }
       $scope.loadCurrentIssue();
     })
+
+
+    .controller('addCommentCtrl',function ($scope, $http, apiUrl, $stateParams, $state, $window) {
+        console.log("j'arrive à récupe le paramètre" + $stateParams);
+        var id = $stateParams.issueId;
+        console.log('id ' + id);
+
+
+        $scope.comment = {};
+
+        $scope.submit = function () {
+            var url = apiUrl + '/issues/' + id + '/actions/'
+            $http.post(url, {
+                type: "comment",
+                payload: {
+                    text: $scope.action.payload.text
+                }
+            }).then(function (res) {
+                $scope.response = res.comment;
+                $window.location.reload(true);
+
+            });
+
+        };
+
+
+    }
+)
