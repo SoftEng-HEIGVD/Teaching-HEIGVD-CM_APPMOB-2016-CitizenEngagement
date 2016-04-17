@@ -23,7 +23,7 @@ On the home page, the application proposes to the user to register with his/her 
 
 ## b. Home page
 
-![home page](/images/home.jpg)
+<img src="/images/home.jpg" width=40% height=40%>
 
 The application will automatically localize the user and show him/her a map with all the issues in the area. On the menu, the user can: 
 
@@ -42,7 +42,7 @@ The logout button on the upper left side of the screen allow the user to logout 
 
 ## c. Search a place with the issues around
 
-![search issue](/images/searchIssue.jpg)
+<img src="/images/searchIssue.jpg" width=40% height=40%>
 
 The user can search an address and the map will show the place with every issue around. The button "close" will close the page and redirect the user on the last page. 
 
@@ -56,7 +56,7 @@ This button will localize the whereabouts of the user and show the issues around
 
 ## e. List of all the issues in the area
 
-![issue list](/images/issueList.jpg)
+<img src="/images/issueList.jpg" width=40% height=40%>
 
 Every issue in the area will be shown. On each of them the following informations can be viewed:
 
@@ -79,7 +79,7 @@ Two buttons can also be found for each issue:
 
 ## f. Add a new issue
 
-![add issue](/images/addIssue.jpg)
+<img src="/images/addIssue.jpg" width=40% height=40%>
 
 The user can add a new issue. This page will show where the user is and will register the issue on the same address. On the menu bar the user can: 
 
@@ -98,7 +98,7 @@ To register a new issue the user will have to:
 
 ## g. Details of an issue
 
-![issue details](/images/issueDetails.jpg)
+<img src="/images/issueDetails.jpg" width=40% height=40%>
 
 The following informations of an issue can be viewed:
 
@@ -116,7 +116,7 @@ Two buttons can be found:
 
 ## h. Add a new comment
 
-![new comment](/images/newComment.jpg)
+<img src="/images/newComment.jpg" width=40% height=40%>
 
 The user can add a comment to an issue by writing text on the field and tap the button "Create". The user will be redirected to the list of comments (i).
 
@@ -124,7 +124,7 @@ The user can add a comment to an issue by writing text on the field and tap the 
 
 ## i. Comments list
 
-![comments list](/images/commentList.jpg)
+<img src="/images/commentList.jpg" width=40% height=40%>
 
 The list of comments for an issue can be viewed on this page. Every comment will be shown with the following informations:
 
