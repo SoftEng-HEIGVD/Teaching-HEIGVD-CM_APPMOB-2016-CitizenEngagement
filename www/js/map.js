@@ -56,6 +56,7 @@ angular.module('citizen-engagement.map', [])
 
         $scope.mapMarkers = [];
 
+
         $http.get(apiUrl + '/issues').success(function (issues) {
 
 
@@ -64,14 +65,7 @@ angular.module('citizen-engagement.map', [])
                 $scope.mapMarkers.push({
                     lat: issue.lat,
                     lng: issue.lng,
-                    "icon": {
-                        "iconUrl": "http://iconshow.me/media/images/Application/Map-Markers-icons/png/256/MapMarker_Marker_Outside_Pink.png",
-                        "iconSize": [50, 50], // size of the icon
-                        "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
-                        "popupAnchor": [0, -25], // point from which the popup should open relative to the iconAnchor
-                        "className": "dot",
 
-                    },
                      /*message: '<p>{{issue.description}}</p><img src="{{issue.imageUrl}}" width="200px"/>',
                      getMessageScope: function() {
                      var scope = $scope.$new();
@@ -99,18 +93,17 @@ angular.module('citizen-engagement.map', [])
 
             console.log(issues);
 
+
             GeolocServiceFla.locateUser().then(function (coords) {
                 $scope.mapMarkers.push({
 
 
                     lat: coords.latitude,
                     lng: coords.longitude,
-                    "icon": {
-                        "iconUrl": "http://img.lum.dolimg.com/v1/images/open-uri20150608-27674-1fy4fw9_f422ec7b.png?region=0%2C0%2C400%2C400",
-                        "iconSize": [100, 100], // size of the icon
-                        "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
-                        "popupAnchor": [0, -25], // point from which the popup should open relative to the iconAnchor
-                        "className": "dot"
+                    icon: {
+                        iconUrl:"https://upload.wikimedia.org/wikipedia/commons/e/e5/Redpoint.svg",
+                        iconSize:[25, 25]
+
                     },
                     message: '<p>{{ issue.description }}</p><img src="{{ issue.imageUrl }}" width="200px" />',
                     getMessageScope: function () {
