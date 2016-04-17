@@ -1,28 +1,35 @@
 <ion-view view-title="Create new Issue">
+    <div class="newIssue">
     <ion-content scroll="false">
         <leaflet ng-if="mapCenter" defaults="mapDefaults" zoomControls="false" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
-        <span style="position:absolute;left:50%;top:50%;display:block;width:10px;height:10px;border: 1px solid red;margin-top: -5px; margin-left: -5px;"
-             class="icon-marker"></span>
-        <form style="position:absolute; z-index:10;left:0;right:0; top: 0; background: rgba(255,255,255,0.7);border-bottom: 2px solid #777;" name="createIssue">
-            <label for="type">Issue Type:</label>
-            <select name="type" id="repeatSelect" ng-model="issue.issueTypeId">
-              <option ng-repeat="issueType in issueTypes" value="{{issueType.id}}">{{issueType.name}}</option>
-            </select>
-            <br /><br />
-            <label for="description">description</label>
-            <input name="description" ng-model="issue.description" />
-            <br /><br />
-            <label for="lng">Longitude</label>
-            <input name="lng" disabled placeholder="6.651479812689227" ng-model="issue.lng"/>
-            <label for="lat">Latitude</label>
-            <input name="lat" disabled placeholder="46.77227088657382" ng-model="issue.lat"/>
 
-            <br /><br />
-            <label for="imageUrl">Image URL</label>
-            <input name="imageUrl" disabled ng-model="issue.imageUrl" value="{{issue.imageUrl}}"/>
-            <button class="button button-energized" ng-click="sendIssue()" ng-disabled="createIssue.$invalid">
-                Create issue !
-            </button>
+             <!-- icon marker -->
+             <i style="display:block;font-size: 30px;text-align:center;position:absolute;left:50%;top:50%;display:block;width:20px;height:20px;margin-top: -25px; margin-left: -10px;" class="icon ion-ios-location locationMarker"></i>
+        <form id="newIssue" name="createIssue">
+
+            <ion-radio ng-repeat="issueType in issueTypes" ng-model="issue.issueTypeId" ng-value="{{issueType.id}}">{{issueType.name}}</ion-radio>
+
+            <div class="description">
+                <label for="description">description</label>
+                <input name="description" ng-model="issue.description" />
+            </div>
+            <div class="disabledFields">
+                <label for="lng">Longitude</label>
+                <input name="lng" disabled placeholder="6.651479812689227" ng-model="issue.lng"/>
+                <label for="lat">Latitude</label>
+                <input name="lat" disabled placeholder="46.77227088657382" ng-model="issue.lat"/>
+                <label for="imageUrl">Image URL</label>
+                <input name="imageUrl" disabled ng-model="issue.imageUrl" value="{{issue.imageUrl}}"/>
+            </div>
+
         </form>
     </ion-content>
+    <ion-footer-bar class="bar-light">
+
+        <button id="createIssueBtn" class="button button full button-energized" ng-click="sendIssue()" ng-disabled="createIssue.$invalid">
+            <i class="icon ion-ios-plus"></i>&nbsp;Create issue
+        </button>
+    </ion-footer>
+
+</div>
 </ion-view>

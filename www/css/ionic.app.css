@@ -9795,22 +9795,22 @@ a.button {
       font-size: 17px; }
 
 .state-created .iconIssueList {
-  background-color: #00FF37; }
-
-.state-acknowledged .iconIssueList {
-  background-color: #E8CB00; }
-
-.state-assigned .iconIssueList {
-  background-color: #80EEE1; }
-
-.state-in_progress .iconIssueList {
-  background-color: #008FFF; }
-
-.state-solved .iconIssueList {
   background-color: #AF00E8; }
 
+.state-acknowledged .iconIssueList {
+  background-color: #B9BB2E; }
+
+.state-assigned .iconIssueList {
+  background-color: #2EA9BB; }
+
+.state-in_progress .iconIssueList {
+  background-color: #2E6EBB; }
+
+.state-solved .iconIssueList {
+  background-color: #4BBB2E; }
+
 .state-rejected .iconIssueList {
-  background-color: #FF4A00; }
+  background-color: #BB3D2E; }
 
 .issueDetails .state-bar {
   height: 65px;
@@ -9846,40 +9846,40 @@ a.button {
   margin-top: 20px; }
 
 .state-created .state-bar {
-  background-color: #00FF37; }
+  background-color: #AF00E8; }
 
 .state-acknowledged .state-bar {
-  background-color: #E8CB00; }
+  background-color: #B9BB2E; }
 
 .state-assigned .state-bar {
-  background-color: #80EEE1; }
+  background-color: #2EA9BB; }
 
 .state-in_progress .state-bar {
-  background-color: #008FFF; }
+  background-color: #2E6EBB; }
 
 .state-solved .state-bar {
-  background-color: #AF00E8; }
+  background-color: #4BBB2E; }
 
 .state-rejected .state-bar {
-  background-color: #FF4A00; }
+  background-color: #BB3D2E; }
 
 .state-created .state-bar .iconIssueDetails {
-  background-color: #00FF37; }
-
-.state-acknowledged .state-bar .iconIssueDetails {
-  background-color: #E8CB00; }
-
-.state-assigned .state-bar .iconIssueDetails {
-  background-color: #80EEE1; }
-
-.state-in_progress .state-bar .iconIssueDetails {
-  background-color: #008FFF; }
-
-.state-solved .state-bar .iconIssueDetails {
   background-color: #AF00E8; }
 
+.state-acknowledged .state-bar .iconIssueDetails {
+  background-color: #B9BB2E; }
+
+.state-assigned .state-bar .iconIssueDetails {
+  background-color: #2EA9BB; }
+
+.state-in_progress .state-bar .iconIssueDetails {
+  background-color: #2E6EBB; }
+
+.state-solved .state-bar .iconIssueDetails {
+  background-color: #4BBB2E; }
+
 .state-rejected .state-bar .iconIssueDetails {
-  background-color: #FF4A00; }
+  background-color: #BB3D2E; }
 
 .myIssueList .state-bar {
   height: 20px;
@@ -9910,40 +9910,85 @@ a.button {
     font-size: 17px; }
 
 .state-created .state-bar {
-  background-color: #00FF37; }
+  background-color: #AF00E8; }
 
 .state-acknowledged .state-bar {
-  background-color: #E8CB00; }
+  background-color: #B9BB2E; }
 
 .state-assigned .state-bar {
-  background-color: #80EEE1; }
+  background-color: #2EA9BB; }
 
 .state-in_progress .state-bar {
-  background-color: #008FFF; }
+  background-color: #2E6EBB; }
 
 .state-solved .state-bar {
-  background-color: #AF00E8; }
+  background-color: #4BBB2E; }
 
 .state-rejected .state-bar {
-  background-color: #FF4A00; }
+  background-color: #BB3D2E; }
 
 .state-created .state-bar .iconIssueList {
-  background-color: #00FF37; }
-
-.state-acknowledged .state-bar .iconIssueList {
-  background-color: #E8CB00; }
-
-.state-assigned .state-bar .iconIssueList {
-  background-color: #80EEE1; }
-
-.state-in_progress .state-bar .iconIssueList {
-  background-color: #008FFF; }
-
-.state-solved .state-bar .iconIssueList {
   background-color: #AF00E8; }
 
+.state-acknowledged .state-bar .iconIssueList {
+  background-color: #B9BB2E; }
+
+.state-assigned .state-bar .iconIssueList {
+  background-color: #2EA9BB; }
+
+.state-in_progress .state-bar .iconIssueList {
+  background-color: #2E6EBB; }
+
+.state-solved .state-bar .iconIssueList {
+  background-color: #4BBB2E; }
+
 .state-rejected .state-bar .iconIssueList {
-  background-color: #FF4A00; }
+  background-color: #BB3D2E; }
 
 #menu {
   background-color: black; }
+
+/**
+ * New issue screen
+ */
+.newIssue .leaflet-control-zoom {
+  display: none; }
+
+.newIssue .item-radio .radio-icon, .newIssue .item-radio .item-content {
+  padding: 6px;
+  font-size: 1em; }
+
+.newIssue #newIssue {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: rgba(40, 40, 40, 0.8);
+  color: white;
+  border-bottom: 2px solid #777;
+  box-shadow: 0 0 10px #000;
+  padding: 1em; }
+  .newIssue #newIssue .disabledFields {
+    display: none; }
+  .newIssue #newIssue .description {
+    margin: 1em 0; }
+  .newIssue #newIssue label {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    margin-right: 1em; }
+  .newIssue #newIssue input {
+    padding: 0.4em;
+    border: none;
+    border-bottom: 1px solid white;
+    background: transparent;
+    color: white; }
+
+.newIssue .locationMarker {
+  color: #BB3D2E; }
+
+.newIssue #createIssueBtn {
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: bold;
+  z-index: 1001; }

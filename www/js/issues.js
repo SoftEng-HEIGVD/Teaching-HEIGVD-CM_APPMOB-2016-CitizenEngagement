@@ -146,7 +146,7 @@ angular.module('citizen-engagement')
     geoService.getLocation().then(buildMap).then(function() {
       var marker = $scope.mapCenter
       marker.draggable = true;
-      $scope.mapMarkers.push(marker);
+      //$scope.mapMarkers.push(marker); // Comment to disable the real marker when the css marker is ok
       $scope.$broadcast('leafletDirectiveMarker.move');
 
     }); // Add center marker
