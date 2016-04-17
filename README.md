@@ -21,7 +21,7 @@ Le menu se trouve sur la gauche en appuyant sur le bouton en haut à gauche. Il 
 Cet onglet permet d'afficher tous les incidents reportés par les utilisateurs. Vous pouvez voir un aperçu de leurs informations. Vous pouvez aussi les trier soit par type, date ou voir seulement vos incidents que vous avez déjà reporté. Si vous cliquez sur un, vous pourrez accéder aux détails de l'incident.
 
 ## Détails d'un incident
-![issueDetails](readme_picture/2.png "issueDetails")
+![issueDetails](readme_picture/2.jpg "issueDetails")
 
 Cette page permet de connaître toutes les informations sur l'incident choisi.
 
@@ -44,5 +44,6 @@ Cette carte permet, en récupérant votre géolocalisation, afficher tous les in
 Pour créer un incident, il suffit de remplir ce formulaire, en prenant un photo, en indiquant le type d'incident et une description. L'application gérera toute seule la géolocalisation et la date de création ! Vous pourrez ensuite retrouver votre incident dans la liste.
 
 ## Se déconnecter
-![Menu](readme_picture/5.png "Menu")
+![Menu](readme_picture/5.png "Menu
+
 Vous pouvez vous déconnecter de l'application en cliquant dans l'onglet prévu.
