@@ -6,7 +6,7 @@ L'application Citizen Engagement permet à n'importe qui dans sa ville de signal
 
 ## Inscription
 
-(readme_picture/1.png "Register")
+![Register](readme_picture/1.png "Register")
 
 L'application requiert une inscription afin que vous puissez l'utiliser. Il suffit d'inscrire votre nom et prénom, qui seront ensuite utilisés lorsque que vous posterez des incidents.
 
