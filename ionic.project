@@ -1,0 +1,10 @@
+{
+  "name": "citizen-engagement",
+  "app_id": "6075d887",
+  "proxies": [
+    {
+      "path": "/api-proxy",
+      "proxyUrl": "https://heigvd-cm-appmob-2016-team-10.herokuapp.com/api"
+    }
+  ]
+}
