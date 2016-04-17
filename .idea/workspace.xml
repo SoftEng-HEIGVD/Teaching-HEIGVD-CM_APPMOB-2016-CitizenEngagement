@@ -4,10 +4,6 @@
     <list default="true" id="9f4570e2-d691-4e6d-a63d-8cb3c128495d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ionic.project" afterPath="$PROJECT_DIR$/ionic.project" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/issues.js" afterPath="$PROJECT_DIR$/www/js/issues.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/map.js" afterPath="$PROJECT_DIR$/www/js/map.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/newIssue.html" afterPath="$PROJECT_DIR$/www/templates/newIssue.html" />
     </list>
     <ignored path="Teaching-HEIGVD-CM_APPMOB-2016-CitizenEngagement.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,8 +38,8 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="60" selection-start-line="0" selection-start-column="60" selection-end-line="0" selection-end-column="60" />
+            <state relative-caret-position="18">
+              <caret line="1" column="45" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -353,16 +349,16 @@
       <workItem from="1460027277182" duration="7857000" />
       <workItem from="1460098950637" duration="3826000" />
       <workItem from="1460279869427" duration="267000" />
-      <workItem from="1460906170263" duration="7425000" />
+      <workItem from="1460906170263" duration="7870000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45581000" />
+    <option name="totallyTimeSpent" value="46026000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1602" height="875" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -788,8 +784,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="60" selection-start-line="0" selection-start-column="60" selection-end-line="0" selection-end-column="60" />
+        <state relative-caret-position="18">
+          <caret line="1" column="45" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
           <folding />
         </state>
       </provider>
