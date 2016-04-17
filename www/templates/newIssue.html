@@ -20,6 +20,7 @@
                     <span class="input-label">Description</span>
                     <input type="text" name="description" placeholder="Description" ng-model="issue.description">
                 </label>
+                <br></br>
                 <!--<label class="item item-input item-floating-label">
                     <span class="input-label">Image URL</span>
                     <input type="text" name="imageUrl" placeholder="http://www.example.com/image.jpg"
@@ -27,9 +28,10 @@
                 </label>-->
 
 
-                <button class="button button-large button-positive" type="button" ng-click="takePicture()">
+                <button class="button button-large button-outline button-calm" type="button" ng-click="takePicture()">
                     <span class="icon ion-ios-camera"></span> upload image
                 </button>
+                <br></br>
                 <p ng-if="imageData">Picture taken ({{ imageData.length | number }} bytes)</p>
                 <p ng-if="imageData"><img ng-src="data:image/png;base64,{{ imageData }}" width="100%"/></p>
 
@@ -52,7 +54,8 @@
                     </label>
                 </div>
             </div>
-            <input class="button button-positive" type="submit" name="submit" value="Send"/>
+            <input class="button button-calm" type="submit" name="submit" value="Send"/>
+            <br></br>
         </form>
     </ion-content>
 </ion-view>

@@ -4,20 +4,22 @@
 
         <div class="list card">
 
-            <div class="item item-avatar">
+            <div class="item item-thumbnail-left">
                 <img src="{{issue.imageUrl}}">
                 <p>Type: {{issue.issueType.name}}</p>
                 <p>Status: {{issue.state}}</p> <!--TODO icon pour fait, en cours, pas traité(avec couleurs feu de circulation) -->
+
                 <p>Created by: {{issue.owner.name}}</p>
 
             </div>
 
+
             <div class="item item-body" ng-controller="IssueMapController" >
                 <leaflet class="full-image" defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="200px" data-tap-disabled="true"></leaflet>
-                <p>{{issue.description}}</p>
+                <p>Description: {{issue.description}}</p>
             </div>
-            <div>
-                <a ng-repeat="comment in issue.comments" style="padding: 20%; color: black">
+            <div class="card">
+                <a class="item item-text-wrap" ng-repeat="comment in issue.comments" style="padding: 3%; color:padding-left">
                     <p>{{comment.text}}</p>
                     <p style="font-style: italic; font-size: 10px">{{comment.author.name}}</p>
                 </a>
@@ -35,7 +37,7 @@
 
                     </div>
 
-                    <input class="button button-positive" type="submit" name="submit" value="Send">
+                    <input class="button button-calm" type="submit" name="submit" value="Send">
                 </form>
 
             </div>

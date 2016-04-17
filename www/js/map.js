@@ -72,7 +72,7 @@ angular.module('citizen-engagement.map', [])
                      scope.issue = issue;
                      return scope;
                      }*/
-                    message: '<a class="item item-avatar" ui-sref="menu.issueDetails({issueId:issue.id})" width = 200px>' +
+                    message: '<aclass="item item-thumbnail-left" ui-sref="menu.issueDetails({issueId:issue.id})" width = 200px>' +
                     '<img src="{{issue.imageUrl}}" width="50px" height="50px"><h4>{{issue.issueType.name}}</h4><p>{{issue.description}}</p>' +
                     '<p>{{issue.createdOn | date:"mediumDate"}}</p></a>',
                     getMessageScope: function() {
