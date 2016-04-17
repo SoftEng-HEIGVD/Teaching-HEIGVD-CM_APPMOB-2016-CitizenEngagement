@@ -14,7 +14,7 @@ The api we used: https://heigvd-cm-appmob-2016-team-03.herokuapp.com/api
 
 ## a. Login page
 
-![login page](/Screenshots/loginPage.jpg | width=200 height=200)
+![login page](/Screenshots/loginPage.jpg | width=200)
 
 
 On the home page, the application propose to the user to register with his/her first name and last name. If he/she is already registered, the application will redirect him/her to the home page (b).
