@@ -120,4 +120,70 @@ angular.module('citizen-engagement.mapBox', ['leaflet-directive','geolocation'])
                     });
             });
 
+
+    })
+
+
+
+    .controller('SingleIssueMapCtrl', function ($scope, $stateParams,$http,apiUrl, $log, $scope, geolocation, mapboxMapId, mapboxAccessToken, AuthService, leafletData) {
+
+
+      $scope.mapMarkers = [];
+      var currentId = $stateParams.issueId;
+      $scope.loadCurrentIssue=function(){
+          $http.get(apiUrl+'/issues/'+currentId).success(function(issueCurrent){
+              $scope.issueCurrent=issueCurrent;
+              console.log(issueCurrent);
+          })
+      }
+      $scope.loadCurrentIssue();
+
+
+
+      $scope.mapCenter.lat = issueCurrent.lat;
+      $scope.mapCenter.lng = issueCurrent.lng;
+      $scope.mapCenter.zoom = 14;
+      $scope.mapEnabled = true;
+
+      var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId;
+
+      mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
+
+      $scope.mapDefaults = {
+              tileLayer: mapboxTileLayer,
+              events: {
+                      map: {
+                              enable: ['zoomend', 'drag', 'click'],
+
+                      }
+              }
+      };
+
+
+
+
+
+      function addIssues2MapMarkers(issueCurrent)
+      {
+
+
+                      $scope.mapMarkers.push({
+                              color: "#FF0000",
+                              lat: issueCurrent.lat,
+                              lng: issueCurrent.lng,
+                              message: "<p>{{ issue.description }}</p><img src=\"{{ issue.imageUrl }}\" width=\"200px\" />",
+                              getMessageScope: function() {
+                                      var scope = $scope.$new();
+                                      scope.issue = issue;
+                                      return scope;
+                              }
+                      });
+
+
+      }
+
+
+
+
+      leafletData.getMap().then(addIssues2MapMarkers);
     })

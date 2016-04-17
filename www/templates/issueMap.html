@@ -1,4 +1,4 @@
-<ion-view view-title="Issue Map">
+<ion-view view-title="Issue Map" ng-controller="IssueMapCtrl">
     <ion-content scroll=false>
         <div ng-if="mapEnabled" style="height: 100%">
             <leaflet defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true"></leaflet>
