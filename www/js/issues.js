@@ -2,6 +2,9 @@ angular.module('citizen-engagement')
 
 
 .service('IssueService', ['$http', 'apiUrl', function($http, apiUrl, $ionicLoading) {
+    /**
+     * Get all issues from apiUrl
+     */
   this.getAllIssues = function(successCallback, errorCallback, finallyCallback) {
     $http({
         method: 'GET',
@@ -13,21 +16,27 @@ angular.module('citizen-engagement')
       .error(errorCallback)
       .finally(finallyCallback);
   }
+  /**
+   * Get issues with type filter enabled
+   */
   this.filterByType = function(issueType, successCallback, errorCallback, finallyCallback) {
       $http({
         method: 'POST',
         data: {
             "_issueType": issueType
         },
+        headers: {
+          "x-sort": "-createdOn",
+        },
         url: apiUrl + '/issues/search'
-    }).success(sucessCallback)
+    }).success(successCallback)
     .error(errorCallback)
     .finally(finallyCallback);
   }
 }])
 
-// Get all issues
-.controller('ListIssuesCtrl', function(apiUrl, IssueService, $scope, $http, $ionicLoading) {
+// List issues controller.
+.controller('ListIssuesCtrl', function(apiUrl, IssueService, $scope, $rootScope, $http, $ionicLoading) {
     $scope.getIssues = function() {
         IssueService.getAllIssues(
           function(data) { // finallyCallback
@@ -46,12 +55,31 @@ angular.module('citizen-engagement')
           animation: 'fade-in',
           noBackdrop: true
         });
-      }
-  }
-  $scope.getIssues();
+    }
+    $rootScope.$on('addedfilter', function(event, data ) {
+        IssueService.filterByType(data,
+            function(data) {
+                $scope.issues = data;
+            },
+            function(err) {
+                return err;
+            },
+            function() {
+                $scope.$broadcast('scroll.refreshComplete');
+                $ionicLoading.hide();
+            }
+        );
+        $ionicLoading.show({
+            template:'Filtering issues',
+            animation: 'fade-in',
+            noBackdrop: true
+        });
+
+    })
+
 })
 
-// Get specific issue
+// Get specific issue controller
 .controller('GetSpecificIssueCtrl', function(apiUrl, $scope, $state, $http, $ionicLoading, $stateParams) {
     $ionicLoading.show({
       template: 'Loading Issue',
@@ -79,7 +107,7 @@ angular.module('citizen-engagement')
 
 
   })
-  // Add new issue
+  // Add new issue controller
   .controller('AddIssueCtrl', function(apiUrl, $scope, $http, $state, $stateParams,
     $ionicLoading, $ionicHistory, geoService, storageService) {
 
@@ -154,6 +182,9 @@ angular.module('citizen-engagement')
     }
   })
 
+/**
+ * List user own issues
+ */
 .controller('ListMyIssuesCtrl', function(apiUrl, $scope, $http, $ionicLoading) {
 
         $scope.getIssues = function() {
@@ -183,7 +214,9 @@ angular.module('citizen-engagement')
 
 })
 
-.controller('FilterIssuesCtrl', function($scope, $ionicPopover, $ionicLoading, $http, apiUrl, storageService) {
+.controller('FilterIssuesCtrl', function($scope, $rootScope, $ionicPopover, $ionicLoading, $http, apiUrl, storageService) {
+    $scope.issue = {};
+
     $ionicPopover.fromTemplateUrl('templates/issueFilters.html', {
       scope: $scope
     }).then(function(popover) {
@@ -210,7 +243,9 @@ angular.module('citizen-engagement')
     // Execute action
   });
 
-
+  /*
+   * Get all issue types
+   */
   $http({
     method: 'GET',
     url: apiUrl + '/issueTypes',
@@ -222,19 +257,12 @@ angular.module('citizen-engagement')
     $ionicLoading.hide();
   });
 
+
   $scope.filter = function() {
+      // Send the types to the rootscope
+      $rootScope.$emit('addedfilter', $scope.issue.type);
       $scope.closePopover();
-      $ionicLoading.show({
-        template: 'Loading your issues',
-        animation: 'fade-in',
-        noBackdrop: true,
-        delay: 200
-      });
-
-
-
-
-  };
+  }
 })
 
 /**

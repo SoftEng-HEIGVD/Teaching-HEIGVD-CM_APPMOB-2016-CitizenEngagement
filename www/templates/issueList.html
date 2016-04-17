@@ -1,5 +1,5 @@
 <ion-view view-title="Issue List">
-    <ion-content ng-controller="ListIssuesCtrl">
+    <ion-content ng-init="getIssues()">
         <ion-refresher
                 spinner="none"
                 pulling-text="Pull to refresh..."

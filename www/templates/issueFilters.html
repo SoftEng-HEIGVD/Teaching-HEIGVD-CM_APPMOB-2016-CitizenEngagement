@@ -1,16 +1,10 @@
-<ion-popover-view>
-  <ion-header-bar>
-    <h1 class="title">Filter issues</h1>
+<ion-popover-view style="width: 70%; max-width:300px;">
+  <ion-header-bar class="bar-dark">
+    <h1 class="title">Select issue type <button style="float:right" class="button" ng-click="closePopover()">
+    <i class="icon ion-close"></i>
+  </button></h1>
   </ion-header-bar>
   <ion-content>
-    <label class = "item item-input item-select">
-      <div class = "input-label">
-        <p>Filter by type</p>
-      </div>
-
-      <select ng-options="issueType as issueType.name for issueType in issueTypes track by issueType.id"
-   ng-model="issueTypeId" ng-change="filter()"></select>
-    </label>
-
+    <ion-radio ng-change="filter()" ng-repeat="it in issueTypes" ng-model="issue.type" ng-value="it.id">{{it.name}}</ion-radio>
   </ion-content>
 </ion-popover-view>
