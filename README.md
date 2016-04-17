@@ -18,7 +18,7 @@ Le menu se trouve sur la gauche en appuyant sur le bouton en haut à gauche. Il 
 ## Liste des incidents
 ![ListIssues](readme_picture/3.png "ListIssues")
 
-Cet onglet permet d'afficher tous les incidents reportés par les utilisateurs. Vous pouvez voir un aperçu de leurs informations. Vous pouvez aussi les trier soit par type, date ou voir seulement vos incidents que vous avez déjà reporté. Si vous cliquez sur un, vous pourrez accéder aux détails de l'incident.
+Cet onglet permet d'afficher tous les incidents reportés par les utilisateurs. Vous pouvez voir un aperçu de leurs informations. Vous pouvez aussi effectuer une recherche en tapant un mot dans la barre de recherche de la page. Vous pouvez mettre un type d'incident, un utilisateur et même une date ! Si vous cliquez sur un, vous pourrez accéder aux détails de l'incident.
 
 ## Détails d'un incident
 ![issueDetails](readme_picture/2.jpg "issueDetails")
