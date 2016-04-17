@@ -14,7 +14,7 @@ The api we used: https://heigvd-cm-appmob-2016-team-03.herokuapp.com/api
 
 ## a. Login page
 
-![login page](/Screenshots/loginPage.jpg =80x80)
+![login page](/Screenshots/loginPage.jpg | width="200px" height="200px")
 Format: ![Alt Text](url)
 
 
