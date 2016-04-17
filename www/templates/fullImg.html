@@ -1,0 +1,16 @@
+<ion-view class="fullImg">
+  <ion-nav-bar>
+    <ion-nav-back-button>Back</ion-nav-back-button>
+  </ion-nav-bar>
+
+  <ion-scroll zooming="true"
+		    direction="xy"
+		    delegate-handle="zoom-pane"
+		    class="zoom-pane"
+		    min-zoom="1"
+        scrollbar-x="false"
+	      scrollbar-y="false"
+		    overflow-scroll="false" style="overflow:hidden !important;">
+		<img ng-src="{{imageUrl}}" err-src="{{errSrc}}" >
+	</ion-scroll>
+</ion-view>

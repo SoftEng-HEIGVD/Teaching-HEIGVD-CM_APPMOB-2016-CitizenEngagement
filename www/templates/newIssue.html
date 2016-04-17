@@ -1,0 +1,51 @@
+<ion-view view-title="Add an Issue">
+
+    <ion-nav-bar>
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+        <ion-nav-buttons side="secondary">
+            <button class="button icon ion-android-globe" ui-sref="home"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content>
+        <div scroll="false">
+          <leaflet id="mapNewI" defaults="mapNDefaults" center="mapNCenter" height="200px" data-tap-disabled="true"></leaflet>
+        </div>
+
+        <a ng-if="imageUploadedUrl!==undefined" ui-sref='fullImg({imageUrl: imageUploadedUrl, errSrc: "img/NoImageAvailable.jpg"})'><img class="imgIssue imgIssueDetails" ng-src='{{imageUploadedUrl}}' err-src="img/NoImageAvailable.jpg" /></a>
+
+        <div class="button-bar">
+          <button class="button button-calm icon ion-android-search" ng-click="modalSearch.show()"></button>
+          <button class="button button-calm icon ion-android-locate" ng-click="geolocateMap()"></button>
+          <button class="button button-clear icon ion-camera" ng-click="takePhoto()"> Take a photo</button>
+        </div>
+
+        <div class="list">
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Type
+                </div>
+                <select ng-controller="TypesCtrl" ng-model="issue.type" required>
+                    <option ng-repeat="type in types"  value="{{type.id}}">{{type.name}}</option>
+                </select>
+            </label>
+
+            <label class="item item-input">
+                <input type="text" placeholder="Add a description" ng-model="issue.description" required/>
+            </label>
+
+            <div class="item-input" ng-repeat="tag in issue.tags" >
+                <input type="text" placeholder="Type a tag" ng-model="tag.value" />
+                <button class="button button-small padding icon ion-plus" ng-if="$index == issue.tags.length - 1" ng-click="addTag()"></button>
+                <button class="button button-small button-assertive padding icon ion-minus" ng-if="$index != issue.tags.length - 1" ng-click="removeTag($index)"></button>
+            </div>
+        </div>
+
+        <div class="button-bar">
+            <button class="button button-stable" ui-sref="issueMap">Cancel</button>
+            <button class="button button-calm" ng-click="submitIssue()">Submit</button>
+        </div>
+    </ion-content>
+
+</ion-view>

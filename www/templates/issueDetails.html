@@ -1,0 +1,39 @@
+<ion-view>
+
+    <ion-nav-bar>
+
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+        <ion-nav-title>{{issue.issueType.description}}</ion-nav-title>
+
+      <ion-nav-buttons side="secondary">
+          <button class="button icon ion-android-globe" ui-sref="home"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+
+
+
+    <ion-content>
+        <div scroll="false">
+          <leaflet id="mapDetails" defaults="mapDDefaults" center="mapDCenter" markers="mapDMarkers" height="200px" data-tap-disabled="true"></leaflet>
+        </div>
+
+        <a ui-sref='fullImg({imageUrl: issue.imageUrl, errSrc: "img/NoImageAvailable.jpg"})'><img class="imgIssue imgIssueDetails" ng-src='{{issue.imageUrl}}' err-src="img/NoImageAvailable.jpg" /></a>
+        
+        <p class="state state-{{issue.state}}">{{issue.state}}</p>
+        <ul class="tagsList">
+            <li ng-repeat="tag in issue.tags">{{tag}}</li>
+        </ul>
+        <p>{{issue.description}}</p>
+        <p>Type: <time>{{issue.issueType.name}}</time></p>
+        <p>Created on <time>{{issue.createdOn | date:'MM/dd/yyyy H:mm'}}</time> by {{issue.owner.name}}</h2>
+        <p>Last update: <time>{{issue.updatedOn | date:'MM/dd/yyyy H:mm'}}</time></p>
+        <div class="button-bar">
+            <a class="button button-medium ion-android-add"  ui-sref="newComment({ issueId: issue.id })"> Add a comment</a>
+            <a class="button button-medium ion-navicon" ui-sref="commentsList({ issueId: issue.id })"> View comments</a>
+        </div>
+
+    </ion-content>
+
+
+</ion-view>

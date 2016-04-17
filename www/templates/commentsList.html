@@ -1,0 +1,26 @@
+<ion-view>
+    <ion-nav-bar>
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+        <ion-nav-title>Comments for {{issue.issueType.description}}</ion-nav-title>
+        <ion-nav-buttons side="secondary">
+            <button class="button icon ion-android-globe" ui-sref="home"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="comment in issue.comments | orderBy: '-postedOn'">
+                <div class="row">
+                    <div class="col col-75 item-body listIssue">
+                        <p><time>{{comment.postedOn | timeAgo}}</time></p>
+                        <h2>{{comment.author.name}}</h2>
+                        <p>{{comment.text}}</p>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar class="bar-assertive">
+        <button  class="button button-full button-calm" ui-sref="newComment({ issueId: issue.id })">Add a comment</button>
+    </ion-footer-bar>
+</ion-view>

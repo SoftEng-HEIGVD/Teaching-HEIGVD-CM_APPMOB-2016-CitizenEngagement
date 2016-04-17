@@ -1,0 +1,14 @@
+{
+  "name": "FixYourStreet-Frontend",
+  "app_id": "",
+  "proxies": [
+    {
+      "path": "/api-proxy",
+      "proxyUrl": "https://heigvd-cm-appmob-2016-team-03.herokuapp.com/api"
+    },
+    {
+      "path": "/qimg-proxy",
+      "proxyUrl": "https://warm-bastion-3094.herokuapp.com/api"
+    }
+  ]
+}

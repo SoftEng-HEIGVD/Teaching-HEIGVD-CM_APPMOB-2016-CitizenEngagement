@@ -1,0 +1,19 @@
+<ion-modal-view ng-controller="MapSearch">
+
+    <ion-content class="padding">
+      <div class="bar item-input-inset" id="mainSearch" style="background:none;border:none"> <!--// Should be here to fix a bug with android -->
+        <label class="item-input-wrapper">
+          <i class="icon ion-ios-search placeholder-icon"></i>
+          <input type="search" ng-model="searchIn" ng-keyup="$event.keyCode == 13 && searchPlace(searchIn)" placeholder="Search a place">
+        </label>
+        <button class="button button-calm"  ng-click="searchPlace(searchIn)">Submit</button>
+      </div>
+
+      <button class="button button-stable button-clear button-full " ng-click="changeMapCenterBBOX({{resultPlace.bbox}})" ng-repeat="resultPlace in resultPlaces" >{{resultPlace.place_name}}</button>
+    </ion-content>
+
+    <ion-footer-bar>
+      <button class="button button-full  button-stable" ng-click="modalSearch.hide()">Close</button>
+    </ion-footer-bar>
+
+</ion-modal-view>

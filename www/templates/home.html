@@ -1,0 +1,19 @@
+<ion-view view-title="FixYourStreet" class="home">
+
+  <div class="bar">
+    <button class="button icon ion-android-contacts" ng-controller="LogoutCtrl" ng-click="logOut()"></button>
+  </div>
+
+  <ion-content scroll="false">
+    <leaflet id="homeMap" defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="100%" data-tap-disabled="true" ></leaflet>
+  </ion-content>
+
+  <div class="bar bar-footer">
+    <div class="button-bar">
+      <button class="button button-calm icon ion-android-search" ng-click="modalSearch.show()"></button>
+      <button class="button button-calm icon ion-android-locate" ng-click="geolocateMap()"></button>
+      <button class="button button-calm icon ion-android-add" ng-click="goNewIssue()"> Issue</button>
+      <button class="button button-stable icon ion-android-open"  ng-class="disabledListIssue()" ui-sref="issueList"> List</button>
+    </div>
+  </div>
+</ion-view>
