@@ -44,6 +44,6 @@ Cette carte permet, en récupérant votre géolocalisation, afficher tous les in
 Pour créer un incident, il suffit de remplir ce formulaire, en prenant un photo, en indiquant le type d'incident et une description. L'application gérera toute seule la géolocalisation et la date de création ! Vous pourrez ensuite retrouver votre incident dans la liste.
 
 ## Se déconnecter
-![Menu](readme_picture/5.png "Menu
+![Menu](readme_picture/5.png "Menu")
 
 Vous pouvez vous déconnecter de l'application en cliquant dans l'onglet prévu.
