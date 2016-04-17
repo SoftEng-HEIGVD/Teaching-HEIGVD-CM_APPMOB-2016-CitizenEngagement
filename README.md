@@ -32,6 +32,8 @@ The application will automatically localize the user and show him/her a map with
 * Add a new issue (f)
 * Take a look at all the issues details in the area (e)
 
+The logout button on the upper left side of the screen allow the user to logout and redirect him/her to the login page (a).
+
 **Note**: on every map of the application, it is possible to tap on an issue and get its details (g).
 
 **Note**: the number of issue shown on the map depend of the zoom level.
