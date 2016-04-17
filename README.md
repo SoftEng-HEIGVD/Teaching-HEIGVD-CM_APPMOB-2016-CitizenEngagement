@@ -14,8 +14,7 @@ The api we used: https://heigvd-cm-appmob-2016-team-03.herokuapp.com/api
 
 ## a. Login page
 
-![login page](/Screenshots/loginPage.jpg | width="200px" height="200px")
-Format: ![Alt Text](url)
+![login page](/Screenshots/loginPage.jpg | width=200 height=200)
 
 
 On the home page, the application propose to the user to register with his/her first name and last name. If he/she is already registered, the application will redirect him/her to the home page (b).
@@ -118,7 +117,6 @@ Two buttons can be found:
 ## h. Add a new comment
 
 ![login page](/Screenshots/newComment.jpg)
-Format: ![Alt Text](url)
 
 The user can add a comment to an issue by writing text on the field and tap the button "Create". The user will be redirect to the list of comments (i).
 
@@ -127,7 +125,6 @@ The user can add a comment to an issue by writing text on the field and tap the 
 ## i. Comments list
 
 ![login page](/Screenshots/commentList.jpg)
-Format: ![Alt Text](url)
 
 The list of comments for an issue can be viewed on this page. Every comment will be shown with the following informations:
 
