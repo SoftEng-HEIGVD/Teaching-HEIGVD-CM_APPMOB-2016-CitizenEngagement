@@ -26,10 +26,12 @@ Cet onglet permet d'afficher tous les incidents reportés par les utilisateurs. 
 Cette page permet de connaître toutes les informations sur l'incident choisi.
 
 ![MapIssue](readme_picture/7.png "MapIssue")
+
 Vous pouvez aussi cliquer sur le petit pin de géolocalisation qui vous permettra d'afficher la carte avec le lieu de l'incident.
 
 ![Comment](readme_picture/9.png "Comment")
-Vous pouvez aussi poster un commentaie ou lire simplement ceux qui sont déjà postés.
+
+Vous pouvez aussi poster un commentaire ou lire simplement ceux qui sont déjà postés.
 
 ## Carte des incidents
 ![MapIssue](readme_picture/8.png "MapIssue")
