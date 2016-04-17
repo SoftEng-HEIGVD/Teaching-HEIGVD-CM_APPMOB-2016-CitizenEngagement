@@ -77,3 +77,12 @@
   float: right;
 
 }
+
+
+/* NEW ISSUE */
+
+.newIssue .button-full {
+  margin: 0  auto;
+  margin-top: -2px;
+
+}
