@@ -1,11 +1,21 @@
 <ion-view view-title="List Issue">
     <ion-content id="issueList">
+
         <ion-list ng-controller="IssueListCtrl"
                   can-swipe="listCanSwipe">
+
                   <div class="filterListIssue">
                     <h3>Filters</h3>
                   <form>
                   <label class="item item-input item-select">
+
+                    <div class="input-label">
+                      <input ng-model="searchText" type="text" placeholder="Search">
+                    </div>
+                    </label>
+
+
+                        <label class="item item-input item-select">
                   <div class="input-label">
                     Type
                   </div>
@@ -22,9 +32,9 @@
                   </ion-list>
                 </form>
                 </div>
-            <ion-item ng-repeat="issue in issues"
-                      class="item-thumbnail-left"
-            ui-sref="menu.issueDetails({issueId:issue.id})">
+
+
+            <ion-item ng-repeat="issue in issues| filter:searchText" class="item-thumbnail-left" ui-sref="menu.issueDetails({issueId:issue.id})"  >
 
                 <!--<img ng-src="{{item.img}}">-->
                 <img ng-src="{{issue.imageUrl}}">
