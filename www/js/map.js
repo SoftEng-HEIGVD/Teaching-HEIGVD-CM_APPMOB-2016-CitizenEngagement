@@ -1,17 +1,51 @@
 angular.module('citizen-engagement')
+    .factory('GeolocService', function (geolocation, $log) {
+        var service = {
 
-    .controller("AllIssuesMapController", function($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl) {
+            locateUser: function () {
+
+                return geolocation.getLocation().then(function (data) {
+                    
+                    return data.coords;
+
+
+                }, function (error) {
+                    $log.error("Could not get location: " + error);
+                    console.log("Could not get location: " + error);
+                });
+
+            }
+        };
+
+        return service;
+    })
+
+    .controller("AllIssuesMapController", function($scope, mapboxMapId, mapboxAccessToken, $http, apiUrl, GeolocService) {
         var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId;
         mapboxTileLayer = mapboxTileLayer + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken;
         $scope.mapDefaults = {
             tileLayer: mapboxTileLayer
         };
-        $scope.mapCenter = {
-            lat: 46.78,
-            lng: 6.65,
-            zoom: 14
-        };
+        $scope.mapCenter = {};
         $scope.mapMarkers = [];
+        GeolocService.locateUser().then(function (coords) {
+            $scope.mapCenter = {
+                lat: coords.latitude,
+                lng: coords.longitude,
+                zoom: 15
+            };
+                $scope.mapMarkers.push({
+                    lat: coords.latitude,
+                    lng: coords.longitude,
+                    message: '<p>Here </p>',
+                    getMessageScope: function() {
+                        var scope = $scope.$new();
+                        scope.issue = issue;
+                        return scope;
+                    }
+                });
+        });
+
 
         $http({
             method: 'GET',

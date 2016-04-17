@@ -3,50 +3,40 @@
     <button type="button" ng-controller="LogoutCtrl" ng-click="logOut()" class="button">Log Out</button>
   </ion-nav-buttons>
   <ion-content>
-    <div class="list">
+    <div ng-controller="newIssueCtrl">
+      <form name="createIssue" ng-submit="submit()">
+        <div class="list">
 
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Type
-        </div>
-        <select>
-          <option>Choose</option>
-          <option>Damage</option>
-          <option>Graphiti</option>
-          <option>Other</option>
-        </select>
-      </label>
+          <label class="item item-input">
+            <span class="input-label">Type</span>
+            <select name="issueTypeId" ng-model="issue.issueTypeId">
+              <option ng-repeat="issueType in issueTypes" value="{{issueType.id}}">{{issueType.name}}</option>
+            </select>
+          </label>
 
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Description</span>
-        <input type="text" placeholder="Description">
-      </label>
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Description</span>
+            <input type="text" name="description" placeholder="Description" ng-model="issue.description">
+          </label>
 
-      <label class="item item-input">
-        <ion-list>
-          <div class="input-label">
-            Tags
+            <a class="item item-icon-left" href="#">
+              <h1><i class="ion-android-camera"></i></h1>
+            </a>
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Longitude</span>
+            <input type="text" name="lng" ng-model="issue.lng">
+          </label>
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Latitude</span>
+            <input type="text" name="lat" ng-model="issue.lat">
+          </label>
           </div>
-          <ion-checkbox ng-model="filter.damage">Damage</ion-checkbox>
-          <ion-checkbox ng-model="filter.graphiti">Graphiti</ion-checkbox>
-          <ion-checkbox ng-model="filter.vandalism">Vandalism</ion-checkbox>
-        </ion-list>
-      </label>
-
-      <div class="row">
-        <a class="item item-icon-right" href="#" >
-          <h1><i class="ion-ios-location"></i></h1>
-        </a>
-
-        <a class="item item-icon-left" href="#">
-          <h1><i class="ion-android-camera"></i></h1>
-        </a>
-      </div>
+        <input class="button positive" type="submit" name="submit" value="Upload"/>
+      </form>
     </div>
 
-    <button class="button button-positive">
-      Submit
-    </button>
+
+
 
   </ion-content>
 </ion-view>
