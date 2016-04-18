@@ -26,6 +26,10 @@ cordova plugin add cordova-plugin-camera
 Set your environment (development or production)
 ```
 gulp config-development
+```
+or
+```
+gulp config-production
 
 ```
 
