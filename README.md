@@ -7,9 +7,9 @@ The app is dedicated to report issues in your city, it is cross-platform and opt
 
 This application offers people to report issues in their city. An issue is geolocated and illustrated by a picture. Then the autorites can take the issues in consideration for their work.
 
-![Alt text](/readme/image1.png=250"Login page")
-![Alt text](/readme/image2.png=250"Issue creation page")
-![Alt text](/readme/image3.png=250"Issues map page")
+![Alt text](/readme/image1.png"Login page")
+![Alt text](/readme/image2.png"Issue creation page")
+![Alt text](/readme/image3.png"Issues map page")
 
 ## Installation
 
