@@ -1,0 +1,170 @@
+
+/* Empty. Add your own CSS if you like */
+
+.bar h1.title{
+
+font-size:1em;
+
+
+}
+
+.issue {
+ 	&>div>*{
+		display:block;
+	}
+	.thumbnail{
+			width:100%;
+			height: auto;
+			/*float:left;*/
+	}
+  .issue-title{
+    color:white;
+    font-weight:bold;
+    position:absolute;
+    top:30px;
+    left:30px;
+    background-color: rgba(32, 67, 126,0.6);
+    /*background-color: rgba(0, 0, 0,0.4);*/
+    padding:10px;
+    text-shadow: 1px 1px rgba(0, 0, 0,0.3);
+    	border : 1px solid white;
+  }
+	.issue-description {
+		width:100%;
+    color:white;
+    border:1px rgba(32, 67, 126,0.4) solid;
+    border-top: none;
+    padding: 10px;
+    height: 40px;
+    overflow:hidden;
+    background-color: rgba(32, 67, 126,0.8);
+    font-weight: normal;
+	}
+  .issue-img{
+    width:10px;
+    float:left;
+    margin-right:5px;
+    margin-top:2px;
+    opacity:0.4;
+  }
+	.issue-state{
+     /*text-shadow: 1px 1px rgba(0, 0, 0,0.5);*/
+    /*font-weight: bold;*/
+		padding : 5px;
+		color : /*$inprogress-color;*/ white;
+	/*	border : 2px $inprogress-color solid;*/
+    position: absolute;
+    right:30px;
+    bottom:112px;
+    background-color:$inprogress-color;/* rgba(255, 255, 255,0.8)*/
+    opacity: 0.8;
+	}
+	.state-solved {
+		.issue-state{
+			color:white;
+			border-color:$success-color;
+      background-color:$success-color;
+		}
+	}
+	.state-rejected{
+		.issue-state{
+			color:white;
+			border-color:$error-color;
+      background-color:$error-color;
+		}
+	}
+  .issue-updated-on
+  {
+
+    font-style: italic;
+    font-size: 0.8em;
+    margin-bottom: 25px;
+    color:rgba(32, 67, 126,0.6);
+
+  }
+
+}
+
+.bar.bar-positive .title{
+  font-family: 'Droid sans', sans-serif;
+
+}
+
+.btn-details{
+  position: absolute;
+  bottom:20px;
+  right:15px;
+
+}
+
+.issue-details-box
+{
+
+  padding: 15px;
+
+  .img-detailedIssue{
+    width: 100%;
+    margin-bottom:10px;
+
+  }
+
+  h2.issue-title{
+    font-size:1.2em;
+    padding-left:10px;
+    display: inline;
+
+  }
+  .issue-description {
+    width:100%;
+    color:white;
+    border:1px rgba(32, 67, 126,0.4) solid;
+    border-top: none;
+    padding: 10px;
+    overflow:hidden;
+    background-color: rgba(32, 67, 126,0.8);
+    font-weight: normal;
+    font-size:1em;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+  }
+  p.coord{
+    //float:right;
+    display: inline;
+    font-size: 0.7em;
+  }
+  .issue-createdOn{
+
+    font-size: 0.9em;
+    padding: 10px;
+    padding-top:0px;
+    font-style: italic;
+  }
+
+  span.tag-detail{
+    margin-right: 3px;
+
+    padding: 0 5px;
+    display: inline-block;
+    float: left;
+    font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    height: 26px;
+    line-height: 25px;
+    border: 1px solid #387ef5;
+    border-radius: 3px;
+    background-color: white;
+    color:#333;
+
+
+  }
+  span.tag-detail:first-of-type{
+    margin-left:10px;
+  }
+
+  .notag{
+    padding:0px 10px 0px 10px;
+  }
+
+
+
+}
