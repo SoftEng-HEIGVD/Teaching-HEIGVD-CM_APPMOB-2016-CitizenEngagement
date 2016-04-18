@@ -12,7 +12,6 @@ This repository contains the code to launch the ionic application.
   * [Home dashboard](#home)
   * [Create new Issue](#newissue)
   * [Map of all issues](#map)
-  * [Create new Issue](#newissue)
   * [List of all issues](#list)
   * [My profile](#profile)
 
