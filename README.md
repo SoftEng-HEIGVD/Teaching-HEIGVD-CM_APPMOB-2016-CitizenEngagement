@@ -9,9 +9,12 @@ This repository contains the code to launch the ionic application.
 
 1. [user interface](#ui)
 2. [Using the application](#using)
-  * [Home dashboard](#setup-fork)
-  * [Create new Issue]
-  *
+  * [Home dashboard](#home)
+  * [Create new Issue](#newissue)
+  * [Map of all issues](#map)
+  * [Create new Issue](#newissue)
+  * [List of all issues](#list)
+  * [My profile](#profile)
 
 
 
@@ -90,12 +93,12 @@ You can also create a new staff if you're a staff yourself (coming soon as well)
 
 
 <img src="http://i.imgur.com/pzX1hNZ.png" alt="alt text" height="450px">
-
+<a name="side"></a>
 ### Side menu
 You can access all the important information from the side menu
 
 <img src="http://i.imgur.com/U2S5j4A.png" alt="alt text" height="450px">
-
+<a name="home"></a>
 ### Home dashboard
 The home dashboard allows you to see your latest posted issues at a glance and the nearest issues to you.
 
@@ -107,7 +110,7 @@ If you do not have any issues, you will have a quick link to post a new one
 
 <img src="http://i.imgur.com/wH2LjV1.png" alt="alt text" height="450px">
 
-
+<a name="newissue"></a>
 ### Report new Issue
 
 You can report a new issues by clicking on "Report new issue" on the side menu.
@@ -122,7 +125,7 @@ It also detects where you are and adds the longitude and latitude
 
 The Issue is then created. We were not able to implement the redirection to the new issue though.
 
-
+<a name="map"></a>
 ### Map of all issues
 You can easily access the map by clicking on "map" on the side menu.
 
@@ -145,7 +148,7 @@ You can see:
 
 <img src="http://i.imgur.com/um6DeiO.png" alt="alt text" height="450px">
 
-
+<a name="list"></a>
 ### List of issues
 
 Here you can see all the issues created (latest ones first). It also implements an auto-scroll and loads the new issues when you get to the bottom of the page.
@@ -154,7 +157,7 @@ Here you can see all the issues created (latest ones first). It also implements 
 
 If you click on one, you can access the detailed issue like on the map.
 
-
+<a name="profile"></a>
 ### My profile
 
 You can access your profile in order to see:
