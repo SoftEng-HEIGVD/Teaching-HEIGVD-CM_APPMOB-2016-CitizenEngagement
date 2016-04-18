@@ -123,4 +123,25 @@ It also detects where you are and adds the longitude and latitude
 The Issue is then created. We were not able to implement the redirection to the new issue though.
 
 
+### Map of all issues
+You can easily access the map by clicking on "map" on the side menu.
+
+<img src="http://i.imgur.com/SxPr0nq.png" alt="alt text" height="450px">
+
+If you click on a marker, a popup with the preview shows. You can then click on it to get the details.
+
+
+<img src="http://i.imgur.com/um6DeiO.png" alt="alt text" height="450px">
+
+You can see:
+*an image
+* the type
+* the status
+* who created it
+* a map of where it is
+* a description
+* all the comments
+* a button to create a comment
+<img src="http://i.imgur.com/um6DeiO.png" alt="alt text" height="450px">
+
 <a href="#top">Back to top</a>
