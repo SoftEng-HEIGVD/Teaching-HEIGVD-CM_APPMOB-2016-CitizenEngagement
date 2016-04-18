@@ -53,13 +53,8 @@ angular.module('citizen-engagement.citizenCtrl',['geolocation'])
 
 
     .controller('addCommentCtrl',function ($scope, $http, apiUrl, $stateParams, $state, $window) {
-        console.log("j'arrive à récupe le paramètre" + $stateParams);
         var id = $stateParams.issueId;
-        console.log('id ' + id);
-
-
         $scope.comment = {};
-
         $scope.submit = function () {
             var url = apiUrl + '/issues/' + id + '/actions/'
             $http.post(url, {

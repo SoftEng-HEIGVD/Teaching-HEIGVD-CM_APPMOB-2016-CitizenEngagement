@@ -16,7 +16,6 @@ angular.module('citizen-engagement.mapBox', ['leaflet-directive','geolocation'])
             $scope.radius = {};
             $scope.mapEnabled = false;
 
-            //recupération de la localisation de l'utilisateur
             geolocation.getLocation().then(function(data) {
 
                     $scope.mapCenter.lat = data.coords.latitude;
@@ -37,7 +36,6 @@ angular.module('citizen-engagement.mapBox', ['leaflet-directive','geolocation'])
                                     }
                             }
                     };
-
                     //ajout du pin du user
                     $scope.userCoords.lat = $scope.mapCenter.lat;
                     $scope.userCoords.lng = $scope.mapCenter.lng;
@@ -56,7 +54,6 @@ angular.module('citizen-engagement.mapBox', ['leaflet-directive','geolocation'])
                             var x0 = $scope.mapCenter.lat;
                             var y0 = $scope.mapCenter.lng;
 
-                            //on a besoin du rayon de la sphère en radian (d'après mongoDB $centerSphere)
                             $scope.radius = mapBounds._northEast.distanceTo($scope.mapCenter)/6135;
                     }
 
@@ -74,8 +71,6 @@ angular.module('citizen-engagement.mapBox', ['leaflet-directive','geolocation'])
                             }
                     }
 
-
-                    //recupération des issues dans le périmètre de l'utilisateur
                     function getIssuesFromLocation()
                     {
                             $http({
@@ -104,17 +99,11 @@ angular.module('citizen-engagement.mapBox', ['leaflet-directive','geolocation'])
 
                             });
                     }
-
-
                     leafletData.getMap().then(calculateRadius).then(createData4POST).then(getIssuesFromLocation);
-
-
-
             }, function(error) {
                     $log.error("Could not get location: " + error);
             }).then(function(){
                     $scope.$on('leafletDirectiveMap.zoomend', function(event){
-                            console.log("zoom fini");
                     });
             });
 
