@@ -90,7 +90,7 @@ You then have to select if you want to view the app as a citizen or staff (this 
 You can also create a new staff if you're a staff yourself (coming soon as well).
 
 
-<img src="http://i.imgur.com/pzX1hNZ.png" alt="alt text" height="250px">
+<img src="http://i.imgur.com/pzX1hNZ.png" alt="alt text" height="450px">
 
 ### Side menu
 
