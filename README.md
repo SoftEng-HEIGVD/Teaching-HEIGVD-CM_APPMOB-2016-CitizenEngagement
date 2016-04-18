@@ -5,7 +5,7 @@ The app is dedicated to report issues in your city, it is cross-platform and opt
 
 ## Overview
 
-This...
+This application offers people to report issues in their city. An issue is geolocated and illustrated by a picture.
 
 ## Installation
 
