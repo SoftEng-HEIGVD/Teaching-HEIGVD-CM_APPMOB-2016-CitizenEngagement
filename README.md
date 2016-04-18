@@ -81,8 +81,7 @@ We have created a sandwich menu with different pannels (some changes have been m
 
 <a name="setup-fork"></a>
 ### Login
-![UI login](http://i.imgur.com/lgT94CL.png)
-
+<img src="http://i.imgur.com/lgT94CL.png" alt="alt text" height="450px">
 
 You can enter your first and last name. If you do not exist in the database, this will create a new account.
 You then have to select if you want to view the app as a citizen or staff (this feature will come soon).
@@ -93,16 +92,18 @@ You can also create a new staff if you're a staff yourself (coming soon as well)
 <img src="http://i.imgur.com/pzX1hNZ.png" alt="alt text" height="450px">
 
 ### Side menu
+You can access all the important information from the side menu
+<img src="http://i.imgur.com/U2S5j4A.png" alt="alt text" height="450px">
 
 ### Home dashboard
 The home dashboard allows you to see your latest posted issues at a glance and the nearest issues to you.
+<img src="http://i.imgur.com/mmO5I6B.png" alt="alt text" height="450px">
 
-![UI Design](www/img/readMe/fluid.PNG)
-You can see all your posted issues
-![UI Design](www/img/readMe/fluid.PNG)
+You can see all your posted issues if you click "view all"
 
 If you do not have any issues, you will have a quick link to post a new one
-![UI Design](www/img/readMe/fluid.PNG)
+<img src="http://i.imgur.com/wH2LjV1.png" alt="alt text" height="450px">
+
 
 ### Report new Issue
 
