@@ -59,7 +59,7 @@ We will give you details on how to use each feature
 We have created a design for our app available [here](https://www.fluidui.com/editor/live/preview/p_JGHaMwhypEvFRJXSJF2ELBFvhTuCJ7iW.1459774779362)
 with [Fluid UI](https://www.fluidui.com).
 
-![UI Design](www/img/readMe/fluid.PNG) TODO check
+![UI Design](www/img/readMe/fluid.PNG)
 
 We have created a sandwich menu with different pannels (some changes have been made in the final app)
 
@@ -81,13 +81,14 @@ We have created a sandwich menu with different pannels (some changes have been m
 
 <a name="setup-fork"></a>
 ### Login
-
+![UI Design](www/img/readMe/login.png)
 You can enter your first and last name. If you do not exist in the database, this will create a new account.
 You then have to select if you want to view the app as a citizen or staff (this feature will come soon).
 
 You can also create a new staff if you're a staff yourself (coming soon as well).
 ![UI Design](www/img/readMe/fluid.PNG)
 
+### Side menu
 
 ### Home dashboard
 The home dashboard allows you to see your latest posted issues at a glance and the nearest issues to you.
