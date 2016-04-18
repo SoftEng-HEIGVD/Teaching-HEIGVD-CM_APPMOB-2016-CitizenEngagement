@@ -3,6 +3,10 @@
 Welcome to our awesome app ! We're delighted to have you as a beta tester.
 The app is dedicated to report issues in your city, it is cross-platform and optimizied for low-connections.
 
+## Overview
+
+This...
+
 ## Installation
 
 Clone the repository
