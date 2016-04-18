@@ -134,7 +134,7 @@ If you click on a marker, a popup with the preview shows. You can then click on 
 <img src="http://i.imgur.com/um6DeiO.png" alt="alt text" height="450px">
 
 You can see:
-*an image
+* an image
 * the type
 * the status
 * who created it
@@ -142,6 +142,28 @@ You can see:
 * a description
 * all the comments
 * a button to create a comment
+
 <img src="http://i.imgur.com/um6DeiO.png" alt="alt text" height="450px">
+
+
+### List of issues
+
+Here you can see all the issues created (latest ones first). It also implements an auto-scroll and loads the new issues when you get to the bottom of the page.
+
+<img src="http://i.imgur.com/gbosdXb.png" alt="alt text" height="450px">
+
+If you click on one, you can access the detailed issue like on the map.
+
+
+### My profile
+
+You can access your profile in order to see:
+* you name
+* your last name
+* number of issues posted
+* a quick link to post an issue
+* your role(s)
+
+<img src="http://i.imgur.com/xKERUkS.png" alt="alt text" height="450px">
 
 <a href="#top">Back to top</a>
