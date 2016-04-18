@@ -1,0 +1,88 @@
+/* Empty. Add your own CSS if you like */
+.center {
+  margin: 0 auto;
+  display: block;
+
+}
+
+/* LOGIN */
+
+.introLogin {
+  max-width: 250px;
+  text-align: center;
+  line-height: 25px;
+  margin-bottom: 20px;
+
+}
+
+/* ISSUE LIST */
+
+#issueList h2 {
+  margin: 5px 0 0 0;
+}
+
+#issueList button {
+  margin-top: 23px;
+  margin-bottom: 23px;
+
+}
+
+.filterListIssue {
+  margin: 15px 0 15px 15px;
+
+}
+
+/* ISSUE DETAILS */
+#issueDetails {
+  clear: both;
+
+}
+
+#issueDetails .issueStatus, .issueTitle, #issueDetails h2 {
+  text-transform: uppercase;
+}
+
+.issueTitle {
+  display:inline-block;
+  font-size: 22px;
+  margin: 20px 0 8px 0;
+}
+
+#issueDetails img {
+  display: block;
+  width: 100%;
+}
+
+#issueDetails .icon {
+  font-size: 30px;
+  color: red;
+  margin-left: 7px;
+}
+
+#issueDetails .issueDescription {
+  margin: 10px 0 20px 0;
+}
+
+#issueDetails .issueCommentDate {
+  font-size: 12px;
+}
+
+#issueDetails h2 {
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+#issueDetails button {
+  margin: 15px 0 0 0;
+  float: right;
+
+}
+
+
+/* NEW ISSUE */
+
+.newIssue .button-full {
+  margin: 0  auto;
+  margin-top: -2px;
+
+}

@@ -1,0 +1,45 @@
+<ion-view view-title="List Issue">
+    <ion-content id="issueList">
+
+        <ion-list ng-controller="IssueListCtrl"
+                  can-swipe="listCanSwipe">
+
+                  <div class="filterListIssue">
+                    <h3>Filters</h3>
+                  <form>
+                  <label class="item item-input item-select">
+
+                    <div class="input-label">
+                      <input ng-model="searchText" type="text" placeholder="Search">
+                    </div>
+                  </label>
+                </form>
+                </div>
+
+
+            <ion-item ng-repeat="issue in issues| filter:searchText" class="item-thumbnail-left" ui-sref="menu.issueDetails({issueId:issue.id})"  >
+
+                <!--<img ng-src="{{item.img}}">-->
+                <img ng-src="{{issue.imageUrl}}">
+                <h2 class="issueTitle">{{issue.issueType.name}}</h2>
+                <p>{{issue.state}}</p>
+                <p>{{issue.description}}</p>
+                <ion-option-button class="button-positive">
+                    Share
+                </ion-option-button>
+                <ion-option-button class="button-assertive">
+                    Edit
+                </ion-option-button>
+                <ion-delete-button class="ion-minus-circled">
+                </ion-delete-button>
+
+
+            </ion-item>
+            <button ng-click="loadIssues()" class="button button-outline button-calm center">More</button>
+        </ion-list>
+
+
+
+    </ion-content>
+
+</ion-view>
