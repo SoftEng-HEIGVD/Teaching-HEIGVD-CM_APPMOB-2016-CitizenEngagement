@@ -88,9 +88,9 @@ You can enter your first and last name. If you do not exist in the database, thi
 You then have to select if you want to view the app as a citizen or staff (this feature will come soon).
 
 You can also create a new staff if you're a staff yourself (coming soon as well).
-![new staff](http://i.imgur.com/pzX1hNZ.png)
 
-<img src="http://i.imgur.com/pzX1hNZ.png" alt="alt text" height="100px">
+
+<img src="http://i.imgur.com/pzX1hNZ.png" alt="alt text" height="250px">
 
 ### Side menu
 
