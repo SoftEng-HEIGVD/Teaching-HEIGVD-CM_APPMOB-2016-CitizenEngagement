@@ -93,19 +93,34 @@ You can also create a new staff if you're a staff yourself (coming soon as well)
 
 ### Side menu
 You can access all the important information from the side menu
+
 <img src="http://i.imgur.com/U2S5j4A.png" alt="alt text" height="450px">
 
 ### Home dashboard
 The home dashboard allows you to see your latest posted issues at a glance and the nearest issues to you.
+
 <img src="http://i.imgur.com/mmO5I6B.png" alt="alt text" height="450px">
 
 You can see all your posted issues if you click "view all"
 
 If you do not have any issues, you will have a quick link to post a new one
+
 <img src="http://i.imgur.com/wH2LjV1.png" alt="alt text" height="450px">
 
 
 ### Report new Issue
+
+You can report a new issues by clicking on "Report new issue" on the side menu.
+
+You can then select what type of issues you want to report, add a description, take a picture.
+
+<img src="http://i.imgur.com/uB2ORfk.png" alt="alt text" height="450px">
+
+It also detects where you are and adds the longitude and latitude
+
+<img src="http://i.imgur.com/pIJM76Q.png" alt="alt text" height="450px">
+
+The Issue is then created. We were not able to implement the redirection to the new issue though.
 
 
 <a href="#top">Back to top</a>
