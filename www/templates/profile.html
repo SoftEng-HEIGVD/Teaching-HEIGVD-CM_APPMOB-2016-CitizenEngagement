@@ -1,0 +1,26 @@
+<ion-view>
+    <ion-nav-title><i class="icon ion-person"></i>
+        Profile
+    </ion-nav-title>
+
+    <ion-content class="padding">
+
+        <h4>Hello {{user.firstname}} !</h4>
+
+
+        <ul>
+            <li><strong>Firstname</strong> {{user.firstname}} </li>
+            <li><strong>Lastname</strong> {{user.lastname}} </li>
+        </ul>
+
+        <p><strong>Number of issues posted:</strong> {{issues.data.length}}</p>
+        <button class="button-small icon-left ion-plus-round button-positive" ui-sref="menu.newIssue"> Report new Issue</button>
+
+        <p><strong>Your role(s): </strong>
+            <span ng-repeat="role in user.roles">
+                {{role}}
+            </span>
+            </p>
+
+    </ion-content>
+</ion-view>

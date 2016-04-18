@@ -1,0 +1,50 @@
+<ion-view view-title="Issue Details">
+    <ion-content class="padding">
+
+
+        <div class="list card">
+
+            <div class="item item-thumbnail-left">
+                <img src="{{issue.imageUrl}}">
+                <p>Type: {{issue.issueType.name}}</p>
+                <p>Status: {{issue.state}}</p> <!--TODO icon pour fait, en cours, pas traité(avec couleurs feu de circulation) -->
+
+                <p>Created by: {{issue.owner.name}}</p>
+
+            </div>
+
+
+            <div class="item item-body" ng-controller="IssueMapController" >
+                <leaflet class="full-image" defaults="mapDefaults" center="mapCenter" markers="mapMarkers" height="200px" data-tap-disabled="true"></leaflet>
+                <p>Description: {{issue.description}}</p>
+            </div>
+            <div class="card">
+                <a class="item item-text-wrap" ng-repeat="comment in issue.comments" style="padding: 3%; color:padding-left">
+                    <p>{{comment.text}}</p>
+                    <p style="font-style: italic; font-size: 10px">{{comment.author.name}}</p>
+                </a>
+            </div>
+            <div ng-controller="NewCommentCtrl">
+                <form name="createComment" ng-submit="submit()">
+
+
+                    <div class="list">
+
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">Commentaire</span>
+                            <input type="text" name="payload.text" placeholder="Votre commentaire" ng-model="action.payload.text">
+                        </label>
+
+                    </div>
+
+                    <input class="button button-calm" type="submit" name="submit" value="Send">
+                </form>
+
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>
+
+
+
