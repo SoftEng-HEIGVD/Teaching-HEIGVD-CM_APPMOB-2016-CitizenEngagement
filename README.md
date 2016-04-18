@@ -81,7 +81,7 @@ We have created a sandwich menu with different pannels (some changes have been m
 
 <a name="setup-fork"></a>
 ### Login
-![UI Design](www/img/readMe/login.png)
+![UI login](www/img/readMe/login.png)
 You can enter your first and last name. If you do not exist in the database, this will create a new account.
 You then have to select if you want to view the app as a citizen or staff (this feature will come soon).
 
