@@ -173,6 +173,10 @@ angular.module('citizen-engagement.issue', [])
                         console.log("1 " + $scope.issue.description);
                         $scope.response = res.issue;
                         console.log('voilà la réponse: ' + $scope.response);
+
+                        // redirect
+
+                        $state.go('home');
                     });
 
                 }).error(function (error) {

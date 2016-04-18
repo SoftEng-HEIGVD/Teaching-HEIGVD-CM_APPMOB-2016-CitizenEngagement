@@ -1,9 +1,8 @@
-# Citizen Engagement Mobile Application
+# CTHeroes mobile application
 
 <a name="top"></a>
 
-This repository contains instructions to build a skeleton application that will serve as a starting point to develop the Citizen Engagement mobile application.
-The completed skeleton app is available [here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-CM_APPMOB-2016-SkeletonApp).
+This repository contains the code to launch the ionic application.
 
 * [Prerequisites](#pre)
 * [Features](#features)
